@@ -1,0 +1,11 @@
+{
+  "name": "espanol-con-natali",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "preview": "python3 -m http.server 4173 -d dist",
+    "build:production": "DEPLOY_MODE=production node scripts/build.mjs",
+    "check:seo": "python3 scripts/check-seo.py"
+  }
+}
