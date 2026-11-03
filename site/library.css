@@ -6,3 +6,7 @@
 
 /* v1.1 · Same sans family and hierarchy in reading, exercises and resource navigation. */
 .library-hero h1,.reading-head h1{font-weight:500;letter-spacing:var(--tracking-display)}.library-feature h2,.shelf-row h2,.shelf-row h3,.reading-prose h2,.related h2{font-weight:500;letter-spacing:var(--tracking-heading)}.reading-head .answer{font-weight:400}.reading-prose{line-height:1.8}
+
+/* Direct PDF access at both ends of every article; no script or registration. */
+.reader-download{flex-basis:100%;border-block:1px solid var(--color-rule);padding-block:16px;display:flex;align-items:center;gap:32px}.reader-download p,.reading-prose .reader-download p{font-size:13px;line-height:1.6;margin:0;color:var(--color-muted)}.reader-download .link{flex-shrink:0}.reader-download p span{font-size:12px}.reading-prose .reader-download .link{color:var(--color-primary);text-decoration:none}
+@media(max-width:760px){.reader-download{display:block}.reader-download p{margin-top:8px}.reading-prose .reader-download p{margin-top:8px}}

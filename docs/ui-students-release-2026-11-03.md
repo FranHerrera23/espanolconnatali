@@ -8,3 +8,11 @@
 - Production origin is www.espanolconnatali.com. Build rejects contradictory SITE_URL. Vercel alias permanently redirects preserving route. Apex already configured 308 to www in Vercel.
 - Checks: production build; SEO/link/schema checks; ten editorial content hashes and text coverage; PDF preservation; 20 responsive page-width checks at 375/768/1024/1440/1920 via actual iframe viewports (outer browser resize override was ineffective); disclosures/menu; zero JS console errors in local home; reduced-motion initialization harness. No automated Lighthouse or Search Console run.
 - Pre-release public verification: all ten article URLs + home/library/robots/sitemap/PDF HTTP 200; all ten also read in browser with correct canonical/OG/JSON-LD origin. Firewall overview: no custom firewall configured, attack mode off, system mitigations active, no bypass IPs. No protection changed.
+
+
+## Final rollout
+- Ten approved, unchanged PDFs: direct download above and below every article; hashes verified during build.
+- Desktop line-masked scrub and Lenis, restrained mobile motion, reduced-motion fallback. Verified reversible progress 1.000 → 0.570 when scrolling upward.
+- Corrected invalid screenshot dimensions that caused extreme page height; build now rejects implausible dimensions.
+- Bounded testimonial previews (360px maximum), full originals accessible; footer spacing restored.
+- Home, students and article checked at 375, 768, 1024, 1440 and 1920px: no horizontal overflow.

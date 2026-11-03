@@ -13,8 +13,13 @@ for a in m:
  assert 'library-course' not in s and 'О курсе' not in s and 'Индивидуальные занятия' not in s
  assert 'reviewedBy' not in s and '.md"' not in s and 'noindex' not in s
  assert all(url.replace('&','&amp;') in s for url in a['sourceUrls'])
-pdf=Path('dist/assets/downloads/ask-for-clarification-workbook-ru.pdf');assert pdf.read_bytes().startswith(b'%PDF')
-assert pdf.read_bytes()==Path('site/assets/downloads/ask-for-clarification-workbook-ru.pdf').read_bytes()
-assert sum('Скачать PDF' in f.read_text() for f in Path('dist/resources').rglob('index.html'))==1
+downloads=json.loads(Path('content/downloads-manifest.json').read_text())['downloads']
+for d in downloads:
+ pdf=Path('dist'+d['downloadRoute']);data=pdf.read_bytes();assert data.startswith(b'%PDF')
+ assert hashlib.sha256(data).hexdigest()==d['sha256'] and len(data)==d['bytes']
+ html=Path('dist'+d['articleRoute']+'index.html').read_text()
+ assert html.count('href="'+d['downloadRoute']+'" download')==2
+ assert 'Полный материал с упражнениями и ответами' in html
+assert sum('Скачать PDF' in f.read_text() for f in Path('dist/resources').rglob('index.html'))==10
 assert len(re.findall('<loc>',Path('dist/sitemap.xml').read_text()))==13
-print('Launch checks: ten source hashes, full Russian word coverage, sources, open resources, no commercial blocks/fake review, one real PDF, thirteen sitemap URLs.')
+print('Launch checks: ten source hashes, full Russian word coverage, sources, open resources, no commercial blocks/fake review, ten correctly mapped PDFs, thirteen sitemap URLs.')

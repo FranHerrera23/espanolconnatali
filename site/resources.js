@@ -15,6 +15,7 @@
   // All content remains visible when scripts or motion preferences disable enhancement.
   if (!window.gsap || !window.ScrollTrigger) return;
   gsap.registerPlugin(ScrollTrigger);
+  if (window.SplitText) gsap.registerPlugin(SplitText);
   const media = gsap.matchMedia();
   media.add({ motion: '(prefers-reduced-motion: no-preference)', desktop: '(min-width: 900px) and (pointer: fine)' }, context => {
     if (!context.conditions.motion) return;
@@ -39,10 +40,28 @@
         scrollTrigger: { trigger: el, start: 'top 96%', end: 'top 66%', scrub: desktop ? .65 : true, invalidateOnRefresh: true }
       });
     };
-    // Display-only choreography. Body copy and interactive controls never fade or mask.
-    document.querySelectorAll('.home-view h2').forEach(el => reveal(el, desktop ? 40 : 16, .78));
-    document.querySelectorAll('.voice-quote').forEach(el => reveal(el, desktop ? 48 : 16, .72));
-    document.querySelectorAll('.voice-evidence,.voice-secondary figure').forEach(el => reveal(el, desktop ? 24 : 8));
+    // Line masks follow the scroll position; only display text is split.
+    // SplitText re-measures Cyrillic line wraps after font loading and responsive changes.
+    const splits = [];
+    document.querySelectorAll('.home-view h2,.voice-quote').forEach(el => {
+      if (window.SplitText && desktop) {
+        const split = SplitText.create(el, {
+          type: 'lines', mask: 'lines', linesClass: 'motion-line', autoSplit: true, aria: 'auto',
+          onSplit(self) {
+            return gsap.fromTo(self.lines, { yPercent: 105 }, {
+              yPercent: 0, duration: 1, stagger: .09, ease: 'none',
+              scrollTrigger: {
+                trigger: el, start: 'top 96%', end: 'top 55%', scrub: .65, invalidateOnRefresh: true,
+                onUpdate: st => { el.dataset.motionProgress = st.progress.toFixed(3); }
+              }
+            });
+          }
+        });
+        splits.push(split);
+      } else reveal(el, 16, .85);
+    });
+    document.querySelectorAll('.voice-evidence,.voice-secondary figure,.student-story-image').forEach(el => reveal(el, desktop ? 24 : 8));
+    document.querySelectorAll('.student-story h2').forEach(el => reveal(el, 8, .85));
     document.querySelectorAll('.practice-sequence article').forEach(el => {
       gsap.fromTo(el, { '--rule-progress': 0 }, { '--rule-progress': 1, ease: 'none', scrollTrigger: { trigger: el, start: 'top 88%', end: 'top 48%', scrub: .6 } });
       gsap.fromTo(el.querySelector('h3'), { x: desktop ? 16 : 0 }, { x: 0, ease: 'none', scrollTrigger: { trigger: el, start: 'top 88%', end: 'top 55%', scrub: .6 } });
@@ -61,6 +80,7 @@
     window.addEventListener('pageshow', refresh);
     return () => {
       active = false;
+      splits.forEach(split => split.revert());
       cancelAnimationFrame(refreshFrame);
       document.removeEventListener('focusin', focus);
       images.forEach(img => img.removeEventListener('load', refresh));
