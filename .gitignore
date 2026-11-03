@@ -6,3 +6,4 @@ work/
 !.env.example
 .vercel/
 .DS_Store
+.vercel

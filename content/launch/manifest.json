@@ -1,0 +1,407 @@
+[
+  {
+    "id": "ECN-FR-001",
+    "version": "1.0",
+    "status": "editorially_ready_for_handoff",
+    "language": "ru",
+    "sourceFile": "editorial/articles/keep-a-conversation-going.md",
+    "route": "/resources/keep-a-conversation-going/",
+    "routeStatus": "existing",
+    "title": "Как поддержать разговор на испанском",
+    "description": "Ответ, полезная деталь и вопрос по теме: два диалога и задания с объяснениями.",
+    "author": {
+      "type": "Organization",
+      "name": "Редакция Español con Natali"
+    },
+    "editorialDisclosure": "Материал подготовлен редакцией с использованием ИИ.",
+    "humanReviewer": null,
+    "preparedAt": "2026-11-03",
+    "publishedAt": null,
+    "updatedAt": null,
+    "canonicalOrigin": null,
+    "publicationExecuted": false,
+    "wordCount": 674,
+    "sourceUrls": [
+      "https://www.rae.es/dpd/interrogaci%C3%B3n",
+      "https://www.rae.es/dpd/repetir"
+    ],
+    "relatedFiles": [
+      "ser-estar.md",
+      "ask-for-clarification.md"
+    ],
+    "commercialCta": null,
+    "sha256": "d9ab869873bae960dddabcf25483ea9ced38b116b66008b0a71ddc5c8995920c",
+    "editorialApproval": {
+      "by": "Fran",
+      "source": "Aprobación expresa en este chat: Excelente. Aprobados; hay que salir live con esto.",
+      "date": "2026-11-03",
+      "scope": "Aprobado para publicación por responsable web. Natali leerá después de salir live; no revisión humana de Natali atribuida."
+    }
+  },
+  {
+    "id": "ECN-FR-003",
+    "version": "1.0",
+    "status": "editorially_ready_for_handoff",
+    "language": "ru",
+    "sourceFile": "editorial/articles/make-plans-in-spanish.md",
+    "route": "/resources/make-plans-in-spanish/",
+    "routeStatus": "existing",
+    "title": "Как договориться о встрече на испанском",
+    "description": "Как пригласить, согласовать время и место, перенести встречу и подтвердить договорённость.",
+    "author": {
+      "type": "Organization",
+      "name": "Редакция Español con Natali"
+    },
+    "editorialDisclosure": "Материал подготовлен редакцией с использованием ИИ.",
+    "humanReviewer": null,
+    "preparedAt": "2026-11-03",
+    "publishedAt": null,
+    "updatedAt": null,
+    "canonicalOrigin": null,
+    "publicationExecuted": false,
+    "wordCount": 688,
+    "sourceUrls": [
+      "https://dle.rae.es/quedar",
+      "https://dle.rae.es/venir",
+      "https://dle.rae.es/apetecer",
+      "https://www.rae.es/dpd/interrogaci%C3%B3n"
+    ],
+    "relatedFiles": [
+      "ask-for-clarification.md",
+      "keep-a-conversation-going.md"
+    ],
+    "commercialCta": null,
+    "sha256": "b5c04b6a71fcf595f349bc9346d6bd0dfc17b03e7f65da27cebf216bdeeabf54",
+    "editorialApproval": {
+      "by": "Fran",
+      "source": "Aprobación expresa en este chat: Excelente. Aprobados; hay que salir live con esto.",
+      "date": "2026-11-03",
+      "scope": "Aprobado para publicación por responsable web. Natali leerá después de salir live; no revisión humana de Natali atribuida."
+    }
+  },
+  {
+    "id": "ECN-FR-004",
+    "version": "1.0",
+    "status": "editorially_ready_for_handoff",
+    "language": "ru",
+    "sourceFile": "editorial/articles/practise-with-recorded-lessons.md",
+    "route": "/resources/practise-with-recorded-lessons/",
+    "routeStatus": "existing",
+    "title": "Как превратить видеоурок в самостоятельную практику испанского",
+    "description": "Понятная последовательность работы с фразой и полноценная тренировка с ответами.",
+    "author": {
+      "type": "Organization",
+      "name": "Редакция Español con Natali"
+    },
+    "editorialDisclosure": "Материал подготовлен редакцией с использованием ИИ.",
+    "humanReviewer": null,
+    "preparedAt": "2026-11-03",
+    "publishedAt": null,
+    "updatedAt": null,
+    "canonicalOrigin": null,
+    "publicationExecuted": false,
+    "wordCount": 665,
+    "sourceUrls": [
+      "https://dle.rae.es/leer"
+    ],
+    "relatedFiles": [
+      "keep-a-conversation-going.md",
+      "make-plans-in-spanish.md"
+    ],
+    "commercialCta": null,
+    "sha256": "630abefafe02ec575eebcf4bdd3dfecaf5598be9a7c710fd81a7418e2eadee90",
+    "editorialApproval": {
+      "by": "Fran",
+      "source": "Aprobación expresa en este chat: Excelente. Aprobados; hay que salir live con esto.",
+      "date": "2026-11-03",
+      "scope": "Aprobado para publicación por responsable web. Natali leerá después de salir live; no revisión humana de Natali atribuida."
+    }
+  },
+  {
+    "id": "ECN-FR-002",
+    "version": "1.0",
+    "status": "editorially_ready_for_handoff",
+    "language": "ru",
+    "sourceFile": "editorial/articles/ask-for-clarification.md",
+    "route": "/resources/ask-for-clarification/",
+    "routeStatus": "proposed",
+    "title": "Как переспросить и попросить объяснить на испанском",
+    "description": "Фразы для повторения, замедления речи и объяснения слов; ситуации и ответы.",
+    "author": {
+      "type": "Organization",
+      "name": "Редакция Español con Natali"
+    },
+    "editorialDisclosure": "Материал подготовлен редакцией с использованием ИИ.",
+    "humanReviewer": null,
+    "preparedAt": "2026-11-03",
+    "publishedAt": null,
+    "updatedAt": null,
+    "canonicalOrigin": null,
+    "publicationExecuted": false,
+    "wordCount": 595,
+    "sourceUrls": [
+      "https://www.rae.es/dpd/repetir",
+      "https://dle.rae.es/quedar",
+      "https://www.rae.es/dpd/interrogaci%C3%B3n"
+    ],
+    "relatedFiles": [
+      "make-plans-in-spanish.md",
+      "keep-a-conversation-going.md"
+    ],
+    "commercialCta": null,
+    "sha256": "d7bc06ab7c5cb7195b312db218b96c360a655a341874f8fee387f3f09caab46b",
+    "editorialApproval": {
+      "by": "Fran",
+      "source": "Aprobación expresa en este chat: Excelente. Aprobados; hay que salir live con esto.",
+      "date": "2026-11-03",
+      "scope": "Aprobado para publicación por responsable web. Natali leerá después de salir live; no revisión humana de Natali atribuida."
+    }
+  },
+  {
+    "id": "ECN-FR-005",
+    "version": "1.0",
+    "status": "editorially_ready_for_handoff",
+    "language": "ru",
+    "sourceFile": "editorial/articles/ser-estar.md",
+    "route": "/resources/ser-estar/",
+    "routeStatus": "proposed",
+    "title": "Ser и estar: как выбрать глагол по смыслу",
+    "description": "Профессия, происхождение, место и состояние: начальные случаи и упражнения с объяснениями.",
+    "author": {
+      "type": "Organization",
+      "name": "Редакция Español con Natali"
+    },
+    "editorialDisclosure": "Материал подготовлен редакцией с использованием ИИ.",
+    "humanReviewer": null,
+    "preparedAt": "2026-11-03",
+    "publishedAt": null,
+    "updatedAt": null,
+    "canonicalOrigin": null,
+    "publicationExecuted": false,
+    "wordCount": 719,
+    "sourceUrls": [
+      "https://www.rae.es/dpd/ser",
+      "https://www.rae.es/dpd/estar",
+      "https://dle.rae.es/listo",
+      "https://dle.rae.es/ser"
+    ],
+    "relatedFiles": [
+      "practise-with-recorded-lessons.md"
+    ],
+    "commercialCta": null,
+    "sha256": "ecf65f0fc70a267d6568aba696576fe611d3884288799d7178c05ed03e999ee8",
+    "editorialApproval": {
+      "by": "Fran",
+      "source": "Aprobación expresa en este chat: Excelente. Aprobados; hay que salir live con esto.",
+      "date": "2026-11-03",
+      "scope": "Aprobado para publicación por responsable web. Natali leerá después de salir live; no revisión humana de Natali atribuida."
+    }
+  },
+  {
+    "id": "ECN-FR-006",
+    "version": "1.0",
+    "status": "editorially_ready_for_handoff",
+    "language": "ru",
+    "sourceFile": "editorial/articles/spanish-from-zero.md",
+    "route": "/resources/spanish-from-zero/",
+    "routeStatus": "proposed",
+    "title": "Испанский с нуля: понятный маршрут для русскоязычных",
+    "description": "Маршрут от первых реплик до самостоятельной проверки: чтение, знакомство, грамматика и уточнения.",
+    "author": {
+      "type": "Organization",
+      "name": "Редакция Español con Natali"
+    },
+    "editorialDisclosure": "Материал подготовлен редакцией с использованием ИИ.",
+    "humanReviewer": null,
+    "preparedAt": "2026-11-03",
+    "publishedAt": null,
+    "updatedAt": null,
+    "canonicalOrigin": null,
+    "publicationExecuted": false,
+    "wordCount": 588,
+    "sourceUrls": [
+      "https://www.rae.es/dpd/h",
+      "https://dle.rae.es/estudiar",
+      "https://www.rae.es/dpd/interrogaci%C3%B3n"
+    ],
+    "relatedFiles": [
+      "read-spanish.md",
+      "introduce-yourself.md",
+      "build-simple-sentences.md",
+      "ser-estar.md",
+      "spanish-articles.md",
+      "ask-for-clarification.md"
+    ],
+    "commercialCta": null,
+    "sha256": "3e73db72637f87d50cb0f57f999794a129262817246eb8aa7e9672af1e4169ed",
+    "editorialApproval": {
+      "by": "Fran",
+      "source": "Aprobación expresa en este chat: Excelente. Aprobados; hay que salir live con esto.",
+      "date": "2026-11-03",
+      "scope": "Aprobado para publicación por responsable web. Natali leerá después de salir live; no revisión humana de Natali atribuida."
+    }
+  },
+  {
+    "id": "ECN-FR-008",
+    "version": "1.0",
+    "status": "editorially_ready_for_handoff",
+    "language": "ru",
+    "sourceFile": "editorial/articles/spanish-articles.md",
+    "route": "/resources/spanish-articles/",
+    "routeStatus": "proposed",
+    "title": "Артикли в испанском: как меняется смысл",
+    "description": "Как выбирать un, una, el и la по контексту: формы, ограничения и упражнения с объяснениями.",
+    "author": {
+      "type": "Organization",
+      "name": "Редакция Español con Natali"
+    },
+    "editorialDisclosure": "Материал подготовлен редакцией с использованием ИИ.",
+    "humanReviewer": null,
+    "preparedAt": "2026-11-03",
+    "publishedAt": null,
+    "updatedAt": null,
+    "canonicalOrigin": null,
+    "publicationExecuted": false,
+    "wordCount": 669,
+    "sourceUrls": [
+      "https://www.rae.es/dpd/el",
+      "https://www.rae.es/dpd/ser"
+    ],
+    "relatedFiles": [
+      "ser-estar.md"
+    ],
+    "commercialCta": null,
+    "sha256": "4452854114a0ecd0d4c4585620011c5e11724a87adb91c94d976ad26adf79916",
+    "editorialApproval": {
+      "by": "Fran",
+      "source": "Aprobación expresa en este chat: Excelente. Aprobados; hay que salir live con esto.",
+      "date": "2026-11-03",
+      "scope": "Aprobado para publicación por responsable web. Natali leerá después de salir live; no revisión humana de Natali atribuida."
+    }
+  },
+  {
+    "id": "ECN-FR-007",
+    "version": "1.0",
+    "status": "editorially_ready_for_handoff",
+    "language": "ru",
+    "sourceFile": "editorial/articles/read-spanish.md",
+    "route": "/resources/read-spanish/",
+    "routeStatus": "proposed",
+    "title": "Как читать по-испански: буквы, звуки и ударение",
+    "description": "Первые правила чтения, ударение и региональные варианты; письменные задания с ответами.",
+    "author": {
+      "type": "Organization",
+      "name": "Редакция Español con Natali"
+    },
+    "editorialDisclosure": "Материал подготовлен редакцией с использованием ИИ.",
+    "humanReviewer": null,
+    "preparedAt": "2026-11-03",
+    "publishedAt": null,
+    "updatedAt": null,
+    "canonicalOrigin": null,
+    "publicationExecuted": false,
+    "wordCount": 642,
+    "sourceUrls": [
+      "https://www.rae.es/dpd/h",
+      "https://www.rae.es/dpd/b",
+      "https://www.rae.es/dpd/c",
+      "https://www.rae.es/dpd/q",
+      "https://www.rae.es/dpd/g",
+      "https://www.rae.es/dpd/r",
+      "https://www.rae.es/dpd/seseo",
+      "https://www.rae.es/dpd/tilde"
+    ],
+    "relatedFiles": [
+      "introduce-yourself.md"
+    ],
+    "commercialCta": null,
+    "sha256": "ca439e57da5ebffaf3403ddfd7248de86a3bfc0fb7a22fd6b2a9a64777c40a47",
+    "editorialApproval": {
+      "by": "Fran",
+      "source": "Aprobación expresa en este chat: Excelente. Aprobados; hay que salir live con esto.",
+      "date": "2026-11-03",
+      "scope": "Aprobado para publicación por responsable web. Natali leerá después de salir live; no revisión humana de Natali atribuida."
+    }
+  },
+  {
+    "id": "ECN-FR-011",
+    "version": "1.0",
+    "status": "editorially_ready_for_handoff",
+    "language": "ru",
+    "sourceFile": "editorial/articles/introduce-yourself.md",
+    "route": "/resources/introduce-yourself/",
+    "routeStatus": "proposed",
+    "title": "Как рассказать о себе при знакомстве на испанском",
+    "description": "Имя, место жизни и выбранная деталь: гибкое знакомство с диалогом, практикой и самопроверкой.",
+    "author": {
+      "type": "Organization",
+      "name": "Редакция Español con Natali"
+    },
+    "editorialDisclosure": "Материал подготовлен редакцией с использованием ИИ.",
+    "humanReviewer": null,
+    "preparedAt": "2026-11-03",
+    "publishedAt": null,
+    "updatedAt": null,
+    "canonicalOrigin": null,
+    "publicationExecuted": false,
+    "wordCount": 618,
+    "sourceUrls": [
+      "https://dle.rae.es/llamar",
+      "https://www.rae.es/dpd/ser",
+      "https://www.rae.es/dpd/interrogaci%C3%B3n"
+    ],
+    "relatedFiles": [
+      "ser-estar.md",
+      "ask-for-clarification.md",
+      "keep-a-conversation-going.md"
+    ],
+    "commercialCta": null,
+    "sha256": "dc6e761eed6468d38f87564332c97503c5c3bbcdecd53b24be665993bf74a64b",
+    "editorialApproval": {
+      "by": "Fran",
+      "source": "Aprobación expresa en este chat: Excelente. Aprobados; hay que salir live con esto.",
+      "date": "2026-11-03",
+      "scope": "Aprobado para publicación por responsable web. Natali leerá después de salir live; no revisión humana de Natali atribuida."
+    }
+  },
+  {
+    "id": "ECN-FR-015",
+    "version": "1.0",
+    "status": "editorially_ready_for_handoff",
+    "language": "ru",
+    "sourceFile": "editorial/articles/build-simple-sentences.md",
+    "route": "/resources/build-simple-sentences/",
+    "routeStatus": "proposed",
+    "title": "Как построить простое предложение на испанском",
+    "description": "Личная форма глагола, отрицание и вопрос: простые предложения с упражнениями и разбором.",
+    "author": {
+      "type": "Organization",
+      "name": "Редакция Español con Natali"
+    },
+    "editorialDisclosure": "Материал подготовлен редакцией с использованием ИИ.",
+    "humanReviewer": null,
+    "preparedAt": "2026-11-03",
+    "publishedAt": null,
+    "updatedAt": null,
+    "canonicalOrigin": null,
+    "publicationExecuted": false,
+    "wordCount": 673,
+    "sourceUrls": [
+      "https://dle.rae.es/estudiar",
+      "https://www.rae.es/dpd/yo",
+      "https://www.rae.es/dpd/no",
+      "https://www.rae.es/dpd/interrogaci%C3%B3n"
+    ],
+    "relatedFiles": [
+      "introduce-yourself.md"
+    ],
+    "commercialCta": null,
+    "sha256": "2c1809ddcfa96f99470a597418b67224c0d222328353eefd8a3da6155fe9236c",
+    "editorialApproval": {
+      "by": "Fran",
+      "source": "Aprobación expresa en este chat: Excelente. Aprobados; hay que salir live con esto.",
+      "date": "2026-11-03",
+      "scope": "Aprobado para publicación por responsable web. Natali leerá después de salir live; no revisión humana de Natali atribuida."
+    }
+  }
+]

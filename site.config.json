@@ -1,7 +1,8 @@
 {
-  "productionSiteUrl": null,
+  "productionSiteUrl": "https://espanolconnatali.vercel.app",
   "brand": "Испанский с Натали",
   "brandLatin": "Español con Natali",
   "locale": "ru-RU",
-  "instagram": "https://www.instagram.com/espanol.con.natali/"
+  "instagram": "https://www.instagram.com/espanol.con.natali/",
+  "releaseDate": "2026-11-03"
 }

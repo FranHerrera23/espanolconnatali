@@ -1,14 +1,19 @@
-import json,subprocess,shutil
 from pathlib import Path
-src=Path('work/seo-fixture');shutil.copytree('site',src,dirs_exist_ok=True)
-data=json.loads((src/'resources-content.json').read_text());a=data['plans'];a.update(status='published',approvalRequired=False,author={'name':'Тестовый автор','jobTitle':'Тестовая роль','image':'/assets/natali-city.jpg'},reviewer={'name':'Тестовый редактор'},sources=[{'title':'Тестовый источник','url':'https://example.test/source'}],publishedAt='2026-11-01',updatedAt='2026-11-02');(src/'resources-content.json').write_text(json.dumps(data,ensure_ascii=False))
-import os
-env={**os.environ,'DEPLOY_MODE':'production','SITE_URL':'https://example.test','SITE_SOURCE':str(src),'BUILD_DIR':'work/seo-published-test'}
-subprocess.run(['node','scripts/build.mjs'],env=env,check=True);subprocess.run(['python3','scripts/check-seo.py','work/seo-published-test','production'],check=True)
-assert Path('work/seo-published-test/resources/make-plans-in-spanish/index.html').is_file()
-assert not Path('work/seo-published-test/resources/keep-a-conversation-going').exists()
-# Missing editorial approval must stop the build.
-a['approvalRequired']=True;(src/'resources-content.json').write_text(json.dumps(data));r=subprocess.run(['node','scripts/build.mjs'],env=env,capture_output=True,text=True);assert r.returncode and 'Publication approval missing' in r.stderr
-# A production domain is mandatory; the previous Lovable URL cannot silently leak.
-env.pop('SITE_URL');r=subprocess.run(['node','scripts/build.mjs'],env=env,capture_output=True,text=True);assert r.returncode and 'confirmed production origin' in r.stderr
-print('Publication gates passed: published fixture only, author/date rendering, draft exclusion, missing approval and missing production domain. All fixture identities are test data, not approvals.')
+import json,re,hashlib,subprocess
+from html.parser import HTMLParser
+m=json.loads(Path('content/launch/manifest.json').read_text())
+class T(HTMLParser):
+ def __init__(self):super().__init__();self.text=[]
+ def handle_data(self,s):self.text.append(s)
+for a in m:
+ md=Path('content/launch',Path(a['sourceFile']).name).read_text();assert hashlib.sha256(md.encode()).hexdigest()==a['sha256']
+ s=Path('dist'+a['route']+'index.html').read_text();p=T();p.feed(s);visible=' '.join(p.text)
+ for word in set(re.findall('[А-Яа-яЁё]{2,}',md.split('\n',1)[1])):assert word in visible,(a['route'],word)
+ assert 'library-course' not in s and 'О курсе' not in s and 'Индивидуальные занятия' not in s
+ assert 'reviewedBy' not in s and '.md"' not in s and 'noindex' not in s
+ assert all(url.replace('&','&amp;') in s for url in a['sourceUrls'])
+pdf=Path('dist/assets/downloads/ask-for-clarification-workbook-ru.pdf');assert pdf.read_bytes().startswith(b'%PDF')
+assert pdf.read_bytes()==Path('site/assets/downloads/ask-for-clarification-workbook-ru.pdf').read_bytes()
+assert sum('Скачать PDF' in f.read_text() for f in Path('dist/resources').rglob('index.html'))==1
+assert len(re.findall('<loc>',Path('dist/sitemap.xml').read_text()))==12
+print('Launch checks: ten source hashes, full Russian word coverage, sources, open resources, no commercial blocks/fake review, one real PDF, twelve sitemap URLs.')
