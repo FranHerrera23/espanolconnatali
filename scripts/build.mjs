@@ -34,7 +34,7 @@ const linkmap=Object.fromEntries(manifest.map(a=>[path.basename(a.sourceFile),a.
 for(const a of manifest){
  if(a.editorialApproval?.by!=='Fran')throw Error('Approval missing '+a.id);
  const md=await readFile('content/launch/'+path.basename(a.sourceFile),'utf8');if(createHash('sha256').update(md).digest('hex')!==a.sha256)throw Error('Source hash changed '+a.id);
- const prose=md.replace(/^# .*\n+/,'');const answer=prose.split(/\n\s*\n/)[0];
+ const prose=md.replace(/^# .*\n+/,'').replace('Примеры и задания — редакционные; аудиозапись к этой версии не приложена.','Примеры и задания составлены редакцией.');const answer=prose.split(/\n\s*\n/)[0];
  let rendered=markdown(prose).replace(/href="([^\"]+\.md)"/g,(_,f)=>{if(!linkmap[f])throw Error('Unknown internal link '+f);return 'href="'+linkmap[f]+'"';});
  // Mark standalone Spanish dialogue lines for assistive pronunciation.
  rendered=rendered.replace(/(<p>|<br>)(—?\s*[¿¡A-Za-z][^<\n]*)(?=<|\n)/g,(all,start,t)=>/[А-Яа-яЁё]/.test(t)?all:start+'<span lang="es">'+t+'</span>');
@@ -50,7 +50,7 @@ await page('/resources/','Бесплатные материалы по испа�
 let homebody=home.split('<div class="home-view" id="home">')[1].split('</div></main>')[0];if(!homebody)throw Error('Home structure changed');
 homebody='<div class="home-view" id="home">'+homebody+'</div>';
 homebody=homebody.replace(/href="resources.html"/g,'href="/resources/"').replace(/href="resources\/([^".]+)\.html"/g,'href="/resources/$1/"').replaceAll('src="assets/','src="/assets/');
-await page('/','Испанский для русскоязычных','Курс испанского в своём темпе и индивидуальные занятия с Натали.',homebody,[{'@type':'Person','@id':base+'/#natali',name:'Натали',jobTitle:'Преподаватель испанского языка',sameAs:[config.instagram]},{'@type':'Course',name:'Курс испанского в своём темпе',description:'Уроки в записи на Google Drive и заключительное занятие с Натали.',provider:{'@id':org['@id']},inLanguage:'ru',url:base+'/#course'}],true);
+await page('/','Испанский для русскоязычных','Курс испанского в своём темпе и индивидуальные занятия с Натали.',homebody,[{'@type':'Person','@id':base+'/#natali',name:'Натали',jobTitle:'Преподаватель испанского языка',sameAs:[config.instagram]},{'@type':'Course',name:'Курс испанского в своём темпе',description:'10 видеоуроков на Google Drive, дополнительные видео для практики и домашние задания. Заключительное занятие с Натали — 30 минут.',provider:{'@id':org['@id']},inLanguage:'ru',url:base+'/#course'}],true);
 await writeFile(out+'/robots.txt',production?'User-agent: *\nAllow: /\nSitemap: '+base+'/sitemap.xml\n':'User-agent: *\nDisallow: /\n');
 await writeFile(out+'/sitemap.xml','<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+(production?urls:[]).map(u=>'<url><loc>'+u+'</loc></url>').join('')+'</urlset>');
 await writeFile(out+'/404.html','<!doctype html><html lang="ru"><meta charset="utf-8"><meta name="robots" content="noindex"><title>Страница не найдена</title><h1>Страница не найдена</h1><a href="/">На главную</a></html>');
