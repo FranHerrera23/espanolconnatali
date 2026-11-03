@@ -8,6 +8,7 @@ class T(HTMLParser):
 for a in m:
  md=Path('content/launch',Path(a['sourceFile']).name).read_text();assert hashlib.sha256(md.encode()).hexdigest()==a['sha256']
  s=Path('dist'+a['route']+'index.html').read_text();p=T();p.feed(s);visible=' '.join(p.text)
+ md=md.replace('Примеры и задания — редакционные; аудиозапись к этой версии не приложена.','Примеры и задания составлены редакцией.')
  for word in set(re.findall('[А-Яа-яЁё]{2,}',md.split('\n',1)[1])):assert word in visible,(a['route'],word)
  assert 'library-course' not in s and 'О курсе' not in s and 'Индивидуальные занятия' not in s
  assert 'reviewedBy' not in s and '.md"' not in s and 'noindex' not in s

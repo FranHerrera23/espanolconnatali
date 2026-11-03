@@ -2,7 +2,7 @@
   {
     "id": "ECN-FR-001",
     "version": "1.0",
-    "status": "editorially_ready_for_handoff",
+    "status": "published",
     "language": "ru",
     "sourceFile": "editorial/articles/keep-a-conversation-going.md",
     "route": "/resources/keep-a-conversation-going/",
@@ -16,10 +16,10 @@
     "editorialDisclosure": "Материал подготовлен редакцией с использованием ИИ.",
     "humanReviewer": null,
     "preparedAt": "2026-11-03",
-    "publishedAt": null,
+    "publishedAt": "2026-11-03",
     "updatedAt": null,
-    "canonicalOrigin": null,
-    "publicationExecuted": false,
+    "canonicalOrigin": "https://www.espanolconnatali.com",
+    "publicationExecuted": true,
     "wordCount": 674,
     "sourceUrls": [
       "https://www.rae.es/dpd/interrogaci%C3%B3n",
@@ -36,12 +36,13 @@
       "source": "Aprobación expresa en este chat: Excelente. Aprobados; hay que salir live con esto.",
       "date": "2026-11-03",
       "scope": "Aprobado para publicación por responsable web. Natali leerá después de salir live; no revisión humana de Natali atribuida."
-    }
+    },
+    "publicUrl": "https://www.espanolconnatali.com/resources/keep-a-conversation-going/"
   },
   {
     "id": "ECN-FR-003",
     "version": "1.0",
-    "status": "editorially_ready_for_handoff",
+    "status": "published",
     "language": "ru",
     "sourceFile": "editorial/articles/make-plans-in-spanish.md",
     "route": "/resources/make-plans-in-spanish/",
@@ -55,10 +56,10 @@
     "editorialDisclosure": "Материал подготовлен редакцией с использованием ИИ.",
     "humanReviewer": null,
     "preparedAt": "2026-11-03",
-    "publishedAt": null,
+    "publishedAt": "2026-11-03",
     "updatedAt": null,
-    "canonicalOrigin": null,
-    "publicationExecuted": false,
+    "canonicalOrigin": "https://www.espanolconnatali.com",
+    "publicationExecuted": true,
     "wordCount": 688,
     "sourceUrls": [
       "https://dle.rae.es/quedar",
@@ -77,12 +78,13 @@
       "source": "Aprobación expresa en este chat: Excelente. Aprobados; hay que salir live con esto.",
       "date": "2026-11-03",
       "scope": "Aprobado para publicación por responsable web. Natali leerá después de salir live; no revisión humana de Natali atribuida."
-    }
+    },
+    "publicUrl": "https://www.espanolconnatali.com/resources/make-plans-in-spanish/"
   },
   {
     "id": "ECN-FR-004",
     "version": "1.0",
-    "status": "editorially_ready_for_handoff",
+    "status": "published",
     "language": "ru",
     "sourceFile": "editorial/articles/practise-with-recorded-lessons.md",
     "route": "/resources/practise-with-recorded-lessons/",
@@ -96,10 +98,10 @@
     "editorialDisclosure": "Материал подготовлен редакцией с использованием ИИ.",
     "humanReviewer": null,
     "preparedAt": "2026-11-03",
-    "publishedAt": null,
+    "publishedAt": "2026-11-03",
     "updatedAt": null,
-    "canonicalOrigin": null,
-    "publicationExecuted": false,
+    "canonicalOrigin": "https://www.espanolconnatali.com",
+    "publicationExecuted": true,
     "wordCount": 665,
     "sourceUrls": [
       "https://dle.rae.es/leer"
@@ -115,12 +117,13 @@
       "source": "Aprobación expresa en este chat: Excelente. Aprobados; hay que salir live con esto.",
       "date": "2026-11-03",
       "scope": "Aprobado para publicación por responsable web. Natali leerá después de salir live; no revisión humana de Natali atribuida."
-    }
+    },
+    "publicUrl": "https://www.espanolconnatali.com/resources/practise-with-recorded-lessons/"
   },
   {
     "id": "ECN-FR-002",
     "version": "1.0",
-    "status": "editorially_ready_for_handoff",
+    "status": "published",
     "language": "ru",
     "sourceFile": "editorial/articles/ask-for-clarification.md",
     "route": "/resources/ask-for-clarification/",
@@ -134,10 +137,10 @@
     "editorialDisclosure": "Материал подготовлен редакцией с использованием ИИ.",
     "humanReviewer": null,
     "preparedAt": "2026-11-03",
-    "publishedAt": null,
+    "publishedAt": "2026-11-03",
     "updatedAt": null,
-    "canonicalOrigin": null,
-    "publicationExecuted": false,
+    "canonicalOrigin": "https://www.espanolconnatali.com",
+    "publicationExecuted": true,
     "wordCount": 595,
     "sourceUrls": [
       "https://www.rae.es/dpd/repetir",
@@ -155,12 +158,13 @@
       "source": "Aprobación expresa en este chat: Excelente. Aprobados; hay que salir live con esto.",
       "date": "2026-11-03",
       "scope": "Aprobado para publicación por responsable web. Natali leerá después de salir live; no revisión humana de Natali atribuida."
-    }
+    },
+    "publicUrl": "https://www.espanolconnatali.com/resources/ask-for-clarification/"
   },
   {
     "id": "ECN-FR-005",
     "version": "1.0",
-    "status": "editorially_ready_for_handoff",
+    "status": "published",
     "language": "ru",
     "sourceFile": "editorial/articles/ser-estar.md",
     "route": "/resources/ser-estar/",
@@ -174,10 +178,10 @@
     "editorialDisclosure": "Материал подготовлен редакцией с использованием ИИ.",
     "humanReviewer": null,
     "preparedAt": "2026-11-03",
-    "publishedAt": null,
+    "publishedAt": "2026-11-03",
     "updatedAt": null,
-    "canonicalOrigin": null,
-    "publicationExecuted": false,
+    "canonicalOrigin": "https://www.espanolconnatali.com",
+    "publicationExecuted": true,
     "wordCount": 719,
     "sourceUrls": [
       "https://www.rae.es/dpd/ser",
@@ -195,12 +199,13 @@
       "source": "Aprobación expresa en este chat: Excelente. Aprobados; hay que salir live con esto.",
       "date": "2026-11-03",
       "scope": "Aprobado para publicación por responsable web. Natali leerá después de salir live; no revisión humana de Natali atribuida."
-    }
+    },
+    "publicUrl": "https://www.espanolconnatali.com/resources/ser-estar/"
   },
   {
     "id": "ECN-FR-006",
     "version": "1.0",
-    "status": "editorially_ready_for_handoff",
+    "status": "published",
     "language": "ru",
     "sourceFile": "editorial/articles/spanish-from-zero.md",
     "route": "/resources/spanish-from-zero/",
@@ -214,10 +219,10 @@
     "editorialDisclosure": "Материал подготовлен редакцией с использованием ИИ.",
     "humanReviewer": null,
     "preparedAt": "2026-11-03",
-    "publishedAt": null,
+    "publishedAt": "2026-11-03",
     "updatedAt": null,
-    "canonicalOrigin": null,
-    "publicationExecuted": false,
+    "canonicalOrigin": "https://www.espanolconnatali.com",
+    "publicationExecuted": true,
     "wordCount": 588,
     "sourceUrls": [
       "https://www.rae.es/dpd/h",
@@ -239,12 +244,13 @@
       "source": "Aprobación expresa en este chat: Excelente. Aprobados; hay que salir live con esto.",
       "date": "2026-11-03",
       "scope": "Aprobado para publicación por responsable web. Natali leerá después de salir live; no revisión humana de Natali atribuida."
-    }
+    },
+    "publicUrl": "https://www.espanolconnatali.com/resources/spanish-from-zero/"
   },
   {
     "id": "ECN-FR-008",
     "version": "1.0",
-    "status": "editorially_ready_for_handoff",
+    "status": "published",
     "language": "ru",
     "sourceFile": "editorial/articles/spanish-articles.md",
     "route": "/resources/spanish-articles/",
@@ -258,10 +264,10 @@
     "editorialDisclosure": "Материал подготовлен редакцией с использованием ИИ.",
     "humanReviewer": null,
     "preparedAt": "2026-11-03",
-    "publishedAt": null,
+    "publishedAt": "2026-11-03",
     "updatedAt": null,
-    "canonicalOrigin": null,
-    "publicationExecuted": false,
+    "canonicalOrigin": "https://www.espanolconnatali.com",
+    "publicationExecuted": true,
     "wordCount": 669,
     "sourceUrls": [
       "https://www.rae.es/dpd/el",
@@ -277,12 +283,13 @@
       "source": "Aprobación expresa en este chat: Excelente. Aprobados; hay que salir live con esto.",
       "date": "2026-11-03",
       "scope": "Aprobado para publicación por responsable web. Natali leerá después de salir live; no revisión humana de Natali atribuida."
-    }
+    },
+    "publicUrl": "https://www.espanolconnatali.com/resources/spanish-articles/"
   },
   {
     "id": "ECN-FR-007",
     "version": "1.0",
-    "status": "editorially_ready_for_handoff",
+    "status": "published",
     "language": "ru",
     "sourceFile": "editorial/articles/read-spanish.md",
     "route": "/resources/read-spanish/",
@@ -296,10 +303,10 @@
     "editorialDisclosure": "Материал подготовлен редакцией с использованием ИИ.",
     "humanReviewer": null,
     "preparedAt": "2026-11-03",
-    "publishedAt": null,
+    "publishedAt": "2026-11-03",
     "updatedAt": null,
-    "canonicalOrigin": null,
-    "publicationExecuted": false,
+    "canonicalOrigin": "https://www.espanolconnatali.com",
+    "publicationExecuted": true,
     "wordCount": 642,
     "sourceUrls": [
       "https://www.rae.es/dpd/h",
@@ -321,12 +328,13 @@
       "source": "Aprobación expresa en este chat: Excelente. Aprobados; hay que salir live con esto.",
       "date": "2026-11-03",
       "scope": "Aprobado para publicación por responsable web. Natali leerá después de salir live; no revisión humana de Natali atribuida."
-    }
+    },
+    "publicUrl": "https://www.espanolconnatali.com/resources/read-spanish/"
   },
   {
     "id": "ECN-FR-011",
     "version": "1.0",
-    "status": "editorially_ready_for_handoff",
+    "status": "published",
     "language": "ru",
     "sourceFile": "editorial/articles/introduce-yourself.md",
     "route": "/resources/introduce-yourself/",
@@ -340,10 +348,10 @@
     "editorialDisclosure": "Материал подготовлен редакцией с использованием ИИ.",
     "humanReviewer": null,
     "preparedAt": "2026-11-03",
-    "publishedAt": null,
+    "publishedAt": "2026-11-03",
     "updatedAt": null,
-    "canonicalOrigin": null,
-    "publicationExecuted": false,
+    "canonicalOrigin": "https://www.espanolconnatali.com",
+    "publicationExecuted": true,
     "wordCount": 618,
     "sourceUrls": [
       "https://dle.rae.es/llamar",
@@ -362,12 +370,13 @@
       "source": "Aprobación expresa en este chat: Excelente. Aprobados; hay que salir live con esto.",
       "date": "2026-11-03",
       "scope": "Aprobado para publicación por responsable web. Natali leerá después de salir live; no revisión humana de Natali atribuida."
-    }
+    },
+    "publicUrl": "https://www.espanolconnatali.com/resources/introduce-yourself/"
   },
   {
     "id": "ECN-FR-015",
     "version": "1.0",
-    "status": "editorially_ready_for_handoff",
+    "status": "published",
     "language": "ru",
     "sourceFile": "editorial/articles/build-simple-sentences.md",
     "route": "/resources/build-simple-sentences/",
@@ -381,10 +390,10 @@
     "editorialDisclosure": "Материал подготовлен редакцией с использованием ИИ.",
     "humanReviewer": null,
     "preparedAt": "2026-11-03",
-    "publishedAt": null,
+    "publishedAt": "2026-11-03",
     "updatedAt": null,
-    "canonicalOrigin": null,
-    "publicationExecuted": false,
+    "canonicalOrigin": "https://www.espanolconnatali.com",
+    "publicationExecuted": true,
     "wordCount": 673,
     "sourceUrls": [
       "https://dle.rae.es/estudiar",
@@ -402,6 +411,7 @@
       "source": "Aprobación expresa en este chat: Excelente. Aprobados; hay que salir live con esto.",
       "date": "2026-11-03",
       "scope": "Aprobado para publicación por responsable web. Natali leerá después de salir live; no revisión humana de Natali atribuida."
-    }
+    },
+    "publicUrl": "https://www.espanolconnatali.com/resources/build-simple-sentences/"
   }
 ]
