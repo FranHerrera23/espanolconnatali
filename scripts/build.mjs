@@ -34,6 +34,7 @@ async function page(route,title,desc,body,extra=[],commercial=false){
  const filename=out+(route==='/'?'/index.html':route+'index.html');await mkdir(path.dirname(filename),{recursive:true});await writeFile(filename,html);urls.push(canonical);
 }
 let listings='';
+const readingTimes = new Map();
 const linkmap=Object.fromEntries(manifest.map(a=>[path.basename(a.sourceFile),a.route]));
 for(const a of manifest){
  if(a.editorialApproval?.by!=='Fran')throw Error('Approval missing '+a.id);
@@ -42,15 +43,22 @@ for(const a of manifest){
  let rendered=markdown(prose).replace(/href="([^\"]+\.md)"/g,(_,f)=>{if(!linkmap[f])throw Error('Unknown internal link '+f);return 'href="'+linkmap[f]+'"';});
  // Mark standalone Spanish dialogue lines for assistive pronunciation.
  rendered=rendered.replace(/(<p>|<br>)(—?\s*[¿¡A-Za-z][^<\n]*)(?=<|\n)/g,(all,start,t)=>/[А-Яа-яЁё]/.test(t)?all:start+'<span lang="es">'+t+'</span>');
+ const minutes = Math.max(1, Math.ceil(prose.replace(/https?:\/\/\S+/g,'').split(/\s+/).filter(Boolean).length / 180));
+ readingTimes.set(a.route, minutes);
+ const sections=[];
+ rendered=rendered.replace(/<h2>(.*?)<\/h2>/g,(_,title)=>{const id='section-'+(sections.length+1);sections.push({id,title});return '<h2 id="'+id+'">'+title+'</h2>';});
+ const contents='<aside class="reader-contents"><details open><summary>В этом материале</summary><nav aria-label="Содержание статьи">'+sections.map(h=>'<a href="#'+h.id+'">'+h.title+'</a>').join('')+'</nav></details></aside>';
+ const readingMeta='<p class="reading-time">Около '+minutes+' мин чтения <span>· Без учёта упражнений</span></p>';
  const download=downloads.find(d=>d.articleRoute===a.route);if(!download||download.id!==a.id||download.sourceSha256!==a.sha256)throw Error('Article/PDF mapping mismatch '+a.id);
  const pdf='<div class="reader-download"><a class="link" href="'+esc(download.downloadRoute)+'" download>Скачать PDF <span aria-hidden="true">↓</span></a><p>Полный материал с упражнениями и ответами<br><span>'+download.pages+' '+(download.pages===4?'страницы':'страниц')+' · PDF</span></p></div>';
  const tools='<div class="reader-tools" aria-label="Сохранить и взять с собой">'+pdf+'<button class="link" data-print>Распечатать</button><button class="link" data-copy>Скопировать ссылку</button><span class="reader-status" role="status"></span></div>';
- const body='<div class="wrap read-top"><a class="link" href="/resources/">← Все бесплатные материалы</a></div><article class="wrap"><header class="reading-head"><p class="label">Бесплатные материалы · Практическое руководство</p><h1>'+esc(a.title)+'</h1><p class="answer">'+esc(a.description)+'</p><div class="editorial-byline">'+esc(a.author.name)+'<br>'+esc(a.editorialDisclosure)+'<br>Опубликовано <time datetime="'+pubdate+'">3 ноября 2026 года</time></div>'+tools+'</header><div class="reading-layout"><div class="reading-prose">'+rendered+tools+'</div></div></article><section class="related wrap"><h2>Что почитать дальше</h2>'+a.relatedFiles.map(f=>'<a href="'+linkmap[f]+'">'+esc(manifest.find(x=>path.basename(x.sourceFile)===f).title)+' ↗</a>').join('')+'</section>';
+ const body='<div class="wrap read-top"><a class="link" href="/resources/">← Все бесплатные материалы</a></div><article class="wrap"><header class="reading-head"><p class="label">Бесплатные материалы · Практическое руководство</p><h1>'+esc(a.title)+'</h1>'+readingMeta+'<p class="answer">'+esc(a.description)+'</p><div class="editorial-byline">'+esc(a.author.name)+'<br>'+esc(a.editorialDisclosure)+'<br>Опубликовано <time datetime="'+pubdate+'">3 ноября 2026 года</time></div>'+tools+'</header><div class="reading-layout">'+contents+'<div class="reading-prose">'+rendered+tools+'</div></div></article><section class="related wrap"><h2>Что почитать дальше</h2>'+a.relatedFiles.map(f=>'<a href="'+linkmap[f]+'">'+esc(manifest.find(x=>path.basename(x.sourceFile)===f).title)+' ↗</a>').join('')+'</section>';
  const article={'@type':'Article','@id':base+a.route+'#article',headline:a.title,description:a.description,inLanguage:'ru',creativeWorkStatus:'Published',author:{'@type':'Organization','@id':editor['@id'],name:editor.name},publisher:{'@id':org['@id']},datePublished:pubdate,mainEntityOfPage:{'@id':base+a.route+'#page'},citation:a.sourceUrls,articleBody:prose};
+ article.timeRequired='PT'+minutes+'M';
  article.encoding={'@type':'MediaObject',contentUrl:base+download.downloadRoute,encodingFormat:'application/pdf',contentSize:download.bytes+' bytes'};
  if(a.updatedAt)article.dateModified=a.updatedAt;
  await page(a.route,a.title,a.description,body,[article]);
- listings+='<article class="shelf-row"><p class="label">Практическое руководство</p><div><h2>'+esc(a.title)+'</h2><p>'+esc(a.description)+'</p></div><a class="link" href="'+a.route+'">Читать ↗</a></article>';
+ listings+='<article class="shelf-row"><div class="shelf-meta"><span class="shelf-number">'+String(manifest.indexOf(a)+1).padStart(2,'0')+'</span><p class="label">Практическое руководство</p><p class="reading-time">Около '+minutes+' мин чтения</p></div><div><h2><a class="shelf-title" href="'+a.route+'">'+esc(a.title)+'</a></h2><p>'+esc(a.description)+'</p></div><a class="link" href="'+a.route+'">Читать <span aria-hidden="true">↗</span></a></article>';
 }
 await page('/resources/','Бесплатные материалы по испанскому','Десять открытых руководств на русском: испанские примеры, упражнения, ответы и источники.','<section class="library-hero wrap"><p class="label">Бесплатные материалы</p><div class="library-intro"><h1>Испанский для<br>вашей жизни.</h1><p>Объяснения, примеры и практика. Читайте, проверяйте себя и возвращайтесь к тому, что пригодится в разговоре. Все материалы открыты без регистрации.</p></div></section><section class="library-shelf wrap">'+listings+'</section>',[{'@type':'ItemList',itemListElement:manifest.map((a,i)=>({'@type':'ListItem',position:i+1,url:base+a.route,name:a.title}))}]);
 
@@ -62,6 +70,7 @@ await page('/students/','Отзывы учеников об испанском �
 let homebody=home.split('<div class="home-view" id="home">')[1].split('</div></main>')[0];if(!homebody)throw Error('Home structure changed');
 homebody='<div class="home-view" id="home">'+homebody+'</div>';
 homebody=homebody.replace(/href="resources.html"/g,'href="/resources/"').replace(/href="resources\/([^".]+)\.html"/g,'href="/resources/$1/"').replaceAll('src="assets/','src="/assets/');
+homebody=homebody.replace(/(<a class="resource-button link" href=")(.*?)(">)/g,(_,before,route,after)=>'<p class="reading-time">Около '+readingTimes.get(route)+' мин чтения</p>'+before+route+after);
 await page('/','Испанский для русскоязычных','Курс испанского в своём темпе и индивидуальные занятия с Натали.',homebody,[{'@type':'Person','@id':base+'/#natali',name:'Натали',jobTitle:'Преподаватель испанского языка',sameAs:[config.instagram]},{'@type':'Course',name:'Курс испанского в своём темпе',description:'10 видеоуроков на Google Drive, дополнительные видео для практики и домашние задания. Заключительное занятие с Натали — 30 минут.',provider:{'@id':org['@id']},inLanguage:'ru',url:base+'/#course'}],true);
 await writeFile(out+'/robots.txt',production?'User-agent: *\nAllow: /\nSitemap: '+base+'/sitemap.xml\n':'User-agent: *\nDisallow: /\n');
 await writeFile(out+'/sitemap.xml','<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+(production?urls:[]).map(u=>'<url><loc>'+u+'</loc></url>').join('')+'</urlset>');

@@ -23,3 +23,9 @@
 - Sticky navigation on desktop/mobile, 112/104px anchor clearance, mobile menu closes on navigation.
 - Same-document back/forward uses smooth navigation; cross-document return restores saved position after font layout. CSS cross-document fades where supported.
 - Browser verified: desktop anchor top112px; mobile top104px; menu closes; back/forward; actual pointer click into Resources and Back restores scroll6520px exactly. Five widths without overflow.
+
+## Editorial resources
+- Numbered editorial library, clickable titles, row hover/focus, refined headline scale and reading measure.
+- Article contents navigation (sticky desktop, collapsible mobile), separated sections, dialogue/table treatment and coordinated PDF panels.
+- Estimated reading time in library, home previews and article header: source word count at 180 words/minute, rounded up; exercises excluded from the stated reading estimate. Structured Article.timeRequired matches the estimate.
+- Build/SEO/publication checks passed; article and library verified at five widths without overflow; contents destination clears sticky navigation.

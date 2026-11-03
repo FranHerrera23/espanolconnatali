@@ -2,6 +2,8 @@
   const menu = document.querySelector('.menu-button');
   const nav = document.querySelector('.nav-links');
   const header = document.querySelector('.site-nav');
+  const contents = document.querySelector('.reader-contents details');
+  if (contents && matchMedia('(max-width: 900px)').matches) contents.open = false;
   const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
   const close = () => { menu?.setAttribute('aria-expanded', 'false'); nav?.classList.remove('open'); };
   menu?.addEventListener('click', () => { const open = menu.getAttribute('aria-expanded') !== 'true'; menu.setAttribute('aria-expanded', String(open)); nav?.classList.toggle('open', open); });
