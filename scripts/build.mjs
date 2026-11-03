@@ -5,6 +5,7 @@ import {markdown,esc} from './markdown.mjs';
 const config=JSON.parse(await readFile('site.config.json','utf8'));
 const production=process.env.DEPLOY_MODE==='production'||(process.env.VERCEL_ENV==='production');
 const base=new URL(process.env.SITE_URL||config.productionSiteUrl||'http://localhost:4173').origin;
+if(production && base!==new URL(config.productionSiteUrl).origin)throw Error('Production origin must match site.config.json; refusing stale SITE_URL');
 if(production&&!base.startsWith('https://'))throw Error('Production requires a confirmed HTTPS origin');
 const pubdate=config.releaseDate;
 const manifest=JSON.parse(await readFile('content/launch/manifest.json','utf8'));
@@ -21,7 +22,7 @@ const editor={'@type':'Organization','@id':base+'/#editorial',name:'Редакц
 const site={'@type':'WebSite','@id':base+'/#website',url:base+'/',name:'Español con Natali',inLanguage:'ru',publisher:{'@id':org['@id']}};
 const urls=[];
 async function page(route,title,desc,body,extra=[],commercial=false){
- const canonical=base+route;const webpage={'@type':route==='/resources/'?'CollectionPage':'WebPage','@id':canonical+'#page',url:canonical,name:title,inLanguage:'ru',isPartOf:{'@id':site['@id']}};
+ const canonical=base+route;const webpage={'@type':['/resources/','/students/'].includes(route)?'CollectionPage':'WebPage','@id':canonical+'#page',url:canonical,name:title,inLanguage:'ru',isPartOf:{'@id':site['@id']}};
  const graph=[org,editor,site,webpage,...extra];
  if(route!=='/')graph.push({'@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'Главная',item:base+'/'},{'@type':'ListItem',position:2,name:'Бесплатные материалы',item:base+'/resources/'},...(route==='/resources/'?[]:[{'@type':'ListItem',position:3,name:title,item:canonical}])]});
  graph.forEach((node,i)=>{if(!node['@id'])node['@id']=canonical+'#entity-'+i;});
@@ -47,6 +48,11 @@ for(const a of manifest){
  listings+='<article class="shelf-row"><p class="label">Практическое руководство</p><div><h2>'+esc(a.title)+'</h2><p>'+esc(a.description)+'</p></div><a class="link" href="'+a.route+'">Читать ↗</a></article>';
 }
 await page('/resources/','Бесплатные материалы по испанскому','Десять открытых руководств на русском: испанские примеры, упражнения, ответы и источники.','<section class="library-hero wrap"><p class="label">Бесплатные материалы</p><div class="library-intro"><h1>Испанский для<br>вашей жизни.</h1><p>Объяснения, примеры и практика. Читайте, проверяйте себя и возвращайтесь к тому, что пригодится в разговоре. Все материалы открыты без регистрации.</p></div></section><section class="library-shelf wrap">'+listings+'</section>',[{'@type':'ItemList',itemListElement:manifest.map((a,i)=>({'@type':'ListItem',position:i+1,url:base+a.route,name:a.title}))}]);
+
+const reviews=JSON.parse(await readFile('content/students/reviews.json','utf8'));
+const reviewRows=reviews.map((r,i)=>'<article class="student-story" id="'+esc(r.id)+'"><div class="student-story-copy"><p class="label">'+esc(r.context==='teacher'?'О преподавателе':r.topic)+'</p><h2>'+esc(r.name)+'</h2><blockquote>'+r.text.split('\n').map(t=>'<p>'+esc(t)+'</p>').join('')+'</blockquote>'+(r.partial?'<p class="voice-caption">Сообщение на предоставленной фотографии обрывается. Здесь приведена только видимая часть.</p>':'')+'</div><figure class="student-story-image"><a href="'+esc(r.image)+'" target="_blank" rel="noopener" aria-label="Открыть изображение отзыва: '+esc(r.name)+'"><img src="'+esc(r.image)+'" alt="Сообщение '+esc(r.name)+' — '+esc(r.topic)+'" loading="lazy" decoding="async"></a><figcaption>Сообщение ученика · <a href="'+esc(r.image)+'" target="_blank" rel="noopener">Открыть изображение ↗</a></figcaption></figure></article>').join('');
+await page('/students/','Отзывы учеников об испанском с Натали','Отзывы учеников Español con Natali: сообщения о курсе испанского, самостоятельной практике и занятиях. Текст отзывов и реальные снимки сообщений.','<section class="students-page wrap"><header class="students-intro"><p class="label">Español con Natali · Ученики</p><h1>У каждого —<br>свой опыт.</h1><p class="students-lead">Отзывы учеников об испанском с Натали. Их слова — и сообщения, из которых они взяты.</p><p class="students-context">Здесь собраны отзывы разных выпусков курса и сообщения о преподавателе. Формат обучения со временем менялся: упоминания групп, WhatsApp и обратной связи относятся к опыту авторов. Актуальный состав курса указан <a href="/#course">на главной странице</a>.</p></header><div class="student-stories">'+reviewRows+'</div></section>',[{'@type':'ItemList',name:'Отзывы учеников',numberOfItems:reviews.length,itemListElement:reviews.map((r,i)=>({'@type':'ListItem',position:i+1,name:r.name+' — '+r.topic,url:base+'/students/#'+r.id}))}],true);
+
 let homebody=home.split('<div class="home-view" id="home">')[1].split('</div></main>')[0];if(!homebody)throw Error('Home structure changed');
 homebody='<div class="home-view" id="home">'+homebody+'</div>';
 homebody=homebody.replace(/href="resources.html"/g,'href="/resources/"').replace(/href="resources\/([^".]+)\.html"/g,'href="/resources/$1/"').replaceAll('src="assets/','src="/assets/');

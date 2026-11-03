@@ -16,5 +16,5 @@ for a in m:
 pdf=Path('dist/assets/downloads/ask-for-clarification-workbook-ru.pdf');assert pdf.read_bytes().startswith(b'%PDF')
 assert pdf.read_bytes()==Path('site/assets/downloads/ask-for-clarification-workbook-ru.pdf').read_bytes()
 assert sum('Скачать PDF' in f.read_text() for f in Path('dist/resources').rglob('index.html'))==1
-assert len(re.findall('<loc>',Path('dist/sitemap.xml').read_text()))==12
-print('Launch checks: ten source hashes, full Russian word coverage, sources, open resources, no commercial blocks/fake review, one real PDF, twelve sitemap URLs.')
+assert len(re.findall('<loc>',Path('dist/sitemap.xml').read_text()))==13
+print('Launch checks: ten source hashes, full Russian word coverage, sources, open resources, no commercial blocks/fake review, one real PDF, thirteen sitemap URLs.')
