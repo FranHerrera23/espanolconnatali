@@ -1,0 +1,10 @@
+{
+  "source": "editorial/topic-clusters.md",
+  "clusters": [
+    {"id":"start","label":"С нуля","articles":["spanish-from-zero","read-spanish"]},
+    {"id":"conversation","label":"Разговор","articles":["keep-a-conversation-going","ask-for-clarification","make-plans-in-spanish","introduce-yourself"]},
+    {"id":"grammar","label":"Грамматика","articles":["ser-estar","spanish-articles","build-simple-sentences"]},
+    {"id":"practice","label":"Самостоятельная практика","articles":["practise-with-recorded-lessons"]},
+    {"id":"culture","label":"Жизнь и культура","articles":[]}
+  ]
+}

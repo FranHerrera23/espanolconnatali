@@ -1,4 +1,9 @@
 (() => {
+  const backToLibrary = document.querySelector('.read-top a');
+  if (backToLibrary && document.referrer) {
+    const previous = new URL(document.referrer);
+    if (previous.origin === location.origin && previous.pathname === '/resources/') backToLibrary.href = previous.pathname + previous.search;
+  }
   const menu = document.querySelector('.menu-button');
   const nav = document.querySelector('.nav-links');
   const header = document.querySelector('.site-nav');
@@ -51,4 +56,43 @@
   });
   document.querySelectorAll('[data-print]').forEach(b => b.addEventListener('click', () => window.print()));
   document.querySelectorAll('[data-copy]').forEach(b => b.addEventListener('click', async () => { const status = b.parentElement.querySelector('[role=status]'); try { await navigator.clipboard.writeText(document.querySelector('link[rel=canonical]').href); status.textContent = 'Ссылка скопирована'; } catch { status.textContent = 'Скопируйте адрес из строки браузера.'; } }));
+})();
+
+// Topic filtering enhances the complete, indexable HTML library.
+(() => {
+  const journal = document.querySelector('.journal');
+  if (!journal) return;
+  const filters = journal.querySelector('.article-filters');
+  const buttons = [...filters.querySelectorAll('button')];
+  const entries = [...journal.querySelectorAll('.journal-entry')];
+  const status = journal.querySelector('.journal-count');
+  const list = journal.querySelector('.journal-list');
+  const valid = new Set(buttons.map(b => b.dataset.cluster));
+  let animation;
+  const apply = (requested, animate = false) => {
+    const topic = valid.has(requested) ? requested : 'all';
+    let count = 0;
+    entries.forEach(entry => {
+      entry.hidden = topic !== 'all' && entry.dataset.topic !== topic;
+      entry.classList.toggle('journal-featured', topic === 'all' && entry.hasAttribute('data-featured'));
+      if (!entry.hidden) count++;
+    });
+    buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.cluster === topic)));
+    status.textContent = 'Материалы: ' + count;
+    animation?.cancel();
+    if (animate && !matchMedia('(prefers-reduced-motion: reduce)').matches) animation = list.animate([{ opacity: .5 }, { opacity: 1 }], { duration: 180, easing: 'ease-out' });
+  };
+  filters.hidden = false;
+  apply(new URL(location.href).searchParams.get('cluster'));
+  buttons.forEach(button => button.addEventListener('click', () => {
+    if (button.getAttribute('aria-pressed') === 'true') return;
+    const url = new URL(location.href);
+    const topic = button.dataset.cluster;
+    if (topic === 'all') url.searchParams.delete('cluster'); else url.searchParams.set('cluster', topic);
+    history.replaceState({ ...history.state, nataliY: scrollY }, '', location.href);
+    history.pushState({ nataliY: scrollY }, '', url);
+    apply(topic, true);
+  }));
+  window.addEventListener('popstate', () => apply(new URL(location.href).searchParams.get('cluster')));
+  window.addEventListener('pageshow', () => apply(new URL(location.href).searchParams.get('cluster')));
 })();
