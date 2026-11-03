@@ -16,3 +16,10 @@
 - Corrected invalid screenshot dimensions that caused extreme page height; build now rejects implausible dimensions.
 - Bounded testimonial previews (360px maximum), full originals accessible; footer spacing restored.
 - Home, students and article checked at 375, 768, 1024, 1440 and 1920px: no horizontal overflow.
+
+## Navigation and motion correction
+- Replaced independent line masks and delayed scrubs with shared, early-finishing block reveals; no text clipping in the reading zone.
+- One Lenis clock; removed CSS smooth-scroll competition and duplicate anchor handling.
+- Sticky navigation on desktop/mobile, 112/104px anchor clearance, mobile menu closes on navigation.
+- Same-document back/forward uses smooth navigation; cross-document return restores saved position after font layout. CSS cross-document fades where supported.
+- Browser verified: desktop anchor top112px; mobile top104px; menu closes; back/forward; actual pointer click into Resources and Back restores scroll6520px exactly. Five widths without overflow.
