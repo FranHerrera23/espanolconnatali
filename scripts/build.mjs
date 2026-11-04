@@ -16,7 +16,7 @@ if(manifest.length!==10)throw Error('Expected ten articles');
 const out=process.env.BUILD_DIR||'dist';if(!['dist','work/test-dist'].includes(out))throw Error('Invalid output directory');
 await rm(out,{recursive:true,force:true});await mkdir(out,{recursive:true});
 await cp('site/assets',out+'/assets',{recursive:true});for(const f of ['design-system.css','library.css','resources.js','reader.js'])await cp('site/'+f,out+'/'+f);
-const home=await readFile('site/index.html','utf8');
+const home=(await readFile('site/index.html','utf8')).replaceAll('src="assets/brand/','src="/assets/brand/');
 const header=home.match(/<header class="site-nav[\s\S]*?<\/header>/)[0].replaceAll('resources.html','/resources/').replaceAll('href="#','href="/#');
 const readerHeader=header.replace(/<nav[\s\S]*?<\/nav>/,'<nav class="nav-links" id="navigation" aria-label="Навигация"><a href="/resources/">Бесплатные материалы</a></nav>').replace(/<a class="link nav-contact"[\s\S]*?<\/a>/,'');
 const footer=home.match(/<footer[\s\S]*?<\/footer>/)[0].replaceAll('href="#home"','href="/"');

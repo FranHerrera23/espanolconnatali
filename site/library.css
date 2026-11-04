@@ -86,3 +86,10 @@
 @media(max-width:900px){.journal-link{grid-template-columns:120px minmax(0,1fr);gap:16px 24px}.journal-time{grid-column:2;text-align:left;padding:0}.journal-featured .journal-link{column-gap:32px}.journal-featured .journal-cover{padding:24px}.journal-text h2{font-size:26px}}
 @media(max-width:600px){.library-hero{padding-block:48px 32px}.article-filters{gap:4px 20px;padding-block:12px}.article-filters button{font-size:13px}.journal-count{margin-block:24px 16px}.journal-link,.journal-featured .journal-link{grid-template-columns:1fr;gap:12px;padding-block:28px}.journal-topic,.journal-time,.journal-featured .journal-topic,.journal-featured .journal-text,.journal-featured .journal-time{grid-column:1;text-align:left}.journal-featured .journal-cover{grid-column:1;grid-row:auto;aspect-ratio:16/10;margin-bottom:12px}.journal-featured{margin-bottom:8px}.journal-featured h2,.journal-text h2{font-size:25px;line-height:1.22}.journal-text p{font-size:15px}.journal-cover strong{font-size:48px}.journal{padding-bottom:64px}}
 @media(prefers-reduced-motion:reduce){.journal-text h2,.journal-arrow,.article-filters button{transition:none}}
+
+/* White educational surfaces; identity accents stay outside reading text. */
+.reader-download,.reading-prose blockquote,.exercise,.reading-prose .takeaway-box{background:#fff;border:1px solid var(--color-rule)}
+.reader-download{border-top:2px solid var(--color-coral)}
+.reading-prose blockquote{border-left:2px solid var(--color-primary)}
+.reading-table th{background:#fff;border-top:2px solid var(--color-primary)}
+@media(hover:hover){.related a:hover,.reader-contents a:hover{background:#fff;text-decoration:underline;text-underline-offset:4px}.shelf-row:hover,.shelf-row:focus-within{background:#fff}}
