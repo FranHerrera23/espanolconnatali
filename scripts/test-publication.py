@@ -20,6 +20,6 @@ for d in downloads:
  html=Path('dist'+d['articleRoute']+'index.html').read_text()
  assert html.count('href="'+d['downloadRoute']+'" download')==2
  assert 'Полный материал с упражнениями и ответами' in html
-assert sum('Скачать PDF' in f.read_text() for f in Path('dist/resources').rglob('index.html'))==10
-assert len(re.findall('<loc>',Path('dist/sitemap.xml').read_text()))==13
-print('Launch checks: ten source hashes, full Russian word coverage, sources, open resources, no commercial blocks/fake review, ten correctly mapped PDFs, thirteen sitemap URLs.')
+assert sum('Скачать PDF' in f.read_text() for f in Path('dist/resources').rglob('index.html'))==len(m)
+assert len(re.findall('<loc>',Path('dist/sitemap.xml').read_text()))==len(m)+3
+print(f'Launch checks: {len(m)} verified articles, matching PDFs and {len(m)+3} sitemap URLs.')

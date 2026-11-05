@@ -413,5 +413,457 @@
       "scope": "Aprobado para publicación por responsable web. Natali leerá después de salir live; no revisión humana de Natali atribuida."
     },
     "publicUrl": "https://www.espanolconnatali.com/resources/build-simple-sentences/"
+  },
+  {
+    "id": "ECN-FR-021",
+    "version": "1.0",
+    "status": "approved_for_publication",
+    "language": "ru",
+    "sourceFile": "editorial/articles/work-email.md",
+    "route": "/resources/work-email/",
+    "routeStatus": "proposed_not_live",
+    "title": "Как написать короткое рабочее письмо на испанском",
+    "description": "Рабочее письмо: одна задача и ясный ответ.",
+    "author": {
+      "type": "Organization",
+      "name": "Редакция Español con Natali"
+    },
+    "editorialDisclosure": "Материал подготовлен редакцией с использованием ИИ.",
+    "humanReviewer": null,
+    "preparedAt": "2026-11-04",
+    "publishedAt": "2026-11-05",
+    "updatedAt": null,
+    "canonicalOrigin": "https://www.espanolconnatali.com",
+    "wordCount": 781,
+    "sourceUrls": [
+      "https://dle.rae.es/adjuntar",
+      "https://www.rae.es/dpd/dos%20puntos",
+      "https://www.rae.es/dpd/coma"
+    ],
+    "relatedFiles": [
+      "make-plans-in-spanish.md",
+      "ask-for-clarification.md"
+    ],
+    "commercialCta": null,
+    "sha256": "2d765e3487acfc509ae0d1c26622724c6c3c38976580f129e41c81726b97e482",
+    "editorialApproval": {
+      "by": "Fran",
+      "date": "2026-11-05",
+      "source": "Autorización expresa de publicación en el chat web."
+    },
+    "pillar": "P5",
+    "titleEs": "Correo de trabajo",
+    "relatedRoutes": [
+      "/resources/make-plans-in-spanish/",
+      "/resources/ask-for-clarification/"
+    ]
+  },
+  {
+    "id": "ECN-FR-024",
+    "version": "1.0",
+    "status": "approved_for_publication",
+    "language": "ru",
+    "sourceFile": "editorial/articles/compliments-in-spanish.md",
+    "route": "/resources/compliments-in-spanish/",
+    "routeStatus": "proposed_not_live",
+    "title": "Комплименты на испанском: что сказать мужчине или женщине",
+    "description": "Комплименты мужчине и женщине: контекст, согласование и практика.",
+    "author": {
+      "type": "Organization",
+      "name": "Редакция Español con Natali"
+    },
+    "editorialDisclosure": "Материал подготовлен редакцией с использованием ИИ.",
+    "humanReviewer": null,
+    "preparedAt": "2026-11-04",
+    "publishedAt": "2026-11-05",
+    "updatedAt": null,
+    "canonicalOrigin": "https://www.espanolconnatali.com",
+    "wordCount": 753,
+    "sourceUrls": [
+      "https://www.rae.es/dpd/concordancia",
+      "https://www.rae.es/dpd/ser",
+      "https://www.rae.es/dpd/estar"
+    ],
+    "relatedFiles": [
+      "ser-estar.md",
+      "read-spanish.md",
+      "te-quiero-te-amo-me-gustas.md"
+    ],
+    "commercialCta": null,
+    "sha256": "e486a1a7305f72183f5f47aaa8ee35da1c95151356627af9083512742a0a66ca",
+    "editorialApproval": {
+      "by": "Fran",
+      "date": "2026-11-05",
+      "source": "Autorización expresa de publicación en el chat web."
+    },
+    "pillar": "P5",
+    "titleEs": "Cumplidos con contexto",
+    "relatedRoutes": [
+      "/resources/ser-estar/",
+      "/resources/read-spanish/",
+      "/resources/te-quiero-te-amo-me-gustas/"
+    ]
+  },
+  {
+    "id": "ECN-FR-022",
+    "version": "1.0",
+    "status": "approved_for_publication",
+    "language": "ru",
+    "sourceFile": "editorial/articles/job-interview-in-spanish.md",
+    "route": "/resources/job-interview-in-spanish/",
+    "routeStatus": "proposed_not_live",
+    "title": "Собеседование на испанском: как рассказать об опыте и переспросить",
+    "description": "Два учебных профиля, вопросы и уточнение на собеседовании.",
+    "author": {
+      "type": "Organization",
+      "name": "Редакция Español con Natali"
+    },
+    "editorialDisclosure": "Материал подготовлен редакцией с использованием ИИ.",
+    "humanReviewer": null,
+    "preparedAt": "2026-11-04",
+    "publishedAt": "2026-11-05",
+    "updatedAt": null,
+    "canonicalOrigin": "https://www.espanolconnatali.com",
+    "wordCount": 790,
+    "sourceUrls": [
+      "https://dle.rae.es/trabajar",
+      "https://dle.rae.es/experiencia",
+      "https://dle.rae.es/referir",
+      "https://europass.europa.eu/es/create-europass-cv"
+    ],
+    "relatedFiles": [
+      "ask-for-clarification.md",
+      "spanish-cv.md"
+    ],
+    "commercialCta": null,
+    "sha256": "b49109bce1d20253913ca8ba53b4ed06cd19973564793caa03fb7ba4950a8188",
+    "editorialApproval": {
+      "by": "Fran",
+      "date": "2026-11-05",
+      "source": "Autorización expresa de publicación en el chat web."
+    },
+    "pillar": "P5",
+    "titleEs": "Entrevista laboral",
+    "relatedRoutes": [
+      "/resources/ask-for-clarification/",
+      "/resources/spanish-cv/"
+    ]
+  },
+  {
+    "id": "ECN-FR-025",
+    "version": "1.0",
+    "status": "approved_for_publication",
+    "language": "ru",
+    "sourceFile": "editorial/articles/te-quiero-te-amo-me-gustas.md",
+    "route": "/resources/te-quiero-te-amo-me-gustas/",
+    "routeStatus": "proposed_not_live",
+    "title": "Te quiero, te amo и me gustas: как говорить о чувствах на испанском",
+    "description": "Любовь и симпатия без универсальной шкалы: примеры и ответы.",
+    "author": {
+      "type": "Organization",
+      "name": "Редакция Español con Natali"
+    },
+    "editorialDisclosure": "Материал подготовлен редакцией с использованием ИИ.",
+    "humanReviewer": null,
+    "preparedAt": "2026-11-04",
+    "publishedAt": "2026-11-05",
+    "updatedAt": null,
+    "canonicalOrigin": "https://www.espanolconnatali.com",
+    "wordCount": 689,
+    "sourceUrls": [
+      "https://dle.rae.es/querer",
+      "https://dle.rae.es/amar",
+      "https://www.rae.es/dpd/gustar"
+    ],
+    "relatedFiles": [
+      "gustar.md",
+      "compliments-in-spanish.md"
+    ],
+    "commercialCta": null,
+    "sha256": "b2ff12fae593dc49d16b8cb690b0d3dc19297558b2080b22b20fcac7b7f0b267",
+    "editorialApproval": {
+      "by": "Fran",
+      "date": "2026-11-05",
+      "source": "Autorización expresa de publicación en el chat web."
+    },
+    "pillar": "P5",
+    "titleEs": "Te quiero, te amo y me gustas",
+    "relatedRoutes": [
+      "/resources/gustar/",
+      "/resources/compliments-in-spanish/"
+    ]
+  },
+  {
+    "id": "ECN-FR-023",
+    "version": "1.0",
+    "status": "approved_for_publication",
+    "language": "ru",
+    "sourceFile": "editorial/articles/spanish-cv.md",
+    "route": "/resources/spanish-cv/",
+    "routeStatus": "proposed_not_live",
+    "title": "Резюме на испанском: как описать опыт и навыки в CV",
+    "description": "Описать реальные задачи и навыки в CV: модели и упражнения.",
+    "author": {
+      "type": "Organization",
+      "name": "Редакция Español con Natali"
+    },
+    "editorialDisclosure": "Материал подготовлен редакцией с использованием ИИ.",
+    "humanReviewer": null,
+    "preparedAt": "2026-11-04",
+    "publishedAt": "2026-11-05",
+    "updatedAt": null,
+    "canonicalOrigin": "https://www.espanolconnatali.com",
+    "wordCount": 746,
+    "sourceUrls": [
+      "https://europass.europa.eu/es/create-europass-cv",
+      "https://www.coe.int/en/web/common-european-framework-reference-languages/level-descriptions",
+      "https://dle.rae.es/seguimiento",
+      "https://dle.rae.es/pedido"
+    ],
+    "relatedFiles": [
+      "work-email.md",
+      "job-interview-in-spanish.md"
+    ],
+    "commercialCta": null,
+    "sha256": "94eff3938be3004f2558ad0f040fd886780f153cf6559fa7a99dfc6cc3440173",
+    "editorialApproval": {
+      "by": "Fran",
+      "date": "2026-11-05",
+      "source": "Autorización expresa de publicación en el chat web."
+    },
+    "pillar": "P5",
+    "titleEs": "CV en español",
+    "relatedRoutes": [
+      "/resources/work-email/",
+      "/resources/job-interview-in-spanish/"
+    ]
+  },
+  {
+    "id": "ECN-FR-012",
+    "version": "1.0",
+    "status": "approved_for_publication",
+    "language": "ru",
+    "sourceFile": "editorial/articles/questions-in-spanish.md",
+    "route": "/resources/questions-in-spanish/",
+    "routeStatus": "proposed_not_live",
+    "title": "Вопросы на испанском: как спросить и понять, что ответить",
+    "description": "Вопросительные слова, ответы и оформление вопросов.",
+    "author": {
+      "type": "Organization",
+      "name": "Редакция Español con Natali"
+    },
+    "editorialDisclosure": "Материал подготовлен редакцией с использованием ИИ.",
+    "humanReviewer": null,
+    "preparedAt": "2026-11-04",
+    "publishedAt": "2026-11-05",
+    "updatedAt": null,
+    "canonicalOrigin": "https://www.espanolconnatali.com",
+    "wordCount": 739,
+    "sourceUrls": [
+      "https://www.rae.es/dpd/interrogaci%C3%B3n",
+      "https://www.rae.es/dpd/tilde",
+      "https://www.rae.es/dpd/porqu%C3%A9"
+    ],
+    "relatedFiles": [
+      "keep-a-conversation-going.md",
+      "ask-for-clarification.md",
+      "introduce-yourself.md"
+    ],
+    "commercialCta": null,
+    "sha256": "73f8e4148dafc24c18e390bc66b5477fd998b61b85801b3d58db472347bc5a94",
+    "editorialApproval": {
+      "by": "Fran",
+      "date": "2026-11-05",
+      "source": "Autorización expresa de publicación en el chat web."
+    },
+    "pillar": "P3",
+    "titleEs": "Preguntas y respuestas",
+    "relatedRoutes": [
+      "/resources/keep-a-conversation-going/",
+      "/resources/ask-for-clarification/",
+      "/resources/introduce-yourself/"
+    ]
+  },
+  {
+    "id": "ECN-FR-013",
+    "version": "1.0",
+    "status": "approved_for_publication",
+    "language": "ru",
+    "sourceFile": "editorial/articles/gustar.md",
+    "route": "/resources/gustar/",
+    "routeStatus": "proposed_not_live",
+    "title": "Gustar: когда говорить me gusta, а когда me gustan",
+    "description": "Me gusta и me gustan: согласование, вопросы и практика.",
+    "author": {
+      "type": "Organization",
+      "name": "Редакция Español con Natali"
+    },
+    "editorialDisclosure": "Материал подготовлен редакцией с использованием ИИ.",
+    "humanReviewer": null,
+    "preparedAt": "2026-11-04",
+    "publishedAt": "2026-11-05",
+    "updatedAt": null,
+    "canonicalOrigin": "https://www.espanolconnatali.com",
+    "wordCount": 774,
+    "sourceUrls": [
+      "https://www.rae.es/dpd/gustar",
+      "https://www.fundeu.es/consulta/concordancia-de-numero-1085/"
+    ],
+    "relatedFiles": [
+      "te-quiero-te-amo-me-gustas.md",
+      "spanish-articles.md",
+      "keep-a-conversation-going.md"
+    ],
+    "commercialCta": null,
+    "sha256": "753abd3eb2fcd669312eb794d0ad8f3e73ffdb8304f69e5afb0afbb4aa59afa7",
+    "editorialApproval": {
+      "by": "Fran",
+      "date": "2026-11-05",
+      "source": "Autorización expresa de publicación en el chat web."
+    },
+    "pillar": "P3",
+    "titleEs": "Gustar",
+    "relatedRoutes": [
+      "/resources/te-quiero-te-amo-me-gustas/",
+      "/resources/spanish-articles/",
+      "/resources/keep-a-conversation-going/"
+    ]
+  },
+  {
+    "id": "ECN-FR-018",
+    "version": "1.0",
+    "status": "approved_for_publication",
+    "language": "ru",
+    "sourceFile": "editorial/articles/at-a-cafe.md",
+    "route": "/resources/at-a-cafe/",
+    "routeStatus": "proposed_not_live",
+    "title": "Испанский в кафе: заказать, уточнить и попросить счёт",
+    "description": "Заказ, уточнение и отдельная оплата: диалоги и задания.",
+    "author": {
+      "type": "Organization",
+      "name": "Редакция Español con Natali"
+    },
+    "editorialDisclosure": "Материал подготовлен редакцией с использованием ИИ.",
+    "humanReviewer": null,
+    "preparedAt": "2026-11-04",
+    "publishedAt": "2026-11-05",
+    "updatedAt": null,
+    "canonicalOrigin": "https://www.espanolconnatali.com",
+    "wordCount": 754,
+    "sourceUrls": [
+      "https://dle.rae.es/cuenta",
+      "https://dle.rae.es/llevar",
+      "https://dle.rae.es/invitar"
+    ],
+    "relatedFiles": [
+      "ask-for-clarification.md",
+      "make-plans-in-spanish.md"
+    ],
+    "commercialCta": null,
+    "sha256": "e8d89299238d6ab46692a99383934cf79a456d63644246662bb95d4b86f5c9e0",
+    "editorialApproval": {
+      "by": "Fran",
+      "date": "2026-11-05",
+      "source": "Autorización expresa de publicación en el chat web."
+    },
+    "pillar": "P5",
+    "titleEs": "En el café",
+    "relatedRoutes": [
+      "/resources/ask-for-clarification/",
+      "/resources/make-plans-in-spanish/"
+    ]
+  },
+  {
+    "id": "ECN-FR-016",
+    "version": "1.0",
+    "status": "approved_for_publication",
+    "language": "ru",
+    "sourceFile": "editorial/articles/short-practice-routine.md",
+    "route": "/resources/short-practice-routine/",
+    "routeStatus": "proposed_not_live",
+    "title": "Испанский за 15 минут: короткая практика без подготовки урока",
+    "description": "Одна задача за 15 минут: воспроизведение и самопроверка.",
+    "author": {
+      "type": "Organization",
+      "name": "Редакция Español con Natali"
+    },
+    "editorialDisclosure": "Материал подготовлен редакцией с использованием ИИ.",
+    "humanReviewer": null,
+    "preparedAt": "2026-11-04",
+    "publishedAt": "2026-11-05",
+    "updatedAt": null,
+    "canonicalOrigin": "https://www.espanolconnatali.com",
+    "wordCount": 711,
+    "sourceUrls": [
+      "https://dle.rae.es/efectivo",
+      "https://dle.rae.es/tarjeta",
+      "https://www.coe.int/en/web/common-european-framework-reference-languages/level-descriptions"
+    ],
+    "relatedFiles": [
+      "at-a-cafe.md",
+      "practise-with-recorded-lessons.md",
+      "introduce-yourself.md",
+      "make-plans-in-spanish.md"
+    ],
+    "commercialCta": null,
+    "sha256": "ce598902866bec891cd63ea607b3cf360eb40357751d3bf1847a269ab4ee6911",
+    "editorialApproval": {
+      "by": "Fran",
+      "date": "2026-11-05",
+      "source": "Autorización expresa de publicación en el chat web."
+    },
+    "pillar": "P4",
+    "titleEs": "Rutina de práctica breve",
+    "relatedRoutes": [
+      "/resources/at-a-cafe/",
+      "/resources/practise-with-recorded-lessons/",
+      "/resources/introduce-yourself/",
+      "/resources/make-plans-in-spanish/"
+    ]
+  },
+  {
+    "id": "ECN-FR-019",
+    "version": "1.0",
+    "status": "approved_for_publication",
+    "language": "ru",
+    "sourceFile": "editorial/articles/football-in-spanish.md",
+    "route": "/resources/football-in-spanish/",
+    "routeStatus": "proposed_not_live",
+    "title": "Футбол на испанском: слова и фразы для разговора о матче",
+    "description": "Слова, счёт и нейтральный разговор о футбольном матче.",
+    "author": {
+      "type": "Organization",
+      "name": "Редакция Español con Natali"
+    },
+    "editorialDisclosure": "Материал подготовлен редакцией с использованием ИИ.",
+    "humanReviewer": null,
+    "preparedAt": "2026-11-04",
+    "publishedAt": "2026-11-05",
+    "updatedAt": null,
+    "canonicalOrigin": "https://www.espanolconnatali.com",
+    "wordCount": 822,
+    "sourceUrls": [
+      "https://dle.rae.es/gol",
+      "https://dle.rae.es/empatar",
+      "https://dle.rae.es/%C3%A1rbitro",
+      "https://www.rae.es/dpd/interrogaci%C3%B3n"
+    ],
+    "relatedFiles": [
+      "keep-a-conversation-going.md",
+      "make-plans-in-spanish.md"
+    ],
+    "commercialCta": null,
+    "sha256": "8cdb66f9de99e47b0d0026087f8aa563e735b29a799aba8bd07143d5a1eccd53",
+    "editorialApproval": {
+      "by": "Fran",
+      "date": "2026-11-05",
+      "source": "Autorización expresa de publicación en el chat web."
+    },
+    "pillar": "P5",
+    "titleEs": "Fútbol para conversar",
+    "relatedRoutes": [
+      "/resources/keep-a-conversation-going/",
+      "/resources/make-plans-in-spanish/"
+    ]
   }
 ]

@@ -1,10 +1,55 @@
 {
   "source": "editorial/topic-clusters.md",
   "clusters": [
-    {"id":"start","label":"С нуля","articles":["spanish-from-zero","read-spanish"]},
-    {"id":"conversation","label":"Разговор","articles":["keep-a-conversation-going","ask-for-clarification","make-plans-in-spanish","introduce-yourself"]},
-    {"id":"grammar","label":"Грамматика","articles":["ser-estar","spanish-articles","build-simple-sentences"]},
-    {"id":"practice","label":"Самостоятельная практика","articles":["practise-with-recorded-lessons"]},
-    {"id":"culture","label":"Жизнь и культура","articles":[]}
+    {
+      "id": "start",
+      "label": "С нуля",
+      "articles": [
+        "spanish-from-zero",
+        "read-spanish"
+      ]
+    },
+    {
+      "id": "conversation",
+      "label": "Разговор",
+      "articles": [
+        "keep-a-conversation-going",
+        "ask-for-clarification",
+        "make-plans-in-spanish",
+        "introduce-yourself"
+      ]
+    },
+    {
+      "id": "grammar",
+      "label": "Грамматика",
+      "articles": [
+        "ser-estar",
+        "spanish-articles",
+        "build-simple-sentences",
+        "questions-in-spanish",
+        "gustar"
+      ]
+    },
+    {
+      "id": "practice",
+      "label": "Самостоятельная практика",
+      "articles": [
+        "practise-with-recorded-lessons",
+        "short-practice-routine"
+      ]
+    },
+    {
+      "id": "culture",
+      "label": "Жизнь и культура",
+      "articles": [
+        "work-email",
+        "compliments-in-spanish",
+        "job-interview-in-spanish",
+        "te-quiero-te-amo-me-gustas",
+        "spanish-cv",
+        "at-a-cafe",
+        "football-in-spanish"
+      ]
+    }
   ]
 }

@@ -52,7 +52,7 @@ export async function buildLocale(language, { out, base, production, header, foo
   await write('/', local('Español para la vida real', 'Spanish for real life'), local('Curso grabado de español y clases privadas con Natali.', 'Self-paced Spanish and private lessons with Natali.'), localizedHome, true);
 
   const descriptions = JSON.parse(await readFile('content/' + filePrefix + '-resources.json', 'utf8'));
-  const topics = { start: local('Desde cero', 'From scratch'), conversation: local('Conversación', 'Conversation'), grammar: local('Gramática', 'Grammar'), practice: local('Práctica autónoma', 'Independent practice') };
+  const topics = { start: local('Desde cero', 'From scratch'), conversation: local('Conversación', 'Conversation'), grammar: local('Gramática', 'Grammar'), practice: local('Práctica autónoma', 'Independent practice'), culture: local('Vida y cultura', 'Life and culture') };
   const filters = [['all', local('Todos', 'All'), ordered.length], ...clusters.map(c => [c.id, topics[c.id], ordered.filter(a => clusterFor(a) === c).length])]
     .map(([id, label, count]) => `<button type="button" data-cluster="${id}" aria-pressed="${id === 'all'}">${esc(label)} <span>${count}</span></button>`).join('');
   const entries = ordered.map(a => {

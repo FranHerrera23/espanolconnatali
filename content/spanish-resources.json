@@ -1,12 +1,82 @@
 {
-  "keep-a-conversation-going": ["Cómo seguir una conversación en español", "Una respuesta, un detalle y una pregunta sobre el tema. Incluye dos diálogos y ejercicios con explicaciones."],
-  "make-plans-in-spanish": ["Cómo coordinar un encuentro en español", "Invitá, acordá el lugar y la hora, reprogramá el encuentro y confirmá los planes."],
-  "practise-with-recorded-lessons": ["Cómo convertir una videolección en práctica autónoma", "Una secuencia para trabajar con una frase y practicar con respuestas."],
-  "ask-for-clarification": ["Cómo pedir que repitan o expliquen algo en español", "Frases para pedir que repitan, hablen más despacio o expliquen una palabra, con situaciones y respuestas."],
-  "ser-estar": ["Ser y estar según lo que querés decir", "Profesión, origen, lugar y estado, con ejemplos básicos y ejercicios explicados."],
-  "spanish-from-zero": ["Español desde cero para rusohablantes", "Un recorrido desde las primeras frases hasta la autoevaluación, con lectura, presentaciones, gramática y aclaraciones."],
-  "spanish-articles": ["Los artículos en español y cómo cambian el sentido", "Cómo elegir un, una, el y la según el contexto, con formas, límites y ejercicios explicados."],
-  "read-spanish": ["Cómo leer en español: letras, sonidos y acentuación", "Reglas iniciales de lectura, acentuación y variantes regionales, con ejercicios escritos y respuestas."],
-  "introduce-yourself": ["Cómo presentarte en español", "Nombre, lugar de residencia y un detalle que elijas. Incluye diálogo, práctica y autoevaluación."],
-  "build-simple-sentences": ["Cómo armar una oración simple en español", "Formas personales del verbo, negación y preguntas, con ejercicios y explicaciones."]
+  "keep-a-conversation-going": [
+    "Cómo seguir una conversación en español",
+    "Una respuesta, un detalle y una pregunta sobre el tema. Incluye dos diálogos y ejercicios con explicaciones."
+  ],
+  "make-plans-in-spanish": [
+    "Cómo coordinar un encuentro en español",
+    "Invitá, acordá el lugar y la hora, reprogramá el encuentro y confirmá los planes."
+  ],
+  "practise-with-recorded-lessons": [
+    "Cómo convertir una videolección en práctica autónoma",
+    "Una secuencia para trabajar con una frase y practicar con respuestas."
+  ],
+  "ask-for-clarification": [
+    "Cómo pedir que repitan o expliquen algo en español",
+    "Frases para pedir que repitan, hablen más despacio o expliquen una palabra, con situaciones y respuestas."
+  ],
+  "ser-estar": [
+    "Ser y estar según lo que querés decir",
+    "Profesión, origen, lugar y estado, con ejemplos básicos y ejercicios explicados."
+  ],
+  "spanish-from-zero": [
+    "Español desde cero para rusohablantes",
+    "Un recorrido desde las primeras frases hasta la autoevaluación, con lectura, presentaciones, gramática y aclaraciones."
+  ],
+  "spanish-articles": [
+    "Los artículos en español y cómo cambian el sentido",
+    "Cómo elegir un, una, el y la según el contexto, con formas, límites y ejercicios explicados."
+  ],
+  "read-spanish": [
+    "Cómo leer en español: letras, sonidos y acentuación",
+    "Reglas iniciales de lectura, acentuación y variantes regionales, con ejercicios escritos y respuestas."
+  ],
+  "introduce-yourself": [
+    "Cómo presentarte en español",
+    "Nombre, lugar de residencia y un detalle que elijas. Incluye diálogo, práctica y autoevaluación."
+  ],
+  "build-simple-sentences": [
+    "Cómo armar una oración simple en español",
+    "Formas personales del verbo, negación y preguntas, con ejercicios y explicaciones."
+  ],
+  "work-email": [
+    "Cómo escribir un correo breve de trabajo en español",
+    "Un correo con un objetivo y una respuesta clara."
+  ],
+  "compliments-in-spanish": [
+    "Cómo hacer cumplidos en español",
+    "Contexto, concordancia y práctica para hacer cumplidos."
+  ],
+  "job-interview-in-spanish": [
+    "Cómo hablar de tu experiencia en una entrevista en español",
+    "Dos perfiles de ejemplo, preguntas y formas de pedir aclaraciones."
+  ],
+  "te-quiero-te-amo-me-gustas": [
+    "Te quiero, te amo y me gustas",
+    "Ejemplos y respuestas para hablar de amor y atracción según el contexto."
+  ],
+  "spanish-cv": [
+    "Cómo describir tu experiencia y tus habilidades en un CV en español",
+    "Modelos y ejercicios para describir tareas y habilidades reales."
+  ],
+  "questions-in-spanish": [
+    "Cómo hacer preguntas y responder en español",
+    "Palabras interrogativas, respuestas y signos de interrogación."
+  ],
+  "gustar": [
+    "Cuándo decir me gusta y cuándo me gustan",
+    "Concordancia, preguntas y práctica con gustar."
+  ],
+  "at-a-cafe": [
+    "Español en el café",
+    "Diálogos y ejercicios para pedir, aclarar algo y pagar por separado."
+  ],
+  "short-practice-routine": [
+    "Una rutina de español de 15 minutos",
+    "Una tarea breve para recordar lo aprendido y comprobar cómo te fue."
+  ],
+  "football-in-spanish": [
+    "Cómo hablar de fútbol en español",
+    "Vocabulario, marcadores y frases para conversar sobre un partido."
+  ]
 }
