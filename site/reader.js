@@ -78,7 +78,8 @@
       if (!entry.hidden) count++;
     });
     buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.cluster === topic)));
-    status.textContent = 'Материалы: ' + count;
+    const label = { es: 'Materiales: ', en: 'Resources: ', ru: 'Материалы: ' };
+    status.textContent = label[document.documentElement.lang] + count;
     animation?.cancel();
     if (animate && !matchMedia('(prefers-reduced-motion: reduce)').matches) animation = list.animate([{ opacity: .5 }, { opacity: 1 }], { duration: 180, easing: 'ease-out' });
   };
@@ -95,4 +96,62 @@
   }));
   window.addEventListener('popstate', () => apply(new URL(location.href).searchParams.get('cluster')));
   window.addEventListener('pageshow', () => apply(new URL(location.href).searchParams.get('cluster')));
+})();
+
+// Keep the language decision on this device and carry equivalent anchors and filters across.
+(() => {
+  const article = /^\/resources\/[^/]+\/$/.test(location.pathname);
+  const switches = [...document.querySelectorAll('[data-language]')];
+  const referrer = document.referrer ? new URL(document.referrer) : null;
+  const localizedReferrer = referrer?.origin === location.origin
+    ? referrer.pathname.match(/^\/(es|en)\/(?:resources\/)?$/)
+    : null;
+  let preferred;
+  try { preferred = localStorage.getItem('natali-language'); } catch {}
+  const savedLocale = ['es', 'en'].includes(preferred) ? preferred : null;
+  if (location.pathname === '/' && !location.hash && !location.search &&
+      !document.referrer && savedLocale && performance.getEntriesByType('navigation')[0]?.type === 'navigate') {
+    location.replace('/' + savedLocale + '/');
+    return;
+  }
+
+  const returnLocale = localizedReferrer?.[1] || savedLocale;
+  const returnPath = locale => {
+    if (!localizedReferrer) return '/' + locale + '/resources/';
+    const isHome = referrer.pathname === '/' + localizedReferrer[1] + '/';
+    return '/' + locale + (isHome ? '/#resources' : '/resources/' + referrer.search);
+  };
+  const refreshDestinations = () => {
+    switches.forEach(link => {
+      const language = link.dataset.language;
+      const original = new URL(link.getAttribute('href'), location.origin);
+      link.href = article && language !== 'ru'
+        ? returnPath(language)
+        : original.pathname + location.search + location.hash;
+    });
+  };
+  refreshDestinations();
+  document.addEventListener('pointerdown', event => {
+    if (event.target.closest('[data-language]')) refreshDestinations();
+  });
+  document.addEventListener('focusin', event => {
+    if (event.target.closest('[data-language]')) refreshDestinations();
+  });
+  switches.forEach(link => link.addEventListener('click', () => {
+    refreshDestinations();
+    try { localStorage.setItem('natali-language', link.dataset.language); } catch {}
+  }));
+  if (article && returnLocale) {
+    const back = document.querySelector('.read-top a');
+    if (!back) return;
+    const english = returnLocale === 'en';
+    back.href = returnPath(returnLocale);
+    back.lang = returnLocale;
+    back.textContent = english ? '← Back to resources in English' : '← Volver a los recursos en español';
+    const notice = document.createElement('p');
+    notice.className = 'language-return';
+    notice.lang = returnLocale;
+    notice.textContent = english ? 'This article is in Russian.' : 'Este artículo está en ruso.';
+    back.after(notice);
+  }
 })();
