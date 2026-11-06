@@ -302,6 +302,20 @@
       "visualEvidence": "editorial/batches/2026-11-04/qa/pdf/ECN-FR-019.jpg",
       "version": "1.2",
       "bytes": 49277
+    },
+    {
+      "id": "ECN-FR-026",
+      "articleRoute": "/resources/book-an-appointment-by-phone/",
+      "sourceFile": "editorial/articles/book-an-appointment-by-phone.md",
+      "sourceSha256": "222ad97c69a0697c3411cd91eb1895c194b5f4a9ad98b9dd5d87002fddb59528",
+      "file": "output/pdf/2026-11-06/book-an-appointment-by-phone-workbook-ru.pdf",
+      "downloadRoute": "/assets/downloads/book-an-appointment-by-phone-workbook-ru.pdf",
+      "sha256": "b2b494b3b26543af7e104629eb33f97036f6520e0ed8917dff788e68bdc830a0",
+      "pages": 4,
+      "status": "approved_for_web_release",
+      "contentCheck": "All 42 source text blocks present in extracted PDF text; original source hash unchanged",
+      "visualCheck": "All four pages rendered and inspected; footer date corrected after inspection.",
+      "bytes": 45066
     }
   ]
 }

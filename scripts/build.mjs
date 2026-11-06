@@ -40,7 +40,12 @@ for(const a of manifest){
  const pubdate=a.publishedAt || config.releaseDate;
  if(a.editorialApproval?.by!=='Fran')throw Error('Approval missing '+a.id);
  const md=await readFile('content/launch/'+path.basename(a.sourceFile),'utf8');if(createHash('sha256').update(md).digest('hex')!==a.sha256)throw Error('Source hash changed '+a.id);
- const prose=md.replace(/^# .*\n+/,'').replace('Примеры и задания — редакционные; аудиозапись к этой версии не приложена.','Примеры и задания составлены редакцией.');const answer=prose.split(/\n\s*\n/)[0];
+ let prose=md.replace(/^# .*\n+/,'').replace('Примеры и задания — редакционные; аудиозапись к этой версии не приложена.','Примеры и задания составлены редакцией.');
+ for(const link of a.contextLinks ?? []){
+  const heading='\n## '+link.beforeHeading+'\n';
+  if(prose.split(heading).length!==2)throw Error('Expected one context link heading in '+a.id);
+  prose=prose.replace(heading,()=> '\n'+link.markdown+'\n'+heading);
+ }
  let rendered=markdown(prose).replace(/href="([^\"]+\.md)"/g,(_,f)=>{if(!linkmap[f])throw Error('Unknown internal link '+f);return 'href="'+linkmap[f]+'"';});
  // Mark standalone Spanish dialogue lines for assistive pronunciation.
  rendered=rendered.replace(/(<p>|<br>)(—?\s*[¿¡A-Za-z][^<\n]*)(?=<|\n)/g,(all,start,t)=>/[А-Яа-яЁё]/.test(t)?all:start+'<span lang="es">'+t+'</span>');

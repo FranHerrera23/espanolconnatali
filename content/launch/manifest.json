@@ -159,7 +159,13 @@
       "date": "2026-11-03",
       "scope": "Aprobado para publicación por responsable web. Natali leerá después de salir live; no revisión humana de Natali atribuida."
     },
-    "publicUrl": "https://www.espanolconnatali.com/resources/ask-for-clarification/"
+    "publicUrl": "https://www.espanolconnatali.com/resources/ask-for-clarification/",
+    "contextLinks": [
+      {
+        "beforeHeading": "Выберите подходящую просьбу",
+        "markdown": "Как переспросить время и подтвердить его в конце звонка, показывает [диалог о записи по телефону](book-an-appointment-by-phone.md)."
+      }
+    ]
   },
   {
     "id": "ECN-FR-005",
@@ -863,6 +869,50 @@
     "titleEs": "Fútbol para conversar",
     "relatedRoutes": [
       "/resources/keep-a-conversation-going/",
+      "/resources/make-plans-in-spanish/"
+    ]
+  },
+  {
+    "id": "ECN-FR-026",
+    "version": "1.0",
+    "status": "approved_for_publication",
+    "language": "ru",
+    "sourceFile": "editorial/articles/book-an-appointment-by-phone.md",
+    "route": "/resources/book-an-appointment-by-phone/",
+    "title": "Как записаться по телефону на испанском: фразы и диалог",
+    "description": "Как попросить запись, уточнить свободное время и подтвердить день и час по телефону. Диалог на испанском, перевод, задания и ответы.",
+    "author": {
+      "type": "Organization",
+      "name": "Редакция Español con Natali"
+    },
+    "editorialDisclosure": "Материал подготовлен редакцией с использованием ИИ.",
+    "humanReviewer": null,
+    "preparedAt": "2026-11-05",
+    "publishedAt": "2026-11-06",
+    "updatedAt": null,
+    "canonicalOrigin": "https://www.espanolconnatali.com",
+    "wordCount": 647,
+    "sourceUrls": [
+      "https://dle.rae.es/cita",
+      "https://www.argentina.gob.ar/justicia/derechofacil/leysimple/jubilacion-trabajadores-con-discapacidad"
+    ],
+    "relatedFiles": [
+      "ask-for-clarification.md",
+      "short-practice-routine.md",
+      "make-plans-in-spanish.md"
+    ],
+    "commercialCta": null,
+    "sha256": "222ad97c69a0697c3411cd91eb1895c194b5f4a9ad98b9dd5d87002fddb59528",
+    "editorialApproval": {
+      "by": "Fran",
+      "date": "2026-11-06",
+      "source": "Autorización de publicación autónoma diaria registrada en editorial/handoff/publication-calendar.txt."
+    },
+    "pillar": "P5",
+    "titleEs": "Cómo pedir un turno por teléfono en español",
+    "relatedRoutes": [
+      "/resources/ask-for-clarification/",
+      "/resources/short-practice-routine/",
       "/resources/make-plans-in-spanish/"
     ]
   }
