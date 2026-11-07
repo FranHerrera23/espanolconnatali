@@ -46,7 +46,13 @@ for(const a of manifest){
   if(prose.split(heading).length!==2)throw Error('Expected one context link heading in '+a.id);
   prose=prose.replace(heading,()=> '\n'+link.markdown+'\n'+heading);
  }
- let rendered=markdown(prose).replace(/href="([^\"]+\.md)"/g,(_,f)=>{if(!linkmap[f])throw Error('Unknown internal link '+f);return 'href="'+linkmap[f]+'"';});
+ for(const image of Object.values(a.images ?? {})){
+  if(!/^\/assets\/editorial\/[a-z0-9/-]+\.(?:jpg|png|webp)$/.test(image.src) || image.src.includes('..'))throw Error('Invalid editorial image path '+a.id);
+  const bytes=await readFile('site'+image.src);
+  if(createHash('sha256').update(bytes).digest('hex')!==image.sha256)throw Error('Editorial image hash mismatch '+a.id);
+  if(!a.sourceUrls.includes(image.sourceUrl))throw Error('Missing editorial image attribution '+a.id);
+ }
+ let rendered=markdown(prose,a.images).replace(/href="([^\"]+\.md)"/g,(_,f)=>{if(!linkmap[f])throw Error('Unknown internal link '+f);return 'href="'+linkmap[f]+'"';});
  // Mark standalone Spanish dialogue lines for assistive pronunciation.
  rendered=rendered.replace(/(<p>|<br>)(—?\s*[¿¡A-Za-z][^<\n]*)(?=<|\n)/g,(all,start,t)=>/[А-Яа-яЁё]/.test(t)?all:start+'<span lang="es">'+t+'</span>');
  const minutes = Math.max(1, Math.ceil(prose.replace(/https?:\/\/\S+/g,'').split(/\s+/).filter(Boolean).length / 180));
@@ -61,9 +67,10 @@ for(const a of manifest){
  const body='<div class="wrap read-top"><a class="link" href="/resources/">← Все бесплатные материалы</a></div><article class="wrap"><header class="reading-head"><p class="label">Бесплатные материалы · Практическое руководство</p><h1>'+esc(a.title)+'</h1>'+readingMeta+'<p class="answer">'+esc(a.description)+'</p><div class="editorial-byline">'+esc(a.author.name)+'<br>Опубликовано <time datetime="'+pubdate+'">'+publicationDate.format(new Date(pubdate))+'</time>'+ (a.updatedAt ? '<br>Обновлено <time datetime="'+a.updatedAt+'">'+publicationDate.format(new Date(a.updatedAt))+'</time>' : '')+'</div>'+tools+'</header><div class="reading-layout">'+contents+'<div class="reading-prose">'+rendered+tools+'</div></div></article><section class="related wrap"><h2>Что почитать дальше</h2>'+a.relatedFiles.map(f=>'<a href="'+linkmap[f]+'">'+esc(manifest.find(x=>path.basename(x.sourceFile)===f).title)+' ↗</a>').join('')+'</section>';
  const article={'@type':'Article','@id':base+a.route+'#article',headline:a.title,description:a.description,inLanguage:'ru',creativeWorkStatus:'Published',author:{'@type':'Organization','@id':editor['@id'],name:editor.name},publisher:{'@id':org['@id']},datePublished:pubdate,mainEntityOfPage:{'@id':base+a.route+'#page'},citation:a.sourceUrls,articleBody:prose};
  article.timeRequired='PT'+minutes+'M';
+ if(a.images)article.image=Object.values(a.images).map(image=>base+image.src);
  article.encoding={'@type':'MediaObject',contentUrl:base+download.downloadRoute,encodingFormat:'application/pdf',contentSize:download.bytes+' bytes'};
  if(a.updatedAt)article.dateModified=a.updatedAt;
- await page(a.route,a.title,a.description,body,[article]);
+ await page(a.route,a.seoTitle || a.title,a.description,body,[article]);
 
 }
 const clusters=JSON.parse(await readFile('content/article-clusters.json','utf8')).clusters;

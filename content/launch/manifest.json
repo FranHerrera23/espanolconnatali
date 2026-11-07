@@ -915,13 +915,13 @@
   },
   {
     "id": "ECN-FR-027",
-    "version": "1.0",
+    "version": "2.0",
     "status": "approved_for_publication",
     "language": "ru",
-    "sourceFile": "editorial/articles/spanish-for-job-search.md",
+    "sourceFile": "editorial/drafts/job-search-v2/spanish-for-job-search.md",
     "route": "/resources/spanish-for-job-search/",
-    "title": "Испанский для поиска работы: от вакансии до первого собеседования",
-    "description": "Как понять вакансию, описать опыт в резюме, отправить отклик и ответить на первый звонок. Примеры на испанском, задания и разбор.",
+    "title": "Испанский для поиска работы в Испании на примере реальных вакансий",
+    "description": "Разбор вакансий в Испании по 13 профессиональным профилям: обязанности, условия, вопросы работодателю и фразы для отклика. Практика с ответами, примеры и PDF.",
     "author": {
       "type": "Organization",
       "name": "Редакция Español con Natali"
@@ -929,22 +929,40 @@
     "humanReviewer": null,
     "preparedAt": "2026-11-05",
     "publishedAt": "2026-11-07",
-    "updatedAt": null,
+    "updatedAt": "2026-11-07",
     "canonicalOrigin": "https://www.espanolconnatali.com",
-    "wordCount": 941,
+    "wordCount": 4436,
     "sourceUrls": [
+      "https://www.turijobs.com/es/oferta-trabajo/alicante/ayudante-de-camareroa-camareroa-40hs20hs/361033",
+      "https://careers.accor.com/job/camarero-restaurante-bar-novotel-barcelona-city-in-novotel-barcelona-city-barcelona-spain-jid-95643",
+      "https://careers.accor.com/es/es/job/cocinero-restaurante-tendiez-in-sofitel-barcelona-skipper-barcelona-spain-jid-103118",
+      "https://careers.accor.com/es/es/job/recepcionsista-de-tarde-30-horas-estudiantes-in-ibis-barcelona-centro-sagrada-familia-barcelona-sp-jid-110628",
+      "https://jobs.ikea.com/es/trabajo/lleida/vendedor-a-y-planificacion-de-soluciones-del-hogar-ikea-lleida-30h-sem-tardes-sustitucion/24107/102549057120",
+      "https://empleo.leroymerlin.es/jobs/8544215-vendedor-a-herramientas-indefinido-40h-rotativo-calpe",
+      "https://empleo.leroymerlin.es/jobs/8680650-asistente-relacion-cliente-cajas-indefinido-20h-la-alberca",
+      "https://jobs.ikea.com/es/ubicaci%C3%B3n/espanha-jobs/22908/2510769/2",
+      "https://jobtoday.com/es/trabajo/oficial-de-peluqueria-R07wxj",
+      "https://jobtoday.com/es/trabajo/manicurista-y-pedicurista-j9Gr2P",
+      "https://empleo.engelvoelkers.com/jobs/consultor-a-inmobiliario-sector-terciario-6636f0a3-30c5-4b78-87f0-83288e2b5a1a",
+      "https://www.engelvoelkers.com/es/es/mallorca/islas-baleares/empleo",
+      "https://careers.accor.com/es/es/job/brand-content-assistant-emailing-intern-in-verychic-barcelona-spain-jid-110552",
       "https://europass.europa.eu/es/create-europass-cv",
-      "https://eures.europa.eu/jobseekers/create-your-europass-cv_es",
-      "https://dle.rae.es/valorar"
+      "https://dle.rae.es/camarero",
+      "https://dle.rae.es/mozo",
+      "https://dle.rae.es/mesero",
+      "https://dle.rae.es/valorar",
+      "https://buenosaires.gob.ar/gcaba_historico/noticias/la-ciudad-inauguro-un-nuevo-centro-de-formacion-para-la-empleabilidad"
     ],
     "relatedFiles": [
       "spanish-cv.md",
       "work-email.md",
-      "book-an-appointment-by-phone.md",
-      "job-interview-in-spanish.md"
+      "job-interview-in-spanish.md",
+      "at-a-cafe.md",
+      "ask-for-clarification.md",
+      "book-an-appointment-by-phone.md"
     ],
     "commercialCta": null,
-    "sha256": "7fe6ee2741f63c74217d558444323ad05698718646824200f773a49865183025",
+    "sha256": "25d7ac0ea07d5deafd5abeea8aba0ecff28762b90306fc53409f737f9e5605c6",
     "editorialApproval": {
       "by": "Fran",
       "date": "2026-11-06",
@@ -955,8 +973,41 @@
     "relatedRoutes": [
       "/resources/spanish-cv/",
       "/resources/work-email/",
-      "/resources/book-an-appointment-by-phone/",
-      "/resources/job-interview-in-spanish/"
-    ]
+      "/resources/job-interview-in-spanish/",
+      "/resources/at-a-cafe/",
+      "/resources/ask-for-clarification/",
+      "/resources/book-an-appointment-by-phone/"
+    ],
+    "seoTitle": "Испанский для поиска работы: реальные вакансии и фразы",
+    "images": {
+      "assets/accor-recepcion-titulo.jpg": {
+        "src": "/assets/editorial/job-search-v2/accor-recepcion-titulo.jpg",
+        "width": 964,
+        "height": 136,
+        "sha256": "c6ecc01ca07f2c19df4952d782d38831b895a4028ed07379331aa2f4081356cd",
+        "sourceUrl": "https://careers.accor.com/es/es/job/recepcionsista-de-tarde-30-horas-estudiantes-in-ibis-barcelona-centro-sagrada-familia-barcelona-sp-jid-110628"
+      },
+      "assets/leroy-calpe-titulo.jpg": {
+        "src": "/assets/editorial/job-search-v2/leroy-calpe-titulo.jpg",
+        "width": 1076,
+        "height": 193,
+        "sha256": "eb620c062ec40787ccf6692b62649e2e34867d2f2c597502f58a58440e96a654",
+        "sourceUrl": "https://empleo.leroymerlin.es/jobs/8544215-vendedor-a-herramientas-indefinido-40h-rotativo-calpe"
+      },
+      "assets/jobtoday-manicura-titulo.jpg": {
+        "src": "/assets/editorial/job-search-v2/jobtoday-manicura-titulo.jpg",
+        "width": 364,
+        "height": 128,
+        "sha256": "6f312ca6ce427c0077a924c350c911029ebc1488ade5eebd57327839b633dc47",
+        "sourceUrl": "https://jobtoday.com/es/trabajo/manicurista-y-pedicurista-j9Gr2P"
+      },
+      "assets/engel-barcelona-titulo.jpg": {
+        "src": "/assets/editorial/job-search-v2/engel-barcelona-titulo.jpg",
+        "width": 974,
+        "height": 72,
+        "sha256": "06cfe9fcfc440a58f82a9b01e8bbfadbcfaa8c21564af9f6ce251deb27917832",
+        "sourceUrl": "https://empleo.engelvoelkers.com/jobs/consultor-a-inmobiliario-sector-terciario-6636f0a3-30c5-4b78-87f0-83288e2b5a1a"
+      }
+    }
   }
 ]

@@ -331,17 +331,17 @@
     {
       "id": "ECN-FR-027",
       "articleRoute": "/resources/spanish-for-job-search/",
-      "sourceFile": "editorial/articles/spanish-for-job-search.md",
-      "sourceSha256": "7fe6ee2741f63c74217d558444323ad05698718646824200f773a49865183025",
-      "file": "output/pdf/2026-11-07/spanish-for-job-search-workbook-ru.pdf",
+      "sourceFile": "editorial/drafts/job-search-v2/spanish-for-job-search.md",
+      "sourceSha256": "25d7ac0ea07d5deafd5abeea8aba0ecff28762b90306fc53409f737f9e5605c6",
+      "file": "output/pdf/job-search-v2/spanish-for-job-search-workbook-ru.pdf",
       "downloadRoute": "/assets/downloads/spanish-for-job-search-workbook-ru.pdf",
-      "sha256": "efda507568f0b05849b824413c5dabe7c18ec607ad9c2bd2ac3d182173a6bcfe",
-      "pages": 5,
+      "sha256": "d5ab58cd0def4e246ec45cba8c609280c630e1493439d61cd9cae346a8aa0e91",
+      "pages": 17,
       "status": "approved_for_web_release",
-      "contentCheck": "Full PDF text preserved except removed AI disclosure; page count unchanged; 2026-11-07",
-      "visualCheck": "Updated editorial note rendered and visually checked in contact sheets; 2026-11-07",
-      "bytes": 100165,
-      "version": "1.0-editorial-note"
+      "contentCheck": "All 266 source text blocks present in extracted PDF text; original source hash unchanged",
+      "visualCheck": "17 páginas finales renderizadas e inspeccionadas 7/11; sin solapamientos, recortes legibles, respuestas separadas; 266 bloques cotejados",
+      "bytes": 1472009,
+      "version": "2.0"
     }
   ]
 }

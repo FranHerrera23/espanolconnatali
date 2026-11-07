@@ -94,3 +94,13 @@
 .reading-prose blockquote{border-left:2px solid var(--color-primary)}
 .reading-table th{background:#fff;border-top:2px solid var(--color-primary)}
 @media(hover:hover){.related a:hover,.reader-contents a:hover{background:#fff;text-decoration:underline;text-underline-offset:4px}.shelf-row:hover,.shelf-row:focus-within{background:#fff}}
+
+/* Source excerpts keep their original proportions within the reading measure. */
+.editorial-figure{margin-block:32px;break-inside:avoid}
+.editorial-figure>a{display:block;border:1px solid var(--color-rule);padding:16px;background:white;min-height:44px}
+.editorial-figure img{display:block;width:auto;max-width:100%;height:auto;margin-inline:auto;object-fit:contain}
+.editorial-figure figcaption{margin-top:12px;font-size:13px;line-height:1.65;color:var(--color-muted)}
+.editorial-figure figcaption a{display:inline-flex;align-items:center;min-height:44px;text-underline-offset:4px}
+@media(hover:hover){.editorial-figure>a:hover{border-color:var(--color-primary)}}
+@media(max-width:760px){.editorial-figure>a{padding:8px}}
+@media print{.editorial-figure>a{padding:0;border:0}.reading-prose .editorial-figure>a[href]::after{content:none}}
