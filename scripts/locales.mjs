@@ -43,7 +43,9 @@ export async function buildLocale(language, { out, base, production, header, foo
     await writeFile(dir + 'index.html', `<!doctype html><html lang="${language}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)} — Español con Natali</title><meta name="description" content="${esc(description)}"><meta name="robots" content="noindex,follow"><link rel="canonical" href="${base + route}"><link rel="stylesheet" href="/design-system.css"><link rel="stylesheet" href="/library.css"></head><body>${production ? '' : '<div class="preview-note">' + local('Vista previa', 'Preview') + '</div>'}<a class="skip" href="#main">${local('Ir al contenido', 'Skip to content')}</a>${languagePicker(translate(localizedHeader), route, language)}<main id="main">${body}</main>${translate(internal(footer))}<script src="/reader.js"></script>${animated ? motion : ''}</body></html>`);
   };
 
+  const publicationDate = new Intl.DateTimeFormat(language === 'es' ? 'es-ES' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
   const localizedHome = translate(homebody
+    .replace(/(<time data-publication-date datetime="([^"]+)">)[^<]+<\/time>/g, (_, start, date) => start + publicationDate.format(new Date(date)) + '</time>')
     .replaceAll('>О курсе ', local('>Ver el curso ', '>Explore the course '))
     .replace('href="#fit">Подойдёт ли мне курс?', 'href="' + prefix + '/resources/">' + local('Explorar recursos', 'Explore resources'))
     .replace(/Около (\d+) мин чтения/g, local('Unos $1 min de lectura', 'About $1 min read'))
@@ -59,7 +61,7 @@ export async function buildLocale(language, { out, base, production, header, foo
     const [title, description] = descriptions[a.route.split('/')[2]];
     const topic = clusterFor(a).id;
     const featured = a.route === '/resources/spanish-from-zero/';
-    return `<article class="journal-entry${featured ? ' journal-featured' : ''}" data-topic="${topic}"${featured ? ' data-featured' : ''}><a class="journal-link" href="${a.route}" hreflang="ru">${featured ? `<div class="journal-cover" aria-hidden="true"><span>Español con Natali</span><strong>Español<br>desde cero.</strong><span>01 — ${topics.start}</span></div>` : ''}<span class="journal-topic">${topics[topic]}</span><div class="journal-text"><h2>${esc(title)}</h2><p>${esc(description)}</p></div><span class="journal-time">${local('En ruso', 'In Russian')} · ${readingTimes.get(a.route)} min <span class="journal-arrow" aria-hidden="true">↗</span></span></a></article>`;
+    return `<article class="journal-entry${featured ? ' journal-featured' : ''}" data-topic="${topic}"${featured ? ' data-featured' : ''}><a class="journal-link" href="${a.route}" hreflang="ru">${featured ? `<div class="journal-cover" aria-hidden="true"><span>Español con Natali</span><strong>Español<br>desde cero.</strong><span>01 — ${topics.start}</span></div>` : ''}<span class="journal-topic">${topics[topic]}</span><div class="journal-text"><h2>${esc(title)}</h2><p>${esc(description)}</p></div><span class="journal-time"><time class="journal-date" datetime="${a.publishedAt}">${publicationDate.format(new Date(a.publishedAt))}</time>${local('En ruso', 'In Russian')} · ${readingTimes.get(a.route)} min <span class="journal-arrow" aria-hidden="true">↗</span></span></a></article>`;
   }).join('');
   const libraryTitle = local('Recursos gratuitos', 'Free resources');
   const libraryIntro = local(

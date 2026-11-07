@@ -10,12 +10,13 @@
       "sourceSha256": "d9ab869873bae960dddabcf25483ea9ced38b116b66008b0a71ddc5c8995920c",
       "file": "output/pdf/keep-a-conversation-going-workbook-ru.pdf",
       "downloadRoute": "/assets/downloads/keep-a-conversation-going-workbook-ru.pdf",
-      "sha256": "90257e87ff896b653fdec91f4437742ff78eed19246e4cdb7f9a80579e0724f3",
+      "sha256": "69770c6209ac0f7a1d63b4de61b15ccae21aaf9efc0afcaab70141f6e464e7b1",
       "pages": 4,
       "status": "ready_for_web_integration_not_published",
-      "contentCheck": "All 39 source text blocks present in extracted PDF text; original source hash unchanged",
-      "visualCheck": "All pages rendered and inspected; final conversation/plans practice pages rechecked after grouping questions, options and writing space",
-      "bytes": 51475
+      "contentCheck": "Full PDF text preserved except removed AI disclosure; page count unchanged; 2026-11-07",
+      "visualCheck": "Updated editorial note rendered and visually checked in contact sheets; 2026-11-07",
+      "bytes": 98609,
+      "version": "1.0-editorial-note"
     },
     {
       "id": "ECN-FR-003",
@@ -24,12 +25,13 @@
       "sourceSha256": "b5c04b6a71fcf595f349bc9346d6bd0dfc17b03e7f65da27cebf216bdeeabf54",
       "file": "output/pdf/make-plans-in-spanish-workbook-ru.pdf",
       "downloadRoute": "/assets/downloads/make-plans-in-spanish-workbook-ru.pdf",
-      "sha256": "a1af5075879e983b43ed3cf06a61195bbb5a67516a766cf2e1453de46c11b978",
+      "sha256": "fc0d27cb400f71cab1d7a05861e24b7030738e06c7f5db56131ca8f9af77824a",
       "pages": 4,
       "status": "ready_for_web_integration_not_published",
-      "contentCheck": "All 42 source text blocks present in extracted PDF text; original source hash unchanged",
-      "visualCheck": "All pages rendered and inspected; final conversation/plans practice pages rechecked after grouping questions, options and writing space",
-      "bytes": 51457
+      "contentCheck": "Full PDF text preserved except removed AI disclosure; page count unchanged; 2026-11-07",
+      "visualCheck": "Updated editorial note rendered and visually checked in contact sheets; 2026-11-07",
+      "bytes": 98574,
+      "version": "1.0-editorial-note"
     },
     {
       "id": "ECN-FR-004",
@@ -38,12 +40,13 @@
       "sourceSha256": "630abefafe02ec575eebcf4bdd3dfecaf5598be9a7c710fd81a7418e2eadee90",
       "file": "output/pdf/practise-with-recorded-lessons-workbook-ru.pdf",
       "downloadRoute": "/assets/downloads/practise-with-recorded-lessons-workbook-ru.pdf",
-      "sha256": "95b146629fee247dde5c1cd399637a3efbfddd552954a376edd3d97c31573c1f",
+      "sha256": "0d59611c8b74f32fa538e1cd825719adcd994ce69b434adea8266cf8c6a325e2",
       "pages": 4,
       "status": "ready_for_web_integration_not_published",
-      "contentCheck": "All 36 source text blocks present in extracted PDF text; original source hash unchanged",
-      "visualCheck": "All pages rendered and inspected; final conversation/plans practice pages rechecked after grouping questions, options and writing space",
-      "bytes": 50517
+      "contentCheck": "Full PDF text preserved except removed AI disclosure; page count unchanged; 2026-11-07",
+      "visualCheck": "Updated editorial note rendered and visually checked in contact sheets; 2026-11-07",
+      "bytes": 97581,
+      "version": "1.0-editorial-note"
     },
     {
       "id": "ECN-FR-002",
@@ -52,12 +55,13 @@
       "sourceSha256": "d7bc06ab7c5cb7195b312db218b96c360a655a341874f8fee387f3f09caab46b",
       "file": "output/pdf/ask-for-clarification-workbook-ru.pdf",
       "downloadRoute": "/assets/downloads/ask-for-clarification-workbook-ru.pdf",
-      "sha256": "98f5df995c2fbe9023429f4a84da7d9f468a514d5d199e2b4babb116ad0e08ef",
+      "sha256": "d9fd19cc7c8c338e3635c371136a9f277ffec95a412b8baa4727aaa38007e019",
       "pages": 4,
       "status": "existing_live_download_verified_2026-11-03",
-      "contentCheck": "Existing approved bespoke adaptation preserved unchanged",
-      "visualCheck": "Previously rendered and checked",
-      "bytes": 49794
+      "contentCheck": "Full PDF text preserved except removed AI disclosure; page count unchanged; 2026-11-07",
+      "visualCheck": "Updated editorial note rendered and visually checked in contact sheets; 2026-11-07",
+      "bytes": 97675,
+      "version": "1.0-editorial-note"
     },
     {
       "id": "ECN-FR-005",
@@ -66,12 +70,13 @@
       "sourceSha256": "ecf65f0fc70a267d6568aba696576fe611d3884288799d7178c05ed03e999ee8",
       "file": "output/pdf/ser-estar-workbook-ru.pdf",
       "downloadRoute": "/assets/downloads/ser-estar-workbook-ru.pdf",
-      "sha256": "6a24f02aeffc1f7f922102156a10cb85904ae8d6b8fa9b57c8b367f0f36711bb",
+      "sha256": "f9966566b478bba12dfcb49a9da5d43c672f391c0af6b6689bd3e8979059d8c3",
       "pages": 5,
       "status": "ready_for_web_integration_not_published",
-      "contentCheck": "All 80 source text blocks present in extracted PDF text; original source hash unchanged",
-      "visualCheck": "All pages rendered and inspected; final conversation/plans practice pages rechecked after grouping questions, options and writing space",
-      "bytes": 53769
+      "contentCheck": "Full PDF text preserved except removed AI disclosure; page count unchanged; 2026-11-07",
+      "visualCheck": "Updated editorial note rendered and visually checked in contact sheets; 2026-11-07",
+      "bytes": 100728,
+      "version": "1.0-editorial-note"
     },
     {
       "id": "ECN-FR-006",
@@ -80,12 +85,13 @@
       "sourceSha256": "3e73db72637f87d50cb0f57f999794a129262817246eb8aa7e9672af1e4169ed",
       "file": "output/pdf/spanish-from-zero-workbook-ru.pdf",
       "downloadRoute": "/assets/downloads/spanish-from-zero-workbook-ru.pdf",
-      "sha256": "63845d36ab72473510dbe2beb38b29e2cf2621f151842aed0c94ad63baa3154b",
+      "sha256": "6f5734a1147d15543483efa7aaa268363708cd673c11c82db43fd495fbea82bc",
       "pages": 4,
       "status": "ready_for_web_integration_not_published",
-      "contentCheck": "All 31 source text blocks present in extracted PDF text; original source hash unchanged",
-      "visualCheck": "All pages rendered and inspected; final conversation/plans practice pages rechecked after grouping questions, options and writing space",
-      "bytes": 52094
+      "contentCheck": "Full PDF text preserved except removed AI disclosure; page count unchanged; 2026-11-07",
+      "visualCheck": "Updated editorial note rendered and visually checked in contact sheets; 2026-11-07",
+      "bytes": 99177,
+      "version": "1.0-editorial-note"
     },
     {
       "id": "ECN-FR-008",
@@ -94,12 +100,13 @@
       "sourceSha256": "4452854114a0ecd0d4c4585620011c5e11724a87adb91c94d976ad26adf79916",
       "file": "output/pdf/spanish-articles-workbook-ru.pdf",
       "downloadRoute": "/assets/downloads/spanish-articles-workbook-ru.pdf",
-      "sha256": "631f24c819ca0289a9d7010cd9ffcec57a3c633c732db73846e261998bcfbff1",
+      "sha256": "7f9b28957302695ea5c1bb9fd07d2d5c8ca6f1ef483e42f9efa94bcedab8fe5b",
       "pages": 4,
       "status": "ready_for_web_integration_not_published",
-      "contentCheck": "All 52 source text blocks present in extracted PDF text; original source hash unchanged",
-      "visualCheck": "All pages rendered and inspected; final conversation/plans practice pages rechecked after grouping questions, options and writing space",
-      "bytes": 50952
+      "contentCheck": "Full PDF text preserved except removed AI disclosure; page count unchanged; 2026-11-07",
+      "visualCheck": "Updated editorial note rendered and visually checked in contact sheets; 2026-11-07",
+      "bytes": 98164,
+      "version": "1.0-editorial-note"
     },
     {
       "id": "ECN-FR-007",
@@ -108,12 +115,13 @@
       "sourceSha256": "ca439e57da5ebffaf3403ddfd7248de86a3bfc0fb7a22fd6b2a9a64777c40a47",
       "file": "output/pdf/read-spanish-workbook-ru.pdf",
       "downloadRoute": "/assets/downloads/read-spanish-workbook-ru.pdf",
-      "sha256": "f0433fe1300ff913f0b3c51d059248afc39c06de48c7f5b59b8c18585b80024d",
+      "sha256": "76356f6f7a85d2ea251c1c7f5c03c9dee8a7fceba86bb6ec03d362c18dd5ccbe",
       "pages": 4,
       "status": "ready_for_web_integration_not_published",
-      "contentCheck": "All 47 source text blocks present in extracted PDF text; original source hash unchanged",
-      "visualCheck": "All pages rendered and inspected; final conversation/plans practice pages rechecked after grouping questions, options and writing space",
-      "bytes": 51445
+      "contentCheck": "Full PDF text preserved except removed AI disclosure; page count unchanged; 2026-11-07",
+      "visualCheck": "Updated editorial note rendered and visually checked in contact sheets; 2026-11-07",
+      "bytes": 98557,
+      "version": "1.0-editorial-note"
     },
     {
       "id": "ECN-FR-011",
@@ -122,12 +130,13 @@
       "sourceSha256": "dc6e761eed6468d38f87564332c97503c5c3bbcdecd53b24be665993bf74a64b",
       "file": "output/pdf/introduce-yourself-workbook-ru.pdf",
       "downloadRoute": "/assets/downloads/introduce-yourself-workbook-ru.pdf",
-      "sha256": "aacd5244a0deff4aa99874c974caf5462639a8ee554697cf7f031b895bb9480f",
+      "sha256": "e25ff62de65a442655c624372b1efde3c8846d8c5f19bf705a91655bd5c0644f",
       "pages": 4,
       "status": "ready_for_web_integration_not_published",
-      "contentCheck": "All 37 source text blocks present in extracted PDF text; original source hash unchanged",
-      "visualCheck": "All pages rendered and inspected; final conversation/plans practice pages rechecked after grouping questions, options and writing space",
-      "bytes": 51038
+      "contentCheck": "Full PDF text preserved except removed AI disclosure; page count unchanged; 2026-11-07",
+      "visualCheck": "Updated editorial note rendered and visually checked in contact sheets; 2026-11-07",
+      "bytes": 98187,
+      "version": "1.0-editorial-note"
     },
     {
       "id": "ECN-FR-015",
@@ -136,12 +145,13 @@
       "sourceSha256": "2c1809ddcfa96f99470a597418b67224c0d222328353eefd8a3da6155fe9236c",
       "file": "output/pdf/build-simple-sentences-workbook-ru.pdf",
       "downloadRoute": "/assets/downloads/build-simple-sentences-workbook-ru.pdf",
-      "sha256": "4823bc8d2c72d57f582101f9e9b320e6c98f92109ed63cab605eac7b448eb5f3",
+      "sha256": "2d205d178af8f54dd7ea95a1dd72b430011cbf197c5bc2f0bdc9b1151ea0a021",
       "pages": 4,
       "status": "ready_for_web_integration_not_published",
-      "contentCheck": "All 39 source text blocks present in extracted PDF text; original source hash unchanged",
-      "visualCheck": "All pages rendered and inspected; final conversation/plans practice pages rechecked after grouping questions, options and writing space",
-      "bytes": 51291
+      "contentCheck": "Full PDF text preserved except removed AI disclosure; page count unchanged; 2026-11-07",
+      "visualCheck": "Updated editorial note rendered and visually checked in contact sheets; 2026-11-07",
+      "bytes": 98480,
+      "version": "1.0-editorial-note"
     },
     {
       "id": "ECN-FR-021",
@@ -150,14 +160,14 @@
       "sourceSha256": "2d765e3487acfc509ae0d1c26622724c6c3c38976580f129e41c81726b97e482",
       "file": "output/pdf/2026-11-04/work-email-workbook-ru.pdf",
       "downloadRoute": "/assets/downloads/work-email-workbook-ru.pdf",
-      "sha256": "46e139ead702fe7428dbedb5d545728240990a3d2a1b4e2a46bf567893279213",
+      "sha256": "90c063f4a58dad02e68c1ea421424e37f418c649f78c52dad5a23a35bec4ae0d",
       "pages": 5,
       "status": "approved_for_web_release",
-      "contentCheck": "All 50 source text blocks present in extracted PDF text; original source hash unchanged",
-      "visualCheck": "All pages rendered and viewed in contact sheet; Cyrillic/Spanish, headers, tables, practice and solutions checked; 2026-11-04",
+      "contentCheck": "Full PDF text preserved except removed AI disclosure; page count unchanged; 2026-11-07",
+      "visualCheck": "Updated editorial note rendered and visually checked in contact sheets; 2026-11-07",
       "visualEvidence": "editorial/batches/2026-11-04/qa/pdf/ECN-FR-021.jpg",
-      "version": "1.2",
-      "bytes": 47873
+      "version": "1.2-editorial-note",
+      "bytes": 98459
     },
     {
       "id": "ECN-FR-024",
@@ -166,14 +176,14 @@
       "sourceSha256": "e486a1a7305f72183f5f47aaa8ee35da1c95151356627af9083512742a0a66ca",
       "file": "output/pdf/2026-11-04/compliments-in-spanish-workbook-ru.pdf",
       "downloadRoute": "/assets/downloads/compliments-in-spanish-workbook-ru.pdf",
-      "sha256": "0d3dfd58a0022e2121354e8c88b4f9adcb94c58db6a68173e3bcea0ab95e145d",
+      "sha256": "f931f6d075885189beabe438ae4929b8487c60061e75b5cda67bb7e361a0f3ab",
       "pages": 4,
       "status": "approved_for_web_release",
-      "contentCheck": "All 53 source text blocks present in extracted PDF text; original source hash unchanged",
-      "visualCheck": "All pages rendered and viewed in contact sheet; Cyrillic/Spanish, headers, tables, practice and solutions checked; 2026-11-04",
+      "contentCheck": "Full PDF text preserved except removed AI disclosure; page count unchanged; 2026-11-07",
+      "visualCheck": "Updated editorial note rendered and visually checked in contact sheets; 2026-11-07",
       "visualEvidence": "editorial/batches/2026-11-04/qa/pdf/ECN-FR-024.jpg",
-      "version": "1.2",
-      "bytes": 47755
+      "version": "1.2-editorial-note",
+      "bytes": 98566
     },
     {
       "id": "ECN-FR-022",
@@ -182,14 +192,14 @@
       "sourceSha256": "b49109bce1d20253913ca8ba53b4ed06cd19973564793caa03fb7ba4950a8188",
       "file": "output/pdf/2026-11-04/job-interview-in-spanish-workbook-ru.pdf",
       "downloadRoute": "/assets/downloads/job-interview-in-spanish-workbook-ru.pdf",
-      "sha256": "d49864e82e007443ff5aed375271ae1e414bc2c0433553f3692a9441b2cd0b82",
+      "sha256": "6ce8061ae08cf2e78014f2c372eac9316ff98bd3cd552bf9f47c86b77ee03f3d",
       "pages": 4,
       "status": "approved_for_web_release",
-      "contentCheck": "All 44 source text blocks present in extracted PDF text; original source hash unchanged",
-      "visualCheck": "All pages rendered and viewed in contact sheet; Cyrillic/Spanish, headers, tables, practice and solutions checked; 2026-11-04",
+      "contentCheck": "Full PDF text preserved except removed AI disclosure; page count unchanged; 2026-11-07",
+      "visualCheck": "Updated editorial note rendered and visually checked in contact sheets; 2026-11-07",
       "visualEvidence": "editorial/batches/2026-11-04/qa/pdf/ECN-FR-022.jpg",
-      "version": "1.2",
-      "bytes": 47804
+      "version": "1.2-editorial-note",
+      "bytes": 98529
     },
     {
       "id": "ECN-FR-025",
@@ -198,14 +208,14 @@
       "sourceSha256": "b2ff12fae593dc49d16b8cb690b0d3dc19297558b2080b22b20fcac7b7f0b267",
       "file": "output/pdf/2026-11-04/te-quiero-te-amo-me-gustas-workbook-ru.pdf",
       "downloadRoute": "/assets/downloads/te-quiero-te-amo-me-gustas-workbook-ru.pdf",
-      "sha256": "56e9999aefcac1e7cc381c282fa89be947ae13f930e9d86c2be2b2e4c5362eff",
+      "sha256": "c3bf5c9c08dce1236a8d1a387c48bfe56c41d05d1c72d485f9f7cdc7432f0859",
       "pages": 4,
       "status": "approved_for_web_release",
-      "contentCheck": "All 37 source text blocks present in extracted PDF text; original source hash unchanged",
-      "visualCheck": "All pages rendered and viewed in contact sheet; Cyrillic/Spanish, headers, tables, practice and solutions checked; 2026-11-04",
+      "contentCheck": "Full PDF text preserved except removed AI disclosure; page count unchanged; 2026-11-07",
+      "visualCheck": "Updated editorial note rendered and visually checked in contact sheets; 2026-11-07",
       "visualEvidence": "editorial/batches/2026-11-04/qa/pdf/ECN-FR-025.jpg",
-      "version": "1.2",
-      "bytes": 46663
+      "version": "1.2-editorial-note",
+      "bytes": 97434
     },
     {
       "id": "ECN-FR-023",
@@ -214,14 +224,14 @@
       "sourceSha256": "94eff3938be3004f2558ad0f040fd886780f153cf6559fa7a99dfc6cc3440173",
       "file": "output/pdf/2026-11-04/spanish-cv-workbook-ru.pdf",
       "downloadRoute": "/assets/downloads/spanish-cv-workbook-ru.pdf",
-      "sha256": "b99b6aa31f452cf6dcbcff3c4dbb72424ed4b7cc49f414219db02d95c48939ac",
+      "sha256": "24730c0cf6253a9f325e78004563601afc2d0e0a8f95ca1a1d791bda2abfb982",
       "pages": 5,
       "status": "approved_for_web_release",
-      "contentCheck": "All 50 source text blocks present in extracted PDF text; original source hash unchanged",
-      "visualCheck": "All pages rendered and viewed in contact sheet; Cyrillic/Spanish, headers, tables, practice and solutions checked; 2026-11-04",
+      "contentCheck": "Full PDF text preserved except removed AI disclosure; page count unchanged; 2026-11-07",
+      "visualCheck": "Updated editorial note rendered and visually checked in contact sheets; 2026-11-07",
       "visualEvidence": "editorial/batches/2026-11-04/qa/pdf/ECN-FR-023.jpg",
-      "version": "1.2",
-      "bytes": 48826
+      "version": "1.2-editorial-note",
+      "bytes": 99417
     },
     {
       "id": "ECN-FR-012",
@@ -230,14 +240,14 @@
       "sourceSha256": "73f8e4148dafc24c18e390bc66b5477fd998b61b85801b3d58db472347bc5a94",
       "file": "output/pdf/2026-11-04/questions-in-spanish-workbook-ru.pdf",
       "downloadRoute": "/assets/downloads/questions-in-spanish-workbook-ru.pdf",
-      "sha256": "e990a28687fe10d72f384f98e05ea5e18f9a79472579b27b1be321edd2124d11",
+      "sha256": "367878cc39ef72eed2ef0a0f6e870789aae285835345aa32c3ea7a490a2d66ac",
       "pages": 4,
       "status": "approved_for_web_release",
-      "contentCheck": "All 62 source text blocks present in extracted PDF text; original source hash unchanged",
-      "visualCheck": "All pages rendered and viewed in contact sheet; Cyrillic/Spanish, headers, tables, practice and solutions checked; 2026-11-04",
+      "contentCheck": "Full PDF text preserved except removed AI disclosure; page count unchanged; 2026-11-07",
+      "visualCheck": "Updated editorial note rendered and visually checked in contact sheets; 2026-11-07",
       "visualEvidence": "editorial/batches/2026-11-04/qa/pdf/ECN-FR-012.jpg",
-      "version": "1.2",
-      "bytes": 47121
+      "version": "1.2-editorial-note",
+      "bytes": 97879
     },
     {
       "id": "ECN-FR-013",
@@ -246,14 +256,14 @@
       "sourceSha256": "753abd3eb2fcd669312eb794d0ad8f3e73ffdb8304f69e5afb0afbb4aa59afa7",
       "file": "output/pdf/2026-11-04/gustar-workbook-ru.pdf",
       "downloadRoute": "/assets/downloads/gustar-workbook-ru.pdf",
-      "sha256": "6ac0d497c24d655a099b19960d75aa4455855ef35447fcf72a21813f3d2821c2",
+      "sha256": "1586b5e71bc87b1b07c0764c83320ed0a3a55740a82373cb79bfd52440d32805",
       "pages": 4,
       "status": "approved_for_web_release",
-      "contentCheck": "All 56 source text blocks present in extracted PDF text; original source hash unchanged",
-      "visualCheck": "All pages rendered and viewed in contact sheet; Cyrillic/Spanish, headers, tables, practice and solutions checked; 2026-11-04",
+      "contentCheck": "Full PDF text preserved except removed AI disclosure; page count unchanged; 2026-11-07",
+      "visualCheck": "Updated editorial note rendered and visually checked in contact sheets; 2026-11-07",
       "visualEvidence": "editorial/batches/2026-11-04/qa/pdf/ECN-FR-013.jpg",
-      "version": "1.2",
-      "bytes": 46505
+      "version": "1.2-editorial-note",
+      "bytes": 97355
     },
     {
       "id": "ECN-FR-018",
@@ -262,14 +272,14 @@
       "sourceSha256": "e8d89299238d6ab46692a99383934cf79a456d63644246662bb95d4b86f5c9e0",
       "file": "output/pdf/2026-11-04/at-a-cafe-workbook-ru.pdf",
       "downloadRoute": "/assets/downloads/at-a-cafe-workbook-ru.pdf",
-      "sha256": "d4b59e3c6b2a851c5327dc2e38c00bd03a5eda59e228bc40bde3a878049b58d9",
+      "sha256": "57f18db1bc57f223b055181781349787531810dcf97fea6782b379d36b99edeb",
       "pages": 5,
       "status": "approved_for_web_release",
-      "contentCheck": "All 52 source text blocks present in extracted PDF text; original source hash unchanged",
-      "visualCheck": "All pages rendered and viewed in contact sheet; Cyrillic/Spanish, headers, tables, practice and solutions checked; 2026-11-04",
+      "contentCheck": "Full PDF text preserved except removed AI disclosure; page count unchanged; 2026-11-07",
+      "visualCheck": "Updated editorial note rendered and visually checked in contact sheets; 2026-11-07",
       "visualEvidence": "editorial/batches/2026-11-04/qa/pdf/ECN-FR-018.jpg",
-      "version": "1.2",
-      "bytes": 47768
+      "version": "1.2-editorial-note",
+      "bytes": 98360
     },
     {
       "id": "ECN-FR-016",
@@ -278,14 +288,14 @@
       "sourceSha256": "ce598902866bec891cd63ea607b3cf360eb40357751d3bf1847a269ab4ee6911",
       "file": "output/pdf/2026-11-04/short-practice-routine-workbook-ru.pdf",
       "downloadRoute": "/assets/downloads/short-practice-routine-workbook-ru.pdf",
-      "sha256": "585e44ba96be105b906384071e19d260644ae9b306ef0ae23e046cdd8074daff",
+      "sha256": "ea5b056a6a0fbd799f1c13eb14b9d229e975de4fc06547119212441a678f41d0",
       "pages": 4,
       "status": "approved_for_web_release",
-      "contentCheck": "All 39 source text blocks present in extracted PDF text; original source hash unchanged",
-      "visualCheck": "All pages rendered and viewed in contact sheet; Cyrillic/Spanish, headers, tables, practice and solutions checked; 2026-11-04",
+      "contentCheck": "Full PDF text preserved except removed AI disclosure; page count unchanged; 2026-11-07",
+      "visualCheck": "Updated editorial note rendered and visually checked in contact sheets; 2026-11-07",
       "visualEvidence": "editorial/batches/2026-11-04/qa/pdf/ECN-FR-016.jpg",
-      "version": "1.2",
-      "bytes": 47865
+      "version": "1.2-editorial-note",
+      "bytes": 98523
     },
     {
       "id": "ECN-FR-019",
@@ -294,14 +304,14 @@
       "sourceSha256": "8cdb66f9de99e47b0d0026087f8aa563e735b29a799aba8bd07143d5a1eccd53",
       "file": "output/pdf/2026-11-04/football-in-spanish-workbook-ru.pdf",
       "downloadRoute": "/assets/downloads/football-in-spanish-workbook-ru.pdf",
-      "sha256": "00a6a88c33f222b2f42e3912021f0f4f4e7f220f9a8a9101a6129cf1b0489e45",
+      "sha256": "1f45426f1023c3071780b4697e11912a702892fa3c39b2870c9672389c90e58b",
       "pages": 5,
       "status": "approved_for_web_release",
-      "contentCheck": "All 69 source text blocks present in extracted PDF text; original source hash unchanged",
-      "visualCheck": "All pages rendered and viewed in contact sheet; Cyrillic/Spanish, headers, tables, practice and solutions checked; 2026-11-04",
+      "contentCheck": "Full PDF text preserved except removed AI disclosure; page count unchanged; 2026-11-07",
+      "visualCheck": "Updated editorial note rendered and visually checked in contact sheets; 2026-11-07",
       "visualEvidence": "editorial/batches/2026-11-04/qa/pdf/ECN-FR-019.jpg",
-      "version": "1.2",
-      "bytes": 49277
+      "version": "1.2-editorial-note",
+      "bytes": 99797
     },
     {
       "id": "ECN-FR-026",
@@ -310,12 +320,13 @@
       "sourceSha256": "222ad97c69a0697c3411cd91eb1895c194b5f4a9ad98b9dd5d87002fddb59528",
       "file": "output/pdf/2026-11-06/book-an-appointment-by-phone-workbook-ru.pdf",
       "downloadRoute": "/assets/downloads/book-an-appointment-by-phone-workbook-ru.pdf",
-      "sha256": "b2b494b3b26543af7e104629eb33f97036f6520e0ed8917dff788e68bdc830a0",
+      "sha256": "3e6c12933bd06c008aea5a1fa8a1a4047a1abfe08c73c540ac2b5c44e2dc74e4",
       "pages": 4,
       "status": "approved_for_web_release",
-      "contentCheck": "All 42 source text blocks present in extracted PDF text; original source hash unchanged",
-      "visualCheck": "All four pages rendered and inspected; footer date corrected after inspection.",
-      "bytes": 45066
+      "contentCheck": "Full PDF text preserved except removed AI disclosure; page count unchanged; 2026-11-07",
+      "visualCheck": "Updated editorial note rendered and visually checked in contact sheets; 2026-11-07",
+      "bytes": 95887,
+      "version": "1.0-editorial-note"
     },
     {
       "id": "ECN-FR-027",
@@ -324,12 +335,13 @@
       "sourceSha256": "7fe6ee2741f63c74217d558444323ad05698718646824200f773a49865183025",
       "file": "output/pdf/2026-11-07/spanish-for-job-search-workbook-ru.pdf",
       "downloadRoute": "/assets/downloads/spanish-for-job-search-workbook-ru.pdf",
-      "sha256": "30b0b759195c4b8346de77807cc347e99617188c1ea30cfdb3087f39d2f7b3a4",
+      "sha256": "efda507568f0b05849b824413c5dabe7c18ec607ad9c2bd2ac3d182173a6bcfe",
       "pages": 5,
       "status": "approved_for_web_release",
-      "contentCheck": "All 59 source text blocks present in extracted PDF text; original source hash unchanged",
-      "visualCheck": "Rendered and inspected all five pages",
-      "bytes": 49684
+      "contentCheck": "Full PDF text preserved except removed AI disclosure; page count unchanged; 2026-11-07",
+      "visualCheck": "Updated editorial note rendered and visually checked in contact sheets; 2026-11-07",
+      "bytes": 100165,
+      "version": "1.0-editorial-note"
     }
   ]
 }

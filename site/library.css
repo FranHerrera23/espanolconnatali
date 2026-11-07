@@ -68,6 +68,7 @@
 .journal-link{display:grid;grid-template-columns:minmax(100px,2fr) minmax(0,6fr) minmax(130px,2fr);gap:32px;padding-block:36px;align-items:start}
 .journal-topic,.journal-time{font-size:13px;line-height:1.6;color:var(--color-muted);padding-top:5px}
 .journal-time{text-align:right;white-space:nowrap}
+.journal-date{display:block;margin-bottom:4px;font-variant-numeric:tabular-nums}
 .journal-arrow{display:inline-block;margin-left:16px;color:var(--color-primary);transition:transform 180ms ease}
 .journal-text h2{font-size:28px;font-weight:500;line-height:1.2;letter-spacing:-.025em;transition:color 150ms ease}
 .journal-text p{font-size:16px;line-height:1.55;color:var(--color-muted);margin-top:10px;max-width:56ch}
