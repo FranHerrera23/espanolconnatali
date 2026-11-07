@@ -100,7 +100,7 @@
 
 // Keep the language decision on this device and carry equivalent anchors and filters across.
 (() => {
-  const article = /^\/resources\/[^/]+\/$/.test(location.pathname);
+  const article = /^\/resources\/[^/]+\/$/.test(location.pathname) && !document.querySelector('[data-jobs-library]');
   const switches = [...document.querySelectorAll('[data-language]')];
   const referrer = document.referrer ? new URL(document.referrer) : null;
   const localizedReferrer = referrer?.origin === location.origin

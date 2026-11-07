@@ -20,7 +20,7 @@
     document.addEventListener('natali:scroll', navigate);
     // Parents stay stationary. All children in a block share the same progress,
     // so body text, imagery and controls cannot race ahead of the heading.
-    const blocks = document.querySelectorAll('.hero-copy,.hero-picture,.fit-heading,.fit-stories article,.course-proposition,.course-spec,.practice-heading,.practice-sequence article,.voices-heading,.voice-feature,.voice-secondary,.voices-more,.voices-invitation,.story-copy,.story-picture,.resource-heading,.resource-feature,.resource-item,.private-heading,.private-content,.closing,.students-intro,.student-story');
+    const blocks = document.querySelectorAll('.hero-copy,.hero-picture,.fit-heading,.fit-stories article,.course-proposition,.course-spec,.practice-heading,.practice-sequence article,.voices-heading,.voice-feature,.voice-secondary,.voices-more,.voices-invitation,.story-copy,.story-picture,.resource-heading,.resource-feature,.resource-item,.library-resource,.private-heading,.private-content,.closing,.students-intro,.student-story');
     blocks.forEach(block => {
       const items = [...block.children];
       if (!items.length || block.getBoundingClientRect().top < innerHeight * .65) return;
