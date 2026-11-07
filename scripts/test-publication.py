@@ -21,7 +21,7 @@ for d in downloads:
  assert html.count('href="'+d['downloadRoute']+'" download')==2
  assert 'Полный материал с упражнениями и ответами' in html
 assert sum('Скачать PDF' in f.read_text() for f in Path('dist/resources').rglob('index.html'))==len(m)
-expected_routes={'/','/resources/','/students/','/resources/jobs-in-spain/'}|{a['route'] for a in m}
+expected_routes={'/','/resources/','/students/','/resources/jobs-in-spain/','/life-in-spain/'}|{a['route'] for a in m}
 actual_routes=set(re.findall(r'<loc>https://www.espanolconnatali.com([^<]+)</loc>',Path('dist/sitemap.xml').read_text()))
 assert actual_routes==expected_routes
 print(f'Launch checks: {len(m)} verified articles, matching PDFs and {len(expected_routes)} sitemap URLs.')

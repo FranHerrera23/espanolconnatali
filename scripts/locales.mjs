@@ -1,8 +1,8 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { esc } from './markdown.mjs';
-import { jobsRoute, renderJobs, jobsTeaser } from './jobs.mjs';
+import { jobsRoute, renderJobs, jobsTeaser, lifeRoute, renderLife } from './jobs.mjs';
 
-const mirrored = new Set(['/', '/resources/', '/students/', jobsRoute]);
+const mirrored = new Set(['/', '/resources/', '/students/', jobsRoute, lifeRoute]);
 const motion = ['lenis', 'gsap', 'ScrollTrigger', 'SplitText']
   .map(name => `<script src="/assets/vendor/${name}.min.js"></script>`).join('') +
   '<script src="/resources.js"></script>';
@@ -28,21 +28,23 @@ export async function buildLocale(language, { out, base, production, header, foo
   const pattern = new RegExp(keys.map(key => key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|'), 'g');
   const translate = html => html.replace(pattern, key => esc(dictionary.get(key)));
   const internal = html => html.replace(/href="(\/(?:resources\/|students\/)?)(#[^"]*)?"/g, 'href="' + prefix + '$1$2"')
-    .replace(/href="#([^"]+)"/g, 'href="' + prefix + '/#$1"');
+    .replace(/href="\/life-in-spain\/"/g, 'href="' + prefix + '/life-in-spain/"').replace(/href="#([^"]+)"/g, 'href="' + prefix + '/#$1"');
   const localizedHeader = internal(header
     .replace('aria-label="Главная навигация"', local('aria-label="Navegación principal"', 'aria-label="Main navigation"'))
     .replace('class="brand"', local('class="brand" aria-label="Inicio · Español con Natali"', 'class="brand" aria-label="Home · Español con Natali"'))
     .replace('>Меню<', local('>Menú<', '>Menu<'))
+    .replace('>Ресурсы<', local('>Recursos<','>Resources<')).replace('>Учить испанский<',local('>Aprender español<','>Learn Spanish<')).replace('>Жизнь в Испании<',local('>Vida en España<','>Life in Spain<'))
     .replace('>Курс<', local('>Curso grabado<', '>Self-paced course<'))
     .replace('>Отзывы учеников<', local('>Testimonios<', '>Testimonials<'))
     .replace('>О Натали<', local('>Sobre Natali<', '>About Natali<'))
     .replace('>Лично с Натали<', local('>Clases privadas<', '>Private lessons<'))
     .replace('>О курсе ', local('>Ver el curso ', '>Explore the course ')));
-  const jobsHeader = internal(readerHeader).replaceAll('Бесплатные материалы', local('Recursos gratuitos', 'Free resources')).replace('Меню', local('Menú', 'Menu')).replace('aria-label="Навигация"', local('aria-label="Navegación"', 'aria-label="Navigation"'));
+  const jobsHeader = internal(readerHeader).replaceAll('Бесплатные материалы', local('Recursos gratuitos', 'Free resources')).replace('>Ресурсы<', local('>Recursos<','>Resources<')).replace('>Учить испанский<',local('>Aprender español<','>Learn Spanish<')).replace('>Жизнь в Испании<',local('>Vida en España<','>Life in Spain<')).replace('Меню', local('Menú', 'Menu')).replace('aria-label="Навигация"', local('aria-label="Navegación"', 'aria-label="Navigation"'));
   const write = async (route, title, description, body, animated) => {
     const isJobs = route === jobsRoute;
-    const pageHeader = isJobs ? jobsHeader : translate(localizedHeader);
-    const pageFooter = isJobs ? footer.replace(/<p>[\s\S]*?<\/p>/, '').replace(/<span>Курс в своём темпе[\s\S]*?<\/span>/, '') : footer;
+    const practical = isJobs || route === lifeRoute;
+    const pageHeader = practical ? jobsHeader : translate(localizedHeader);
+    const pageFooter = practical ? footer.replace(/<p>[\s\S]*?<\/p>/, '').replace(/<span>Курс в своём темпе[\s\S]*?<\/span>/, '') : footer;
     const dir = out + prefix + route;
     await mkdir(dir, { recursive: true });
     await writeFile(dir + 'index.html', `<!doctype html><html lang="${language}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)} — Español con Natali</title><meta name="description" content="${esc(description)}"><meta name="robots" content="noindex,follow"><link rel="canonical" href="${base + route}"><link rel="stylesheet" href="/design-system.css"><link rel="stylesheet" href="/library.css"><link rel="stylesheet" href="/jobs.css"></head><body>${production ? '' : '<div class="preview-note">' + local('Vista previa', 'Preview') + '</div>'}<a class="skip" href="#main">${local('Ir al contenido', 'Skip to content')}</a>${languagePicker(pageHeader, route, language)}<main id="main">${body}</main>${translate(internal(pageFooter))}<script src="/reader.js"></script>${isJobs ? '<script type="module" src="/jobs.js"></script>' : ''}${animated ? motion : ''}</body></html>`);
@@ -75,8 +77,9 @@ export async function buildLocale(language, { out, base, production, header, foo
     'Explanations, examples and practice without signing up. Browse the titles and summaries in English, then follow a link to read the full article in Russian.'
   );
   await write('/resources/', libraryTitle, local('Guías y ejercicios de español para rusohablantes.', 'Spanish guides and exercises for Russian speakers.'),
-    `<section class="library-hero wrap"><p class="label">${libraryTitle}</p><div class="library-intro"><h1>${local('Español para<br>tu vida.', 'Spanish for<br>everyday life.')}</h1><p>${libraryIntro}</p></div></section>${jobsTeaser(language)}<section class="journal wrap" aria-label="${local('Artículos de español', 'Spanish articles')}"><div class="article-filters" role="group" aria-label="${local('Temas', 'Topics')}" hidden>${filters}</div><p class="journal-count" role="status" aria-live="polite">${local('Materiales', 'Resources')}: ${ordered.length}</p><div class="journal-list">${entries}</div></section>`, false);
+    `<section class="library-hero wrap"><p class="label">${libraryTitle}</p><div class="library-intro"><h1>${local('Español para<br>tu vida.', 'Spanish for<br>everyday life.')}</h1><p>${libraryIntro}</p></div></section><section class="journal wrap" aria-label="${local('Artículos de español', 'Spanish articles')}"><div class="article-filters" role="group" aria-label="${local('Temas', 'Topics')}" hidden>${filters}</div><p class="journal-count" role="status" aria-live="polite">${local('Materiales', 'Resources')}: ${ordered.length}</p><div class="journal-list">${entries}</div></section>${jobsTeaser(language)}`, false);
 
+  await write(lifeRoute, local('Vida en España','Life in Spain'), local('Recursos prácticos para la vida en España.','Practical resources for life in Spain.'), renderLife(language), false);
   if (language === 'es') {
     await write(jobsRoute, 'Vacantes en España, con contexto', 'Selección independiente de vacantes en España, con fuentes, fechas y filtros por ciudad, provincia y sector.', renderJobs(jobsData, 'es'), false);
   }

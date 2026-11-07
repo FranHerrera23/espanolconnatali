@@ -12,7 +12,7 @@
   const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
   const close = () => { menu?.setAttribute('aria-expanded', 'false'); nav?.classList.remove('open'); };
   menu?.addEventListener('click', () => { const open = menu.getAttribute('aria-expanded') !== 'true'; menu.setAttribute('aria-expanded', String(open)); nav?.classList.toggle('open', open); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') { close(); menu?.focus({ preventScroll: true }); } });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !document.querySelector('.jobs-dialog[open]')) { close(); menu?.focus({ preventScroll: true }); } });
   const move = (top, immediate = false) => {
     top = Math.max(0, Math.min(top, document.documentElement.scrollHeight - innerHeight));
     const duration = Math.min(1.6, Math.max(.7, Math.abs(scrollY - top) / 3500));
@@ -24,6 +24,7 @@
   document.addEventListener('click', e => {
     const link = e.target.closest('a[href]');
     if (!link || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || link.target || link.hasAttribute('download')) return;
+    if (link.hasAttribute('data-job-result')) return;
     const url = new URL(link.href, location.href);
     if (url.origin === location.origin && (url.pathname !== location.pathname || url.search !== location.search)) {
       departing = true;
@@ -45,11 +46,13 @@
   window.addEventListener('pagehide', () => { if (!departing) history.replaceState({ ...history.state, nataliY: scrollY }, '', location.href); });
   window.addEventListener('pageshow', e => {
     departing = false;
+    if (document.querySelector('[data-jobs-library]')) return;
     if ((e.persisted || performance.getEntriesByType('navigation')[0]?.type === 'back_forward') && Number.isFinite(history.state?.nataliY)) document.fonts.ready.then(() => requestAnimationFrame(() => requestAnimationFrame(() => move(history.state.nataliY, true))));
   });
   // Same-document back/forward uses the same scroll controller as navigation.
   let currentPath = location.pathname;
   window.addEventListener('popstate', e => {
+    if (document.querySelector('[data-jobs-library]')) return;
     if (currentPath !== location.pathname) { currentPath = location.pathname; return; }
     const target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
     requestAnimationFrame(() => move(e.state?.nataliY ?? (target ? targetTop(target) : 0)));
@@ -154,4 +157,11 @@
     notice.textContent = english ? 'This article is in Russian.' : 'Este artículo está en ruso.';
     back.after(notice);
   }
+})();
+
+// Resource navigation remains keyboard-native and closes on Escape or outside click.
+(() => {
+ const menus=[...document.querySelectorAll('.resource-nav,.jobs-method')];
+ document.addEventListener('click',e=>menus.forEach(menu=>{if(!menu.contains(e.target))menu.open=false;}));
+ menus.forEach(menu=>menu.addEventListener('keydown',e=>{if(e.key==='Escape'&&menu.open){e.stopPropagation();menu.open=false;menu.querySelector('summary').focus();}}));
 })();

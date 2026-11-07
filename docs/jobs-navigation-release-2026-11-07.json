@@ -1,0 +1,27 @@
+{
+  "date": "2026-11-07",
+  "scope": "Navigable jobs table and Life in Spain hub",
+  "changes": [
+    "Compact semantic comparison table, mobile summary rows, on-demand native dialog detail",
+    "URL filters and selected listing; Back/Forward, focus and scroll restoration including RU/ES switch",
+    "Discreet independent-selection disclosure; original facts, sources and review dates retained",
+    "New /life-in-spain/ hub and localized ES/EN navigation indexes; existing jobs route retained",
+    "Resources menu separates Spanish learning from practical tools; compact home/library entry replaces employment banner"
+  ],
+  "validation": [
+    "Production build",
+    "Jobs freshness, Moscow boundaries, deadlines, Unicode and combined-filter tests",
+    "Semantic table/no-JS full-record and source-link tests",
+    "SEO/local anchors/37 HTML pages",
+    "22 original articles and PDF hashes preserved; 27 RU sitemap URLs",
+    "Browser widths 375/390/768/1024/1440/1920; no global overflow",
+    "1440x900: six rows visible, table begins 275px after main",
+    "Mobile detail/back/forward, filter tokens, empty reset, invalid deep link, RU/ES context restoration"
+  ],
+  "references": [
+    "https://ndstudio.gov/jobs",
+    "https://www.airbnb.com/help/article/479"
+  ],
+  "indexing": "Technical eligibility only; actual Google indexing not asserted",
+  "localization": "RU indexable/default. ES/EN supplementary views retain existing noindex+RU canonical policy; no hreflang pair to non-indexable variants."
+}

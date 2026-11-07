@@ -36,6 +36,18 @@ for (const language of ['ru', 'es']) {
   assert.equal((html.match(/ data-job /g) || []).length, available.length);
   assert.equal((html.match(/target="_blank" rel="noopener noreferrer"/g) || []).length, available.length);
   assert(html.includes('data-job-filters hidden'));
+  assert.equal((html.match(/<tr data-job-row=/g)||[]).length,available.length);
+  assert(html.includes('<table class="jobs-table">') && html.includes('<th scope="col">'));
+  assert(html.includes('<dialog open class="jobs-dialog" data-job-dialog>'));
+  assert(html.includes('data-job-back') && html.includes('data-job-locale'));
+  assert(html.includes('class="jobs-method"') && html.includes('/life-in-spain/'));
+  assert(!html.includes('library-course') && !html.includes('JobPosting'));
+  for (const job of available) {
+    assert(html.includes('href="#'+job.id+'"'));
+    assert(html.includes('id="'+job.id+'" data-job'));
+    assert(html.includes('data-last-checked-date="'+job.lastCheckedDate+'"'));
+    assert(html.includes(job.sourceUrl.replaceAll('&','&amp;')));
+  }
   assert(!html.includes('JobPosting') && !html.includes('type="email"'));
   const expired = renderJobs(data, language, afterAllChecks);
   assert(!expired.includes(' data-job '));

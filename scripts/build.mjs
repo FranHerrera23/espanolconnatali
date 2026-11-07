@@ -3,7 +3,7 @@ import {createHash} from 'node:crypto';
 import path from 'node:path';
 import {markdown,esc} from './markdown.mjs';
 import {buildLocale,languagePicker} from './locales.mjs';
-import {jobsRoute,renderJobs,jobsTeaser} from './jobs.mjs';
+import {jobsRoute,renderJobs,jobsTeaser,lifeRoute,renderLife} from './jobs.mjs';
 const config=JSON.parse(await readFile('site.config.json','utf8'));
 const production=process.env.DEPLOY_MODE==='production'||(process.env.VERCEL_ENV==='production');
 const base=new URL(process.env.SITE_URL||config.productionSiteUrl||'http://localhost:4173').origin;
@@ -20,17 +20,22 @@ const out=process.env.BUILD_DIR||'dist';if(!['dist','work/test-dist'].includes(o
 await rm(out,{recursive:true,force:true});await mkdir(out,{recursive:true});
 await cp('site/assets',out+'/assets',{recursive:true});for(const f of ['design-system.css','library.css','resources.js','reader.js','jobs.css','jobs.js','jobs-state.js'])await cp('site/'+f,out+'/'+f);
 const home=(await readFile('site/index.html','utf8')).replaceAll('src="assets/brand/','src="/assets/brand/');
-const header=home.match(/<header class="site-nav[\s\S]*?<\/header>/)[0].replaceAll('resources.html','/resources/').replaceAll('href="#','href="/#');
-const readerHeader=header.replace(/<nav[\s\S]*?<\/nav>/,'<nav class="nav-links" id="navigation" aria-label="Навигация"><a href="/resources/">Бесплатные материалы</a></nav>').replace(/<a class="link nav-contact"[\s\S]*?<\/a>/,'');
+let header=home.match(/<header class="site-nav[\s\S]*?<\/header>/)[0].replaceAll('resources.html','/resources/').replaceAll('href="#','href="/#');
+const resourceMenu='<details class="resource-nav"><summary>Ресурсы</summary><div><a href="/resources/">Учить испанский</a><a href="/life-in-spain/">Жизнь в Испании</a></div></details>';
+header=header.replace('<a href="/resources/">Бесплатные материалы</a>',resourceMenu);
+const readerHeader=header.replace(/<nav[\s\S]*?<\/nav>/,'<nav class="nav-links" id="navigation" aria-label="Навигация">'+resourceMenu+'</nav>').replace(/<a class="link nav-contact"[\s\S]*?<\/a>/,'');
 const footer=home.match(/<footer[\s\S]*?<\/footer>/)[0].replaceAll('href="#home"','href="/"');
 const org={'@type':'EducationalOrganization','@id':base+'/#organization',name:'Español con Natali',url:base+'/',sameAs:[config.instagram]};
 const editor={'@type':'Organization','@id':base+'/#editorial',name:'Редакция Español con Natali',parentOrganization:{'@id':org['@id']}};
 const site={'@type':'WebSite','@id':base+'/#website',url:base+'/',name:'Español con Natali',inLanguage:'ru',publisher:{'@id':org['@id']}};
 const urls=[];
 async function page(route,title,desc,body,extra=[],commercial=false){
- const canonical=base+route;const webpage={'@type':['/resources/','/students/',jobsRoute].includes(route)?'CollectionPage':'WebPage','@id':canonical+'#page',url:canonical,name:title,inLanguage:'ru',isPartOf:{'@id':site['@id']}};
+ const canonical=base+route;const webpage={'@type':['/resources/','/students/',jobsRoute,lifeRoute].includes(route)?'CollectionPage':'WebPage','@id':canonical+'#page',url:canonical,name:title,inLanguage:'ru',isPartOf:{'@id':site['@id']}};
  const graph=[org,editor,site,webpage,...extra];
- if(route!=='/')graph.push({'@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'Главная',item:base+'/'},{'@type':'ListItem',position:2,name:'Бесплатные материалы',item:base+'/resources/'},...(route==='/resources/'?[]:[{'@type':'ListItem',position:3,name:title,item:canonical}])]});
+  if(route!=='/') {
+ const practical=route===jobsRoute||route===lifeRoute;
+ graph.push({'@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'Главная',item:base+'/'},...(route===lifeRoute?[]:[{'@type':'ListItem',position:2,name:practical?'Жизнь в Испании':'Бесплатные материалы',item:base+(practical?lifeRoute:'/resources/')}]),...(route==='/resources/'?[]:[{'@type':'ListItem',position:route===lifeRoute?2:3,name:title,item:canonical}])]});
+ }
  graph.forEach((node,i)=>{if(!node['@id'])node['@id']=canonical+'#entity-'+i;});
  const json=JSON.stringify({'@context':'https://schema.org','@graph':graph}).replace(/</g,'\\u003c');
  const html=`<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)} — Español con Natali</title><meta name="description" content="${esc(desc)}"><meta name="robots" content="${production?'index,follow,max-image-preview:large':'noindex,follow'}"><link rel="canonical" href="${canonical}"><meta property="og:url" content="${canonical}"><meta property="og:type" content="${extra.some(node=>node['@type']==='Article')?'article':'website'}"><meta property="og:locale" content="ru_RU"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(desc)}"><meta property="og:image" content="${base}/assets/natali-city.jpg"><meta name="twitter:card" content="summary_large_image"><link rel="stylesheet" href="/design-system.css"><link rel="stylesheet" href="/library.css"><link rel="stylesheet" href="/jobs.css"><script type="application/ld+json">${json}</script></head><body>${production?'':'<div class="preview-note">Предпросмотр · Не индексируется</div>'}<a class="skip" href="#main">Перейти к содержанию</a>${languagePicker(commercial?header:readerHeader,route)}<main id="main">${body}</main>${commercial?footer:footer.replace(/<p>[\s\S]*?<\/p>/,'').replace(/<span>Курс в своём темпе[\s\S]*?<\/span>/,'')}<script src="/reader.js"></script>${route===jobsRoute?'<script type="module" src="/jobs.js"></script>':''}${commercial?'<script src="/assets/vendor/lenis.min.js"></script><script src="/assets/vendor/gsap.min.js"></script><script src="/assets/vendor/ScrollTrigger.min.js"></script><script src="/assets/vendor/SplitText.min.js"></script><script src="/resources.js"></script>':''}</body></html>`;
@@ -82,9 +87,10 @@ const activeClusters=clusters.filter(c=>manifest.some(a=>clusterFor(a)===c));
 const ordered=[...manifest].sort((a,b)=>Number(b.route.includes('/spanish-from-zero/'))-Number(a.route.includes('/spanish-from-zero/')));
 const filters='<div class="article-filters" role="group" aria-label="Темы материалов" hidden><button type="button" data-cluster="all" aria-pressed="true">Все материалы <span>'+manifest.length+'</span></button>'+activeClusters.map(c=>'<button type="button" data-cluster="'+c.id+'" aria-pressed="false">'+esc(c.label)+' <span>'+manifest.filter(a=>clusterFor(a)===c).length+'</span></button>').join('')+'</div>';
 const entries=ordered.map(a=>{const c=clusterFor(a);const featured=a.route.includes('/spanish-from-zero/');return '<article class="journal-entry'+(featured?' journal-featured':'')+'" data-topic="'+c.id+'"'+(featured?' data-featured':'')+'><a class="journal-link" href="'+a.route+'">'+(featured?'<div class="journal-cover" aria-hidden="true"><span>Español con Natali</span><strong>Español<br>desde cero.</strong><span>01 — '+esc(c.label)+'</span></div>':'')+'<span class="journal-topic">'+esc(c.label)+'</span><div class="journal-text"><h2>'+esc(a.title)+'</h2><p>'+esc(a.description)+'</p></div><span class="journal-time"><time class="journal-date" datetime="'+a.publishedAt+'">'+publicationDate.format(new Date(a.publishedAt))+'</time>Около '+readingTimes.get(a.route)+' мин чтения <span class="journal-arrow" aria-hidden="true">↗</span></span></a></article>';}).join('');
-await page('/resources/','Бесплатные материалы по испанскому','Открытые руководства на русском: испанские примеры, упражнения, ответы и источники.','<section class="library-hero wrap"><p class="label">Бесплатные материалы</p><div class="library-intro"><h1>Испанский для<br>вашей жизни.</h1><p>Объяснения, примеры и практика. Читайте, проверяйте себя и возвращайтесь к тому, что пригодится в разговоре. Все материалы открыты без регистрации.</p></div></section>'+jobsTeaser('ru')+'<section class="journal wrap" aria-label="Статьи по испанскому">'+filters+'<p class="journal-count" role="status" aria-live="polite">Материалы: '+manifest.length+'</p><div class="journal-list">'+entries+'</div></section>' ,[{'@type':'ItemList',itemListElement:ordered.map((a,i)=>({'@type':'ListItem',position:i+1,url:base+a.route,name:a.title}))}]);
+await page('/resources/','Бесплатные материалы по испанскому','Открытые руководства на русском: испанские примеры, упражнения, ответы и источники.','<section class="library-hero wrap"><p class="label">Бесплатные материалы</p><div class="library-intro"><h1>Испанский для<br>вашей жизни.</h1><p>Объяснения, примеры и практика. Читайте, проверяйте себя и возвращайтесь к тому, что пригодится в разговоре. Все материалы открыты без регистрации.</p></div></section><section class="journal wrap" aria-label="Статьи по испанскому">'+filters+'<p class="journal-count" role="status" aria-live="polite">Материалы: '+manifest.length+'</p><div class="journal-list">'+entries+'</div></section>'+jobsTeaser('ru') ,[{'@type':'ItemList',itemListElement:ordered.map((a,i)=>({'@type':'ListItem',position:i+1,url:base+a.route,name:a.title}))}]);
 
 
+await page(lifeRoute,'Жизнь в Испании','Практические ресурсы для жизни в Испании: вакансии, оригинальные источники и проверенные условия.',renderLife());
 await page(jobsRoute,'Вакансии в Испании с пояснениями на русском','Независимая подборка вакансий в Испании: город, сфера, требования, условия, вопросы работодателю и оригинальные источники.',renderJobs(jobsData));
 
 const reviews=JSON.parse(await readFile('content/students/reviews.json','utf8'));
