@@ -50,6 +50,8 @@
 
 ## Ресторан и обслуживание столов
 
+**[Открыть объявление у источника ↗](https://www.turijobs.com/es/oferta-trabajo/alicante/ayudante-de-camareroa-camareroa-40hs20hs/361033)**
+
 В [объявлении Helios Benidorm](https://www.turijobs.com/es/oferta-trabajo/alicante/ayudante-de-camareroa-camareroa-40hs20hs/361033), опубликованном 29 октября 2026 года, указаны обслуживание буфета, заказы и взаимодействие с кухней. В названии объединены официант и помощник, 40 и 20 часов. В описании есть меняющиеся и разделённые смены, а выход предполагается в середине декабря. Прежде чем откликаться, полезно уточнить, какой именно вариант предлагают вам.
 
 Учебная ситуация: вы работали в кафе и помогали готовить зал, но ещё не обслуживали отдельный участок самостоятельно.
@@ -65,6 +67,8 @@
 **Красный сигнал: после согласования роли помощника вам предлагают самостоятельно вести весь участок и отказываются обсудить изменение условий.**
 
 ## Бар и работа за стойкой
+
+**[Открыть объявление у источника ↗](https://careers.accor.com/job/camarero-restaurante-bar-novotel-barcelona-city-in-novotel-barcelona-city-barcelona-spain-jid-95643)**
 
 В [объявлении Novotel Barcelona City](https://careers.accor.com/job/camarero-restaurante-bar-novotel-barcelona-city-in-novotel-barcelona-city-barcelona-spain-jid-95643) объединены ресторан и бар, а работа включает общение с гостем и приём оплаты. По одному слову *bar* нельзя решить, что работа будет только за стойкой.
 
@@ -82,7 +86,13 @@
 
 ## Кухня и подготовка блюд
 
+**[Открыть объявление у источника ↗](https://careers.accor.com/es/es/job/cocinero-restaurante-tendiez-in-sofitel-barcelona-skipper-barcelona-spain-jid-103118)**
+
 В [Tendiez при Sofitel Barcelona Skipper](https://careers.accor.com/es/es/job/cocinero-restaurante-tendiez-in-sofitel-barcelona-skipper-barcelona-spain-jid-103118) описаны работа на своём участке кухни, подготовка блюд и соблюдение технологических карт. В этой конкретной вакансии нужны два года аналогичного опыта и испанский, английский указан как преимущество. Работа вне зала сама по себе не означает, что испанский не понадобится.
+
+![Требование к языкам в вакансии Tendiez](assets/accor-cocina-idiomas.jpg)
+
+Фрагмент требований. [Sofitel Tendiez — оригинал объявления](https://careers.accor.com/es/es/job/cocinero-restaurante-tendiez-in-sofitel-barcelona-skipper-barcelona-spain-jid-103118), проверено 7 ноября 2026 года. Здесь испанский обязателен, английский — преимущество.
 
 Учебная ситуация: вы занимались холодными закусками и хотите объяснить свой участок.
 
@@ -98,11 +108,17 @@
 
 ## Ресепшен отеля
 
+**[Открыть объявление у источника ↗](https://careers.accor.com/es/es/job/recepcionsista-de-tarde-30-horas-estudiantes-in-ibis-barcelona-centro-sagrada-familia-barcelona-sp-jid-110628)**
+
 ![Фрагмент заголовка вакансии ресепшена ibis Barcelona Centro](assets/accor-recepcion-titulo.jpg)
 
 Фрагмент страницы Accor, просмотренной 7 ноября 2026 года. Орфография заголовка сохранена как в источнике.
 
 В [ibis Barcelona Centro](https://careers.accor.com/es/es/job/recepcionsista-de-tarde-30-horas-estudiantes-in-ibis-barcelona-centro-sagrada-familia-barcelona-sp-jid-110628) предлагается работа во второй половине дня, 30 часов, с заездом и выездом гостей, бронированиями и общением с клиентами. Смены распределяются с понедельника по воскресенье, с двумя выходными. Это не обещание свободных субботы и воскресенья.
+
+![Фрагмент о коммуникации и других языках в вакансии ibis](assets/accor-recepcion-idiomas.jpg)
+
+Фрагмент требований. [ibis Barcelona Centro — оригинал объявления](https://careers.accor.com/es/es/job/recepcionsista-de-tarde-30-horas-estudiantes-in-ibis-barcelona-centro-sagrada-familia-barcelona-spain-jid-110628), проверено 7 ноября 2026 года. Выражение se valorarán указывает на преимущество кандидата.
 
 > Tengo experiencia atendiendo llamadas y organizando reservas. ¿Qué programa utilizan y cómo se organiza la formación inicial?
 
@@ -115,6 +131,8 @@
 **Красный сигнал: требуют принять график, но отказываются назвать время окончания смен и порядок выходных.**
 
 ## Продажи и планирование интерьера
+
+**[Открыть объявление у источника ↗](https://jobs.ikea.com/es/trabajo/lleida/vendedor-a-y-planificacion-de-soluciones-del-hogar-ikea-lleida-30h-sem-tardes-sustitucion/24107/102549057120)**
 
 В [вакансии IKEA в Льейде](https://jobs.ikea.com/es/trabajo/lleida/vendedor-a-y-planificacion-de-soluciones-del-hogar-ikea-lleida-30h-sem-tardes-sustitucion/24107/102549057120), опубликованной 28 октября 2026 года, работа включает персональную консультацию, объяснение свойств товара и решений для дома. В названии указаны 30 часов, вторая половина дня и замена сотрудника.
 
@@ -131,6 +149,8 @@
 **Красный сигнал: после обсуждения временной замены обещают постоянную работу, но отказываются пояснить предложение письменно.**
 
 ## Продажа инструментов и техническая консультация
+
+**[Открыть объявление у источника ↗](https://empleo.leroymerlin.es/jobs/8544215-vendedor-a-herramientas-indefinido-40h-rotativo-calpe)**
 
 ![Фрагмент заголовка вакансии продавца инструментов в Calpe](assets/leroy-calpe-titulo.jpg)
 
@@ -150,6 +170,8 @@
 
 ## Касса и поддержка клиентов
 
+**[Открыть объявление у источника ↗](https://empleo.leroymerlin.es/jobs/8680650-asistente-relacion-cliente-cajas-indefinido-20h-la-alberca)**
+
 В [вакансии Leroy Merlin Murcia Sur](https://empleo.leroymerlin.es/jobs/8680650-asistente-relacion-cliente-cajas-indefinido-20h-la-alberca) касса сочетается с возвратами, обращениями и вопросами по онлайн-заказам. Указаны 20 часов и меняющийся график. Название *relación cliente* шире, чем только приём оплаты.
 
 > He gestionado cobros y consultas de clientes. Cuando una devolución necesita autorización, ¿a quién debo dirigirme?
@@ -163,6 +185,8 @@
 **Красный сигнал: дополнительные обязанности существенно меняют согласованную роль, а обсуждать их объём и условия вам не дают.**
 
 ## Склад и комплектация заказов
+
+**[Открыть список вакансий IKEA ↗](https://jobs.ikea.com/es/ubicaci%C3%B3n/espanha-jobs/22908/2510769/2)**
 
 В [списке вакансий IKEA в Испании](https://jobs.ikea.com/es/ubicaci%C3%B3n/espanha-jobs/22908/2510769/2) встречаются работа на складе, пополнение товара и ночные смены. Сам список помогает найти должность, но точные обязанности нужно читать в отдельной карточке. Некоторые ссылки меняются или перестают открываться.
 
@@ -180,6 +204,8 @@
 
 ## Парикмахерская и работа стилиста
 
+**[Открыть объявление у источника ↗](https://jobtoday.com/es/trabajo/oficial-de-peluqueria-R07wxj)**
+
 В [объявлении Provalliance в Махадаонде](https://jobtoday.com/es/trabajo/oficial-de-peluqueria-R07wxj) перечислены консультация, стрижки, окрашивание и укладки. В языковом поле указан продвинутый испанский. *Oficial de peluquería* обозначает квалифицированную роль в парикмахерской. По этому названию нельзя сделать вывод, что ищут начинающего помощника.
 
 > Tengo experiencia en corte y coloración. Puedo enseñar trabajos de mi portfolio. ¿Qué servicios realiza con más frecuencia el equipo?
@@ -193,6 +219,8 @@
 **Красный сигнал: формулу бонуса отказываются объяснить даже после прямого вопроса, но просят сразу принять предложение.**
 
 ## Маникюр и ногтевой сервис
+
+**[Открыть объявление у источника ↗](https://jobtoday.com/es/trabajo/manicurista-y-pedicurista-j9Gr2P)**
 
 ![Фрагмент заголовка вакансии маникюра в Boadilla del Monte](assets/jobtoday-manicura-titulo.jpg)
 
@@ -212,6 +240,8 @@
 
 ## Недвижимость и показы объектов
 
+**[Посмотреть закрытое объявление у источника ↗](https://empleo.engelvoelkers.com/jobs/consultor-a-inmobiliario-sector-terciario-6636f0a3-30c5-4b78-87f0-83288e2b5a1a)**
+
 ![Фрагмент заголовка закрытого объявления консультанта по недвижимости](assets/engel-barcelona-titulo.jpg)
 
 Фрагмент страницы Engel & Völkers. 7 ноября 2026 года объявление помечено как закрытое. Оно сохранено здесь как пример профессионального языка.
@@ -230,6 +260,8 @@
 
 ## Ассистент команды и административная работа
 
+**[Открыть страницу работодателя ↗](https://www.engelvoelkers.com/es/es/mallorca/islas-baleares/empleo)**
+
 На [странице найма Engel & Völkers Mallorca](https://www.engelvoelkers.com/es/es/mallorca/islas-baleares/empleo) для ассистента команды описаны телефон, встречи, корреспонденция и документы по объектам. Перечислены и языки. Это страница работодателя с несколькими ролями, поэтому требования к одной позиции нельзя переносить на все остальные.
 
 > Organizaba reuniones, atendía llamadas y preparaba documentación. ¿Qué tareas tienen más peso en el día a día?
@@ -243,6 +275,8 @@
 **Красный сигнал: после согласования рабочего времени требуют постоянной доступности и отказываются обсудить границы.**
 
 ## Контент и цифровой маркетинг
+
+**[Открыть объявление у источника ↗](https://careers.accor.com/es/es/job/brand-content-assistant-emailing-intern-in-verychic-barcelona-spain-jid-110552)**
 
 В [вакансии VeryChic в Барселоне](https://careers.accor.com/es/es/job/brand-content-assistant-emailing-intern-in-verychic-barcelona-spain-jid-110552) есть рассылки, визуальный контент, редакционный календарь и анализ кампаний. Важно прочитать требования целиком: это стажировка, для неё указан французский как родной, профессиональный английский желателен. Адрес в Испании не означает, что рабочий язык — испанский, или что вакансия подходит любому специалисту по контенту.
 

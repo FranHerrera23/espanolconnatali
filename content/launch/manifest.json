@@ -915,10 +915,10 @@
   },
   {
     "id": "ECN-FR-027",
-    "version": "2.0",
+    "version": "2.1",
     "status": "approved_for_publication",
     "language": "ru",
-    "sourceFile": "editorial/drafts/job-search-v2/spanish-for-job-search.md",
+    "sourceFile": "editorial/drafts/job-search-v3/spanish-for-job-search.md",
     "route": "/resources/spanish-for-job-search/",
     "title": "Испанский для поиска работы в Испании на примере реальных вакансий",
     "description": "Разбор вакансий в Испании по 13 профессиональным профилям: обязанности, условия, вопросы работодателю и фразы для отклика. Практика с ответами, примеры и PDF.",
@@ -931,12 +931,13 @@
     "publishedAt": "2026-11-07",
     "updatedAt": "2026-11-07",
     "canonicalOrigin": "https://www.espanolconnatali.com",
-    "wordCount": 4436,
+    "wordCount": 4554,
     "sourceUrls": [
       "https://www.turijobs.com/es/oferta-trabajo/alicante/ayudante-de-camareroa-camareroa-40hs20hs/361033",
       "https://careers.accor.com/job/camarero-restaurante-bar-novotel-barcelona-city-in-novotel-barcelona-city-barcelona-spain-jid-95643",
       "https://careers.accor.com/es/es/job/cocinero-restaurante-tendiez-in-sofitel-barcelona-skipper-barcelona-spain-jid-103118",
       "https://careers.accor.com/es/es/job/recepcionsista-de-tarde-30-horas-estudiantes-in-ibis-barcelona-centro-sagrada-familia-barcelona-sp-jid-110628",
+      "https://careers.accor.com/es/es/job/recepcionsista-de-tarde-30-horas-estudiantes-in-ibis-barcelona-centro-sagrada-familia-barcelona-spain-jid-110628",
       "https://jobs.ikea.com/es/trabajo/lleida/vendedor-a-y-planificacion-de-soluciones-del-hogar-ikea-lleida-30h-sem-tardes-sustitucion/24107/102549057120",
       "https://empleo.leroymerlin.es/jobs/8544215-vendedor-a-herramientas-indefinido-40h-rotativo-calpe",
       "https://empleo.leroymerlin.es/jobs/8680650-asistente-relacion-cliente-cajas-indefinido-20h-la-alberca",
@@ -962,7 +963,7 @@
       "book-an-appointment-by-phone.md"
     ],
     "commercialCta": null,
-    "sha256": "25d7ac0ea07d5deafd5abeea8aba0ecff28762b90306fc53409f737f9e5605c6",
+    "sha256": "bbc669e056c434f9e557ffe808fb2ab942980dd9cdac11aef733dd45e0c11dfb",
     "editorialApproval": {
       "by": "Fran",
       "date": "2026-11-06",
@@ -994,12 +995,26 @@
         "sha256": "eb620c062ec40787ccf6692b62649e2e34867d2f2c597502f58a58440e96a654",
         "sourceUrl": "https://empleo.leroymerlin.es/jobs/8544215-vendedor-a-herramientas-indefinido-40h-rotativo-calpe"
       },
+      "assets/accor-recepcion-idiomas.jpg": {
+        "src": "/assets/editorial/job-search-v2/accor-recepcion-idiomas.jpg",
+        "width": 430,
+        "height": 27,
+        "sha256": "fde82b3e4a323d1518fee5f4c699023653b39affc2d6b5c0daf11a65ea35b0b9",
+        "sourceUrl": "https://careers.accor.com/es/es/job/recepcionsista-de-tarde-30-horas-estudiantes-in-ibis-barcelona-centro-sagrada-familia-barcelona-spain-jid-110628"
+      },
       "assets/jobtoday-manicura-titulo.jpg": {
         "src": "/assets/editorial/job-search-v2/jobtoday-manicura-titulo.jpg",
         "width": 364,
         "height": 128,
         "sha256": "6f312ca6ce427c0077a924c350c911029ebc1488ade5eebd57327839b633dc47",
         "sourceUrl": "https://jobtoday.com/es/trabajo/manicurista-y-pedicurista-j9Gr2P"
+      },
+      "assets/accor-cocina-idiomas.jpg": {
+        "src": "/assets/editorial/job-search-v2/accor-cocina-idiomas.jpg",
+        "width": 435,
+        "height": 29,
+        "sha256": "a67babc095f65b5300443380dd58c9858937916862e203d8aca8f5ffeb751649",
+        "sourceUrl": "https://careers.accor.com/es/es/job/cocinero-restaurante-tendiez-in-sofitel-barcelona-skipper-barcelona-spain-jid-103118"
       },
       "assets/engel-barcelona-titulo.jpg": {
         "src": "/assets/editorial/job-search-v2/engel-barcelona-titulo.jpg",

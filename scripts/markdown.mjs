@@ -16,7 +16,17 @@ export function markdown(s,images={}){
   const caption=lines[i];
   if(!caption || /^#|^!\[|^>/.test(caption))throw Error('Editorial image needs a caption');
   i++;
-  o+='<figure class="editorial-figure"><a href="'+esc(image.src)+'" target="_blank" rel="noopener noreferrer" aria-label="'+esc('Открыть изображение: '+imageMatch[1])+'"><img src="'+esc(image.src)+'" alt="'+esc(imageMatch[1])+'" width="'+image.width+'" height="'+image.height+'" loading="lazy" decoding="async"></a><figcaption>'+inline(caption)+' <a href="'+esc(source.href)+'" target="_blank" rel="noopener noreferrer">Источник ↗</a></figcaption></figure>';
+  const captionHtml=inline(caption).replace(/<a href=/g,'<a target="_blank" rel="noopener noreferrer" href=');
+  const attribution=caption.includes(']('+image.sourceUrl+')') ? '' : ' <a href="'+esc(source.href)+'" target="_blank" rel="noopener noreferrer">Источник ↗</a>';
+  o+='<figure class="editorial-figure"><a href="'+esc(image.src)+'" target="_blank" rel="noopener noreferrer" aria-label="'+esc('Открыть изображение: '+imageMatch[1])+'"><img src="'+esc(image.src)+'" alt="'+esc(imageMatch[1])+'" width="'+image.width+'" height="'+image.height+'" loading="lazy" decoding="async"></a><figcaption>'+captionHtml+attribution+'</figcaption></figure>';
+  continue;
+ }
+ const sourceMatch=l.match(/^\*\*\[([^\]]+)\]\((https:\/\/[^)]+)\)\*\*$/);
+ if(sourceMatch){
+  const source=new URL(sourceMatch[2]);
+  if(source.username || source.password)throw Error('Invalid editorial source link');
+  o+='<p class="editorial-source"><a href="'+esc(source.href)+'" target="_blank" rel="noopener noreferrer">'+esc(sourceMatch[1])+'</a></p>';
+  i++;
   continue;
  }
  if(/^#{1,6} /.test(l)){let n=l.match(/^#+/)[0].length;o+=`<h${n}>${inline(l.slice(n+1))}</h${n}>`;i++;continue;}
