@@ -316,6 +316,20 @@
       "contentCheck": "All 42 source text blocks present in extracted PDF text; original source hash unchanged",
       "visualCheck": "All four pages rendered and inspected; footer date corrected after inspection.",
       "bytes": 45066
+    },
+    {
+      "id": "ECN-FR-027",
+      "articleRoute": "/resources/spanish-for-job-search/",
+      "sourceFile": "editorial/articles/spanish-for-job-search.md",
+      "sourceSha256": "7fe6ee2741f63c74217d558444323ad05698718646824200f773a49865183025",
+      "file": "output/pdf/2026-11-07/spanish-for-job-search-workbook-ru.pdf",
+      "downloadRoute": "/assets/downloads/spanish-for-job-search-workbook-ru.pdf",
+      "sha256": "30b0b759195c4b8346de77807cc347e99617188c1ea30cfdb3087f39d2f7b3a4",
+      "pages": 5,
+      "status": "approved_for_web_release",
+      "contentCheck": "All 59 source text blocks present in extracted PDF text; original source hash unchanged",
+      "visualCheck": "Rendered and inspected all five pages",
+      "bytes": 49684
     }
   ]
 }
