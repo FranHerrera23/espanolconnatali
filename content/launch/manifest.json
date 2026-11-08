@@ -763,7 +763,8 @@
     ],
     "relatedFiles": [
       "ask-for-clarification.md",
-      "make-plans-in-spanish.md"
+      "make-plans-in-spanish.md",
+      "order-tapas-and-raciones.md"
     ],
     "commercialCta": null,
     "sha256": "e8d89299238d6ab46692a99383934cf79a456d63644246662bb95d4b86f5c9e0",
@@ -776,7 +777,8 @@
     "titleEs": "En el café",
     "relatedRoutes": [
       "/resources/ask-for-clarification/",
-      "/resources/make-plans-in-spanish/"
+      "/resources/make-plans-in-spanish/",
+      "/resources/order-tapas-and-raciones/"
     ]
   },
   {
@@ -1024,5 +1026,50 @@
         "sourceUrl": "https://empleo.engelvoelkers.com/jobs/consultor-a-inmobiliario-sector-terciario-6636f0a3-30c5-4b78-87f0-83288e2b5a1a"
       }
     }
+  },
+  {
+    "id": "ECN-FR-028",
+    "version": "2.0",
+    "status": "approved_for_publication",
+    "language": "ru",
+    "sourceFile": "editorial/drafts/tapas-v2/order-tapas-and-raciones.md",
+    "route": "/resources/order-tapas-and-raciones/",
+    "title": "Как заказать тапас в Испании: tapa, media ración и ración",
+    "description": "Как читать меню тапас, выбирать порции, уточнять состав и цену, договариваться с друзьями и проверять счёт. Реальное меню, диалоги и практика.",
+    "author": {
+      "type": "Organization",
+      "name": "Редакция Español con Natali"
+    },
+    "humanReviewer": null,
+    "preparedAt": "2026-11-07",
+    "publishedAt": "2026-11-08",
+    "updatedAt": null,
+    "canonicalOrigin": "https://www.espanolconnatali.com",
+    "wordCount": 2335,
+    "sourceUrls": [
+      "https://citydesants.com/wp-content/uploads/2025/05/CARTA-ESPANOL.pdf",
+      "https://www.spain.info/es/descubrir-espana/foddie-spain-mejores-zonas-barrios-tapas-espana/",
+      "https://dle.rae.es/tapa",
+      "https://dle.rae.es/raci%C3%B3n"
+    ],
+    "relatedFiles": [
+      "ask-for-clarification.md",
+      "at-a-cafe.md",
+      "short-practice-routine.md"
+    ],
+    "commercialCta": null,
+    "sha256": "9ea1d2cf6cbd574a5d7cf2bd4f20da8dcb1425effa622b8ebba26c86c2fb7806",
+    "editorialApproval": {
+      "by": "Fran",
+      "date": "2026-11-06",
+      "source": "Autorización autónoma diaria de Fran, registrada en editorial/handoff/publication-calendar.txt; paquete v2 del 8/11. No implica revisión individual ni revisión de Natali."
+    },
+    "pillar": "P5",
+    "titleEs": "Cómo pedir tapas, medias raciones y raciones en España",
+    "relatedRoutes": [
+      "/resources/ask-for-clarification/",
+      "/resources/at-a-cafe/",
+      "/resources/short-practice-routine/"
+    ]
   }
 ]

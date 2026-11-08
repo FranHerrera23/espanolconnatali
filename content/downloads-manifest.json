@@ -342,6 +342,21 @@
       "visualCheck": "18 páginas finales renderizadas; páginas5/6 reinspeccionadas tras recapturar fragmentos; 283 bloques cotejados",
       "version": "2.1",
       "bytes": 1497966
+    },
+    {
+      "id": "ECN-FR-028",
+      "articleRoute": "/resources/order-tapas-and-raciones/",
+      "sourceFile": "editorial/drafts/tapas-v2/order-tapas-and-raciones.md",
+      "sourceSha256": "9ea1d2cf6cbd574a5d7cf2bd4f20da8dcb1425effa622b8ebba26c86c2fb7806",
+      "file": "output/pdf/tapas-v2/order-tapas-and-raciones-workbook-ru.pdf",
+      "downloadRoute": "/assets/downloads/order-tapas-and-raciones-workbook-ru.pdf",
+      "sha256": "97574644bcd551aa56550707b9945a363d9b3a0925a70624055d28c55e1004af",
+      "pages": 9,
+      "status": "ready_for_web_integration_not_published",
+      "contentCheck": "All 120 source text blocks present in extracted PDF text; original source hash unchanged",
+      "visualCheck": "9 páginas renderizadas e inspeccionadas; 120 bloques cotejados; última página reinspeccionada tras quitar cierre redundante",
+      "version": "2.0",
+      "bytes": 1327745
     }
   ]
 }
