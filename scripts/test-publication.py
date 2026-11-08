@@ -22,6 +22,8 @@ for d in downloads:
  assert 'Полный материал с упражнениями и ответами' in html
 assert sum('Скачать PDF' in f.read_text() for f in Path('dist/resources').rglob('index.html'))==len(m)
 expected_routes={'/','/resources/','/students/','/resources/jobs-in-spain/','/life-in-spain/'}|{a['route'] for a in m}
+feed=json.loads(Path('dist/assets/data/jobs.json').read_text())
+expected_routes|={job['url'].removeprefix('https://www.espanolconnatali.com') for job in feed['jobs']}
 actual_routes=set(re.findall(r'<loc>https://www.espanolconnatali.com([^<]+)</loc>',Path('dist/sitemap.xml').read_text()))
 assert actual_routes==expected_routes
 print(f'Launch checks: {len(m)} verified articles, matching PDFs and {len(expected_routes)} sitemap URLs.')

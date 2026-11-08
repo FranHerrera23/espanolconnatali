@@ -1,0 +1,7 @@
+{
+  "date": "2026-11-08",
+  "changes": ["36 individually checked original offers, 22 localities, 10 sectors", "Searchable city popover with counts, keyboard support and native select fallback", "Full/part time, employment/internship and published-salary filters; progressive 12-row pagination", "36 independent RU detail URLs plus ES views and public JSON dataset", "CollectionPage, ItemList, Dataset and individual CreativeWork metadata, without JobPosting on a curated listing", "Source expiry and 4/7-day age rules on directory and individual detail", "Resources dropdown clipping fixed with full-width header and original container alignment", "Life hub narrative and four planned comparison categories; rankings remain drafts"],
+  "checks": ["Production build", "Freshness/filter/Unicode/deadline tests", "DOM interaction tests: city picker, pagination, salary, internships, empty reset, modal and Back", "SEO validation of 109 HTML files", "22 original articles and matching PDF hashes preserved", "63 canonical RU sitemap URLs"],
+  "sourceNotes": ["Salary conflict in Provalliance posting explicitly disclosed; no single salary asserted", "Original URLs and real check dates retained", "No invented logos, salaries, language levels or review authorship"],
+  "pending": ["Visual browser QA after browser backend recovery; DOM checks do not substitute visual review", "Four provider comparisons require Fran's 13:00 review before publication"]
+}

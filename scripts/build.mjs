@@ -1,9 +1,10 @@
 import {readFile,writeFile,mkdir,cp,rm} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import path from 'node:path';
+import {jobFreshness} from '../site/jobs-state.js';
 import {markdown,esc} from './markdown.mjs';
 import {buildLocale,languagePicker} from './locales.mjs';
-import {jobsRoute,renderJobs,jobsTeaser,lifeRoute,renderLife} from './jobs.mjs';
+import {jobsRoute,renderJobs,jobsTeaser,lifeRoute,renderLife,jobDetailRoute,renderJobDetail,publicJobs} from './jobs.mjs';
 const config=JSON.parse(await readFile('site.config.json','utf8'));
 const production=process.env.DEPLOY_MODE==='production'||(process.env.VERCEL_ENV==='production');
 const base=new URL(process.env.SITE_URL||config.productionSiteUrl||'http://localhost:4173').origin;
@@ -18,7 +19,7 @@ const jobsData=JSON.parse(await readFile('content/jobs.json','utf8'));
 const publicationDate = new Intl.DateTimeFormat('ru-RU', { day:'numeric', month:'long', year:'numeric', timeZone:'UTC' });
 const out=process.env.BUILD_DIR||'dist';if(!['dist','work/test-dist'].includes(out))throw Error('Invalid output directory');
 await rm(out,{recursive:true,force:true});await mkdir(out,{recursive:true});
-await cp('site/assets',out+'/assets',{recursive:true});for(const f of ['design-system.css','library.css','resources.js','reader.js','jobs.css','jobs.js','jobs-state.js'])await cp('site/'+f,out+'/'+f);
+await cp('site/assets',out+'/assets',{recursive:true});for(const f of ['design-system.css','library.css','resources.js','reader.js','jobs.css','jobs.js','jobs-state.js','job-detail.js'])await cp('site/'+f,out+'/'+f);
 const home=(await readFile('site/index.html','utf8')).replaceAll('src="assets/brand/','src="/assets/brand/');
 let header=home.match(/<header class="site-nav[\s\S]*?<\/header>/)[0].replaceAll('resources.html','/resources/').replaceAll('href="#','href="/#');
 const resourceMenu='<details class="resource-nav"><summary>Ресурсы</summary><div><a href="/resources/">Учить испанский</a><a href="/life-in-spain/">Жизнь в Испании</a></div></details>';
@@ -29,17 +30,17 @@ const org={'@type':'EducationalOrganization','@id':base+'/#organization',name:'E
 const editor={'@type':'Organization','@id':base+'/#editorial',name:'Редакция Español con Natali',parentOrganization:{'@id':org['@id']}};
 const site={'@type':'WebSite','@id':base+'/#website',url:base+'/',name:'Español con Natali',inLanguage:'ru',publisher:{'@id':org['@id']}};
 const urls=[];
-async function page(route,title,desc,body,extra=[],commercial=false){
+async function page(route,title,desc,body,extra=[],commercial=false,options={}){
  const canonical=base+route;const webpage={'@type':['/resources/','/students/',jobsRoute,lifeRoute].includes(route)?'CollectionPage':'WebPage','@id':canonical+'#page',url:canonical,name:title,inLanguage:'ru',isPartOf:{'@id':site['@id']}};
  const graph=[org,editor,site,webpage,...extra];
   if(route!=='/') {
- const practical=route===jobsRoute||route===lifeRoute;
- graph.push({'@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'Главная',item:base+'/'},...(route===lifeRoute?[]:[{'@type':'ListItem',position:2,name:practical?'Жизнь в Испании':'Бесплатные материалы',item:base+(practical?lifeRoute:'/resources/')}]),...(route==='/resources/'?[]:[{'@type':'ListItem',position:route===lifeRoute?2:3,name:title,item:canonical}])]});
+ const practical=route.startsWith(jobsRoute)||route===lifeRoute;
+ graph.push({'@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'Главная',item:base+'/'},...(route===lifeRoute?[]:[{'@type':'ListItem',position:2,name:practical?'Жизнь в Испании':'Бесплатные материалы',item:base+(practical?lifeRoute:'/resources/')}]),...(route.startsWith(jobsRoute)&&route!==jobsRoute?[{'@type':'ListItem',position:3,name:'Вакансии в Испании',item:base+jobsRoute}]:[]),...(route==='/resources/'?[]:[{'@type':'ListItem',position:route===lifeRoute?2:route.startsWith(jobsRoute)&&route!==jobsRoute?4:3,name:title,item:canonical}])]});
  }
  graph.forEach((node,i)=>{if(!node['@id'])node['@id']=canonical+'#entity-'+i;});
  const json=JSON.stringify({'@context':'https://schema.org','@graph':graph}).replace(/</g,'\\u003c');
- const html=`<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)} — Español con Natali</title><meta name="description" content="${esc(desc)}"><meta name="robots" content="${production?'index,follow,max-image-preview:large':'noindex,follow'}"><link rel="canonical" href="${canonical}"><meta property="og:url" content="${canonical}"><meta property="og:type" content="${extra.some(node=>node['@type']==='Article')?'article':'website'}"><meta property="og:locale" content="ru_RU"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(desc)}"><meta property="og:image" content="${base}/assets/natali-city.jpg"><meta name="twitter:card" content="summary_large_image"><link rel="stylesheet" href="/design-system.css"><link rel="stylesheet" href="/library.css"><link rel="stylesheet" href="/jobs.css"><script type="application/ld+json">${json}</script></head><body>${production?'':'<div class="preview-note">Предпросмотр · Не индексируется</div>'}<a class="skip" href="#main">Перейти к содержанию</a>${languagePicker(commercial?header:readerHeader,route)}<main id="main">${body}</main>${commercial?footer:footer.replace(/<p>[\s\S]*?<\/p>/,'').replace(/<span>Курс в своём темпе[\s\S]*?<\/span>/,'')}<script src="/reader.js"></script>${route===jobsRoute?'<script type="module" src="/jobs.js"></script>':''}${commercial?'<script src="/assets/vendor/lenis.min.js"></script><script src="/assets/vendor/gsap.min.js"></script><script src="/assets/vendor/ScrollTrigger.min.js"></script><script src="/assets/vendor/SplitText.min.js"></script><script src="/resources.js"></script>':''}</body></html>`;
- const filename=out+(route==='/'?'/index.html':route+'index.html');await mkdir(path.dirname(filename),{recursive:true});await writeFile(filename,html);urls.push(canonical);
+ const html=`<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)} — Español con Natali</title><meta name="description" content="${esc(desc)}"><meta name="robots" content="${production&&options.indexable!==false?'index,follow,max-image-preview:large':'noindex,follow'}"><link rel="canonical" href="${canonical}"><meta property="og:url" content="${canonical}"><meta property="og:type" content="${extra.some(node=>node['@type']==='Article')?'article':'website'}"><meta property="og:locale" content="ru_RU"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(desc)}"><meta property="og:image" content="${base}/assets/natali-city.jpg"><meta name="twitter:card" content="summary_large_image"><link rel="stylesheet" href="/design-system.css"><link rel="stylesheet" href="/library.css"><link rel="stylesheet" href="/jobs.css"><script type="application/ld+json">${json}</script></head><body>${production?'':'<div class="preview-note">Предпросмотр · Не индексируется</div>'}<a class="skip" href="#main">Перейти к содержанию</a>${languagePicker(commercial?header:readerHeader,route)}<main id="main">${body}</main>${commercial?footer:footer.replace(/<p>[\s\S]*?<\/p>/,'').replace(/<span>Курс в своём темпе[\s\S]*?<\/span>/,'')}<script src="/reader.js"></script>${route===jobsRoute?'<script type="module" src="/jobs.js"></script>':route.startsWith(jobsRoute)?'<script type="module" src="/job-detail.js"></script>':''}${commercial?'<script src="/assets/vendor/lenis.min.js"></script><script src="/assets/vendor/gsap.min.js"></script><script src="/assets/vendor/ScrollTrigger.min.js"></script><script src="/assets/vendor/SplitText.min.js"></script><script src="/resources.js"></script>':''}</body></html>`;
+ const filename=out+(route==='/'?'/index.html':route+'index.html');await mkdir(path.dirname(filename),{recursive:true});await writeFile(filename,html);if(options.indexable!==false)urls.push(canonical);
 }
 const readingTimes = new Map();
 const linkmap=Object.fromEntries(manifest.map(a=>[path.basename(a.sourceFile),a.route]));
@@ -91,7 +92,19 @@ await page('/resources/','Бесплатные материалы по испа�
 
 
 await page(lifeRoute,'Жизнь в Испании','Практические ресурсы для жизни в Испании: вакансии, оригинальные источники и проверенные условия.',renderLife());
-await page(jobsRoute,'Вакансии в Испании с пояснениями на русском','Независимая подборка вакансий в Испании: город, сфера, требования, условия, вопросы работодателю и оригинальные источники.',renderJobs(jobsData));
+const availableJobs=publicJobs(jobsData,base);
+await mkdir(out+'/assets/data',{recursive:true});
+await writeFile(out+'/assets/data/jobs.json',JSON.stringify({name:'Вакансии в Испании',language:'ru',country:'ES',generatedAt:new Date().toISOString(),checkedOn:jobsData.selectionCheckedOn,freshnessPolicy:{pendingAfterDays:4,hiddenAfterDays:7},jobs:availableJobs},null,2));
+await page(jobsRoute,'Вакансии в Испании','Сравните вакансии по городу, профессии, занятости и языкам. Задачи, условия, даты проверки и оригинальные источники — без регистрации.',renderJobs(jobsData),[
+ {'@type':'ItemList',name:'Вакансии в Испании',numberOfItems:availableJobs.length,itemListElement:availableJobs.map((job,i)=>({'@type':'ListItem',position:i+1,name:job.title+' — '+job.cityRu,url:job.url}))},
+ {'@type':'Dataset',name:'Независимая подборка вакансий в Испании',description:'Задачи, условия, города, источники и даты проверки вакансий. Статус отражает последнюю проверку источника.',url:base+jobsRoute,creator:{'@id':editor['@id']},inLanguage:'ru',distribution:{'@type':'DataDownload',encodingFormat:'application/json',contentUrl:base+'/assets/data/jobs.json'}}]);
+for(const job of jobsData.jobs){
+ const indexable=jobFreshness(job)!=='hidden';
+ const route=jobDetailRoute(job);
+ const description=job.titleRu+' — '+job.employer+', '+(job.cityRu||job.city)+'. '+job.tasksRu;
+ const extra=indexable?[{'@type':'CreativeWork',name:job.titleRu,description,url:base+route,inLanguage:'ru',author:{'@id':editor['@id']},isBasedOn:job.sourceUrl,citation:job.sourceUrl,dateModified:job.lastCheckedDate}]:[];
+ await page(route,job.titleRu+' — '+job.employer,description,renderJobDetail(jobsData,job),extra,false,{indexable});
+}
 
 const reviews=JSON.parse(await readFile('content/students/reviews.json','utf8'));
 for (const r of reviews) { if (![r.width,r.height].every(n=>Number.isInteger(n)&&n>0&&n<10000)) throw Error('Invalid review image dimensions: '+r.id); }

@@ -165,3 +165,10 @@
  document.addEventListener('click',e=>menus.forEach(menu=>{if(!menu.contains(e.target))menu.open=false;}));
  menus.forEach(menu=>menu.addEventListener('keydown',e=>{if(e.key==='Escape'&&menu.open){e.stopPropagation();menu.open=false;menu.querySelector('summary').focus();}}));
 })();
+
+(() => {
+ const back=document.querySelector('[data-jobs-return]');
+ if(!back||!document.referrer)return;
+ const previous=new URL(document.referrer);
+ if(previous.origin===location.origin && /^\/(?:es\/)?resources\/jobs-in-spain\/$/.test(previous.pathname))back.href=previous.pathname+previous.search;
+})();

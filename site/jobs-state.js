@@ -26,5 +26,8 @@ export function matchesJobFilters(job, filters) {
   return (!filters.city || job.city === filters.city) &&
     (!filters.province || job.province === filters.province) &&
     (!filters.industry || job.industry === filters.industry) &&
-    normalize(job.searchText).includes(normalize(filters.q).trim());
+    (!filters.schedule || job.scheduleType === filters.schedule) &&
+    (!filters.kind || job.employmentKind === filters.kind) &&
+    (!filters.pay || job.salaryPublished === true || job.salaryPublished === 'true') &&
+    normalize(filters.q).trim().split(/\s+/).filter(Boolean).every(term=>normalize(job.searchText).includes(term));
 }

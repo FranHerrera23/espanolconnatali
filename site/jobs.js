@@ -15,12 +15,12 @@ if (library) {
   const more = form.querySelector('[data-more-filters]');
   const tokens = form.querySelector('[data-active-filters]');
   const options = new Map([...form.querySelectorAll('select')].map(el => [el.name, [...el.options].map(o => ({value:o.value, text:o.textContent}))]));
-  let lastId = '', listY = 0, searchSession = false;
+  let lastId = '', listY = 0, searchSession = false, limit = 12;
   try {
     const saved=JSON.parse(sessionStorage.getItem('natali-jobs-context')||'null');
     if (!history.state?.jobs && saved?.search === location.search) {
       history.replaceState({...history.state,jobs:{...saved,fromList:false}},'',location.href);
-      lastId=saved.selected||'';
+      lastId=saved.selected||''; limit=saved.limit||12;
     }
   } catch {}
   library.classList.add('jobs-enhanced');
@@ -28,9 +28,10 @@ if (library) {
   dialog.querySelector('.jobs-dialog-toolbar').hidden = false;
   form.hidden = false;
   history.scrollRestoration = 'manual';
-  function filters() { return Object.fromEntries(Object.entries(controls).map(([key, el]) => [key, el.value.trim()])); }
+  function filters() { return Object.fromEntries(Object.entries(controls).map(([key, el]) => [key, el.type==='checkbox' ? (el.checked?el.value:'') : el.value.trim()])); }
+  function clearControl(el){if(el.type==='checkbox')el.checked=false;else el.value='';}
   function save() {
-    const state={...history.state?.jobs, y:dialog.open?listY:scrollY, selected:lastId, detail:dialog.scrollTop};
+    const state={...history.state?.jobs, y:dialog.open?listY:scrollY, selected:lastId, detail:dialog.scrollTop, limit};
     history.replaceState({...history.state,jobs:state},'',location.href);
     try {sessionStorage.setItem('natali-jobs-context',JSON.stringify({...state,search:location.search}));} catch {}
   }
@@ -41,7 +42,7 @@ if (library) {
     }
     if (id) url.searchParams.set('job', id); else url.searchParams.delete('job');
     url.hash = '';
-    const state = {...history.state, jobs:{y:dialog.open ? listY : scrollY, selected:id || lastId, fromList:!!id, detail:0}};
+    const state = {...history.state, jobs:{y:dialog.open ? listY : scrollY, selected:id || lastId, fromList:!!id, detail:0, limit}};
     history[mode === 'push' ? 'pushState' : 'replaceState'](state, '', url);
   }
   function closeView(restore = true) {
@@ -79,7 +80,7 @@ if (library) {
   }
   function apply({hydrate = false, restore = false, changed = ''} = {}) {
     const params = new URL(location.href).searchParams;
-    if (hydrate) for (const [key, el] of Object.entries(controls)) el.value = (params.get(key) || '').slice(0,120);
+    if(hydrate){for(const [key,el] of Object.entries(controls)){if(el.type==='checkbox')el.checked=params.get(key)===el.value;else el.value=(params.get(key)||'').slice(0,120);}limit=history.state?.jobs?.limit||12;}
     const eligible = cards.filter(card => jobFreshness(card.dataset) !== 'hidden');
     // A changed parent clears only an incompatible child, never silently rewrites a valid combination.
     if (changed === 'province' && controls.city.value && !eligible.some(card => card.dataset.city === controls.city.value && (!controls.province.value || card.dataset.province === controls.province.value))) controls.city.value = '';
@@ -112,15 +113,22 @@ if (library) {
     for (const [key,value] of Object.entries(active)) {
       if (!value) continue;
       const token = document.createElement('button');token.type='button';token.dataset.removeFilter=key;
-      const label = key === 'industry' ? form.querySelector('[data-sector="' + value + '"]')?.textContent || value : options.has(key) ? options.get(key).find(o => o.value === value)?.text || value : value;
+      const label = key === 'pay' ? t('С опубликованной зарплатой','Con sueldo publicado') : key === 'industry' ? form.querySelector('[data-sector="' + value + '"]')?.textContent || value : options.has(key) ? options.get(key).find(o => o.value === value)?.text || value : value;
       token.textContent=label+' ×';token.setAttribute('aria-label',t('Убрать фильтр: ','Quitar filtro: ')+label);tokens.append(token);
     }
     if (tokens.children.length) {
       const clear=document.createElement('button');clear.type='button';clear.dataset.clearFilters='';clear.textContent=t('Сбросить всё','Borrar todo');tokens.append(clear);
     }
-    form.querySelector('[data-more-count]').textContent = active.province ? '1' : '';
+    form.querySelector('[data-more-count]').textContent = ['province','schedule','kind','pay'].filter(key=>active[key]).length||'';
     let selected = params.get('job') || decodeURIComponent(location.hash.slice(1));
     const card = visible.find(item => item.id === selected);
+    if(card)limit=Math.max(limit,Math.ceil((visible.indexOf(card)+1)/12)*12);
+    visible.forEach((item,index)=>{rows.get(item.id).hidden=index>=limit;});
+    const moreJobs=library.querySelector('[data-jobs-more]');
+    library.querySelector('[data-jobs-pagination]').hidden=visible.length<=12;
+    library.querySelector('[data-jobs-shown]').textContent=t('Показано ','Mostrando ')+Math.min(limit,visible.length)+t(' из ',' de ')+visible.length;
+    moreJobs.hidden=visible.length<=limit;
+    refreshCities(eligible);
     const notice = library.querySelector('[data-jobs-notice]');notice.hidden = !selected || !!card;
     if (selected && !card) { notice.textContent=t('Эта вакансия больше не доступна в подборке. Выберите другую.','Esta vacante ya no está disponible en la selección. Elegí otra.'); write('replace'); selected=''; }
     if (card) { if (location.hash) write('replace',card.id); openView(card,restore); }
@@ -128,7 +136,7 @@ if (library) {
     if (restore && !card) window.scrollTo({top:history.state?.jobs?.y || 0, behavior:'instant'});
   }
   function update(changed, mode='push') {
-    save();
+    save();limit=12;
     // Apply cascading controls before serializing them, with no selected detail.
     const url = new URL(location.href);url.searchParams.delete('job');url.hash='';history.replaceState(history.state,'',url);
     apply({changed});write(mode);apply();
@@ -150,9 +158,10 @@ if (library) {
     const sector=event.target.closest('[data-sector]');
     if(sector){controls.industry.value=sector.dataset.sector;update('industry');return;}
     const remove=event.target.closest('[data-remove-filter]');
-    if(remove){controls[remove.dataset.removeFilter].value='';update(remove.dataset.removeFilter);controls.q.focus({preventScroll:true});return;}
-    if(event.target.closest('[data-clear-filters]')){for(const el of Object.values(controls))el.value='';update('reset');controls.q.focus({preventScroll:true});}
+    if(remove){clearControl(controls[remove.dataset.removeFilter]);update(remove.dataset.removeFilter);controls.q.focus({preventScroll:true});return;}
+    if(event.target.closest('[data-clear-filters]')){for(const el of Object.values(controls))clearControl(el);update('reset');controls.q.focus({preventScroll:true});}
   });
+  library.querySelector('[data-jobs-more]').addEventListener('click',()=>{limit+=12;apply();save();});
   function filterPanel(open) {extra.hidden=!open;more.setAttribute('aria-expanded',String(open));if(open)controls.province.focus({preventScroll:true});else more.focus({preventScroll:true});}
   more.addEventListener('click',()=>filterPanel(extra.hidden));
   form.querySelector('[data-hide-filters]').addEventListener('click',()=>filterPanel(false));
@@ -169,6 +178,46 @@ if (library) {
   window.addEventListener('pageshow',()=>apply({hydrate:true,restore:true}));
   document.addEventListener('visibilitychange',()=>{if(!document.hidden)apply();});
   dialog.querySelectorAll('[data-job-locale]').forEach(link=>link.addEventListener('click',save));
+  const cityTrigger=library.querySelector('[data-city-trigger]');
+  const cityPopover=library.querySelector('#jobs-city-popover');
+  const cityQuery=library.querySelector('[data-city-query]');
+  const cityList=library.querySelector('#jobs-city-options');
+  const customCity=typeof cityPopover.showPopover==='function';
+  function refreshCities(eligible=cards.filter(card=>jobFreshness(card.dataset)!=='hidden')){
+    if(!customCity)return;
+    const normalize=value=>value.normalize('NFD').replace(/\p{M}/gu,'').toLowerCase();
+    const query=normalize(cityQuery.value);
+    cityList.replaceChildren();
+    const other={...filters(),city:''};
+    for(const option of [...controls.city.options]){
+      if(query&&!normalize(option.textContent).includes(query))continue;
+      const qty=eligible.filter(card=>matchesJobFilters(card.dataset,{...other,city:option.value})).length;
+      const button=document.createElement('button');button.type='button';button.dataset.cityValue=option.value;button.role='option';button.setAttribute('aria-selected',String(controls.city.value===option.value));button.disabled=qty===0;button.tabIndex=-1;
+      const name=document.createElement('span');name.textContent=option.textContent;const count=document.createElement('span');count.textContent=qty;count.className='jobs-city-qty';button.append(name,count);cityList.append(button);
+    }
+    library.querySelector('[data-city-empty]').hidden=cityList.children.length!==0;
+    library.querySelector('[data-city-label]').textContent=controls.city.selectedOptions[0]?.textContent||t('Все города','Todas las ciudades');
+  }
+  function closeCities(){if(cityPopover.matches(':popover-open'))cityPopover.hidePopover();cityTrigger.setAttribute('aria-expanded','false');cityTrigger.focus({preventScroll:true});}
+  if(customCity){
+    controls.city.hidden=true;cityTrigger.hidden=false;cityTrigger.parentElement.classList.add('city-ready');
+    cityTrigger.addEventListener('click',()=>{
+      if(cityPopover.matches(':popover-open')){closeCities();return;}
+      cityQuery.value='';refreshCities();const rect=cityTrigger.getBoundingClientRect();
+      cityPopover.style.left=Math.max(16,Math.min(rect.left,innerWidth-400))+'px';cityPopover.style.top=Math.max(16,Math.min(rect.bottom+8,innerHeight-Math.min(460,innerHeight*.7)-16))+'px';
+      cityPopover.showPopover();cityTrigger.setAttribute('aria-expanded','true');cityQuery.focus({preventScroll:true});
+    });
+    cityQuery.addEventListener('input',()=>refreshCities());
+    cityList.addEventListener('click',event=>{const button=event.target.closest('[data-city-value]');if(!button)return;controls.city.value=button.dataset.cityValue;closeCities();update('city');});
+    cityPopover.querySelector('[data-city-close]').addEventListener('click',closeCities);
+    cityPopover.addEventListener('toggle',()=>{cityTrigger.setAttribute('aria-expanded',String(cityPopover.matches(':popover-open')));});
+    cityPopover.addEventListener('keydown',event=>{
+      const buttons=[...cityList.querySelectorAll('button:not(:disabled)')];const index=buttons.indexOf(document.activeElement);
+      if(['ArrowDown','ArrowUp','Home','End'].includes(event.key)){event.preventDefault();let next=event.key==='Home'?0:event.key==='End'?buttons.length-1:event.key==='ArrowDown'?Math.min(index+1,buttons.length-1):Math.max(index-1,0);buttons[next]?.focus();}
+      if(event.key==='Enter'&&document.activeElement===cityQuery){event.preventDefault();buttons[0]?.click();}
+      if(event.key==='Escape'){event.preventDefault();event.stopPropagation();closeCities();}
+    });
+  }
   apply({hydrate:true,restore:!!history.state?.jobs});
   save();
 }

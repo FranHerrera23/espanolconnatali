@@ -43,7 +43,7 @@ for (const language of ['ru', 'es']) {
   assert(html.includes('class="jobs-method"') && html.includes('/life-in-spain/'));
   assert(!html.includes('library-course') && !html.includes('JobPosting'));
   for (const job of available) {
-    assert(html.includes('href="#'+job.id+'"'));
+    assert(html.includes('href="'+(language==='es'?'/es':'')+'/resources/jobs-in-spain/'+job.id+'/"'));
     assert(html.includes('id="'+job.id+'" data-job'));
     assert(html.includes('data-last-checked-date="'+job.lastCheckedDate+'"'));
     assert(html.includes(job.sourceUrl.replaceAll('&','&amp;')));
@@ -53,4 +53,6 @@ for (const language of ['ru', 'es']) {
   assert(!expired.includes(' data-job '));
   assert(!expired.includes('<option value="Barcelona">'));
 }
+assert(matchesJobFilters({...search,searchText:'cocina Barcelona',scheduleType:'part',employmentKind:'employment',salaryPublished:'true'},{q:'barcelona cocina',schedule:'part',pay:'published'}));
+assert(!matchesJobFilters({...search,scheduleType:'part'},{schedule:'full'}));
 console.log('Jobs checks passed: freshness, Moscow date boundaries, source deadlines, failed checks, Unicode search, combined filters and no-JS listings.');

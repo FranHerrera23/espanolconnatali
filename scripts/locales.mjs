@@ -1,6 +1,6 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { esc } from './markdown.mjs';
-import { jobsRoute, renderJobs, jobsTeaser, lifeRoute, renderLife } from './jobs.mjs';
+import { jobsRoute, renderJobs, jobsTeaser, lifeRoute, renderLife, jobDetailRoute, renderJobDetail } from './jobs.mjs';
 
 const mirrored = new Set(['/', '/resources/', '/students/', jobsRoute, lifeRoute]);
 const motion = ['lenis', 'gsap', 'ScrollTrigger', 'SplitText']
@@ -8,8 +8,8 @@ const motion = ['lenis', 'gsap', 'ScrollTrigger', 'SplitText']
   '<script src="/resources.js"></script>';
 
 export function languagePicker(header, route, language = 'ru') {
-  const mirror = mirrored.has(route);
-  const links = (route === jobsRoute ? [['ru', 'Русский'], ['es', 'Español']] : [['ru', 'Русский'], ['es', 'Español'], ['en', 'English']])
+  const mirror = mirrored.has(route) || route.startsWith(jobsRoute);
+  const links = (route.startsWith(jobsRoute) ? [['ru', 'Русский'], ['es', 'Español']] : [['ru', 'Русский'], ['es', 'Español'], ['en', 'English']])
     .map(([id, name]) => [id, id.toUpperCase(), name, id === 'ru' ? route : '/' + id + (mirror ? route : '/resources/')])
     .map(([id, label, name, href]) =>
       `<a href="${href}" lang="${id}" aria-label="${name}" data-language="${id}"${language === id ? ' aria-current="true"' : ''}>${label}</a>`).join('');
@@ -42,12 +42,12 @@ export async function buildLocale(language, { out, base, production, header, foo
   const jobsHeader = internal(readerHeader).replaceAll('Бесплатные материалы', local('Recursos gratuitos', 'Free resources')).replace('>Ресурсы<', local('>Recursos<','>Resources<')).replace('>Учить испанский<',local('>Aprender español<','>Learn Spanish<')).replace('>Жизнь в Испании<',local('>Vida en España<','>Life in Spain<')).replace('Меню', local('Menú', 'Menu')).replace('aria-label="Навигация"', local('aria-label="Navegación"', 'aria-label="Navigation"'));
   const write = async (route, title, description, body, animated) => {
     const isJobs = route === jobsRoute;
-    const practical = isJobs || route === lifeRoute;
+    const practical = route.startsWith(jobsRoute) || route === lifeRoute;
     const pageHeader = practical ? jobsHeader : translate(localizedHeader);
     const pageFooter = practical ? footer.replace(/<p>[\s\S]*?<\/p>/, '').replace(/<span>Курс в своём темпе[\s\S]*?<\/span>/, '') : footer;
     const dir = out + prefix + route;
     await mkdir(dir, { recursive: true });
-    await writeFile(dir + 'index.html', `<!doctype html><html lang="${language}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)} — Español con Natali</title><meta name="description" content="${esc(description)}"><meta name="robots" content="noindex,follow"><link rel="canonical" href="${base + route}"><link rel="stylesheet" href="/design-system.css"><link rel="stylesheet" href="/library.css"><link rel="stylesheet" href="/jobs.css"></head><body>${production ? '' : '<div class="preview-note">' + local('Vista previa', 'Preview') + '</div>'}<a class="skip" href="#main">${local('Ir al contenido', 'Skip to content')}</a>${languagePicker(pageHeader, route, language)}<main id="main">${body}</main>${translate(internal(pageFooter))}<script src="/reader.js"></script>${isJobs ? '<script type="module" src="/jobs.js"></script>' : ''}${animated ? motion : ''}</body></html>`);
+    await writeFile(dir + 'index.html', `<!doctype html><html lang="${language}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)} — Español con Natali</title><meta name="description" content="${esc(description)}"><meta name="robots" content="noindex,follow"><link rel="canonical" href="${base + route}"><link rel="stylesheet" href="/design-system.css"><link rel="stylesheet" href="/library.css"><link rel="stylesheet" href="/jobs.css"></head><body>${production ? '' : '<div class="preview-note">' + local('Vista previa', 'Preview') + '</div>'}<a class="skip" href="#main">${local('Ir al contenido', 'Skip to content')}</a>${languagePicker(pageHeader, route, language)}<main id="main">${body}</main>${translate(internal(pageFooter))}<script src="/reader.js"></script>${isJobs ? '<script type="module" src="/jobs.js"></script>' : route.startsWith(jobsRoute) ? '<script type="module" src="/job-detail.js"></script>' : ''}${animated ? motion : ''}</body></html>`);
   };
 
   const publicationDate = new Intl.DateTimeFormat(language === 'es' ? 'es-ES' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
@@ -82,6 +82,7 @@ export async function buildLocale(language, { out, base, production, header, foo
   await write(lifeRoute, local('Vida en España','Life in Spain'), local('Recursos prácticos para la vida en España.','Practical resources for life in Spain.'), renderLife(language), false);
   if (language === 'es') {
     await write(jobsRoute, 'Vacantes en España, con contexto', 'Selección independiente de vacantes en España, con fuentes, fechas y filtros por ciudad, provincia y sector.', renderJobs(jobsData, 'es'), false);
+    for(const job of jobsData.jobs) await write(jobsRoute+job.id+'/', job.titleEs+' — '+job.employer, job.tasksRu, renderJobDetail(jobsData,job,'es'),false);
   }
 
   const originalReviews = reviewRows.replaceAll('class="student-story-copy"', 'class="student-story-copy" lang="ru"')
