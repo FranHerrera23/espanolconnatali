@@ -298,22 +298,6 @@
       "bytes": 98523
     },
     {
-      "id": "ECN-FR-019",
-      "articleRoute": "/resources/football-in-spanish/",
-      "sourceFile": "editorial/articles/football-in-spanish.md",
-      "sourceSha256": "8cdb66f9de99e47b0d0026087f8aa563e735b29a799aba8bd07143d5a1eccd53",
-      "file": "output/pdf/2026-11-04/football-in-spanish-workbook-ru.pdf",
-      "downloadRoute": "/assets/downloads/football-in-spanish-workbook-ru.pdf",
-      "sha256": "1f45426f1023c3071780b4697e11912a702892fa3c39b2870c9672389c90e58b",
-      "pages": 5,
-      "status": "approved_for_web_release",
-      "contentCheck": "Full PDF text preserved except removed AI disclosure; page count unchanged; 2026-11-07",
-      "visualCheck": "Updated editorial note rendered and visually checked in contact sheets; 2026-11-07",
-      "visualEvidence": "editorial/batches/2026-11-04/qa/pdf/ECN-FR-019.jpg",
-      "version": "1.2-editorial-note",
-      "bytes": 99797
-    },
-    {
       "id": "ECN-FR-026",
       "articleRoute": "/resources/book-an-appointment-by-phone/",
       "sourceFile": "editorial/articles/book-an-appointment-by-phone.md",
@@ -357,6 +341,40 @@
       "visualCheck": "9 páginas renderizadas e inspeccionadas; 120 bloques cotejados; última página reinspeccionada tras quitar cierre redundante",
       "version": "2.0",
       "bytes": 1327745
+    },
+    {
+      "id": "ECN-FR-029",
+      "articleRoute": "/resources/confirm-delivery-address/",
+      "sourceFile": "editorial/articles/confirm-delivery-address.md",
+      "sourceSha256": "7999b5680d3785a5b4117023da83433f9f34a42cc44e58b329ad09dcbf641b0c",
+      "file": "output/pdf/2026-11-09/confirm-delivery-address-workbook-ru.pdf",
+      "downloadRoute": "/assets/downloads/confirm-delivery-address-workbook-ru.pdf",
+      "sha256": "02bdf0ac3b5a95d27f694c3e10de2ed35abfdfefffd417b219c9c303243074a3",
+      "pages": 9,
+      "status": "approved_for_web_release",
+      "contentCheck": "All 127 source text blocks present in extracted PDF text; original source hash unchanged",
+      "visualCheck": "All 9 rendered pages inspected; no orphan end page, overlap or clipping observed. Contact sheet and final page review in output/qa/editorial-2026-11-09.",
+      "changeType": "new_article",
+      "exercises": 10,
+      "wordCountApprox": 2421,
+      "bytes": 1330016
+    },
+    {
+      "id": "ECN-FR-019",
+      "articleRoute": "/resources/football-in-spanish/",
+      "sourceFile": "editorial/drafts/football-v3/football-in-spanish.md",
+      "sourceSha256": "0d9dfd27797d9e975a8198fb227ee7ccc354a6bd6992920751d5914d04c08577",
+      "file": "output/pdf/2026-11-09/football-in-spanish-workbook-ru.pdf",
+      "downloadRoute": "/assets/downloads/football-in-spanish-workbook-ru.pdf",
+      "sha256": "46aa74a6315ebbeb49058ff246c4867db9b508e846286d56781be404277cea06",
+      "pages": 9,
+      "status": "approved_for_web_release",
+      "contentCheck": "All 141 source text blocks present in extracted PDF text; original source hash unchanged",
+      "visualCheck": "All 9 rendered pages inspected; no orphan end page, overlap or clipping observed. Contact sheet and final page review in output/qa/editorial-2026-11-09.",
+      "changeType": "revision",
+      "exercises": 12,
+      "wordCountApprox": 2496,
+      "bytes": 1331012
     }
   ]
 }
