@@ -1,0 +1,973 @@
+{
+  "version": 2,
+  "status": "published-pilot",
+  "asOf": "2026-11-09",
+  "defaultLanguage": "ru",
+  "languages": [
+    "ru",
+    "es"
+  ],
+  "ordering": "alphabetical-by-city-and-name; no synthetic score",
+  "sources": {
+    "casamayor": {
+      "id": "casamayor",
+      "url": "https://inmobiliariacasamayor.com/",
+      "name": "Casamayor · sitio y reseñas incrustadas",
+      "accessedOn": "2026-11-08",
+      "method": "captured-html",
+      "cacheAge": null
+    },
+    "ev-valencia": {
+      "id": "ev-valencia",
+      "url": "https://www.engelvoelkers.com/es/es/shops/valencia-gran-via",
+      "name": "Engel & Völkers · Valencia Gran Vía",
+      "accessedOn": "2026-11-08",
+      "method": "captured-html",
+      "cacheAge": null
+    },
+    "ev-palma": {
+      "id": "ev-palma",
+      "url": "https://www.engelvoelkers.com/es/en/shops/palma-centre",
+      "name": "Engel & Völkers · Palma Centre",
+      "accessedOn": "2026-11-08",
+      "method": "captured-html",
+      "cacheAge": null
+    },
+    "aproperties-official": {
+      "id": "aproperties-official",
+      "url": "https://www.aproperties.es/barcelona",
+      "name": "aProperties · Barcelona",
+      "accessedOn": "2026-11-08",
+      "method": "captured-html",
+      "cacheAge": null
+    },
+    "gilmar-sevilla": {
+      "id": "gilmar-sevilla",
+      "url": "https://www.gilmar.es/oficinas/agencia-inmobiliaria-sevilla/",
+      "name": "GILMAR · Sevilla",
+      "accessedOn": "2026-11-08",
+      "method": "web-cache",
+      "cacheAge": "6 días"
+    },
+    "gilmar-malaga": {
+      "id": "gilmar-malaga",
+      "url": "https://www.gilmar.es/oficinas/agencia-inmobiliaria-malaga/",
+      "name": "GILMAR · Málaga",
+      "accessedOn": "2026-11-08",
+      "method": "web-cache",
+      "cacheAge": "1 día"
+    },
+    "gilmar-tp": {
+      "id": "gilmar-tp",
+      "url": "https://es.trustpilot.com/review/gilmar.es",
+      "name": "Trustpilot · GILMAR (marca, no sede)",
+      "accessedOn": "2026-11-08",
+      "method": "web-cache",
+      "cacheAge": "1–3 meses"
+    },
+    "casamayor-reviews": {
+      "id": "casamayor-reviews",
+      "url": "https://agenciasinmobiliarias.com.es/es-es/i/3782-inmobiliaria-casamayor/",
+      "name": "Agencias Inmobiliarias · reseñas atribuidas a Google",
+      "accessedOn": "2026-11-09",
+      "method": "captured-html",
+      "cacheAge": null
+    },
+    "aproperties-reviews": {
+      "id": "aproperties-reviews",
+      "url": "https://agenciasinmobiliarias.com.es/es-es/i/3946-aproperties-real-estate/",
+      "name": "Agencias Inmobiliarias · reseñas atribuidas a Google",
+      "accessedOn": "2026-11-09",
+      "method": "captured-html",
+      "cacheAge": null
+    },
+    "palma-reviews": {
+      "id": "palma-reviews",
+      "url": "https://agenciasinmobiliarias.com.es/es-es/i/5051-engel-volkers-palma-centre/",
+      "name": "Agencias Inmobiliarias · reseñas atribuidas a Google",
+      "accessedOn": "2026-11-09",
+      "method": "captured-html",
+      "cacheAge": null
+    },
+    "valencia-granvia-reviews": {
+      "id": "valencia-granvia-reviews",
+      "url": "https://agenciasinmobiliarias.com.es/es-es/i/14140-engel-volkers/",
+      "name": "Agencias Inmobiliarias · reseñas atribuidas a Google",
+      "accessedOn": "2026-11-09",
+      "method": "captured-html",
+      "cacheAge": null
+    },
+    "sevilla-reviews": {
+      "id": "sevilla-reviews",
+      "url": "https://trustlocal.es/sevilla/sevilla/agencia-inmobiliaria/gilmar-sevilla/",
+      "name": "Trustlocal · Sevilla",
+      "accessedOn": "2026-11-09",
+      "method": "captured-html",
+      "cacheAge": null
+    },
+    "malaga-reviews": {
+      "id": "malaga-reviews",
+      "url": "https://agenciasinmobiliarias.com.es/es-es/i/4813-gilmar-consulting-inmobiliario/",
+      "name": "Agencias Inmobiliarias · reseñas atribuidas a Google",
+      "accessedOn": "2026-11-09",
+      "method": "captured-html",
+      "cacheAge": null
+    },
+    "valencia-yandex": {
+      "id": "valencia-yandex",
+      "url": "https://yandex.com/maps/org/engel_v_lkers_agencia_inmobiliaria_en_valencia/5929886759/",
+      "name": "Yandex Maps · Gran Vía",
+      "accessedOn": "2026-11-09",
+      "method": "web-cache",
+      "cacheAge": "1 semana"
+    }
+  },
+  "categories": [
+    {
+      "id": "property-buying",
+      "category": {
+        "ru": "Работа и бизнес",
+        "es": "Trabajo y negocios"
+      },
+      "title": {
+        "ru": "Агентства для покупки жилья",
+        "es": "Inmobiliarias para comprar"
+      },
+      "intro": {
+        "ru": "Не выбирайте посредника только по знакомому логотипу. Сравните конкретный офис, его роль в сделке и то, что действительно известно о работе с покупателями.",
+        "es": "Un logo conocido no explica quién te representa al comprar. Compará la oficina, su papel en la operación y la evidencia disponible sobre compradores."
+      },
+      "checks": {
+        "ru": [
+          "Кого представляет агент и кто платит комиссию?",
+          "Что включено в сопровождение, а что оплачивается отдельно?",
+          "Какие документы получены по конкретному объекту?"
+        ],
+        "es": [
+          "¿A quién representa el agente y quién paga sus honorarios?",
+          "¿Qué incluye el acompañamiento y qué se cobra aparte?",
+          "¿Qué documentación se obtuvo del inmueble concreto?"
+        ]
+      }
+    }
+  ],
+  "entries": [
+    {
+      "id": "casamayor-alicante",
+      "category": "property-buying",
+      "name": "Casamayor · Alicante",
+      "city": "Alicante",
+      "address": "Ángel Lozano 17, bajo, 03001",
+      "sourceIds": [
+        "casamayor",
+        "casamayor-reviews"
+      ],
+      "checkedOn": "2026-11-08",
+      "fit": {
+        "ru": "Покупка с сопровождением на месте.",
+        "es": "Compra con acompañamiento local."
+      },
+      "facts": {
+        "ru": "Офис в Аликанте; на сайте есть объекты на продажу.",
+        "es": "Oficina en Alicante y cartera de compraventa."
+      },
+      "pros": {
+        "es": "Cuatro textos seleccionados describen compra o búsqueda: atención al presupuesto, propuestas y coordinación de visitas. Uno corresponde a un local comercial, no a una vivienda.",
+        "ru": "Четыре выбранных текста относятся к покупке или поиску: подбор вариантов, бюджет и организация просмотров. Один — о коммерческом помещении, а не жилье."
+      },
+      "cons": {
+        "es": "La crítica documental procede de un vendedor y no entra en el recuento de compradores. La agencia responde con su versión sobre la información disponible. No comprobamos expedientes ni resultados judiciales.",
+        "ru": "Жалоба на документы написана продавцом и не включена в число покупателей. Агентство приводит свою версию доступных сведений. Материалы сделки и судебные выводы не проверены."
+      },
+      "questions": {
+        "es": "¿Quién revisa cada documento y en qué fecha? ¿Qué ocurre con la señal si la financiación o la documentación impiden cerrar? ¿Qué honorarios e impuestos figuran en el presupuesto? Pedí las respuestas antes de organizar viajes.",
+        "ru": "Кто и когда проверяет каждый документ? Что происходит с резервом, если финансирование или документы мешают завершению? Какие комиссии и налоги входят в расчёт? Уточните это до поездки."
+      },
+      "reviews": [
+        {
+          "platform": "Google · vía Agencias Inmobiliarias",
+          "scope": "branch-platform",
+          "rating": null,
+          "total": null,
+          "sampleExamined": 5,
+          "eligibleSample": 4,
+          "analysis": {
+            "es": "Textos seleccionados del directorio; no lectura directa del historial completo de Google. No calculamos tasas de satisfacción.",
+            "ru": "Тексты выбраны из каталога; полная история Google напрямую не изучалась. Доля довольных клиентов не рассчитывается."
+          },
+          "reviewDates": {
+            "es": "Fechas mostradas por el directorio, no verificadas en Google; algunas se derivan de antigüedad relativa. Ejemplos históricos identificados abajo.",
+            "ru": "Даты показаны каталогом и не сверены с Google; часть рассчитана из относительной давности. Исторические примеры отмечены ниже."
+          },
+          "source": "casamayor-reviews"
+        }
+      ],
+      "regulatory": null,
+      "signal": "conditional",
+      "verdict": {
+        "es": "Con reservas: vale la pena comparar su acompañamiento local. Antes de avanzar, pedí un calendario documental y condiciones de reserva por escrito.",
+        "ru": "С оговорками: стоит сравнить сопровождение местной команды. До следующего шага запросите письменный план документов и условия резерва."
+      },
+      "summary": {
+        "es": "Los relatos de búsqueda y compra destacan seguimiento y explicaciones. La muestra también incluye una crítica extensa de un vendedor sobre preparación del cierre, que la agencia discute. Sirve para formular preguntas, no para establecer una infracción.",
+        "ru": "В отзывах о поиске и покупке отмечают обратную связь и объяснения. Есть подробная жалоба продавца на подготовку сделки; агентство оспаривает её. Это повод задать вопросы, а не установленное нарушение."
+      },
+      "examples": [
+        {
+          "date": "2025-12-17",
+          "text": {
+            "es": "Compra de un local: el autor valora resolución rápida de dudas y coordinación. No demuestra por sí sola cómo gestionan una compra residencial.",
+            "ru": "Покупка помещения: автор отмечает быстрые ответы и организацию. Это не доказывает качество сопровождения покупки жилья."
+          },
+          "source": "casamayor-reviews"
+        },
+        {
+          "date": "2025-12-09",
+          "text": {
+            "es": "Compra de vivienda: destaca claridad y acompañamiento personal, sin detallar contrato ni honorarios.",
+            "ru": "Покупка жилья: отмечены понятные объяснения и поддержка; договор и комиссия не описаны."
+          },
+          "source": "casamayor-reviews"
+        },
+        {
+          "date": "2024-11-27",
+          "text": {
+            "es": "Búsqueda sin compra de ese primer inmueble: el autor explica que siguió recibiendo opciones y visitas adaptadas.",
+            "ru": "Поиск без покупки первого объекта: автор продолжал получать подходящие варианты и просмотры."
+          },
+          "source": "casamayor-reviews"
+        },
+        {
+          "date": "2024-11-22",
+          "text": {
+            "es": "Búsqueda de piso: valoración positiva del aviso de nuevas oportunidades; no confirma una operación terminada.",
+            "ru": "Поиск квартиры: положительно оценены сообщения о новых вариантах; завершённая сделка не подтверждена."
+          },
+          "source": "casamayor-reviews"
+        },
+        {
+          "date": "2024-12-16",
+          "text": {
+            "es": "Contexto de vendedor: relata retrasos y desacuerdos documentales. La respuesta de la agencia discrepa sobre lo que podía conocerse del historial del inmueble. No resolvemos esa controversia.",
+            "ru": "Контекст продавца: описаны задержки и разногласия по документам. В ответе агентство оспаривает, какие сведения об истории объекта были доступны. Мы не устанавливаем, кто прав."
+          },
+          "source": "casamayor-reviews"
+        }
+      ],
+      "confidence": {
+        "es": "Limitada: muestra no representativa; ver fechas y atribución.",
+        "ru": "Ограниченная: выборка нерепрезентативна; см. даты и принадлежность."
+      },
+      "platforms": [
+        {
+          "name": "Google",
+          "status": {
+            "es": "Relatos reproducidos por un directorio; origen directo pendiente.",
+            "ru": "Отзывы воспроизведены каталогом; прямой источник не проверен."
+          }
+        },
+        {
+          "name": "Trustpilot",
+          "status": {
+            "es": "Sin muestra de compra atribuible a esta dirección.",
+            "ru": "Нет выборки покупателей, подтверждённой для этого адреса."
+          }
+        },
+        {
+          "name": "Yandex",
+          "status": {
+            "es": "Perfil local no confirmado en esta revisión.",
+            "ru": "Локальный профиль в этой проверке не подтверждён."
+          }
+        },
+        {
+          "name": "Facebook",
+          "status": {
+            "es": "Reseñas locales no verificadas.",
+            "ru": "Отзывы этого офиса не проверены."
+          }
+        }
+      ]
+    },
+    {
+      "id": "ev-valencia-gran-via",
+      "category": "property-buying",
+      "name": "Engel & Völkers · Gran Vía",
+      "city": "Valencia",
+      "address": "Gran Vía Marqués del Turia 61, 46005",
+      "sourceIds": [
+        "ev-valencia",
+        "valencia-granvia-reviews",
+        "valencia-yandex"
+      ],
+      "checkedOn": "2026-11-08",
+      "fit": {
+        "ru": "Жильё в центральных районах Валенсии.",
+        "es": "Vivienda en barrios centrales de Valencia."
+      },
+      "facts": {
+        "ru": "Офис указывает испанский и английский; работа с жильём и инвестиционными объектами.",
+        "es": "La oficina declara español e inglés y oferta residencial y de inversión."
+      },
+      "pros": {
+        "es": "Los casos favorables incluyen búsqueda por presupuesto, coordinación de documentación y ayuda posterior. El servicio financiero es una experiencia específica: no lo trasladamos automáticamente a toda la oficina.",
+        "ru": "Положительные случаи включают подбор по бюджету, документы и помощь после сделки. Опыт финансового отдела не переносится автоматически на весь офис."
+      },
+      "cons": {
+        "es": "Un comprador relata retención de una entrega tras desistir por motivos personales; desconocemos su contrato. Otros describen negociación frustrada o trato insatisfactorio. Son relatos atribuidos, no resoluciones sobre incumplimientos.",
+        "ru": "Один покупатель сообщает об удержании платежа после отказа по личным причинам; его договор неизвестен. Другие описывают неудачные переговоры и общение. Это отзывы, а не установленные нарушения."
+      },
+      "questions": {
+        "es": "¿El pago es una reserva, una oferta o arras? ¿Quién lo recibe y qué supuestos de devolución aparecen por escrito? ¿Qué tareas y costos corresponden al departamento financiero? ¿Quién comunica ofertas al vendedor?",
+        "ru": "Что представляет платёж: резерв, предложение или arras? Кто получает деньги и когда предусмотрен возврат? Какие задачи и расходы относятся к финансовому отделу? Кто передаёт предложения продавцу?"
+      },
+      "reviews": [
+        {
+          "platform": "Google · vía Agencias Inmobiliarias",
+          "scope": "branch-platform",
+          "rating": null,
+          "total": null,
+          "sampleExamined": 15,
+          "eligibleSample": 15,
+          "analysis": {
+            "es": "Textos seleccionados del directorio; no lectura directa del historial completo de Google. No calculamos tasas de satisfacción.",
+            "ru": "Тексты выбраны из каталога; полная история Google напрямую не изучалась. Доля довольных клиентов не рассчитывается."
+          },
+          "reviewDates": {
+            "es": "Fechas mostradas por el directorio, no verificadas en Google; algunas se derivan de antigüedad relativa. Ejemplos históricos identificados abajo.",
+            "ru": "Даты показаны каталогом и не сверены с Google; часть рассчитана из относительной давности. Исторические примеры отмечены ниже."
+          },
+          "source": "valencia-granvia-reviews"
+        }
+      ],
+      "regulatory": null,
+      "signal": "conditional",
+      "verdict": {
+        "es": "Con reservas: acompañamiento valorado por compradores, pero condiciones de señal y negociación que conviene aclarar antes de pagar. La muestra es histórica.",
+        "ru": "С оговорками: покупатели отмечают сопровождение, но условия резерва и переговоров нужно выяснить до оплаты. Выборка историческая."
+      },
+      "summary": {
+        "es": "Hay relatos detallados de financiación, búsqueda y documentos, además de quejas sobre comunicación, negociación y devolución de cantidades. La fuente coincide con Gran Vía 61. Descartamos otro perfil de Valencia situado en Lluís Vives.",
+        "ru": "Есть подробные рассказы о финансировании, поиске и документах, а также жалобы на общение, переговоры и возврат платежей. Источник относится к Gran Vía 61. Другой профиль на Lluís Vives исключён."
+      },
+      "examples": [
+        {
+          "date": "2024-07-31",
+          "text": {
+            "es": "Compra con financiación: el autor destaca explicaciones y acompañamiento hipotecario. No publica la oferta financiera completa.",
+            "ru": "Покупка с финансированием: автор отмечает объяснения и помощь с ипотекой. Полные условия не опубликованы."
+          },
+          "source": "valencia-granvia-reviews"
+        },
+        {
+          "date": "2024-01-10",
+          "text": {
+            "es": "Compra completada: valoración positiva de visitas, documentos y respuestas.",
+            "ru": "Завершённая покупка: положительная оценка просмотров, документов и ответов."
+          },
+          "source": "valencia-granvia-reviews"
+        },
+        {
+          "date": "2024-01-24",
+          "text": {
+            "es": "Desistimiento: el autor afirma que no recuperó el importe entregado al retirar su intención de compra. No accedimos al acuerdo firmado.",
+            "ru": "Отказ от покупки: автор утверждает, что внесённые деньги не вернули. Подписанное соглашение нам недоступно."
+          },
+          "source": "valencia-granvia-reviews"
+        },
+        {
+          "date": "2024-11-19",
+          "text": {
+            "es": "Búsqueda frustrada: el autor cuestiona la gestión de una vivienda que finalmente no compró. Falta documentación para comprobar la causa.",
+            "ru": "Неудачный поиск: автор критикует работу с объектом, который не купил. Причина документально не проверена."
+          },
+          "source": "valencia-granvia-reviews"
+        },
+        {
+          "date": "2023-12-13",
+          "text": {
+            "es": "Dos compradores describen apoyo desde la definición del presupuesto hasta trámites posteriores. Su antigüedad limita la extrapolación.",
+            "ru": "Два покупателя описывают помощь от бюджета до действий после сделки. Давность ограничивает выводы о текущем сервисе."
+          },
+          "source": "valencia-granvia-reviews"
+        }
+      ],
+      "confidence": {
+        "es": "Limitada: muestra no representativa; ver fechas y atribución.",
+        "ru": "Ограниченная: выборка нерепрезентативна; см. даты и принадлежность."
+      },
+      "platforms": [
+        {
+          "name": "Google",
+          "status": {
+            "es": "Relatos reproducidos por un directorio; origen directo pendiente.",
+            "ru": "Отзывы воспроизведены каталогом; прямой источник не проверен."
+          }
+        },
+        {
+          "name": "Trustpilot",
+          "status": {
+            "es": "Sin muestra de compra atribuible a esta dirección.",
+            "ru": "Нет выборки покупателей, подтверждённой для этого адреса."
+          }
+        },
+        {
+          "name": "Yandex",
+          "status": {
+            "es": "Perfil en la dirección correcta: no muestra reseñas en el resultado consultado.",
+            "ru": "Профиль с нужным адресом: в просмотренном результате отзывов нет."
+          }
+        },
+        {
+          "name": "Facebook",
+          "status": {
+            "es": "Reseñas locales no verificadas.",
+            "ru": "Отзывы этого офиса не проверены."
+          }
+        }
+      ]
+    },
+    {
+      "id": "ev-palma-centre",
+      "category": "property-buying",
+      "name": "Engel & Völkers · Palma Centre",
+      "city": "Palma",
+      "address": "Calle Constitución 7, 07001",
+      "sourceIds": [
+        "ev-palma",
+        "palma-reviews"
+      ],
+      "checkedOn": "2026-11-08",
+      "fit": {
+        "ru": "Центр Пальмы и старый город.",
+        "es": "Centro y casco antiguo de Palma."
+      },
+      "facts": {
+        "ru": "Жилая недвижимость; офис перечисляет несколько языков, включая английский и немецкий.",
+        "es": "Oferta residencial; la sede declara varios idiomas, incluidos inglés y alemán."
+      },
+      "pros": {
+        "es": "Tres experiencias pertinentes describen búsqueda a distancia, explicaciones financieras o apoyo después de comprar. Son de 2022–2024 y no prueban la composición actual del equipo.",
+        "ru": "Три релевантных рассказа описывают дистанционный поиск, финансовые объяснения или помощь после покупки. Они относятся к 2022–2024 годам и не подтверждают нынешний состав команды."
+      },
+      "cons": {
+        "es": "La muestra contiene alquileres, elogios genéricos y una opinión sobre una tienda ajena: no se cuentan como compras. Los agregados del directorio y de la web oficial tienen volúmenes distintos; no se combinan.",
+        "ru": "В выборке есть аренда, общая похвала и отзыв о постороннем магазине: они не считаются покупками. Числа в каталоге и на официальном сайте различаются и не объединяются."
+      },
+      "questions": {
+        "es": "¿Quién llevará la operación hoy y en qué idioma? ¿La vivienda pertenece a la cartera de esta oficina? ¿Qué incluye el seguimiento tras la escritura? Si comprás a distancia, pedí visita en directo y comprobaciones independientes.",
+        "ru": "Кто ведёт сделку сейчас и на каком языке? Этот объект относится к данному офису? Что входит в сопровождение после подписания? При дистанционной покупке запросите живой просмотр и независимые проверки."
+      },
+      "reviews": [
+        {
+          "platform": "Google · vía Agencias Inmobiliarias",
+          "scope": "branch-platform",
+          "rating": null,
+          "total": null,
+          "sampleExamined": 6,
+          "eligibleSample": 3,
+          "analysis": {
+            "es": "Textos seleccionados del directorio; no lectura directa del historial completo de Google. No calculamos tasas de satisfacción.",
+            "ru": "Тексты выбраны из каталога; полная история Google напрямую не изучалась. Доля довольных клиентов не рассчитывается."
+          },
+          "reviewDates": {
+            "es": "Fechas mostradas por el directorio, no verificadas en Google; algunas se derivan de antigüedad relativa. Ejemplos históricos identificados abajo.",
+            "ru": "Даты показаны каталогом и не сверены с Google; часть рассчитана из относительной давности. Исторические примеры отмечены ниже."
+          },
+          "source": "palma-reviews"
+        }
+      ],
+      "regulatory": null,
+      "signal": "insufficient",
+      "verdict": {
+        "es": "Evidencia reciente insuficiente para recomendar la sede. Hay señales favorables de asesoramiento, pero los textos examinados son antiguos y una queja tiene atribución discutida.",
+        "ru": "Недостаточно свежих данных для рекомендации офиса. Есть положительные отзывы о консультациях, но тексты старые, а принадлежность одной жалобы оспаривается."
+      },
+      "summary": {
+        "es": "La oficina declara cobertura del centro y casco antiguo. Los relatos incluyen atención remota y financiación. Una crítica sobre una vivienda nueva recibe una respuesta que niega identificar la venta con esta oficina: no la tratamos como caso local confirmado.",
+        "ru": "Офис заявляет работу с центром и старым городом. В рассказах есть дистанционный подбор и финансирование. На жалобу о новостройке офис отвечает, что не может связать продажу с собой: это не подтверждённый местный случай."
+      },
+      "examples": [
+        {
+          "date": "2024-09-25",
+          "text": {
+            "es": "Queja sobre obra nueva: la oficina responde que no identifica esa venta y plantea que pueda corresponder a otro equipo. Se excluye de la evidencia local confirmada.",
+            "ru": "Жалоба на новостройку: офис не идентифицирует эту продажу и допускает другой офис. Исключена из подтверждённых местных случаев."
+          },
+          "source": "palma-reviews"
+        },
+        {
+          "date": "2024-06-26",
+          "text": {
+            "es": "Asesoramiento financiero: el autor valora explicaciones con presupuesto limitado. No confirma un cierre.",
+            "ru": "Финансовая консультация: автор отмечает объяснения при ограниченном бюджете. Завершение сделки не подтверждено."
+          },
+          "source": "palma-reviews"
+        },
+        {
+          "date": "2023-09-26",
+          "text": {
+            "es": "Búsqueda desde el extranjero: describe una visita por vídeo y ayuda para encontrar una propiedad.",
+            "ru": "Поиск из-за рубежа: описаны видеопросмотр и помощь с подбором объекта."
+          },
+          "source": "palma-reviews"
+        },
+        {
+          "date": "2022-08-22",
+          "text": {
+            "es": "Experiencia posterior a la compra: el autor valora consejos y contactos para instalarse. Es un relato antiguo.",
+            "ru": "После покупки: автор отмечает советы и контакты для обустройства. Отзыв старый."
+          },
+          "source": "palma-reviews"
+        }
+      ],
+      "confidence": {
+        "es": "Limitada: muestra no representativa; ver fechas y atribución.",
+        "ru": "Ограниченная: выборка нерепрезентативна; см. даты и принадлежность."
+      },
+      "platforms": [
+        {
+          "name": "Google",
+          "status": {
+            "es": "Relatos reproducidos por un directorio; origen directo pendiente.",
+            "ru": "Отзывы воспроизведены каталогом; прямой источник не проверен."
+          }
+        },
+        {
+          "name": "Trustpilot",
+          "status": {
+            "es": "Sin muestra de compra atribuible a esta dirección.",
+            "ru": "Нет выборки покупателей, подтверждённой для этого адреса."
+          }
+        },
+        {
+          "name": "Yandex",
+          "status": {
+            "es": "Perfil local no confirmado en esta revisión.",
+            "ru": "Локальный профиль в этой проверке не подтверждён."
+          }
+        },
+        {
+          "name": "Facebook",
+          "status": {
+            "es": "Reseñas locales no verificadas.",
+            "ru": "Отзывы этого офиса не проверены."
+          }
+        }
+      ]
+    },
+    {
+      "id": "aproperties-barcelona",
+      "category": "property-buying",
+      "name": "aProperties · Barcelona",
+      "city": "Barcelona",
+      "address": "Passeig de Gràcia 85, 08008",
+      "sourceIds": [
+        "aproperties-official",
+        "aproperties-reviews"
+      ],
+      "checkedOn": "2026-11-08",
+      "fit": {
+        "ru": "Поиск жилья в Барселоне, включая верхний сегмент.",
+        "es": "Búsqueda residencial en Barcelona, incluido segmento alto."
+      },
+      "facts": {
+        "ru": "Адрес офиса и каталог покупки подтверждены на локальной странице.",
+        "es": "Dirección y catálogo de compra identificados en la página local."
+      },
+      "pros": {
+        "es": "Se repiten comunicación ágil, ayuda con visitas y documentos, y acompañamiento de compradores desde el extranjero. Los elogios a personas concretas no garantizan quién atenderá una nueva operación.",
+        "ru": "Повторяются быстрые ответы, помощь с просмотрами и документами, сопровождение из-за рубежа. Похвала конкретному сотруднику не гарантирует, кто будет вести новую сделку."
+      },
+      "cons": {
+        "es": "Un caso de filtraciones contrasta con los relatos favorables. No encontramos en el bloque examinado una respuesta de la empresa a ese caso. También hay textos de otras ciudades dentro del mismo directorio: los excluimos.",
+        "ru": "Жалоба на протечки противоречит положительным рассказам. В изученном блоке ответа компании на неё не обнаружено. Тексты о других городах в этом же каталоге исключены."
+      },
+      "questions": {
+        "es": "¿Quién responde después de la escritura y durante cuánto tiempo? ¿Qué información sobre defectos queda por escrito? ¿Podés realizar una inspección técnica independiente? Confirmá oficina, responsable y todos los honorarios.",
+        "ru": "Кто отвечает после подписания и как долго? Какие сведения о дефектах фиксируются письменно? Можно ли провести независимый технический осмотр? Уточните офис, ответственного и все комиссии."
+      },
+      "reviews": [
+        {
+          "platform": "Google · vía Agencias Inmobiliarias",
+          "scope": "branch-platform",
+          "rating": null,
+          "total": null,
+          "sampleExamined": 11,
+          "eligibleSample": 11,
+          "analysis": {
+            "es": "Textos seleccionados del directorio; no lectura directa del historial completo de Google. No calculamos tasas de satisfacción.",
+            "ru": "Тексты выбраны из каталога; полная история Google напрямую не изучалась. Доля довольных клиентов не рассчитывается."
+          },
+          "reviewDates": {
+            "es": "Fechas mostradas por el directorio, no verificadas en Google; algunas se derivan de antigüedad relativa. Ejemplos históricos identificados abajo.",
+            "ru": "Даты показаны каталогом и не сверены с Google; часть рассчитана из относительной давности. Исторические примеры отмечены ниже."
+          },
+          "source": "aproperties-reviews"
+        }
+      ],
+      "regulatory": null,
+      "signal": "conditional",
+      "verdict": {
+        "es": "Con reservas: hay experiencias favorables de compra, junto con una reclamación relevante de posventa. Elegí al asesor y comprobá el inmueble por separado.",
+        "ru": "С оговорками: есть положительный опыт покупателей и существенная жалоба после покупки. Оценивайте консультанта и состояние объекта отдельно."
+      },
+      "summary": {
+        "es": "La experiencia cambia según el asesor y la etapa. Los compradores seleccionados valoran respuestas y coordinación; una compradora relata filtraciones y falta de seguimiento después de firmar. Su relato no acredita responsabilidad ni el estado actual del conflicto.",
+        "ru": "Опыт различается по консультантам и этапам. Покупатели отмечают ответы и организацию; одна покупательница сообщает о протечках и недостатке помощи после сделки. Её рассказ не устанавливает ответственность и текущий исход спора."
+      },
+      "examples": [
+        {
+          "date": "2025-12-22",
+          "text": {
+            "es": "Compra en Barcelona: el autor valora eficacia y asesoramiento, sin detalle del precio del servicio.",
+            "ru": "Покупка в Барселоне: автор хвалит эффективность и консультацию, без стоимости услуги."
+          },
+          "source": "aproperties-reviews"
+        },
+        {
+          "date": "2024-12-18",
+          "text": {
+            "es": "Búsqueda desde Brasil: menciona propuestas a distancia y comunicación sin presión. Todavía no confirma compra.",
+            "ru": "Поиск из Бразилии: отмечены дистанционный подбор и отсутствие давления. Покупка ещё не подтверждена."
+          },
+          "source": "aproperties-reviews"
+        },
+        {
+          "date": "2024-12-02",
+          "text": {
+            "es": "Compra de vivienda: describe resolución de gestiones durante visitas y cierre.",
+            "ru": "Покупка жилья: описано сопровождение просмотров и завершения сделки."
+          },
+          "source": "aproperties-reviews"
+        },
+        {
+          "date": "2024-07-24",
+          "text": {
+            "es": "Experiencia crítica: una compradora relata filtraciones tras la compra y reclama seguimiento. No comprobamos el expediente ni atribuimos culpabilidad.",
+            "ru": "Критический опыт: покупательница сообщает о протечках после покупки и просит помощи. Дело не проверено, виновность не устанавливается."
+          },
+          "source": "aproperties-reviews"
+        },
+        {
+          "date": "2023-08-24",
+          "text": {
+            "es": "Dos relatos antiguos valoran disponibilidad y respuesta durante la compraventa. Son contexto histórico, no prueba del servicio actual.",
+            "ru": "Два старых отзыва отмечают доступность и ответы в ходе сделки. Это исторический контекст, а не подтверждение нынешнего сервиса."
+          },
+          "source": "aproperties-reviews"
+        }
+      ],
+      "confidence": {
+        "es": "Limitada: muestra no representativa; ver fechas y atribución.",
+        "ru": "Ограниченная: выборка нерепрезентативна; см. даты и принадлежность."
+      },
+      "platforms": [
+        {
+          "name": "Google",
+          "status": {
+            "es": "Relatos reproducidos por un directorio; origen directo pendiente.",
+            "ru": "Отзывы воспроизведены каталогом; прямой источник не проверен."
+          }
+        },
+        {
+          "name": "Trustpilot",
+          "status": {
+            "es": "Sin muestra de compra atribuible a esta dirección.",
+            "ru": "Нет выборки покупателей, подтверждённой для этого адреса."
+          }
+        },
+        {
+          "name": "Yandex",
+          "status": {
+            "es": "Perfil local no confirmado en esta revisión.",
+            "ru": "Локальный профиль в этой проверке не подтверждён."
+          }
+        },
+        {
+          "name": "Facebook",
+          "status": {
+            "es": "Reseñas locales no verificadas.",
+            "ru": "Отзывы этого офиса не проверены."
+          }
+        }
+      ]
+    },
+    {
+      "id": "gilmar-sevilla",
+      "category": "property-buying",
+      "name": "GILMAR · Sevilla",
+      "city": "Sevilla",
+      "address": "Avenida de la República Argentina · Sevilla",
+      "sourceIds": [
+        "gilmar-sevilla",
+        "sevilla-reviews"
+      ],
+      "checkedOn": "2026-11-08",
+      "fit": {
+        "ru": "Покупка в Севилье.",
+        "es": "Compra en Sevilla."
+      },
+      "facts": {
+        "ru": "Локальная страница: квартиры, дома и другие типы объектов; заявлено юридическое, налоговое и техническое сопровождение.",
+        "es": "La sede ofrece varios tipos de inmueble y declara asesoramiento jurídico, fiscal y técnico."
+      },
+      "pros": {
+        "es": "Relatos de junio de 2026 describen atención durante la compra y un trato cómodo. La oficina publica servicios jurídicos, técnicos y posventa; su inclusión y costo deben acordarse.",
+        "ru": "Рассказы июня 2026 года описывают помощь при покупке и комфортное общение. Офис заявляет юридические, технические и послепродажные услуги; состав и стоимость нужно согласовать."
+      },
+      "cons": {
+        "es": "Cuatro textos visibles no representan las 93 valoraciones que muestra Trustlocal. El perfil local de Trustpilot redirige a la marca nacional; no usamos su nota como nota de Sevilla.",
+        "ru": "Четыре видимых текста не представляют все 93 оценки Trustlocal. Локальный Trustpilot перенаправляет на национальный бренд; его оценка не считается оценкой Севильи."
+      },
+      "questions": {
+        "es": "¿La asesoría incluida representa también tus intereses como comprador? ¿Qué profesional revisa documentos y cuál es su alcance? Confirmá honorarios, responsable y oficina exacta antes de firmar.",
+        "ru": "Учитывает ли включённая консультация ваши интересы покупателя? Кто проверяет документы и в каком объёме? До подписания уточните комиссию, ответственного и адрес офиса."
+      },
+      "reviews": [
+        {
+          "platform": "Google · vía Trustlocal",
+          "scope": "branch-platform",
+          "rating": null,
+          "total": null,
+          "sampleExamined": 4,
+          "eligibleSample": 2,
+          "analysis": {
+            "es": "Textos seleccionados del directorio; no lectura directa del historial completo de Google. No calculamos tasas de satisfacción.",
+            "ru": "Тексты выбраны из каталога; полная история Google напрямую не изучалась. Доля довольных клиентов не рассчитывается."
+          },
+          "reviewDates": {
+            "es": "Fechas mostradas por el directorio, no verificadas en Google; algunas se derivan de antigüedad relativa. Ejemplos históricos identificados abajo.",
+            "ru": "Даты показаны каталогом и не сверены с Google; часть рассчитана из относительной давности. Исторические примеры отмечены ниже."
+          },
+          "source": "sevilla-reviews"
+        }
+      ],
+      "regulatory": null,
+      "signal": "conditional",
+      "verdict": {
+        "es": "Con reservas por el tamaño de la muestra: candidata para una primera comparación, con dos relatos de compra favorables. No alcanza para una recomendación general.",
+        "ru": "С оговорками из-за размера выборки: кандидат для первичного сравнения; есть два положительных рассказа покупателей. Для общей рекомендации этого мало."
+      },
+      "summary": {
+        "es": "Los dos compradores identifican acompañamiento y resolución de dudas; uno destaca no sentirse presionado. Los otros dos textos visibles son de venta o experiencia general. No encontramos una muestra crítica local suficiente para equilibrar el panorama.",
+        "ru": "Два покупателя отмечают помощь и ответы; один — отсутствие давления. Ещё два видимых текста относятся к продаже или общему опыту. Местных критических отзывов недостаточно для сбалансированной картины."
+      },
+      "examples": [
+        {
+          "date": "2026-06-01",
+          "text": {
+            "es": "Comprador: destaca respuestas y ayuda durante el proceso. No detalla contrato ni honorarios.",
+            "ru": "Покупатель: отмечает ответы и помощь. Договор и комиссия не описаны."
+          },
+          "source": "sevilla-reviews"
+        },
+        {
+          "date": "2026-06-01",
+          "text": {
+            "es": "Compradora: valora acompañamiento y ausencia de presión. Es experiencia personal, no una garantía para otra operación.",
+            "ru": "Покупательница: отмечает сопровождение без давления. Это личный опыт, а не гарантия новой сделки."
+          },
+          "source": "sevilla-reviews"
+        },
+        {
+          "date": "2026-08-01",
+          "text": {
+            "es": "Venta: valoración favorable de comunicación y cierre, excluida del recuento de compradores.",
+            "ru": "Продажа: положительно оценены общение и завершение; исключена из числа покупателей."
+          },
+          "source": "sevilla-reviews"
+        },
+        {
+          "date": "2026-06-01",
+          "text": {
+            "es": "Experiencia general: elogia discreción y colaboración, sin identificar compra.",
+            "ru": "Общий опыт: отмечены деликатность и помощь, без указания покупки."
+          },
+          "source": "sevilla-reviews"
+        }
+      ],
+      "confidence": {
+        "es": "Limitada: muestra no representativa; ver fechas y atribución.",
+        "ru": "Ограниченная: выборка нерепрезентативна; см. даты и принадлежность."
+      },
+      "platforms": [
+        {
+          "name": "Google",
+          "status": {
+            "es": "Relatos reproducidos por un directorio; origen directo pendiente.",
+            "ru": "Отзывы воспроизведены каталогом; прямой источник не проверен."
+          }
+        },
+        {
+          "name": "Trustpilot",
+          "status": {
+            "es": "La URL local redirige al perfil nacional; no se usa su nota.",
+            "ru": "Локальный URL перенаправляет на национальный профиль; оценка не используется."
+          }
+        },
+        {
+          "name": "Yandex",
+          "status": {
+            "es": "Perfil local no confirmado en esta revisión.",
+            "ru": "Локальный профиль в этой проверке не подтверждён."
+          }
+        },
+        {
+          "name": "Facebook",
+          "status": {
+            "es": "Reseñas locales no verificadas.",
+            "ru": "Отзывы этого офиса не проверены."
+          }
+        }
+      ]
+    },
+    {
+      "id": "gilmar-malaga",
+      "category": "property-buying",
+      "name": "GILMAR · Málaga",
+      "city": "Málaga",
+      "address": "Cortina del Muelle 13",
+      "sourceIds": [
+        "gilmar-malaga",
+        "malaga-reviews",
+        "gilmar-tp"
+      ],
+      "checkedOn": "2026-11-08",
+      "fit": {
+        "ru": "Покупка в городе Малага.",
+        "es": "Compra en Málaga capital."
+      },
+      "facts": {
+        "ru": "Страница отличает офис столицы от Marbella, Estepona и Puerto Banús.",
+        "es": "La página distingue la oficina de la capital de Marbella, Estepona y Puerto Banús."
+      },
+      "pros": {
+        "es": "Experiencias específicas describen alternativas adaptadas, preparación de arras, coordinación de documentos y apoyo a extranjeros. Un testimonio de Trustpilot de enero de 2026 menciona Málaga, aunque está dentro del perfil nacional.",
+        "ru": "Конкретные рассказы описывают подбор, подготовку arras, документы и помощь иностранцам. Отзыв Trustpilot января 2026 года упоминает Малагу, но опубликован в национальном профиле."
+      },
+      "cons": {
+        "es": "Dos compradores potenciales cuestionan la respuesta y la negociación. No comprobamos si los anuncios mencionados seguían disponibles ni la versión completa de cada operación. Una denuncia nacional sobre otra promoción no se atribuye a esta sede.",
+        "ru": "Два потенциальных покупателя критикуют ответы и переговоры. Доступность объявлений и полная история сделок не проверены. Национальная жалоба на другую стройку не переносится на этот офис."
+      },
+      "questions": {
+        "es": "¿Sigue disponible la vivienda y cuándo se confirmó? ¿Quién recibe tu oferta y en qué plazo responde? ¿Qué cambia si necesitás financiación? Pedí desglose de honorarios y condiciones de la señal.",
+        "ru": "Доступен ли объект и когда это проверяли? Кто получает предложение и когда отвечает? Что меняется при ипотеке? Запросите разбивку комиссии и условия резерва."
+      },
+      "reviews": [
+        {
+          "platform": "Google · vía Agencias Inmobiliarias",
+          "scope": "branch-platform",
+          "rating": null,
+          "total": null,
+          "sampleExamined": 11,
+          "eligibleSample": 11,
+          "analysis": {
+            "es": "Textos seleccionados del directorio; no lectura directa del historial completo de Google. No calculamos tasas de satisfacción.",
+            "ru": "Тексты выбраны из каталога; полная история Google напрямую не изучалась. Доля довольных клиентов не рассчитывается."
+          },
+          "reviewDates": {
+            "es": "Fechas mostradas por el directorio, no verificadas en Google; algunas se derivan de antigüedad relativa. Ejemplos históricos identificados abajo.",
+            "ru": "Даты показаны каталогом и не сверены с Google; часть рассчитана из относительной давности. Исторические примеры отмечены ниже."
+          },
+          "source": "malaga-reviews"
+        }
+      ],
+      "regulatory": null,
+      "signal": "conditional",
+      "verdict": {
+        "es": "Con reservas: hay relatos detallados de compras bien acompañadas y críticas a la respuesta inicial y la negociación. Confirmá disponibilidad y compromisos antes de reservar.",
+        "ru": "С оговорками: есть подробные положительные рассказы о покупке и критика первых ответов и переговоров. До резерва уточните доступность объекта и обязательства."
+      },
+      "summary": {
+        "es": "La muestra permite ver diferencias entre asesores y etapas. Compradores describen selección de opciones y explicación de documentos; otros relatan espera sin respuesta o negociación frustrante. La mayoría de estos textos es de 2022–2024.",
+        "ru": "Выборка показывает различия между консультантами и этапами. Покупатели описывают подбор и объяснение документов; другие — ожидание ответов и трудные переговоры. Большинство текстов относится к 2022–2024 годам."
+      },
+      "examples": [
+        {
+          "date": "2024-08-23",
+          "text": {
+            "es": "Intención de compra: un autor relata diez días sin respuesta y cuestiona la disponibilidad anunciada. Son afirmaciones del reseñante.",
+            "ru": "Намерение купить: автор сообщает о десяти днях без ответа и сомневается в доступности объявления. Это утверждения автора."
+          },
+          "source": "malaga-reviews"
+        },
+        {
+          "date": "2024-06-23",
+          "text": {
+            "es": "Negociación: una persona critica demoras y cómo se transmiten ofertas. No hay documentación de esa negociación en la muestra.",
+            "ru": "Переговоры: автор критикует задержки и передачу предложений. Документы переговоров недоступны."
+          },
+          "source": "malaga-reviews"
+        },
+        {
+          "date": "2023-12-23",
+          "text": {
+            "es": "Compra de vivienda: describe propuestas adaptadas y orientación en los siguientes pasos hasta el cierre.",
+            "ru": "Покупка жилья: описаны подбор вариантов и объяснение следующих шагов до завершения."
+          },
+          "source": "malaga-reviews"
+        },
+        {
+          "date": "2023-04-22",
+          "text": {
+            "es": "Compradores extranjeros: destacan acompañamiento durante una compra. No consta qué idiomas ni servicios contrataron.",
+            "ru": "Иностранные покупатели: отмечают помощь в ходе покупки. Языки и заказанные услуги не указаны."
+          },
+          "source": "malaga-reviews"
+        },
+        {
+          "date": "2023-01-16",
+          "text": {
+            "es": "Relato detallado: describe negociación, obtención de nota simple y explicación de arras. Es un caso personal de 2023.",
+            "ru": "Подробный рассказ: переговоры, nota simple и объяснение arras. Это личный случай 2023 года."
+          },
+          "source": "malaga-reviews"
+        },
+        {
+          "date": "2026-01-18",
+          "source": "gilmar-tp",
+          "text": {
+            "es": "Trustpilot: un comprador internacional describe guía paso a paso en Málaga. Es contexto de ciudad; no prueba una segunda sede ni representa a toda la marca.",
+            "ru": "Trustpilot: иностранный покупатель описывает пошаговую помощь в Малаге. Это контекст города; точный офис и репутация всей сети не подтверждаются."
+          }
+        }
+      ],
+      "confidence": {
+        "es": "Limitada: muestra no representativa; ver fechas y atribución.",
+        "ru": "Ограниченная: выборка нерепрезентативна; см. даты и принадлежность."
+      },
+      "platforms": [
+        {
+          "name": "Google",
+          "status": {
+            "es": "Relatos reproducidos por un directorio; origen directo pendiente.",
+            "ru": "Отзывы воспроизведены каталогом; прямой источник не проверен."
+          }
+        },
+        {
+          "name": "Trustpilot",
+          "status": {
+            "es": "Un relato de compra del 18/01/2026 menciona Málaga dentro del perfil nacional; no confirma dirección.",
+            "ru": "Один отзыв о покупке от 18.01.2026 упоминает Малагу в национальном профиле; адрес не подтверждён."
+          }
+        },
+        {
+          "name": "Yandex",
+          "status": {
+            "es": "Perfil local no confirmado en esta revisión.",
+            "ru": "Локальный профиль в этой проверке не подтверждён."
+          }
+        },
+        {
+          "name": "Facebook",
+          "status": {
+            "es": "Reseñas locales no verificadas.",
+            "ru": "Отзывы этого офиса не проверены."
+          }
+        }
+      ]
+    }
+  ],
+  "excluded": []
+}
