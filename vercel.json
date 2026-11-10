@@ -30,5 +30,19 @@
       "destination": "https://www.espanolconnatali.com/:path*",
       "permanent": true
     }
-  ]
+  ],
+  "rewrites": [
+    {
+      "source": "/tutor-preview/",
+      "destination": "/api/tutor-preview"
+    }
+  ],
+  "functions": {
+    "api/tutor-preview.js": {
+      "includeFiles": "private-preview/**"
+    },
+    "api/tutor-session.js": {
+      "includeFiles": "private-preview/access-hash.json"
+    }
+  }
 }
