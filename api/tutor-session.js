@@ -14,7 +14,7 @@ export default async function handler(req,res){
   const client=createElevenLabsClient();
   const sub=await client.user.subscription.get();
   if(!freeAccount(sub))return res.status(503).json({error:'free_account_required'});
-  const a=await client.conversationalAi.agents.get(AGENT_ID,{branchId:BRANCH_ID,includeDraft:false});
+  const a=await client.conversationalAi.agents.get(AGENT_ID,{branchId:BRANCH_ID});
   if(!safeAgent(a))return res.status(503).json({error:'safety_not_ready'});
   // Read only the published branch. Pin a version when the API supplies one; null is valid on some branch reads.
   const signed=await client.conversationalAi.conversations.getSignedUrl(sessionTarget(a,AGENT_ID,BRANCH_ID));
