@@ -94,5 +94,9 @@
   "confirm-delivery-address": [
     "Confirm a delivery address and time",
     "Phrases, dialogues and exercises for receiving a delivery."
+  ],
+  "respond-to-a-deadline": [
+    "Respond to a task due today",
+    "Clarify deadlines, agree priorities and communicate delivery."
   ]
 }

@@ -456,6 +456,10 @@
       {
         "beforeHeading": "Попрактикуйтесь",
         "markdown": "Полный путь от вакансии до первого звонка разобран в [руководстве по поиску работы](spanish-for-job-search.md)."
+      },
+      {
+        "beforeHeading": "Сначала решите, чего ждёте в ответ",
+        "markdown": "Если задача нужна уже сегодня, посмотрите [как уточнить срок и согласовать следующий шаг](respond-to-a-deadline.md)."
       }
     ]
   },
@@ -1126,6 +1130,50 @@
     "relatedRoutes": [
       "/resources/ask-for-clarification/",
       "/resources/book-an-appointment-by-phone/"
+    ]
+  },
+  {
+    "id": "ECN-FR-030",
+    "version": "1.0",
+    "status": "approved_for_publication",
+    "language": "ru",
+    "sourceFile": "editorial/articles/respond-to-a-deadline.md",
+    "route": "/resources/respond-to-a-deadline/",
+    "title": "Срок сегодня: как ответить на рабочую задачу по-испански",
+    "description": "Как ответить на срочную задачу по-испански: уточнить срок, согласовать приоритет, предложить перенос и отправить результат. Пять диалогов и двенадцать упражнений.",
+    "author": {
+      "type": "Organization",
+      "name": "Редакция Español con Natali"
+    },
+    "humanReviewer": null,
+    "preparedAt": "2026-11-10",
+    "publishedAt": "2026-11-10",
+    "updatedAt": null,
+    "canonicalOrigin": "https://www.espanolconnatali.com",
+    "wordCount": 2786,
+    "sourceUrls": [
+      "https://dle.rae.es/plazo",
+      "https://dle.rae.es/adjuntar",
+      "https://www.fundeu.es/dudas/palabra-clave/plazo/"
+    ],
+    "relatedFiles": [
+      "work-email.md",
+      "ask-for-clarification.md",
+      "spanish-for-job-search.md"
+    ],
+    "commercialCta": null,
+    "sha256": "86a1dfcbca44f84947440aa8709f93d7ca9ac87e39feba50458c62417fe578f4",
+    "editorialApproval": {
+      "by": "Fran",
+      "date": "2026-11-10",
+      "source": "Autorización directa para preparar artículo y PDF y publicarlos; autorización autónoma diaria vigente. No implica revisión individual de Natali."
+    },
+    "pillar": "P5",
+    "titleEs": "Cómo responder a una tarea con plazo para hoy",
+    "relatedRoutes": [
+      "/resources/work-email/",
+      "/resources/ask-for-clarification/",
+      "/resources/spanish-for-job-search/"
     ]
   }
 ]

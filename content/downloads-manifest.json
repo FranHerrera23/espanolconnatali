@@ -375,6 +375,20 @@
       "exercises": 12,
       "wordCountApprox": 2496,
       "bytes": 1331012
+    },
+    {
+      "id": "ECN-FR-030",
+      "articleRoute": "/resources/respond-to-a-deadline/",
+      "sourceFile": "editorial/articles/respond-to-a-deadline.md",
+      "sourceSha256": "86a1dfcbca44f84947440aa8709f93d7ca9ac87e39feba50458c62417fe578f4",
+      "file": "output/pdf/2026-11-10/respond-to-a-deadline-workbook-ru.pdf",
+      "downloadRoute": "/assets/downloads/respond-to-a-deadline-workbook-ru.pdf",
+      "sha256": "433357221e7ecdad72b08b299d7e49d444b176356953962c010399e2ca9afbc2",
+      "pages": 10,
+      "status": "approved_for_web_release",
+      "contentCheck": "All 121 source text blocks present in extracted PDF text; original source hash unchanged",
+      "visualCheck": "All 10 rendered pages inspected; 121 text blocks matched; no clipping or orphan exercise page",
+      "bytes": 1331066
     }
   ]
 }
