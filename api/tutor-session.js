@@ -1,5 +1,5 @@
 import {authorized,privateHeaders,sameOrigin} from '../server/tutor-access.mjs';
-import {createElevenLabsClient,learnerVariables,AGENT_ID,BRANCH_ID} from '../server/elevenlabs-client.mjs';
+import {learnerVariables} from '../server/tutor-input.mjs';
 import {safeAgent,freeAccount,topics,sessionTarget} from '../server/tutor-safety.mjs';
 export default async function handler(req,res){
  privateHeaders(res);res.setHeader('Content-Type','application/json; charset=utf-8');
@@ -11,6 +11,7 @@ export default async function handler(req,res){
  if(!Object.hasOwn(topics,b?.topic)||!['ru','es'].includes(b?.language))return res.status(400).json({error:'input'});
  if(!process.env.ELEVENLABS_API_KEY)return res.status(503).json({error:'not_ready'});
  try{
+  const {createElevenLabsClient,AGENT_ID,BRANCH_ID}=await import('../server/elevenlabs-client.mjs');
   const client=createElevenLabsClient();
   const sub=await client.user.subscription.get();
   if(!freeAccount(sub))return res.status(503).json({error:'free_account_required'});

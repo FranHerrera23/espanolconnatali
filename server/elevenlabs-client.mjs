@@ -11,14 +11,8 @@ export function createElevenLabsClient() {
   return new ElevenLabsClient();
 }
 
-export function learnerVariables(name) {
-  if (typeof name !== 'string') throw new TypeError('Enter a name');
-  const clean = name.normalize('NFC').trim().replace(/\s+/gu, ' ');
-  if (!clean || [...clean].length > 60 || !/^[\p{L}\p{M} .’'\-]+$/u.test(clean)) {
-    throw new TypeError('Enter a name of up to 60 letters');
-  }
-  return { user_name: clean };
-}
+export {learnerVariables} from './tutor-input.mjs';
+import {learnerVariables} from './tutor-input.mjs';
 
 // Read-only configuration check: this does not start or simulate a conversation.
 export async function inspectTutor(client = createElevenLabsClient()) {
