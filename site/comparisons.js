@@ -1,4 +1,12 @@
 (() => {
+ const back=document.querySelector('[data-method-back]');if(!back||!document.referrer)return;
+ try{const ref=new URL(document.referrer);if(ref.origin!==location.origin||!/^\/(?:es\/)?life-in-spain\//.test(ref.pathname)||ref.pathname===location.pathname)return;
+ back.href=ref.pathname+ref.search+ref.hash;back.textContent=back.dataset.lang==='es'?'← Volver a la sección anterior':'← Вернуться к предыдущему разделу';
+ back.addEventListener('click',e=>{if(e.button===0&&!e.metaKey&&!e.ctrlKey&&!e.shiftKey&&!e.altKey&&history.length>1){e.preventDefault();history.back();}});
+ }catch{}
+})();
+
+(() => {
  const hub=document.querySelector('[data-life-hub]');if(!hub)return;
  const bar=hub.querySelector('[data-hub-controls]'),buttons=[...hub.querySelectorAll('[data-hub-category]')],panels=[...hub.querySelectorAll('[data-hub-panel]')],welcome=hub.querySelector('[data-hub-welcome]'),status=hub.querySelector('[role=status]');
  const valid=new Set(buttons.map(b=>b.dataset.hubCategory));let animation;
