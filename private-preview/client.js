@@ -38,7 +38,7 @@ async function start(){
  try{
   // User gesture only. Do not spend a session when microphone permission is denied.
   const permission=await navigator.mediaDevices.getUserMedia({audio:true});permission.getTracks().forEach(t=>t.stop());if(gen!==generation)return;
-  const response=await fetch('/api/tutor-session',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,topic,language})});
+  const response=await fetch('/api/tutor-session/',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,topic,language})});
   const session=await response.json();if(gen!==generation)return;if(!response.ok){error=u(session.error==='free_account_required'?'free':session.error==='name'?'name':'notReady');stage='ready';render();return;}
   const c=await Conversation.startSession({signedUrl:session.signedUrl,connectionType:'websocket',dynamicVariables:session.dynamicVariables,
    onConversationCreated(c){if(gen===generation)conversation=c;else c.endSession()},
