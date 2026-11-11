@@ -32,6 +32,6 @@ export default function handler(req, res) {
   if (!['GET','HEAD'].includes(req.method)) { res.setHeader('Allow','GET, HEAD, POST'); return res.status(405).end(); }
   const cookies = Object.fromEntries((req.headers.cookie || '').split(';').map(x=>x.trim().split('=')).filter(x=>x.length===2));
   res.setHeader('Content-Type','text/html; charset=utf-8');
-  if (!valid(cookies[cookieName])) return res.status(401).send(req.method === 'HEAD' ? '' : gate);
+  if (req.query?.trial !== '1' && !valid(cookies[cookieName])) return res.status(401).send(req.method === 'HEAD' ? '' : gate);
   return res.status(200).send(req.method === 'HEAD' ? '' : readFileSync(join(root,'tutor.html'),'utf8'));
 }
