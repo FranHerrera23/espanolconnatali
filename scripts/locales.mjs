@@ -55,7 +55,6 @@ export async function buildLocale(language, { out, base, production, header, foo
     .replace(jobsTeaser('ru', true), jobsTeaser(language, true))
     .replace(/(<time data-publication-date datetime="([^"]+)">)[^<]+<\/time>/g, (_, start, date) => start + publicationDate.format(new Date(date)) + '</time>')
     .replaceAll('>О курсе ', local('>Ver el curso ', '>Explore the course '))
-    .replace('href="#fit">Подойдёт ли мне курс?', 'href="' + prefix + '/resources/">' + local('Explorar recursos', 'Explore resources'))
     .replace(/Около (\d+) мин чтения/g, local('Unos $1 min de lectura', 'About $1 min read'))
     .replace(/href="\/students\/"/g, 'href="' + prefix + '/students/"')
     .replace(/href="\/resources\/"/g, 'href="' + prefix + '/resources/"'));

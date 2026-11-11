@@ -143,8 +143,13 @@ section[id]{scroll-margin-top:112px}
 .course-proposition .course-price{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 16px;margin:24px 0 16px}
 .course-price span{font-size:12px;letter-spacing:.08em;text-transform:uppercase}
 .course-price strong{font-size:clamp(36px,4vw,56px);line-height:1;letter-spacing:-.04em;white-space:nowrap}
-.course-proposition .course-message{font-size:14px}
-.course-proposition .course-message + .button{margin-top:16px}
+.course-proposition .course-payment{font-size:14px;margin:12px 0 8px}
+.course-question{font-size:14px}
+.course-syllabus{border-block:1px solid rgb(255 255 255 / .4);margin:24px 0 16px}
+.course-syllabus summary{min-height:44px;padding:12px 0;cursor:pointer;font-weight:600}
+.course-syllabus summary:focus-visible{outline:2px solid white;outline-offset:4px}
+.course-syllabus ol{margin:0 0 16px;padding-inline-start:1.4em}
+.course-syllabus li + li{margin-top:6px}
 
 @media (min-width: 761px) {
   .hero-picture {

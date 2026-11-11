@@ -20,7 +20,16 @@ const publicationDate = new Intl.DateTimeFormat('ru-RU', { day:'numeric', month:
 const out=process.env.BUILD_DIR||'dist';if(!['dist','work/test-dist'].includes(out))throw Error('Invalid output directory');
 await rm(out,{recursive:true,force:true});await mkdir(out,{recursive:true});
 await cp('site/assets',out+'/assets',{recursive:true});for(const f of ['design-system.css','library.css','resources.js','reader.js','jobs.css','jobs.js','jobs-state.js','job-detail.js'])await cp('site/'+f,out+'/'+f);
-const home=(await readFile('site/index.html','utf8')).replaceAll('src="assets/brand/','src="/assets/brand/');
+const checkout = new URL(config.course.productUrl);
+checkout.searchParams.set('wanted', 'true');
+const coursePrice = new Intl.NumberFormat('en-US', {
+ style: 'currency', currency: config.course.currency, currencyDisplay: 'code',
+ maximumFractionDigits: Number.isInteger(config.course.price) ? 0 : 2
+}).format(config.course.price);
+const home = (await readFile('site/index.html', 'utf8'))
+ .replaceAll('src="assets/brand/', 'src="/assets/brand/')
+ .replaceAll('{{COURSE_CHECKOUT_URL}}', esc(checkout.href))
+ .replaceAll('{{COURSE_PRICE}}', esc(coursePrice));
 let header=home.match(/<header class="site-nav[\s\S]*?<\/header>/)[0].replaceAll('resources.html','/resources/').replaceAll('href="#','href="/#');
 const resourceMenu='<details class="resource-nav"><summary>Ресурсы</summary><div><a href="/resources/">Учить испанский</a><a href="/life-in-spain/">Жизнь в Испании</a></div></details>';
 header=header.replace('<a href="/resources/">Бесплатные материалы</a>',resourceMenu);

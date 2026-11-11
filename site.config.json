@@ -4,5 +4,10 @@
   "brandLatin": "Español con Natali",
   "locale": "ru-RU",
   "instagram": "https://www.instagram.com/espanol.con.natali/",
-  "releaseDate": "2026-11-03"
+  "releaseDate": "2026-11-03",
+  "course": {
+    "productUrl": "https://espanolconnatali.gumroad.com/l/spanish-from-zero",
+    "price": 75,
+    "currency": "USD"
+  }
 }
