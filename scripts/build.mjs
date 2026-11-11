@@ -32,8 +32,10 @@ const home = (await readFile('site/index.html', 'utf8'))
  .replaceAll('{{COURSE_PRICE}}', esc(coursePrice));
 let header=home.match(/<header class="site-nav[\s\S]*?<\/header>/)[0].replaceAll('resources.html','/resources/').replaceAll('href="#','href="/#');
 const resourceMenu='<details class="resource-nav"><summary>Ресурсы</summary><div><a href="/resources/">Учить испанский</a><a href="/life-in-spain/">Жизнь в Испании</a></div></details>';
-header=header.replace('<a href="/resources/">Бесплатные материалы</a>',resourceMenu);
-const readerHeader=header.replace(/<nav[\s\S]*?<\/nav>/,'<nav class="nav-links" id="navigation" aria-label="Навигация">'+resourceMenu+'</nav>').replace(/<a class="link nav-contact"[\s\S]*?<\/a>/,'');
+header=header.replace('<a href="/resources/">Бесплатные материалы</a>',resourceMenu)
+ .replace(/<a class="link nav-contact"[\s\S]*?<\/a>/,'')
+ .replace('</nav>','<a class="nav-waitlist" href="/tutor/">Лист ожидания</a></nav>');
+const readerHeader=header.replace(/<nav[\s\S]*?<\/nav>/,'<nav class="nav-links" id="navigation" aria-label="Навигация">'+resourceMenu+'</nav>');
 const footer=home.match(/<footer[\s\S]*?<\/footer>/)[0].replaceAll('href="#home"','href="/"');
 const org={'@type':'EducationalOrganization','@id':base+'/#organization',name:'Español con Natali',url:base+'/',sameAs:[config.instagram]};
 const editor={'@type':'Organization','@id':base+'/#editorial',name:'Редакция Español con Natali',parentOrganization:{'@id':org['@id']}};

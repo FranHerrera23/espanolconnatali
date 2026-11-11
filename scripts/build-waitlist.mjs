@@ -9,7 +9,8 @@ const copy = {
     terms: 'Запись бесплатна. Приглашение отправим, когда откроется доступ.',
     success: 'Вы в списке. Напишем, когда откроется доступ.', pending: 'Отправляем…', fail: 'Запись пока не сохранилась. Попробуйте ещё раз.',
     full: 'Список пока заполнен. Загляните позже.', back: 'На главную', library: 'Открытая библиотека',
-    homeTitle: 'Больше разговорной практики', homeCopy: 'Испанский с голосовым ИИ-репетитором. Поддержка на русском, когда она нужна.'
+    homeTitle: 'Немного испанского в удобное время.', homeCopy: 'Когда есть 15 или 30 минут, начните разговор с ИИ-репетитором. Если собьётесь, попросите подсказку по-русски.',
+    example: 'Пример разговора', meaning: 'Вы можете говорить помедленнее?'
   },
   es: {
     title: 'Conversá en español a tu ritmo', intro: 'Practicá por voz con una tutora de IA. Si te trabás, podés pedir ayuda en ruso.',
@@ -18,7 +19,8 @@ const copy = {
     terms: 'Anotarte es gratis. Te enviaremos una invitación cuando abramos el acceso.',
     success: 'Ya estás en la lista. Te avisaremos cuando abramos el acceso.', pending: 'Enviando…', fail: 'No pudimos guardar tu solicitud. Volvé a intentar.',
     full: 'La lista está llena por ahora. Volvé más adelante.', back: 'Ir al inicio', library: 'Biblioteca abierta',
-    homeTitle: 'Más oportunidades para hablar', homeCopy: 'Practicá español con una tutora virtual y pedí ayuda en ruso cuando la necesites.'
+    homeTitle: 'Hablá español cuando tengas un rato.', homeCopy: 'Si tenés 15 o 30 minutos, empezá una charla con la tutora de IA. Si te trabás, pedí una pista en ruso.',
+    example: 'Ejemplo de conversación', meaning: 'Una forma amable de pedir que hablen más despacio.'
   },
   en: {
     title: 'Speak Spanish at your own pace', intro: 'Practise by voice with an AI tutor and ask for help in Russian when you get stuck.',
@@ -27,7 +29,8 @@ const copy = {
     terms: 'Joining is free. We’ll invite you when access opens.',
     success: 'You’re on the list. We’ll email you when access opens.', pending: 'Sending…', fail: 'We couldn’t save your request. Please try again.',
     full: 'The waitlist is full for now. Please check back later.', back: 'Back to home', library: 'Open library',
-    homeTitle: 'More chances to speak Spanish', homeCopy: 'Practise with a voice AI tutor and ask for help in Russian when you need it.'
+    homeTitle: 'Speak Spanish when you have a moment.', homeCopy: 'When you have 15 or 30 minutes, start a conversation with the AI tutor. If you get stuck, ask for a hint in Russian.',
+    example: 'Conversation example', meaning: 'Could you speak a little more slowly?'
   }
 };
 
@@ -53,8 +56,21 @@ for (const [language, c] of Object.entries(copy)) {
 </section></main><footer class="tw-footer"><a href="${root(language)}">${text(c.back)}</a><a href="${root(language)}resources/">${text(c.library)}</a></footer><script src="/tutor-waitlist.js" defer></script></body></html>`);
   const homePath = 'dist' + root(language) + 'index.html';
   const home = await readFile(homePath, 'utf8');
-  const teaser = `<section class="section wrap" id="tutor"><p class="label">Natali AI Tutor</p><h2>${text(c.homeTitle)}</h2><p>${text(c.homeCopy)}</p><p><a class="button" href="${destination}">${text(c.cta)}</a></p></section>`;
-  const at = home.indexOf('<section class="resources');
+  const teaser = `<section class="tutor-teaser wrap" id="tutor" aria-labelledby="tutor-title">
+    <div class="tutor-teaser-content">
+      <p class="label">Natali AI Tutor</p>
+      <h2 id="tutor-title">${text(c.homeTitle)}</h2>
+      <p>${text(c.homeCopy)}</p>
+      <a class="button" href="${destination}">${text(c.cta)}</a>
+    </div>
+    <figure class="tutor-teaser-example">
+      <figcaption class="label">${text(c.example)}</figcaption>
+      <blockquote lang="es">¿Puede hablar más despacio?</blockquote>
+      <p>${text(c.meaning)}</p>
+      <blockquote class="tutor-teaser-reply" lang="es">Claro. Vamos poco a poco.</blockquote>
+    </figure>
+  </section>`;
+  const at = home.indexOf('<section class="fit section wrap rule"');
   if (at === -1) throw new Error('Tutor link insertion point missing for ' + language);
   await writeFile(homePath, home.slice(0, at) + teaser + home.slice(at));
 }

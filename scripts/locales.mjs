@@ -38,7 +38,7 @@ export async function buildLocale(language, { out, base, production, header, foo
     .replace('>Отзывы учеников<', local('>Testimonios<', '>Testimonials<'))
     .replace('>О Натали<', local('>Sobre Natali<', '>About Natali<'))
     .replace('>Лично с Натали<', local('>Clases privadas<', '>Private lessons<'))
-    .replace('>О курсе ', local('>Ver el curso ', '>Explore the course ')));
+    .replace('href="/tutor/">Лист ожидания<', 'href="' + prefix + '/tutor/">' + local('Lista de espera', 'Waitlist') + '<'));
   const jobsHeader = internal(readerHeader).replaceAll('Бесплатные материалы', local('Recursos gratuitos', 'Free resources')).replace('>Ресурсы<', local('>Recursos<','>Resources<')).replace('>Учить испанский<',local('>Aprender español<','>Learn Spanish<')).replace('>Жизнь в Испании<',local('>Vida en España<','>Life in Spain<')).replace('Меню', local('Menú', 'Menu')).replace('aria-label="Навигация"', local('aria-label="Navegación"', 'aria-label="Navigation"'));
   const write = async (route, title, description, body, animated) => {
     const isJobs = route === jobsRoute;
