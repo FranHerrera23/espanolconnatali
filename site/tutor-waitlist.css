@@ -45,3 +45,35 @@
   .tw-head .brand{font-size:16px}
   .tw-head .brand img{width:32px;height:32px}
 }
+
+/* En Confianza uses the school's green with an ivory and brass palette. */
+.tw-grid {
+  --tw-ivory:#fff8ec;
+  --tw-brass:#d2b98e;
+  margin-block:var(--s2) var(--s6);
+  padding:clamp(24px,5vw,64px);
+  background:#1c3028;
+  color:var(--tw-ivory);
+  border-radius:4px;
+}
+.tw-signature {
+  display:flex;
+  flex-wrap:wrap;
+  align-items:baseline;
+  gap:var(--s1) var(--s2);
+  margin-bottom:var(--s3);
+  color:var(--tw-brass);
+  font-size:.75rem;
+}
+.tw-signature span:first-child {font-size:1.15rem;font-weight:600;letter-spacing:-.02em}
+.tw-signature span + span {border-left:1px solid #8e795d;padding-left:var(--s2)}
+.tw-hero h1 {font-size:clamp(2.4rem,4.8vw,4.3rem);max-width:17ch;text-wrap:balance}
+.tw-intro,.tw-promise {color:#e6dfd2}
+.tw-panel {color:var(--color-primary);background:#f9f3e8;border:1px solid #dfcfb7;border-radius:12px}
+.tw-panel .label {color:#70543a}
+.tw-example {border-top:2px solid #b79b71}
+@media(max-width:440px){
+  .tw-grid{padding:22px 16px}
+  .tw-panel{padding:20px 15px}
+  .tw-signature span + span{border:0;padding:0}
+}

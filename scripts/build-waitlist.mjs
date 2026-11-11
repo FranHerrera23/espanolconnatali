@@ -5,9 +5,9 @@ const productName = 'En Confianza';
 
 const copy = {
   ru: {
-    title: 'Вам уже есть о чём поговорить.', intro: 'Книга, которую хочется порекомендовать. Выставка, о которой вы всё ещё думаете. Место, куда хочется вернуться.',
-    descriptor: 'Личное пространство для разговоров на испанском', promise: 'Говорите о том, что вам интересно. Если не хватает слов, попросите подсказку на русском.',
-    audienceTitle: 'Если вы учите испанский для себя', audience: 'Вам хочется рассказывать по-испански о том, что вы любите, замечаете и думаете. Если вы только начинаете или возвращаетесь после перерыва, можно начать с нескольких фраз и попросить помощи на русском.',
+    title: 'Вам уже есть о чём поговорить.', intro: 'Вечер в ресторане, который вы давно хотели посетить. Разговор после выставки. Отель, в который хочется вернуться.',
+    descriptor: 'Ваш личный консьерж для разговоров на испанском', promise: 'Выбирайте, о чём и когда говорить. Если не хватает слов, попросите подсказку на русском.',
+    audienceTitle: 'Испанский для себя', audience: 'Для женщин, которым хочется говорить по-испански о том, что они замечают, любят и выбирают. Даже если вы только начинаете, разговор может быть о ваших впечатлениях и вкусах. Начните с нескольких фраз и при необходимости попросите помощи на русском.',
     howTitle: 'Как проходит практика', steps: [
       ['Найдите 15 или 30 минут', 'Начните, когда удобно. Можно говорить в будни или оставить время на выходные.'],
       ['Выберите тему', 'Расскажите о том, что вас заинтересовало, или начните с простой повседневной ситуации.'],
@@ -18,16 +18,16 @@ const copy = {
     demoPrompt: 'Как сказать «Мне понравился свет»?', demoReply: 'Me gustó la luz. ¿Qué más te llamó la atención?',
     demoMeaning: 'Мне понравился свет. Что ещё привлекло ваше внимание?',
     cta: 'Записаться в лист ожидания', email: 'Ваш email', consent: 'Согласен(-на) получить письмо о доступе к En Confianza. Мы используем email для этого списка.',
-    terms: 'Запись бесплатна. Приглашение отправим, когда откроется доступ.',
+    terms: 'Оставьте email, чтобы получить приглашение, когда откроется доступ. Запись бесплатна.',
     success: 'Вы в списке. Напишем, когда откроется доступ.', pending: 'Отправляем…', fail: 'Запись пока не сохранилась. Попробуйте ещё раз.',
-    full: 'Список пока заполнен. Загляните позже.', back: 'На главную', library: 'Открытая библиотека',
-    homeTitle: 'Вам уже есть о чём поговорить.', homeCopy: 'Ваше личное пространство для испанского. Выберите 15 или 30 минут, говорите о том, что вам интересно, и просите подсказку на русском.',
+    invitation: 'Доступ по приглашению', full: 'Список пока заполнен. Загляните позже.', back: 'На главную', library: 'Открытая библиотека',
+    homeTitle: 'Вам уже есть о чём поговорить.', homeCopy: 'Ваш личный консьерж для разговоров на испанском. Выберите 15 или 30 минут и тему, которая вам близка. Подсказки — на русском.',
     example: 'Пример разговора', meaning: 'Вы можете говорить помедленнее?'
   },
   es: {
-    title: 'Ya tenés de qué hablar.', intro: 'Un libro que querés recomendar. Una exposición que te quedó dando vueltas. Un lugar al que volverías.',
-    descriptor: 'Tu espacio privado para conversar en español', promise: 'Hablá de lo que te interesa. Si te faltan palabras, pedí una pista en ruso.',
-    audienceTitle: 'Si aprendés español para vos', audience: 'Querés poder contar en español lo que te gusta, lo que te llama la atención y lo que pensás. Si recién empezás o volvés después de una pausa, podés hacerlo con unas pocas frases y pedir ayuda en ruso.',
+    title: 'Ya tenés de qué hablar.', intro: 'Una cena en un lugar que elegiste con tiempo. Una conversación después de una exposición. Un hotel al que siempre volvés.',
+    descriptor: 'Tu concierge privado de conversación en español', promise: 'Vos elegís de qué hablar y cuándo. Si te faltan palabras, pedí una pista en ruso.',
+    audienceTitle: 'Español para vos', audience: 'Pensado para mujeres que quieren conversar en español sobre lo que eligen, lo que disfrutan y lo que piensan. Si recién empezás o volvés después de una pausa, podés empezar con unas pocas frases y pedir ayuda en ruso.',
     howTitle: 'Cómo es la práctica', steps: [
       ['Elegí 15 o 30 minutos', 'Empezá cuando te quede cómodo. Podés practicar entre semana o guardar tiempo para el fin de semana.'],
       ['Traé un tema que te interese', 'Contá algo que te llamó la atención o empezá con una situación cotidiana.'],
@@ -38,16 +38,16 @@ const copy = {
     demoPrompt: 'Как сказать «Мне понравился свет»?', demoReply: 'Me gustó la luz. ¿Qué más te llamó la atención?',
     demoMeaning: 'Pedís en ruso cómo decir que te gustó la luz. La tutora te da la frase y te invita a seguir hablando.',
     cta: 'Sumarme a la lista de espera', email: 'Tu correo', consent: 'Acepto recibir un correo sobre el acceso a En Confianza. Usamos tu correo para esta lista.',
-    terms: 'Anotarte es gratis. Te enviaremos una invitación cuando abramos el acceso.',
+    terms: 'Dejá tu correo y te invitaremos cuando abramos el acceso. Anotarte es gratis.',
     success: 'Ya estás en la lista. Te avisaremos cuando abramos el acceso.', pending: 'Enviando…', fail: 'No pudimos guardar tu solicitud. Volvé a intentar.',
-    full: 'La lista está llena por ahora. Volvé más adelante.', back: 'Ir al inicio', library: 'Biblioteca abierta',
-    homeTitle: 'Ya tenés de qué hablar.', homeCopy: 'Tu espacio privado para conversar en español. Elegí 15 o 30 minutos, traé un tema que te interese y pedí una pista en ruso si te trabás.',
+    invitation: 'Acceso por invitación', full: 'La lista está llena por ahora. Volvé más adelante.', back: 'Ir al inicio', library: 'Biblioteca abierta',
+    homeTitle: 'Ya tenés de qué hablar.', homeCopy: 'Tu concierge privado de conversación en español. Elegí 15 o 30 minutos, traé un tema que te interese y pedí una pista en ruso si te trabás.',
     example: 'Ejemplo de conversación', meaning: 'Una forma amable de pedir que hablen más despacio.'
   },
   en: {
-    title: 'You already have something to say.', intro: 'A book you want to recommend. An exhibition you’re still thinking about. A place you’d go back to.',
-    descriptor: 'Your private space to speak Spanish', promise: 'Talk about what interests you. If the words don’t come, ask for a hint in Russian.',
-    audienceTitle: 'If you’re learning Spanish for yourself', audience: 'You want to talk about what you enjoy, what catches your eye and what you think. If you’re new to Spanish or coming back after a break, you can start with a few phrases and ask for help in Russian.',
+    title: 'You already have something to say.', intro: 'A dinner you’ve been looking forward to. A conversation after an exhibition. A hotel you always return to.',
+    descriptor: 'Your private concierge for Spanish conversation', promise: 'You choose when to speak and what to talk about. If the words don’t come, ask for a hint in Russian.',
+    audienceTitle: 'Spanish you learn for yourself', audience: 'For women who want to talk about their tastes, their plans and what catches their eye. Even as a beginner, you can start with a few phrases and ask for help in Russian.',
     howTitle: 'How practice works', steps: [
       ['Choose 15 or 30 minutes', 'Start when it suits you. Practise during the week or keep some time for the weekend.'],
       ['Bring a topic you care about', 'Talk about something that caught your eye, or start with an everyday situation.'],
@@ -58,10 +58,10 @@ const copy = {
     demoPrompt: 'Как сказать «Мне понравился свет»?', demoReply: 'Me gustó la luz. ¿Qué más te llamó la atención?',
     demoMeaning: 'Ask in Russian how to say you liked the light. The tutor gives you the phrase and invites you to keep talking.',
     cta: 'Join the waitlist', email: 'Your email address', consent: 'I agree to receive an email about access to En Confianza. We use your email for this waitlist.',
-    terms: 'Joining is free. We’ll invite you when access opens.',
+    terms: 'Leave your email for an invitation when access opens. Joining is free.',
     success: 'You’re on the list. We’ll email you when access opens.', pending: 'Sending…', fail: 'We couldn’t save your request. Please try again.',
-    full: 'The waitlist is full for now. Please check back later.', back: 'Back to home', library: 'Open library',
-    homeTitle: 'You already have something to say.', homeCopy: 'Your private space to speak Spanish. Choose 15 or 30 minutes, bring a topic you care about and ask for a hint in Russian whenever you need one.',
+    invitation: 'Access by invitation', full: 'The waitlist is full for now. Please check back later.', back: 'Back to home', library: 'Open library',
+    homeTitle: 'You already have something to say.', homeCopy: 'Your private concierge for Spanish conversation. Choose 15 or 30 minutes, bring a topic you care about and ask for a hint in Russian whenever you need one.',
     example: 'Conversation example', meaning: 'Could you speak a little more slowly?'
   }
 };
@@ -79,7 +79,7 @@ for (const [language, c] of Object.entries(copy)) {
 <body><header class="tw-head"><a class="brand" href="${root(language)}"><img src="${logosrc}" alt="" width="44" height="44">Español con Natali</a><nav aria-label="Language">${Object.keys(copy).map(code=>`<a lang="${code}" href="${tutor(code)}"${code===language?' aria-current="page"':''}>${code.toUpperCase()}</a>`).join('')}</nav></header>
 <main class="tw-main">
 <div class="tw-grid">
-<section class="tw-hero"><p class="label" lang="es">${productName}</p><h1>${text(c.title)}</h1><p class="tw-descriptor">${text(c.descriptor)}</p><p class="tw-intro">${text(c.intro)}</p><p class="tw-promise">${text(c.promise)}</p></section>
+<section class="tw-hero"><p class="tw-signature"><span lang="es">${productName}</span><span>${text(c.invitation)}</span></p><h1>${text(c.title)}</h1><p class="tw-descriptor">${text(c.descriptor)}</p><p class="tw-intro">${text(c.intro)}</p><p class="tw-promise">${text(c.promise)}</p></section>
 <section class="tw-panel" aria-labelledby="waitlist-heading">
 <p class="label">Founding Members</p><h2 id="waitlist-heading">${text(c.cta)}</h2><p class="tw-terms">${text(c.terms)}</p>
 <div class="tw-package"><p><strong>${text(c.package)}</strong></p><p>${text(c.detail)}</p></div>
