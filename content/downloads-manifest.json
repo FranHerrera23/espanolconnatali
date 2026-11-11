@@ -268,18 +268,32 @@
     {
       "id": "ECN-FR-018",
       "articleRoute": "/resources/at-a-cafe/",
-      "sourceFile": "editorial/articles/at-a-cafe.md",
-      "sourceSha256": "e8d89299238d6ab46692a99383934cf79a456d63644246662bb95d4b86f5c9e0",
-      "file": "output/pdf/2026-11-04/at-a-cafe-workbook-ru.pdf",
+      "sourceFile": "editorial/drafts/cafe-v2/at-a-cafe.md",
+      "sourceSha256": "50bfbf2e023ff75e9b6b3caa16f732cdb21082e5556efe0f4809266e30d82f06",
+      "file": "output/pdf/2026-11-11/at-a-cafe-workbook-ru.pdf",
       "downloadRoute": "/assets/downloads/at-a-cafe-workbook-ru.pdf",
-      "sha256": "57f18db1bc57f223b055181781349787531810dcf97fea6782b379d36b99edeb",
-      "pages": 5,
+      "sha256": "caca5ba68851c22fcdf84e5dad5354fbb6f911d1994b42e25140cf7d07a40eb3",
+      "pages": 7,
       "status": "approved_for_web_release",
-      "contentCheck": "Full PDF text preserved except removed AI disclosure; page count unchanged; 2026-11-07",
-      "visualCheck": "Updated editorial note rendered and visually checked in contact sheets; 2026-11-07",
-      "visualEvidence": "editorial/batches/2026-11-04/qa/pdf/ECN-FR-018.jpg",
-      "version": "1.2-editorial-note",
-      "bytes": 98360
+      "contentCheck": "All 79 source text blocks present in extracted PDF text; original source hash unchanged",
+      "visualCheck": "Inspección de las 7 páginas finales a 90 dpi. Ejercicios 1–5 y 6–10 en páginas separadas con espacio para escribir. Sin recortes ni solapamientos.",
+      "linkCheck": {
+        "absoluteUrls": [
+          "https://analafantastica.com/wp-content/uploads/ALF-6-CARTA-CAFETERIA-v.2-mas-grande.pdf",
+          "https://dle.rae.es/cortado",
+          "https://dle.rae.es/cuenta",
+          "https://dle.rae.es/invitar",
+          "https://dle.rae.es/manchado",
+          "https://www.espanolconnatali.com/resources/ask-for-clarification/",
+          "https://www.espanolconnatali.com/resources/at-a-cafe/",
+          "https://www.espanolconnatali.com/resources/order-tapas-and-raciones/",
+          "https://www.starbucks.es/es/carta/bebidas/bebidas-espresso"
+        ],
+        "localTargetsVerified": true
+      },
+      "version": "2.0",
+      "exercises": 10,
+      "bytes": 1318680
     },
     {
       "id": "ECN-FR-016",
@@ -389,6 +403,33 @@
       "contentCheck": "All 121 source text blocks present in extracted PDF text; original source hash unchanged",
       "visualCheck": "All 10 rendered pages inspected; 121 text blocks matched; no clipping or orphan exercise page",
       "bytes": 1331066
+    },
+    {
+      "id": "ECN-FR-031",
+      "articleRoute": "/resources/report-an-accommodation-problem/",
+      "sourceFile": "editorial/articles/report-an-accommodation-problem.md",
+      "sourceSha256": "e02db7bb5304d2dacccc87cb10c8d6d33b397b4324cb556dc752fc792c331d6f",
+      "file": "output/pdf/2026-11-11/report-an-accommodation-problem-workbook-ru.pdf",
+      "downloadRoute": "/assets/downloads/report-an-accommodation-problem-workbook-ru.pdf",
+      "sha256": "6ece5b45a1f9138be786edf414de867d8b36051c89428973080962f36d967bd8",
+      "pages": 8,
+      "status": "approved_for_web_release",
+      "contentCheck": "All 88 source text blocks present in extracted PDF text; original source hash unchanged",
+      "visualCheck": "Inspección de las 8 páginas finales a 90 dpi. Ejercicios 1–5 y 6–10 en páginas separadas con espacio para escribir. Sin recortes ni solapamientos.",
+      "linkCheck": {
+        "absoluteUrls": [
+          "https://cvc.cervantes.es/ensenanza/biblioteca_ELE/plan_curricular/indice.htm",
+          "https://dle.rae.es/aver%C3%ADa",
+          "https://dle.rae.es/recepci%C3%B3n",
+          "https://www.espanolconnatali.com/resources/ask-for-clarification/",
+          "https://www.espanolconnatali.com/resources/confirm-delivery-address/",
+          "https://www.espanolconnatali.com/resources/report-an-accommodation-problem/"
+        ],
+        "localTargetsVerified": true
+      },
+      "version": "1.0",
+      "exercises": 10,
+      "bytes": 1320861
     }
   ]
 }

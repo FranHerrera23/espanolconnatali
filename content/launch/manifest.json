@@ -741,49 +741,49 @@
     ]
   },
   {
-    "id": "ECN-FR-018",
-    "version": "1.0",
     "status": "approved_for_publication",
     "language": "ru",
-    "sourceFile": "editorial/articles/at-a-cafe.md",
-    "route": "/resources/at-a-cafe/",
-    "routeStatus": "proposed_not_live",
-    "title": "Испанский в кафе: заказать, уточнить и попросить счёт",
-    "description": "Заказ, уточнение и отдельная оплата: диалоги и задания.",
     "author": {
       "type": "Organization",
       "name": "Редакция Español con Natali"
     },
     "humanReviewer": null,
-    "preparedAt": "2026-11-04",
-    "publishedAt": "2026-11-05",
-    "updatedAt": null,
+    "preparedAt": "2026-11-11",
     "canonicalOrigin": "https://www.espanolconnatali.com",
-    "wordCount": 754,
-    "sourceUrls": [
-      "https://dle.rae.es/cuenta",
-      "https://dle.rae.es/llevar",
-      "https://dle.rae.es/invitar"
-    ],
-    "relatedFiles": [
-      "ask-for-clarification.md",
-      "make-plans-in-spanish.md",
-      "order-tapas-and-raciones.md"
-    ],
     "commercialCta": null,
-    "sha256": "e8d89299238d6ab46692a99383934cf79a456d63644246662bb95d4b86f5c9e0",
-    "editorialApproval": {
-      "by": "Fran",
-      "date": "2026-11-05",
-      "source": "Autorización expresa de publicación en el chat web."
-    },
-    "pillar": "P5",
-    "titleEs": "En el café",
+    "id": "ECN-FR-018",
+    "version": "2.0",
+    "titleEs": "Español en el café: pedir, aclarar y pagar",
+    "description": "Как заказать кофе по-испански, уточнить размер, молоко и доплату, попросить замену и разделить счёт. Две реальные карты, пять диалогов и десять упражнений.",
+    "publishedAt": "2026-11-05",
+    "updatedAt": "2026-11-11",
     "relatedRoutes": [
       "/resources/ask-for-clarification/",
-      "/resources/make-plans-in-spanish/",
       "/resources/order-tapas-and-raciones/"
-    ]
+    ],
+    "sourceFile": "editorial/drafts/cafe-v2/at-a-cafe.md",
+    "sha256": "50bfbf2e023ff75e9b6b3caa16f732cdb21082e5556efe0f4809266e30d82f06",
+    "route": "/resources/at-a-cafe/",
+    "title": "Испанский в кафе: заказать, уточнить и попросить счёт",
+    "sourceUrls": [
+      "https://analafantastica.com/wp-content/uploads/ALF-6-CARTA-CAFETERIA-v.2-mas-grande.pdf",
+      "https://www.starbucks.es/es/carta/bebidas/bebidas-espresso",
+      "https://dle.rae.es/cortado",
+      "https://dle.rae.es/manchado",
+      "https://dle.rae.es/cuenta",
+      "https://dle.rae.es/invitar"
+    ],
+    "pillar": "P5",
+    "wordCount": 1718,
+    "relatedFiles": [
+      "ask-for-clarification.md",
+      "order-tapas-and-raciones.md"
+    ],
+    "editorialApproval": {
+      "by": "Fran",
+      "date": "2026-11-11",
+      "source": "Autorización autónoma vigente y entrega editorial del 11/11."
+    }
   },
   {
     "id": "ECN-FR-016",
@@ -1116,7 +1116,8 @@
     ],
     "relatedFiles": [
       "ask-for-clarification.md",
-      "book-an-appointment-by-phone.md"
+      "book-an-appointment-by-phone.md",
+      "report-an-accommodation-problem.md"
     ],
     "commercialCta": null,
     "sha256": "7999b5680d3785a5b4117023da83433f9f34a42cc44e58b329ad09dcbf641b0c",
@@ -1129,7 +1130,8 @@
     "titleEs": "Cómo confirmar la dirección y el horario de una entrega",
     "relatedRoutes": [
       "/resources/ask-for-clarification/",
-      "/resources/book-an-appointment-by-phone/"
+      "/resources/book-an-appointment-by-phone/",
+      "/resources/report-an-accommodation-problem/"
     ]
   },
   {
@@ -1175,5 +1177,47 @@
       "/resources/ask-for-clarification/",
       "/resources/spanish-for-job-search/"
     ]
+  },
+  {
+    "id": "ECN-FR-031",
+    "version": "1.0",
+    "status": "approved_for_publication",
+    "language": "ru",
+    "sourceFile": "editorial/articles/report-an-accommodation-problem.md",
+    "sha256": "e02db7bb5304d2dacccc87cb10c8d6d33b397b4324cb556dc752fc792c331d6f",
+    "route": "/resources/report-an-accommodation-problem/",
+    "title": "Как объяснить проблему в отеле или квартире по-испански",
+    "titleEs": "Cómo explicar un problema en el alojamiento en español",
+    "description": "Как сообщить о шуме, поломке или отсутствии горячей воды в отеле или квартире, попросить помощь и уточнить срок. Пять диалогов и десять упражнений.",
+    "author": {
+      "type": "Organization",
+      "name": "Редакция Español con Natali"
+    },
+    "humanReviewer": null,
+    "preparedAt": "2026-11-11",
+    "publishedAt": "2026-11-11",
+    "updatedAt": null,
+    "canonicalOrigin": "https://www.espanolconnatali.com",
+    "sourceUrls": [
+      "https://dle.rae.es/aver%C3%ADa",
+      "https://dle.rae.es/recepci%C3%B3n",
+      "https://cvc.cervantes.es/ensenanza/biblioteca_ELE/plan_curricular/indice.htm"
+    ],
+    "relatedRoutes": [
+      "/resources/ask-for-clarification/",
+      "/resources/confirm-delivery-address/"
+    ],
+    "commercialCta": null,
+    "pillar": "P5",
+    "wordCount": 2018,
+    "relatedFiles": [
+      "ask-for-clarification.md",
+      "confirm-delivery-address.md"
+    ],
+    "editorialApproval": {
+      "by": "Fran",
+      "date": "2026-11-11",
+      "source": "Autorización autónoma vigente y entrega editorial del 11/11."
+    }
   }
 ]
