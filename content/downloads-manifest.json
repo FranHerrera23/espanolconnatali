@@ -430,6 +430,20 @@
       "version": "1.0",
       "exercises": 10,
       "bytes": 1320861
+    },
+    {
+      "id": "ECN-FR-032",
+      "articleRoute": "/resources/tell-what-you-did-yesterday/",
+      "sourceFile": "editorial/articles/tell-what-you-did-yesterday.md",
+      "sourceSha256": "9c16fc995f0d10a8b71a6426ef15f6990165273311f0378d1de0fac89517ad6d",
+      "file": "output/pdf/2026-11-12/tell-what-you-did-yesterday-workbook-ru.pdf",
+      "downloadRoute": "/assets/downloads/tell-what-you-did-yesterday-workbook-ru.pdf",
+      "sha256": "8c4d4548775eb994dbfb22af820d3fadf12185d141d858aee530a8ecb054e555",
+      "pages": 7,
+      "status": "approved_for_web_release",
+      "contentCheck": "All 101 source text blocks present in extracted PDF text; original source hash unchanged",
+      "visualCheck": "Siete páginas renderizadas e inspeccionadas. Tablas, diálogos, espacio de escritura y respuestas legibles sin recortes.",
+      "bytes": 1315312
     }
   ]
 }

@@ -26,7 +26,8 @@
     ],
     "relatedFiles": [
       "ser-estar.md",
-      "ask-for-clarification.md"
+      "ask-for-clarification.md",
+      "tell-what-you-did-yesterday.md"
     ],
     "commercialCta": null,
     "sha256": "d9ab869873bae960dddabcf25483ea9ced38b116b66008b0a71ddc5c8995920c",
@@ -1218,6 +1219,47 @@
       "by": "Fran",
       "date": "2026-11-11",
       "source": "Autorización autónoma vigente y entrega editorial del 11/11."
+    }
+  },
+  {
+    "id": "ECN-FR-032",
+    "version": "1.0",
+    "status": "approved_for_publication",
+    "language": "ru",
+    "sourceFile": "editorial/articles/tell-what-you-did-yesterday.md",
+    "route": "/resources/tell-what-you-did-yesterday/",
+    "title": "Как рассказать по-испански, что вы делали вчера",
+    "titleEs": "Cómo contar lo que hiciste ayer en español",
+    "description": "Как ответить на «¿Qué hiciste ayer?»: формы прошедшего времени, пять диалогов и десять упражнений с ответами.",
+    "author": {
+      "type": "Organization",
+      "name": "Редакция Español con Natali"
+    },
+    "humanReviewer": null,
+    "preparedAt": "2026-11-12",
+    "publishedAt": "2026-11-12",
+    "updatedAt": null,
+    "canonicalOrigin": "https://www.espanolconnatali.com",
+    "wordCount": 1228,
+    "sourceUrls": [
+      "https://cvc.cervantes.es/Ensenanza/Biblioteca_Ele/plan_curricular/niveles/02_gramatica_inventario_a1-a2.htm",
+      "https://cvc.cervantes.es/ensenanza/actividades_ave/niveli/ficha_22.htm"
+    ],
+    "relatedFiles": [
+      "ask-for-clarification.md",
+      "keep-a-conversation-going.md"
+    ],
+    "relatedRoutes": [
+      "/resources/ask-for-clarification/",
+      "/resources/keep-a-conversation-going/"
+    ],
+    "commercialCta": null,
+    "sha256": "9c16fc995f0d10a8b71a6426ef15f6990165273311f0378d1de0fac89517ad6d",
+    "pillar": "P5",
+    "editorialApproval": {
+      "by": "Fran",
+      "date": "2026-11-10",
+      "source": "Autorización general de publicación autónoma diaria. No implica revisión individual."
     }
   }
 ]
