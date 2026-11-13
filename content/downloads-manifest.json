@@ -444,6 +444,20 @@
       "contentCheck": "All 101 source text blocks present in extracted PDF text; original source hash unchanged",
       "visualCheck": "Siete páginas renderizadas e inspeccionadas. Tablas, diálogos, espacio de escritura y respuestas legibles sin recortes.",
       "bytes": 1315312
+    },
+    {
+      "id": "ECN-FR-033",
+      "articleRoute": "/resources/ask-for-directions/",
+      "sourceFile": "editorial/articles/ask-for-directions.md",
+      "sourceSha256": "5f80a832d9c2528897e8a92a8790ef4d132b0e1ede2cdb42502e1d6716671431",
+      "file": "output/pdf/2026-11-13/ask-for-directions-workbook-ru.pdf",
+      "downloadRoute": "/assets/downloads/ask-for-directions-workbook-ru.pdf",
+      "sha256": "c3184970b2ea33b72caf4c70f1cf9881673c15e7a229f60b3978a3c0552fa1db",
+      "pages": 7,
+      "status": "approved_for_web_release",
+      "contentCheck": "All 87 source text blocks present in extracted PDF text; original source hash unchanged",
+      "visualCheck": "Siete páginas renderizadas e inspeccionadas. Tablas, diálogos, espacio de escritura y respuestas sin recortes.",
+      "bytes": 1314123
     }
   ]
 }

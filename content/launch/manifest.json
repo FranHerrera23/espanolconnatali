@@ -1213,7 +1213,8 @@
     "wordCount": 2018,
     "relatedFiles": [
       "ask-for-clarification.md",
-      "confirm-delivery-address.md"
+      "confirm-delivery-address.md",
+      "ask-for-directions.md"
     ],
     "editorialApproval": {
       "by": "Fran",
@@ -1255,6 +1256,47 @@
     ],
     "commercialCta": null,
     "sha256": "9c16fc995f0d10a8b71a6426ef15f6990165273311f0378d1de0fac89517ad6d",
+    "pillar": "P5",
+    "editorialApproval": {
+      "by": "Fran",
+      "date": "2026-11-10",
+      "source": "Autorización general de publicación autónoma diaria. No implica revisión individual."
+    }
+  },
+  {
+    "id": "ECN-FR-033",
+    "version": "1.0",
+    "status": "approved_for_publication",
+    "language": "ru",
+    "sourceFile": "editorial/articles/ask-for-directions.md",
+    "route": "/resources/ask-for-directions/",
+    "title": "Как спросить дорогу по-испански и понять ответ",
+    "titleEs": "Cómo pedir y entender indicaciones en español",
+    "description": "Как спросить дорогу по-испански: ориентиры и повороты, пять диалогов и десять упражнений с ответами.",
+    "author": {
+      "type": "Organization",
+      "name": "Редакция Español con Natali"
+    },
+    "humanReviewer": null,
+    "preparedAt": "2026-11-13",
+    "publishedAt": "2026-11-13",
+    "updatedAt": null,
+    "canonicalOrigin": "https://www.espanolconnatali.com",
+    "wordCount": 1145,
+    "sourceUrls": [
+      "https://cvc.cervantes.es/ensenanza/biblioteca_ele/plan_curricular/niveles/01_objetivos_relacion_a1-a2.htm",
+      "https://cvc.cervantes.es/ensenanza/biblioteca_ele/plan_curricular/niveles/05_funciones_inventario_a1-a2.htm"
+    ],
+    "relatedFiles": [
+      "ask-for-clarification.md",
+      "report-an-accommodation-problem.md"
+    ],
+    "relatedRoutes": [
+      "/resources/ask-for-clarification/",
+      "/resources/report-an-accommodation-problem/"
+    ],
+    "commercialCta": null,
+    "sha256": "5f80a832d9c2528897e8a92a8790ef4d132b0e1ede2cdb42502e1d6716671431",
     "pillar": "P5",
     "editorialApproval": {
       "by": "Fran",
