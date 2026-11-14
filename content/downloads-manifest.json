@@ -314,17 +314,16 @@
     {
       "id": "ECN-FR-026",
       "articleRoute": "/resources/book-an-appointment-by-phone/",
-      "sourceFile": "editorial/articles/book-an-appointment-by-phone.md",
-      "sourceSha256": "222ad97c69a0697c3411cd91eb1895c194b5f4a9ad98b9dd5d87002fddb59528",
-      "file": "output/pdf/2026-11-06/book-an-appointment-by-phone-workbook-ru.pdf",
+      "sourceFile": "editorial/drafts/phone-v2/book-an-appointment-by-phone.md",
+      "sourceSha256": "1f8caa0760a4e2b2c4aba05d2c31f8ea207e6eb6ccee43bdc561fef47c170fb6",
+      "file": "output/pdf/2026-11-14/book-an-appointment-by-phone-workbook-ru.pdf",
       "downloadRoute": "/assets/downloads/book-an-appointment-by-phone-workbook-ru.pdf",
-      "sha256": "3e6c12933bd06c008aea5a1fa8a1a4047a1abfe08c73c540ac2b5c44e2dc74e4",
-      "pages": 4,
+      "sha256": "a04a15578814b27fa26332276a1abbe1d16e1505e97d5727f97a048abdcefa39",
+      "pages": 7,
       "status": "approved_for_web_release",
-      "contentCheck": "Full PDF text preserved except removed AI disclosure; page count unchanged; 2026-11-07",
-      "visualCheck": "Updated editorial note rendered and visually checked in contact sheets; 2026-11-07",
-      "bytes": 95887,
-      "version": "1.0-editorial-note"
+      "contentCheck": "All 99 source text blocks present in extracted PDF text; original source hash unchanged",
+      "visualCheck": "7 páginas renderizadas y revisadas; Onest incrustada, dentro de márgenes y enlaces comprobados",
+      "bytes": 1316972
     },
     {
       "id": "ECN-FR-027",
@@ -458,6 +457,20 @@
       "contentCheck": "All 87 source text blocks present in extracted PDF text; original source hash unchanged",
       "visualCheck": "Siete páginas renderizadas e inspeccionadas. Tablas, diálogos, espacio de escritura y respuestas sin recortes.",
       "bytes": 1314123
+    },
+    {
+      "id": "ECN-FR-034",
+      "articleRoute": "/resources/buy-a-transport-ticket/",
+      "sourceFile": "editorial/articles/buy-a-transport-ticket.md",
+      "sourceSha256": "46cf243bb91be16a059cf136e30c826a177599997def3b12bf8d8df6a1983397",
+      "file": "output/pdf/2026-11-14/buy-a-transport-ticket-workbook-ru.pdf",
+      "downloadRoute": "/assets/downloads/buy-a-transport-ticket-workbook-ru.pdf",
+      "sha256": "a641b0160e277ed04cdc5b928c5231814d5aab178d85d1a05b539e2de161e5ea",
+      "pages": 7,
+      "status": "approved_for_web_release",
+      "contentCheck": "All 95 source text blocks present in extracted PDF text; original source hash unchanged",
+      "visualCheck": "7 páginas renderizadas y revisadas; Onest incrustada, dentro de márgenes y enlaces comprobados",
+      "bytes": 1317277
     }
   ]
 }

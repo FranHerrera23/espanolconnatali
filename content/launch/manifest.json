@@ -884,52 +884,46 @@
   },
   {
     "id": "ECN-FR-026",
-    "version": "1.0",
+    "version": "2.0",
     "status": "approved_for_publication",
     "language": "ru",
-    "sourceFile": "editorial/articles/book-an-appointment-by-phone.md",
+    "sourceFile": "editorial/drafts/phone-v2/book-an-appointment-by-phone.md",
     "route": "/resources/book-an-appointment-by-phone/",
-    "title": "Как записаться по телефону на испанском: фразы и диалог",
-    "description": "Как попросить запись, уточнить свободное время и подтвердить день и час по телефону. Диалог на испанском, перевод, задания и ответы.",
+    "title": "Как записаться по телефону на испанском и подтвердить время",
+    "titleEs": "Cómo pedir cita por teléfono y confirmar la hora",
+    "description": "Как записаться по телефону на испанском, перенести запись, переспросить дату и подтвердить время. Пять диалогов и десять упражнений с ответами.",
     "author": {
       "type": "Organization",
       "name": "Редакция Español con Natali"
     },
     "humanReviewer": null,
-    "preparedAt": "2026-11-05",
+    "preparedAt": "2026-11-14",
     "publishedAt": "2026-11-06",
-    "updatedAt": null,
+    "updatedAt": "2026-11-14",
     "canonicalOrigin": "https://www.espanolconnatali.com",
-    "wordCount": 647,
+    "wordCount": 1539,
     "sourceUrls": [
       "https://dle.rae.es/cita",
       "https://www.argentina.gob.ar/justicia/derechofacil/leysimple/jubilacion-trabajadores-con-discapacidad"
     ],
     "relatedFiles": [
       "ask-for-clarification.md",
-      "short-practice-routine.md",
-      "make-plans-in-spanish.md"
+      "make-plans-in-spanish.md",
+      "short-practice-routine.md"
     ],
-    "commercialCta": null,
-    "sha256": "222ad97c69a0697c3411cd91eb1895c194b5f4a9ad98b9dd5d87002fddb59528",
-    "editorialApproval": {
-      "by": "Fran",
-      "date": "2026-11-06",
-      "source": "Autorización de publicación autónoma diaria registrada en editorial/handoff/publication-calendar.txt."
-    },
-    "pillar": "P5",
-    "titleEs": "Cómo pedir un turno por teléfono en español",
     "relatedRoutes": [
       "/resources/ask-for-clarification/",
-      "/resources/short-practice-routine/",
-      "/resources/make-plans-in-spanish/"
+      "/resources/make-plans-in-spanish/",
+      "/resources/short-practice-routine/"
     ],
-    "contextLinks": [
-      {
-        "beforeHeading": "Скажите, зачем вы звоните",
-        "markdown": "Если звонок связан с посылкой, пригодится инструкция: [как подтвердить адрес и время доставки](confirm-delivery-address.md)."
-      }
-    ]
+    "commercialCta": null,
+    "sha256": "1f8caa0760a4e2b2c4aba05d2c31f8ea207e6eb6ccee43bdc561fef47c170fb6",
+    "pillar": "P5",
+    "editorialApproval": {
+      "by": "Fran",
+      "source": "Autorización general de publicación autónoma diaria. No implica revisión individual.",
+      "date": "2026-11-10"
+    }
   },
   {
     "id": "ECN-FR-027",
@@ -1289,7 +1283,8 @@
     ],
     "relatedFiles": [
       "ask-for-clarification.md",
-      "report-an-accommodation-problem.md"
+      "report-an-accommodation-problem.md",
+      "buy-a-transport-ticket.md"
     ],
     "relatedRoutes": [
       "/resources/ask-for-clarification/",
@@ -1302,6 +1297,48 @@
       "by": "Fran",
       "date": "2026-11-10",
       "source": "Autorización general de publicación autónoma diaria. No implica revisión individual."
+    }
+  },
+  {
+    "id": "ECN-FR-034",
+    "version": "1.0",
+    "status": "approved_for_publication",
+    "language": "ru",
+    "sourceFile": "editorial/articles/buy-a-transport-ticket.md",
+    "route": "/resources/buy-a-transport-ticket/",
+    "title": "Как купить билет на транспорт по-испански и проверить пересадку",
+    "titleEs": "Cómo comprar un billete de transporte y confirmar el transbordo",
+    "description": "Как купить билет на транспорт по-испански, уточнить пересадку и оплату. Пять диалогов и десять упражнений с ответами.",
+    "author": {
+      "type": "Organization",
+      "name": "Редакция Español con Natali"
+    },
+    "humanReviewer": null,
+    "preparedAt": "2026-11-14",
+    "publishedAt": "2026-11-14",
+    "updatedAt": null,
+    "canonicalOrigin": "https://www.espanolconnatali.com",
+    "wordCount": 1700,
+    "sourceUrls": [
+      "https://www.tmb.cat/es/tarifas-metro-bus-barcelona/billete-sencillo",
+      "https://www.tmb.cat/es/atencion-al-cliente/preguntas-frecuentes",
+      "https://www.crtm.es/billetes-y-tarifas/billetes/sencillos-y-10-viajes/"
+    ],
+    "relatedFiles": [
+      "ask-for-clarification.md",
+      "ask-for-directions.md"
+    ],
+    "relatedRoutes": [
+      "/resources/ask-for-clarification/",
+      "/resources/ask-for-directions/"
+    ],
+    "commercialCta": null,
+    "sha256": "46cf243bb91be16a059cf136e30c826a177599997def3b12bf8d8df6a1983397",
+    "pillar": "P5",
+    "editorialApproval": {
+      "by": "Fran",
+      "source": "Autorización general de publicación autónoma diaria. No implica revisión individual.",
+      "date": "2026-11-10"
     }
   }
 ]
