@@ -105,10 +105,12 @@ const logosrc = '/assets/brand/natali-lynx-approved.png';
 const text = esc;
 for (const [language, c] of Object.entries(copy)) {
   const destination = tutor(language);
+  const canonical = new URL(tutor('ru'), 'https://www.espanolconnatali.com').href;
+  const pageSchema = language === 'ru' ? '<script type="application/ld+json">' + JSON.stringify({ '@context': 'https://schema.org', '@graph': [{ '@type': 'WebPage', '@id': canonical + '#webpage', url: canonical, name: productName, inLanguage: language }] }) + '</script>' : '';
   const messages = ['pending','success','fail','full'].map(key => `data-${key}="${text(c[key])}"`).join(' ');
   await mkdir('dist' + destination, { recursive: true });
   await writeFile('dist' + destination + 'index.html', `<!doctype html>
-<html lang="${language}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,follow"><title>${productName} — Español con Natali</title><link rel="stylesheet" href="/design-system.css"><link rel="stylesheet" href="/tutor-waitlist.css"></head>
+<html lang="${language}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,follow"><link rel="canonical" href="${canonical}"><meta name="description" content="${text(c.descriptor)}"><meta property="og:url" content="${canonical}">${pageSchema}<title>${productName} — Español con Natali</title><link rel="stylesheet" href="/design-system.css"><link rel="stylesheet" href="/tutor-waitlist.css"></head>
 <body><header class="tw-head"><a class="brand" href="${root(language)}"><img src="${logosrc}" alt="" width="44" height="44">Español con Natali</a><nav aria-label="Language">${Object.keys(copy).map(code=>`<a lang="${code}" href="${tutor(code)}"${code===language?' aria-current="page"':''}>${code.toUpperCase()}</a>`).join('')}</nav></header>
 <main class="tw-main">
 <div class="tw-grid">
