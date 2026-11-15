@@ -471,6 +471,20 @@
       "contentCheck": "All 95 source text blocks present in extracted PDF text; original source hash unchanged",
       "visualCheck": "7 páginas renderizadas y revisadas; Onest incrustada, dentro de márgenes y enlaces comprobados",
       "bytes": 1317277
+    },
+    {
+      "id": "ECN-FR-035",
+      "articleRoute": "/resources/try-on-clothes-in-spanish/",
+      "sourceFile": "editorial/articles/try-on-clothes-in-spanish.md",
+      "sourceSha256": "cdf92cc302ec10665a2b3477e035b2f2e76342b97caaf53b83034bc7d2856154",
+      "file": "output/pdf/2026-11-15/try-on-clothes-in-spanish-workbook-ru.pdf",
+      "downloadRoute": "/assets/downloads/try-on-clothes-in-spanish-workbook-ru.pdf",
+      "sha256": "ff32923a2ded601fa44f8acef9f260ee1bd68a43002b3e7444aacba228aa1f93",
+      "pages": 6,
+      "status": "approved_for_web_release",
+      "contentCheck": "All 81 source text blocks present in extracted PDF text; original source hash unchanged",
+      "visualCheck": "Rendered and reviewed all six pages",
+      "bytes": 1311296
     }
   ]
 }

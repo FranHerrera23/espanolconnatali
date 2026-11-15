@@ -1284,7 +1284,8 @@
     "relatedFiles": [
       "ask-for-clarification.md",
       "report-an-accommodation-problem.md",
-      "buy-a-transport-ticket.md"
+      "buy-a-transport-ticket.md",
+      "try-on-clothes-in-spanish.md"
     ],
     "relatedRoutes": [
       "/resources/ask-for-clarification/",
@@ -1339,6 +1340,48 @@
       "by": "Fran",
       "source": "Autorización general de publicación autónoma diaria. No implica revisión individual.",
       "date": "2026-11-10"
+    }
+  },
+  {
+    "id": "ECN-FR-035",
+    "version": "1.0",
+    "status": "approved_for_publication",
+    "language": "ru",
+    "sourceFile": "editorial/articles/try-on-clothes-in-spanish.md",
+    "route": "/resources/try-on-clothes-in-spanish/",
+    "title": "Как примерить одежду и попросить другой размер по-испански",
+    "titleEs": "Cómo probarte ropa y pedir otra talla en español",
+    "description": "Как попросить другой размер, найти примерочную и сказать, как сидит одежда. Пять диалогов и десять упражнений с ответами.",
+    "author": {
+      "type": "Organization",
+      "name": "Редакция Español con Natali"
+    },
+    "humanReviewer": null,
+    "preparedAt": "2026-11-15",
+    "publishedAt": "2026-11-15",
+    "updatedAt": null,
+    "canonicalOrigin": "https://www.espanolconnatali.com",
+    "wordCount": 916,
+    "sourceUrls": [
+      "https://dle.rae.es/talla",
+      "https://dle.rae.es/probador",
+      "https://dle.rae.es/quedar"
+    ],
+    "relatedFiles": [
+      "ask-for-clarification.md",
+      "ask-for-directions.md"
+    ],
+    "relatedRoutes": [
+      "/resources/ask-for-clarification/",
+      "/resources/ask-for-directions/"
+    ],
+    "commercialCta": null,
+    "sha256": "cdf92cc302ec10665a2b3477e035b2f2e76342b97caaf53b83034bc7d2856154",
+    "pillar": "P5",
+    "editorialApproval": {
+      "by": "Fran",
+      "date": "2026-11-10",
+      "source": "Autorización general de publicación autónoma diaria. No implica revisión individual."
     }
   }
 ]
