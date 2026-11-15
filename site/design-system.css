@@ -195,3 +195,19 @@ section[id]{scroll-margin-top:112px}
   .tutor-teaser { grid-template-columns: 1fr; gap: var(--s3); margin-bottom: var(--s4); }
   .tutor-teaser-example { padding: var(--s3) 0 0; border: 0; border-top: 1px solid var(--color-rule); }
 }
+
+/* Keep navigation, contact action and language choice visually distinct. */
+.site-nav .language-picker a{border:0;border-radius:6px}
+.site-nav .language-picker a[aria-current=true]{background:var(--color-sand);color:var(--color-primary)}
+.site-nav .language-picker a:hover{background:var(--color-sand)}
+.site-nav .nav-contact{padding-inline:14px;background:var(--color-primary);color:#fff;border:1px solid var(--color-primary);border-radius:6px;white-space:nowrap}
+.site-nav .nav-contact:hover{background:var(--color-ink)}
+.site-nav .nav-links a.nav-waitlist{color:var(--color-primary);font-weight:600}
+.hub-home-link{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding-inline:12px;border:1px solid var(--color-rule);border-radius:6px;color:var(--color-primary);font-size:14px;font-weight:600}
+.hub-home-link:hover{background:var(--color-sand)}
+@media(min-width:1201px){
+ .site-nav{gap:clamp(12px,1.6vw,28px)}
+ .site-nav .nav-links{gap:clamp(10px,1.4vw,24px)}
+ .site-nav .nav-contact{margin-left:0}
+ .site-nav>.language-header{padding-left:12px;border-left:1px solid var(--color-rule)}
+}
