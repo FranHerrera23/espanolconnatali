@@ -3,14 +3,15 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "node scripts/build-property.mjs && node scripts/build-tutor.mjs && node scripts/build-waitlist.mjs",
+    "build": "node scripts/build-property.mjs && node scripts/build-tutor.mjs && node scripts/build-waitlist.mjs && node scripts/build-analytics.mjs",
     "preview": "python3 -m http.server 4173 -d dist",
-    "build:production": "DEPLOY_MODE=production node scripts/build-property.mjs && node scripts/build-tutor.mjs && node scripts/build-waitlist.mjs",
+    "build:production": "DEPLOY_MODE=production node scripts/build-property.mjs && node scripts/build-tutor.mjs && node scripts/build-waitlist.mjs && node scripts/build-analytics.mjs --production",
     "check:seo": "python3 scripts/check-seo.py"
   },
   "dependencies": {
     "@elevenlabs/client": "^1.35.0",
     "@elevenlabs/elevenlabs-js": "^2.77.0",
+    "@vercel/analytics": "^2.0.1",
     "@vercel/blob": "2.4.0"
   },
   "devDependencies": {
