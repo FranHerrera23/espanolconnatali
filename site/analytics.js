@@ -14,7 +14,7 @@ export function attribution(search) {
   const params = new URLSearchParams(search);
   const source = params.get('utm_source');
   const piece = params.get('utm_content');
-  const allowed = { instagram: ['b01'], telegram: ['ladybcn-expo'], qa: ['desktop', 'mobile'] };
+  const allowed = { instagram: ['b01', '01-escuela', '02-web-nueva', '03-biblioteca-gratuita', 'exposicion', '05-tapas', '06-repetir', '07-cuenta', 'consulta-curso'], telegram: ['ladybcn-expo', 'madrid-cita'], qa: ['desktop', 'mobile'] };
   return { source: Object.hasOwn(allowed, source) ? source : 'unknown',
     piece: allowed[source]?.includes(piece) ? piece : 'unknown' };
 }
