@@ -27,7 +27,8 @@
     "relatedFiles": [
       "ser-estar.md",
       "ask-for-clarification.md",
-      "tell-what-you-did-yesterday.md"
+      "tell-what-you-did-yesterday.md",
+      "tell-what-you-liked-at-an-exhibition.md"
     ],
     "commercialCta": null,
     "sha256": "d9ab869873bae960dddabcf25483ea9ced38b116b66008b0a71ddc5c8995920c",
@@ -511,53 +512,48 @@
   },
   {
     "id": "ECN-FR-022",
-    "version": "1.0",
+    "version": "2.0",
     "status": "approved_for_publication",
     "language": "ru",
-    "sourceFile": "editorial/articles/job-interview-in-spanish.md",
+    "sourceFile": "editorial/drafts/interview-v2/job-interview-in-spanish.md",
     "route": "/resources/job-interview-in-spanish/",
-    "routeStatus": "proposed_not_live",
     "title": "Собеседование на испанском: как рассказать об опыте и переспросить",
-    "description": "Два учебных профиля, вопросы и уточнение на собеседовании.",
+    "titleEs": "Cómo contar tu experiencia y pedir aclaraciones en una entrevista en español",
+    "description": "Как рассказать об опыте на собеседовании, переспросить, уточнить график и оплату. Пять диалогов и десять упражнений с ответами.",
     "author": {
       "type": "Organization",
       "name": "Редакция Español con Natali"
     },
     "humanReviewer": null,
-    "preparedAt": "2026-11-04",
+    "preparedAt": "2026-11-16",
     "publishedAt": "2026-11-05",
-    "updatedAt": "2026-11-07",
+    "updatedAt": "2026-11-16",
     "canonicalOrigin": "https://www.espanolconnatali.com",
-    "wordCount": 790,
+    "wordCount": 1824,
     "sourceUrls": [
-      "https://dle.rae.es/trabajar",
-      "https://dle.rae.es/experiencia",
-      "https://dle.rae.es/referir",
-      "https://europass.europa.eu/es/create-europass-cv"
+      "https://jobtoday.com/es/trabajo/oficial-de-peluqueria-R07wxj",
+      "https://eures.europa.eu/how-impress-employers-job-interviews-2022-04-08_en"
     ],
     "relatedFiles": [
+      "spanish-for-job-search.md",
+      "spanish-cv.md",
       "ask-for-clarification.md",
-      "spanish-cv.md"
+      "work-email.md"
+    ],
+    "relatedRoutes": [
+      "/resources/spanish-for-job-search/",
+      "/resources/spanish-cv/",
+      "/resources/ask-for-clarification/",
+      "/resources/work-email/"
     ],
     "commercialCta": null,
-    "sha256": "b49109bce1d20253913ca8ba53b4ed06cd19973564793caa03fb7ba4950a8188",
+    "sha256": "37c1aee5740126d9f45f163737217cc2ecec5e9727b5b24d89d6ab9f5d2fcc4f",
+    "pillar": "P4",
     "editorialApproval": {
       "by": "Fran",
-      "date": "2026-11-05",
-      "source": "Autorización expresa de publicación en el chat web."
-    },
-    "pillar": "P5",
-    "titleEs": "Entrevista laboral",
-    "relatedRoutes": [
-      "/resources/ask-for-clarification/",
-      "/resources/spanish-cv/"
-    ],
-    "contextLinks": [
-      {
-        "beforeHeading": "Попрактикуйтесь",
-        "markdown": "Полный путь от вакансии до первого звонка разобран в [руководстве по поиску работы](spanish-for-job-search.md)."
-      }
-    ]
+      "source": "Autorización general de publicación autónoma diaria. No implica revisión individual.",
+      "date": "2026-11-10"
+    }
   },
   {
     "id": "ECN-FR-025",
@@ -1382,6 +1378,51 @@
       "by": "Fran",
       "date": "2026-11-10",
       "source": "Autorización general de publicación autónoma diaria. No implica revisión individual."
+    }
+  },
+  {
+    "id": "ECN-FR-036",
+    "version": "1.0",
+    "status": "approved_for_publication",
+    "language": "ru",
+    "sourceFile": "editorial/articles/tell-what-you-liked-at-an-exhibition.md",
+    "route": "/resources/tell-what-you-liked-at-an-exhibition/",
+    "title": "Как рассказать по-испански, что вам понравилось на выставке",
+    "titleEs": "Cómo contar en español qué te gustó de una exposición",
+    "description": "Как рассказать по-испански о выставке: назвать деталь картины, описать впечатление и продолжить разговор. Пять диалогов и десять заданий с ответами.",
+    "author": {
+      "type": "Organization",
+      "name": "Редакция Español con Natali"
+    },
+    "humanReviewer": null,
+    "preparedAt": "2026-11-16",
+    "publishedAt": "2026-11-16",
+    "updatedAt": null,
+    "canonicalOrigin": "https://www.espanolconnatali.com",
+    "wordCount": 1543,
+    "sourceUrls": [
+      "https://dle.rae.es/cuadro",
+      "https://dle.rae.es/obra",
+      "https://dle.rae.es/gustar",
+      "https://cvc.cervantes.es/ensenanza/biblioteca_ele/marco_complementario/mcer_volumen-complementario.pdf"
+    ],
+    "relatedFiles": [
+      "gustar.md",
+      "keep-a-conversation-going.md",
+      "ask-for-clarification.md"
+    ],
+    "relatedRoutes": [
+      "/resources/gustar/",
+      "/resources/keep-a-conversation-going/",
+      "/resources/ask-for-clarification/"
+    ],
+    "commercialCta": null,
+    "sha256": "f0108223d397e16bc821d3d34e7db16f64796cf8e312e7a5f3134d1f5311761a",
+    "pillar": "P5",
+    "editorialApproval": {
+      "by": "Fran",
+      "source": "Autorización general de publicación autónoma diaria. No implica revisión individual.",
+      "date": "2026-11-10"
     }
   }
 ]

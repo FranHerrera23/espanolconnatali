@@ -188,18 +188,16 @@
     {
       "id": "ECN-FR-022",
       "articleRoute": "/resources/job-interview-in-spanish/",
-      "sourceFile": "editorial/articles/job-interview-in-spanish.md",
-      "sourceSha256": "b49109bce1d20253913ca8ba53b4ed06cd19973564793caa03fb7ba4950a8188",
-      "file": "output/pdf/2026-11-04/job-interview-in-spanish-workbook-ru.pdf",
+      "sourceFile": "editorial/drafts/interview-v2/job-interview-in-spanish.md",
+      "sourceSha256": "37c1aee5740126d9f45f163737217cc2ecec5e9727b5b24d89d6ab9f5d2fcc4f",
+      "file": "output/pdf/2026-11-16/job-interview-in-spanish-workbook-ru.pdf",
       "downloadRoute": "/assets/downloads/job-interview-in-spanish-workbook-ru.pdf",
-      "sha256": "6ce8061ae08cf2e78014f2c372eac9316ff98bd3cd552bf9f47c86b77ee03f3d",
-      "pages": 4,
+      "sha256": "85709183b8fc3a49f0f08b49870420145ce1124cd69dbdb6a3390afb2fbb75ec",
+      "pages": 8,
       "status": "approved_for_web_release",
-      "contentCheck": "Full PDF text preserved except removed AI disclosure; page count unchanged; 2026-11-07",
-      "visualCheck": "Updated editorial note rendered and visually checked in contact sheets; 2026-11-07",
-      "visualEvidence": "editorial/batches/2026-11-04/qa/pdf/ECN-FR-022.jpg",
-      "version": "1.2-editorial-note",
-      "bytes": 98529
+      "contentCheck": "All 92 source text blocks present in extracted PDF text; original source hash unchanged",
+      "visualCheck": "Render, inspección visual, Onest, límites de página y enlaces comprobados",
+      "bytes": 1322064
     },
     {
       "id": "ECN-FR-025",
@@ -485,6 +483,20 @@
       "contentCheck": "All 81 source text blocks present in extracted PDF text; original source hash unchanged",
       "visualCheck": "Rendered and reviewed all six pages",
       "bytes": 1311296
+    },
+    {
+      "id": "ECN-FR-036",
+      "articleRoute": "/resources/tell-what-you-liked-at-an-exhibition/",
+      "sourceFile": "editorial/articles/tell-what-you-liked-at-an-exhibition.md",
+      "sourceSha256": "f0108223d397e16bc821d3d34e7db16f64796cf8e312e7a5f3134d1f5311761a",
+      "file": "output/pdf/2026-11-16/tell-what-you-liked-at-an-exhibition-workbook-ru.pdf",
+      "downloadRoute": "/assets/downloads/tell-what-you-liked-at-an-exhibition-workbook-ru.pdf",
+      "sha256": "ff5d6a6f973abe946aac18642b08f4effb5a8e23c840c5dfbc218c425c37fdf6",
+      "pages": 7,
+      "status": "approved_for_web_release",
+      "contentCheck": "All 94 source text blocks present in extracted PDF text; original source hash unchanged",
+      "visualCheck": "Render, inspección visual, Onest, límites de página y enlaces comprobados",
+      "bytes": 1317013
     }
   ]
 }
