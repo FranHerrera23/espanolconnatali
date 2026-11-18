@@ -1,11 +1,22 @@
-import { BlobPreconditionFailedError, get, put } from '@vercel/blob';
+import { BlobPreconditionFailedError, get, head, put } from '@vercel/blob';
 
 const path = id => `natali-pilot/v1/${id}.json`;
 
 export const pilotBlob = {
   async read(id) {
-    const blob = await get(path(id), { access: 'private', useCache: false });
-    return blob ? { record: await new Response(blob.stream).json(), revision: blob.blob.etag } : null;
+    const pathname = path(id);
+    for (let attempt = 0; attempt < 3; attempt++) {
+      const blob = await get(pathname, { access: 'private', useCache: false });
+      if (!blob) return null;
+      const metadata = await head(blob.blob.url);
+      // The download ETag is an HTTP header. Conditional writes use the storage ETag.
+      const normalize = etag => etag?.replace(/^W\//, '').replace(/^"|"$/g, '');
+      if (metadata.etag && normalize(blob.blob.etag) === normalize(metadata.etag)) {
+        return { record: await new Response(blob.stream).json(), revision: metadata.etag };
+      }
+      await blob.stream.cancel();
+    }
+    throw new Error('Could not read a consistent pilot profile revision');
   },
   async write(id, record, revision) {
     try {
