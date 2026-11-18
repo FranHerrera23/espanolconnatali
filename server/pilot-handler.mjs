@@ -11,7 +11,7 @@ export function pilotHandler({ store, provider, html, now = Date.now }) {
     privateHeaders(res);
     res.setHeader('X-Frame-Options', 'DENY');
     res.setHeader('Permissions-Policy', 'microphone=(self), camera=(), geolocation=()');
-    res.setHeader('Content-Security-Policy', "default-src 'none'; connect-src 'self' wss://api.elevenlabs.io https://cdn.jsdelivr.net; img-src data:; font-src data:; style-src 'unsafe-inline'; script-src 'unsafe-inline' 'wasm-unsafe-eval' https://cdn.jsdelivr.net; worker-src blob:; media-src blob:; base-uri 'none'; form-action 'none'; frame-ancestors 'none'");
+    res.setHeader('Content-Security-Policy', "default-src 'none'; connect-src 'self' wss://api.elevenlabs.io https://cdn.jsdelivr.net; img-src data:; font-src data:; style-src 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://cdn.jsdelivr.net; worker-src blob:; media-src blob:; base-uri 'none'; form-action 'none'; frame-ancestors 'none'");
     if (req.method === 'GET' || req.method === 'HEAD') {
       res.setHeader('Content-Type', 'text/html; charset=utf-8');
       return res.status(200).send(req.method === 'HEAD' ? '' : html());

@@ -131,3 +131,13 @@ for (const [durations, expected] of [
   assert.deepEqual(view(record).lesson, expected);
   assert.equal(Boolean(newReservation(record, Date.now())), expected.seconds > 0);
 }
+
+const failedNatalia = { ...createProfile('NATALIA').record, sessions: [
+  { seconds: 3, transcript: [] },
+  { seconds: 4, transcript: [] },
+], pending: { conversationId: 'conv_no_audio' } };
+const retriableNatalia = settle(failedNatalia, {
+  status: 'done', metadata: { callDurationSecs: 4 }, transcript: [],
+}, Date.now());
+assert.equal(view(retriableNatalia).remaining, 2);
+assert.equal(view(retriableNatalia).status, 'ready');

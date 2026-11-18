@@ -1,5 +1,5 @@
 import { build } from 'esbuild';
-import { readFile, writeFile } from 'node:fs/promises';
+import { cp, mkdir, readFile, writeFile } from 'node:fs/promises';
 
 const assetFiles = {
   MALLORCA: ['private-preview/themes/mallorca.jpg', 'image/jpeg'],
@@ -20,3 +20,8 @@ if (!avatar) throw new Error('Missing existing photo of Natali');
 const js = result.outputFiles[0].text.replaceAll('</script', '<\\/script');
 const replacements = Object.fromEntries([...assets, ['AVATAR', avatar], ['CLIENT', `<script type="module">${js}</script>`]]);
 await writeFile('private-preview/pilot.html', shell.replace(/<!--([A-Z-]+)-->/g, (match, key) => replacements[key] ?? match));
+
+const workletsDir = 'dist/tutor-audio';
+await mkdir(workletsDir, { recursive: true });
+await Promise.all(['rawAudioProcessor', 'audioConcatProcessor'].map(name =>
+  cp(`node_modules/@elevenlabs/client/worklets/${name}.js`, `${workletsDir}/${name}.js`)));

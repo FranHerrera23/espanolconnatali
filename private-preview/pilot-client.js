@@ -216,6 +216,10 @@ async function start() {
     const { signedUrl, dynamicVariables, lessonSeconds } = await request('start', { language });
     profile.status = 'pending';
     const connected = await Conversation.startSession({ signedUrl, dynamicVariables, connectionType: 'websocket',
+      workletPaths: {
+        rawAudioProcessor: '/tutor-audio/rawAudioProcessor.js',
+        audioConcatProcessor: '/tutor-audio/audioConcatProcessor.js',
+      },
       onConnect() {
         if (current !== generation) return;
         stage = 'listening';

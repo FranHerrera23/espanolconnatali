@@ -29,11 +29,16 @@ export async function authenticate(store, token, now = Date.now()) {
 
 export const profileKey = record => digest("profile:" + record.hash).toString("hex").slice(0, 24);
 
+// Legacy connection failures were recorded with an empty transcript.
+function countedSessions(record) {
+  return record.sessions.filter(session => session.transcript?.length !== 0);
+}
+
 function lessonProgress(record) {
   if (record.slotSeconds !== 900) return null;
   let completed = 0;
   let used = 0;
-  for (const session of record.sessions) {
+  for (const session of countedSessions(record)) {
     used += session.seconds;
     if (used >= record.slotSeconds) {
       completed++;
@@ -46,7 +51,7 @@ function lessonProgress(record) {
 
 export function view(record) {
   const lesson = lessonProgress(record);
-  const completed = lesson?.completed ?? record.sessions.length;
+  const completed = lesson?.completed ?? countedSessions(record).length;
   const status = record.pending ? 'pending' : completed >= slots ? 'complete' : 'ready';
   return { name: record.name, profileKey: profileKey(record), completed, remaining: slots - completed, lesson,
     slotSeconds: record.slotSeconds ?? slotSeconds, totalSeconds: (record.slotSeconds ?? slotSeconds) * slots,
@@ -61,11 +66,11 @@ export function history(record) {
 
 export function clearHistory(record) {
   return { ...record, memory: null,
-    sessions: record.sessions.map(({ conversationId, seconds, finishedAt }) => ({ conversationId, seconds, finishedAt })) };
+    sessions: countedSessions(record).map(({ conversationId, seconds, finishedAt }) => ({ conversationId, seconds, finishedAt })) };
 }
 
 export function newReservation(record, now) {
-  if (record.pending || (lessonProgress(record)?.completed ?? record.sessions.length) >= slots) return null;
+  if (record.pending || (lessonProgress(record)?.completed ?? countedSessions(record).length) >= slots) return null;
   return { nonce: randomBytes(12).toString('hex'), until: now + issuingMs };
 }
 
@@ -101,8 +106,7 @@ export function settle(record, call, now) {
   const seconds = call.metadata?.callDurationSecs;
   if (!Number.isInteger(seconds) || seconds < 0) throw new Error('Unexpected provider duration');
   const transcript = spokenTurns(Array.isArray(call.transcript) ? call.transcript : []);
-  const started = seconds > 0 || transcript.length > 0;
-  if (call.status === 'failed' && !started) return { ...record, pending: null };
+  if (!transcript.length) return { ...record, pending: null };
   const startedAt = call.metadata.startTimeUnixSecs;
   const finishedAt = Number.isFinite(startedAt) ? (startedAt + seconds) * 1000 : now;
   const quotes = practiceContext(transcript);
