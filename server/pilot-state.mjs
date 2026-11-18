@@ -29,9 +29,26 @@ export async function authenticate(store, token, now = Date.now()) {
 
 export const profileKey = record => digest("profile:" + record.hash).toString("hex").slice(0, 24);
 
+function lessonProgress(record) {
+  if (record.slotSeconds !== 900) return null;
+  let completed = 0;
+  let used = 0;
+  for (const session of record.sessions) {
+    used += session.seconds;
+    if (used >= record.slotSeconds) {
+      completed++;
+      used = 0;
+    }
+    if (completed === slots) break;
+  }
+  return { completed, seconds: completed === slots ? 0 : record.slotSeconds - used };
+}
+
 export function view(record) {
-  const status = record.pending ? 'pending' : record.sessions.length === slots ? 'complete' : 'ready';
-  return { name: record.name, profileKey: profileKey(record), completed: record.sessions.length, remaining: slots - record.sessions.length,
+  const lesson = lessonProgress(record);
+  const completed = lesson?.completed ?? record.sessions.length;
+  const status = record.pending ? 'pending' : completed >= slots ? 'complete' : 'ready';
+  return { name: record.name, profileKey: profileKey(record), completed, remaining: slots - completed, lesson,
     slotSeconds: record.slotSeconds ?? slotSeconds, totalSeconds: (record.slotSeconds ?? slotSeconds) * slots,
     status, theme: record.theme ?? 'mallorca', memory: record.memory?.phrase ?? null, lastPracticeAt: record.sessions.at(-1)?.finishedAt ?? null,
     historyCount: record.sessions.filter(session => session.transcript?.length).length };
@@ -48,12 +65,12 @@ export function clearHistory(record) {
 }
 
 export function newReservation(record, now) {
-  if (record.pending || record.sessions.length >= slots) return null;
+  if (record.pending || (lessonProgress(record)?.completed ?? record.sessions.length) >= slots) return null;
   return { nonce: randomBytes(12).toString('hex'), until: now + issuingMs };
 }
 
-export function withSignature(reservation, conversationId, now) {
-  return { ...reservation, conversationId, until: now + signatureExpiryMs };
+export function withSignature(reservation, conversationId, now, duration = slotSeconds) {
+  return { ...reservation, conversationId, until: now + signatureExpiryMs + duration - slotSeconds };
 }
 
 function spokenTurns(turns) {

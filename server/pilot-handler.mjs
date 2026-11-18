@@ -76,10 +76,10 @@ export function pilotHandler({ store, provider, html, now = Date.now }) {
       }
       const current = await store.read(id);
       if (current?.record.pending?.nonce !== reserved.nonce || current.record.expiresAt <= now() ||
-          !await store.write(id, { ...record, pending: withSignature(reserved, signature.conversationId, now()) }, current.revision)) {
+          !await store.write(id, { ...record, pending: withSignature(reserved, signature.conversationId, now(), record.slotSeconds ?? 450) }, current.revision)) {
         return res.status(409).json({ error: 'conflict' });
       }
-      return res.status(200).json({ signedUrl: signature.signedUrl, dynamicVariables: turnVariables(record, lang) });
+      return res.status(200).json({ signedUrl: signature.signedUrl, lessonSeconds: view(record).lesson?.seconds, dynamicVariables: turnVariables(record, lang) });
     } catch {
       return res.status(503).json({ error: 'unavailable' });
     }

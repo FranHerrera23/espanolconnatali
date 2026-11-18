@@ -118,3 +118,16 @@ assert.ok(context.previousConversations[0].studentStatements.some(t=>t.includes(
 assert.equal(context.accountName,'Marina');
 assert.equal(createProfile('Marina').record.slotSeconds,900);
 assert.equal(createProfile('Sergey').record.slotSeconds,450);
+
+const { view, newReservation } = await import('../server/pilot-state.mjs');
+const marina = createProfile('Marina').record;
+for (const [durations, expected] of [
+  [[120], { completed: 0, seconds: 780 }],
+  [[120, 780], { completed: 1, seconds: 900 }],
+  [[120, 780, 300], { completed: 1, seconds: 600 }],
+  [[120, 780, 300, 600], { completed: 2, seconds: 0 }],
+]) {
+  const record = { ...marina, sessions: durations.map(seconds => ({ seconds })) };
+  assert.deepEqual(view(record).lesson, expected);
+  assert.equal(Boolean(newReservation(record, Date.now())), expected.seconds > 0);
+}

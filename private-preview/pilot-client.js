@@ -7,6 +7,7 @@ const copy = {
     heading: 'Ваша практика', greet: name => `Здравствуйте, ${name}!`, allowance: count => ({ 2: 'Пробная практика · 15 минут', 1: 'Осталась одна беседа · до 7:30' })[count] ?? 'Пробная практика завершена',
     loading: 'Открываем практику…', access: 'Откройте свою личную ссылку.', unavailable: 'Сервис временно недоступен.', voice: 'Голосовая практика пока недоступна.',
     start: 'Начать практику', resume: 'Продолжить практику', opening: 'Подключаем микрофон…', speaking: 'Натали говорит', listening: 'Натали слушает',
+    lesson: n => `Урок ${n}`, done: 'завершён', pause: 'Пауза',
     end: 'Завершить', refresh: 'Обновить', pending: 'Сохраняем результаты разговора…', complete: 'Спасибо за практику',
     mic: 'Разрешите доступ к микрофону и попробуйте снова.', network: 'Связь прервалась. Проверьте статус беседы.', memoryTitle: 'Прошлая практика',
     last: 'Последний разговор', history: 'Посмотреть разговор', pastConversations: 'Посмотреть разговоры', forget: 'Удалить историю',
@@ -18,6 +19,7 @@ const copy = {
     heading: 'Tu práctica', greet: name => `¡Hola, ${name}!`, allowance: count => ({ 2: 'Prueba · 15 minutos', 1: 'Una charla disponible · hasta 7:30' })[count] ?? 'Prueba completada',
     loading: 'Abriendo tu práctica…', access: 'Abrí tu enlace personal.', unavailable: 'El servicio no está disponible por el momento.', voice: 'La práctica por voz aún no está disponible.',
     start: 'Empezar práctica', resume: 'Continuar práctica', opening: 'Conectando el micrófono…', speaking: 'Natali está hablando', listening: 'Natali te escucha',
+    lesson: n => `Clase ${n}`, done: 'completada', pause: 'Pausar',
     end: 'Terminar', refresh: 'Actualizar', pending: 'Guardando tu práctica…', complete: 'Gracias por practicar',
     mic: 'Permití el acceso al micrófono y volvé a intentar.', network: 'Se cortó la conexión. Revisá el estado de la charla.', memoryTitle: 'Práctica anterior',
     last: 'Última conversación', history: 'Ver conversación', pastConversations: 'Ver conversaciones', forget: 'Borrar historial',
@@ -32,6 +34,12 @@ let error = '';
 let caption = '';
 let conversation = null;
 let generation = 0;
+let lessonDeadline = 0;
+let lessonTimer;
+function formatTime(seconds) {
+  return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
+}
+
 let history = null;
 let historyStatus = 'loadingHistory';
 let refreshing = false;
@@ -55,15 +63,20 @@ function render() {
   const idle = stage === 'idle';
   const ready = idle && profile.status === 'ready';
   const status = idle ? profile.status : stage;
-  byId('allowance').textContent = profile.slotSeconds === 900 && profile.remaining > 0
-    ? (language === 'ru' ? (profile.remaining === 2 ? 'Пробная практика · 2 беседы по 15 минут' : 'Осталась одна беседа · до 15 минут') : (profile.remaining === 2 ? 'Prueba · 2 conversaciones de 15 minutos' : 'Una conversación disponible · hasta 15 minutos'))
+  const lesson = profile.lesson;
+  const seconds = lessonDeadline ? Math.max(0, Math.ceil((lessonDeadline - Date.now()) / 1000)) : lesson?.seconds;
+  byId('allowance').textContent = lesson
+    ? [1, 2].map(n => {
+      const time = n <= lesson.completed ? t.done : formatTime(n === lesson.completed + 1 ? seconds : profile.slotSeconds);
+      return `${t.lesson(n)} · ${time}`;
+    }).join('  /  ')
     : t.allowance(profile.remaining);
   byId('voice-status').textContent = error ? t[error] : (ready ? '' : (t[status] ?? t.pending));
   byId('start').hidden = active || profile.status === 'complete' || profile.status === 'pending';
   byId('start').disabled = !ready;
-  byId('start-label').textContent = t[profile.completed ? 'resume' : 'start'];
+  byId('start-label').textContent = t[profile.completed || (lesson && lesson.seconds < profile.slotSeconds) ? 'resume' : 'start'];
   byId('end').hidden = !active;
-  byId('end').textContent = t.end;
+  byId('end').textContent = lesson ? t.pause : t.end;
   byId('refresh').hidden = !idle || profile.status !== 'pending' || !error;
   byId('refresh').textContent = t.refresh;
   byId('save-note').textContent = ready ? t.save : '';
@@ -181,6 +194,8 @@ async function refresh(poll = false) {
 
 async function finish(callError = '') {
   generation++;
+  clearInterval(lessonTimer);
+  lessonDeadline = 0;
   const current = conversation;
   conversation = null;
   stage = 'idle';
@@ -198,10 +213,21 @@ async function start() {
     const permission = await navigator.mediaDevices.getUserMedia({ audio: true });
     permission.getTracks().forEach(track => track.stop());
     if (current !== generation) return;
-    const { signedUrl, dynamicVariables } = await request('start', { language });
+    const { signedUrl, dynamicVariables, lessonSeconds } = await request('start', { language });
     profile.status = 'pending';
     const connected = await Conversation.startSession({ signedUrl, dynamicVariables, connectionType: 'websocket',
-      onConnect() { if (current === generation) { stage = 'listening'; render(); } },
+      onConnect() {
+        if (current !== generation) return;
+        stage = 'listening';
+        if (lessonSeconds > 0) {
+          lessonDeadline = Date.now() + lessonSeconds * 1000;
+          lessonTimer = setInterval(() => {
+            if (Date.now() >= lessonDeadline) void finish();
+            else render();
+          }, 1000);
+        }
+        render();
+      },
       onDisconnect() { if (current === generation) void finish(); },
       onError() { if (current === generation) void finish('network'); },
       onModeChange({ mode }) { if (current === generation) { stage = mode; render(); } },
@@ -246,6 +272,7 @@ window.addEventListener('pagehide', () => {
     body: JSON.stringify({ action: 'refresh', profileKey: profile.profileKey }), keepalive: true }).catch(() => {});
 });
 document.addEventListener('visibilitychange', () => {
+  if (lessonDeadline && Date.now() >= lessonDeadline) void finish();
   if (!document.hidden && stage === 'idle' && profile?.status === 'pending') void refresh(true);
 });
 const token = new URLSearchParams(location.hash.slice(1)).get('access');
