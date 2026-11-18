@@ -12,7 +12,7 @@ export function createProfile(name, { internal = false, background = [], now = D
   const id = randomBytes(16).toString('hex');
   const secret = randomBytes(32).toString('base64url');
   const record = {
-    name: learnerVariables(name).user_name, hash: digest(secret).toString('hex'),
+    name: learnerVariables(name).user_name, slotSeconds: name === 'Marina' ? 900 : 450, hash: digest(secret).toString('hex'),
     expiresAt: now + 30 * 86_400_000, internal, background, sessions: [], pending: null, memory: null,
   };
   return { id, token: `${id}.${secret}`, record };
@@ -30,6 +30,7 @@ export async function authenticate(store, token, now = Date.now()) {
 export function view(record) {
   const status = record.pending ? 'pending' : record.sessions.length === slots ? 'complete' : 'ready';
   return { name: record.name, completed: record.sessions.length, remaining: slots - record.sessions.length,
+    slotSeconds: record.slotSeconds ?? slotSeconds, totalSeconds: (record.slotSeconds ?? slotSeconds) * slots,
     status, theme: record.theme ?? 'mallorca', memory: record.memory?.phrase ?? null, lastPracticeAt: record.sessions.at(-1)?.finishedAt ?? null,
     historyCount: record.sessions.filter(session => session.transcript?.length).length };
 }

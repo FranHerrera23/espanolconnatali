@@ -55,7 +55,9 @@ function render() {
   const idle = stage === 'idle';
   const ready = idle && profile.status === 'ready';
   const status = idle ? profile.status : stage;
-  byId('allowance').textContent = t.allowance(profile.remaining);
+  byId('allowance').textContent = profile.slotSeconds === 900 && profile.remaining > 0
+    ? (language === 'ru' ? (profile.remaining === 2 ? 'Пробная практика · 2 беседы по 15 минут' : 'Осталась одна беседа · до 15 минут') : (profile.remaining === 2 ? 'Prueba · 2 conversaciones de 15 minutos' : 'Una conversación disponible · hasta 15 minutos'))
+    : t.allowance(profile.remaining);
   byId('voice-status').textContent = error ? t[error] : (ready ? '' : (t[status] ?? t.pending));
   byId('start').hidden = active || profile.status === 'complete' || profile.status === 'pending';
   byId('start').disabled = !ready;

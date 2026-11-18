@@ -4,12 +4,18 @@ import { safeAgent } from './tutor-safety.mjs';
 
 export function pilotProvider() {
   const agentId = process.env.TUTOR_PILOT_AGENT_ID;
-  const branchId = process.env.TUTOR_PILOT_BRANCH_ID;
-  const versionId = process.env.TUTOR_PILOT_VERSION_ID;
-  if (!agentId || !versionId) throw new Error('Pilot version is missing');
+  if (!agentId || !process.env.TUTOR_PILOT_VERSION_ID) throw new Error('Pilot version is missing');
   const client = createElevenLabsClient();
+  function target(seconds) {
+    if (![450, 900].includes(seconds)) throw new Error('Unknown pilot duration');
+    const branchId = seconds === 900 ? process.env.TUTOR_PILOT_MARINA_BRANCH_ID : process.env.TUTOR_PILOT_BRANCH_ID;
+    const versionId = seconds === 900 ? process.env.TUTOR_PILOT_MARINA_VERSION_ID : process.env.TUTOR_PILOT_VERSION_ID;
+    if (!branchId || !versionId) throw new Error('Missing pilot duration target');
+    return { branchId, versionId };
+  }
   return {
-    async sign(internal) {
+    async sign(internal, seconds = slotSeconds) {
+      const { branchId, versionId } = target(seconds);
       const [plan, agent] = await Promise.all([
         client.user.subscription.get(), client.conversationalAi.agents.get(agentId, { branchId, versionId }),
       ]);
@@ -20,7 +26,7 @@ export function pilotProvider() {
       if (!internal && (privacy?.recordVoice !== false || !(privacy.retentionDays >= 0 && privacy.retentionDays <= 7))) {
         throw new Error('Pilot retention is not ready for learners');
       }
-      if (!safeAgent(agent) || agent.versionId !== versionId || agent.conversationConfig?.conversation?.maxDurationSeconds !== slotSeconds ||
+      if (!safeAgent(agent) || agent.versionId !== versionId || agent.conversationConfig?.conversation?.maxDurationSeconds !== seconds ||
           agent.platformSettings?.overrides?.conversationConfigOverride?.conversation?.maxDurationSeconds === true ||
           agent.platformSettings?.callLimits?.burstingEnabled === true) throw new Error('Pilot agent is not ready');
       const { signedUrl } = await client.conversationalAi.conversations.getSignedUrl({ agentId: agentId, branchId, versionId, includeConversationId: true });
@@ -30,7 +36,8 @@ export function pilotProvider() {
           !url.searchParams.has('conversation_signature') || !conversationId) throw new Error('Invalid provider signature');
       return { signedUrl, conversationId };
     },
-    async get(conversationId) {
+    async get(conversationId, seconds = slotSeconds) {
+      const { branchId, versionId } = target(seconds);
       try {
         const call = await client.conversationalAi.conversations.get(conversationId);
         if (call.conversationId !== conversationId || call.agentId !== agentId || call.branchId !== branchId || call.versionId !== versionId) {

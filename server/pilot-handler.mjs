@@ -53,7 +53,7 @@ export function pilotHandler({ store, provider, html, now = Date.now }) {
       if (body.action === 'refresh') {
         const pending = record.pending;
         if (!pending) return res.status(200).json(view(record));
-        const call = pending.conversationId ? await provider().get(pending.conversationId) : null;
+        const call = pending.conversationId ? await provider().get(pending.conversationId, record.slotSeconds ?? 450) : null;
         const updated = terminal.has(call?.status) ? settle(record, call, now())
           : !call && now() >= pending.until ? { ...record, pending: null }
           : record;
@@ -67,7 +67,7 @@ export function pilotHandler({ store, provider, html, now = Date.now }) {
       if (!await store.write(id, { ...record, pending: reserved }, revision)) return res.status(409).json({ error: 'conflict' });
       let signature;
       try {
-        signature = await provider().sign(record.internal);
+        signature = await provider().sign(record.internal, record.slotSeconds ?? 450);
       } catch {
         const current = await store.read(id);
         if (current?.record.pending?.nonce === reserved.nonce) await store.write(id, { ...record, pending: null }, current.revision);
