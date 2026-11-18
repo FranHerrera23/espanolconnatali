@@ -152,7 +152,7 @@ async function loadHistory() {
 
 async function request(action, fields) {
   const response = await fetch(location.pathname, { method: 'POST', headers: { 'Content-Type': 'application/json' },
-    credentials: 'same-origin', body: JSON.stringify({ action, ...fields }) });
+    credentials: 'same-origin', body: JSON.stringify({ action, ...(profile ? { profileKey: profile.profileKey } : {}), ...fields }) });
   const payload = await response.json();
   if (!response.ok) throw new Error(payload.error);
   return payload;
@@ -211,6 +211,7 @@ async function start() {
     else await connected.endSession();
   } catch (failure) {
     if (current !== generation) return;
+    if (failure.message === 'access') { profile = null; stage = 'idle'; error = 'access'; render(); return; }
     if (failure.message === 'pending' || failure.message === 'conflict' || failure.message === 'complete') {
       await finish();
       return refresh();
@@ -242,7 +243,7 @@ window.addEventListener('pagehide', () => {
   if (!conversation) return;
   void conversation.endSession();
   void fetch(location.pathname, { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ action: 'refresh' }), keepalive: true }).catch(() => {});
+    body: JSON.stringify({ action: 'refresh', profileKey: profile.profileKey }), keepalive: true }).catch(() => {});
 });
 document.addEventListener('visibilitychange', () => {
   if (!document.hidden && stage === 'idle' && profile?.status === 'pending') void refresh(true);

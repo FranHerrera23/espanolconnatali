@@ -27,9 +27,11 @@ export async function authenticate(store, token, now = Date.now()) {
   return { id, ...entry };
 }
 
+export const profileKey = record => digest("profile:" + record.hash).toString("hex").slice(0, 24);
+
 export function view(record) {
   const status = record.pending ? 'pending' : record.sessions.length === slots ? 'complete' : 'ready';
-  return { name: record.name, completed: record.sessions.length, remaining: slots - record.sessions.length,
+  return { name: record.name, profileKey: profileKey(record), completed: record.sessions.length, remaining: slots - record.sessions.length,
     slotSeconds: record.slotSeconds ?? slotSeconds, totalSeconds: (record.slotSeconds ?? slotSeconds) * slots,
     status, theme: record.theme ?? 'mallorca', memory: record.memory?.phrase ?? null, lastPracticeAt: record.sessions.at(-1)?.finishedAt ?? null,
     historyCount: record.sessions.filter(session => session.transcript?.length).length };

@@ -15,6 +15,7 @@ const expired = createProfile('Caducado', { now: Date.now() - 31 * 86_400_000 })
 let store = localPilotStore(directory);
 for (const profile of [alex, other, expired]) assert.equal(store.write(profile.id, profile.record, null), true);
 const calls = new Map();
+const profileKeys = new Map();
 let issued = 0;
 const provider = () => ({
   async sign() { return { conversationId: `conv_fixture_${++issued}`, signedUrl: 'wss://fixture.invalid/' }; },
@@ -27,8 +28,10 @@ async function request(action, body, cookie, requestOrigin = origin) {
   const headers = {};
   const reply = { setHeader: (key, value) => { headers[key] = value; }, status: code => { status = code; return reply; }, json: value => { payload = value; } };
   const handle = pilotHandler({ store, provider, html: () => '<html></html>' });
-  await handle({ method: 'POST', headers: { host: '127.0.0.1:4188', origin: requestOrigin, 'content-type': 'application/json', cookie }, body: { action, ...body } }, reply);
-  return { status, payload, cookie: headers['Set-Cookie']?.split(';')[0] };
+  await handle({ method: 'POST', headers: { host: '127.0.0.1:4188', origin: requestOrigin, 'content-type': 'application/json', cookie }, body: { action, profileKey: profileKeys.get(cookie), ...body } }, reply);
+  const claimedCookie = headers['Set-Cookie']?.split(';')[0];
+  if (claimedCookie) profileKeys.set(claimedCookie, payload.profileKey);
+  return { status, payload, cookie: claimedCookie };
 }
 function finishFixture(number, seconds, utterance) {
   calls.set(`conv_fixture_${number}`, { status: 'done', metadata: { callDurationSecs: seconds },
@@ -50,6 +53,7 @@ try {
   assert.equal((await request('appearance', { theme: 'outside' }, first.cookie)).status, 400);
   assert.equal((await request('appearance', { theme: 'pinar' }, first.cookie)).payload.theme, 'pinar');
   const body = { language: 'es' };
+  assert.equal((await request('start', { ...body, profileKey: 'different-open-tab' }, first.cookie)).status, 401);
   const concurrent = await Promise.all(Array.from({ length: 6 }, () => request('start', body, first.cookie)));
   assert.equal(concurrent.filter(reply => reply.status === 200).length, 1);
   assert.equal(concurrent.filter(reply => reply.status === 409).length, 5);

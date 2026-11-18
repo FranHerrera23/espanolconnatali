@@ -1,4 +1,4 @@
-import { authenticate, clearHistory, history, newReservation, pilotThemes, settle, turnVariables, view, withSignature } from './pilot-state.mjs';
+import { authenticate, clearHistory, history, newReservation, pilotThemes, profileKey, settle, turnVariables, view, withSignature } from './pilot-state.mjs';
 import { privateHeaders, sameOrigin } from './tutor-access.mjs';
 
 const cookieName = '__Host-ecn_tutor_pilot';
@@ -35,6 +35,7 @@ export function pilotHandler({ store, provider, html, now = Date.now }) {
         res.setHeader('Set-Cookie', `${cookieName}=${token}; Path=/; Secure; HttpOnly; SameSite=Strict; Max-Age=${Math.floor((record.expiresAt - now()) / 1000)}`);
         return res.status(200).json(view(record));
       }
+      if (body.action !== 'profile' && body.profileKey !== profileKey(record)) return res.status(401).json({ error: 'access' });
       if (body.action === 'profile') return res.status(200).json(view(record));
       if (body.action === 'history') return res.status(200).json(history(record));
       if (body.action === 'appearance') {
