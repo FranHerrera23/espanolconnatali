@@ -6,6 +6,13 @@ const csrfContentType = /^application\/json(?:;|$)/i;
 const terminal = new Set(['done', 'failed']);
 const handlers = new Set(['claim', 'profile', 'refresh', 'start', 'history', 'appearance']);
 
+function claimToken(body) {
+  if (typeof body.invite !== 'string') return body.token;
+  if (!/^[a-z]{2,16}\/[A-Za-z0-9_-]{16}$/.test(body.invite)) return null;
+  const invites = JSON.parse(process.env.TUTOR_PILOT_SHORT_INVITES || '{}');
+  return Object.hasOwn(invites, body.invite) ? invites[body.invite] : null;
+}
+
 export function pilotHandler({ store, provider, html, now = Date.now }) {
   return async function handle(req, res) {
     privateHeaders(res);
@@ -27,7 +34,7 @@ export function pilotHandler({ store, provider, html, now = Date.now }) {
     if (!handlers.has(body?.action)) return res.status(400).json({ error: 'input' });
     try {
       const cookie = (req.headers.cookie ?? '').split('; ').find(item => item.startsWith(`${cookieName}=`));
-      const token = body.action === 'claim' ? body.token : cookie?.slice(cookieName.length + 1);
+      const token = body.action === 'claim' ? claimToken(body) : cookie?.slice(cookieName.length + 1);
       const entry = await authenticate(store, token, now());
       if (!entry) return res.status(401).json({ error: 'access' });
       const { id, record, revision } = entry;

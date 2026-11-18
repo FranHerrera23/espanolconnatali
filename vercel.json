@@ -37,6 +37,10 @@
       "destination": "/api/tutor-preview"
     },
     {
+      "source": "/t/:name/:code/",
+      "destination": "/api/tutor-pilot"
+    },
+    {
       "source": "/tutor-dashboard/",
       "destination": "/api/tutor-pilot"
     }

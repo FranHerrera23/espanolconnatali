@@ -51,6 +51,10 @@ try {
   assert.equal((await request('claim', { token: `${alex.token.slice(0, -1)}!` })).status, 401);
   assert.equal((await request('claim', { token: alex.token }, null, 'https://example.com')).status, 403);
   const first = await request('claim', { token: alex.token });
+  process.env.TUTOR_PILOT_SHORT_INVITES = JSON.stringify({ 'alex/AbCdEf0123456789': alex.token });
+  assert.equal((await request('claim', { invite: 'alex/AbCdEf0123456789' })).payload.name, 'Alex');
+  assert.equal((await request('claim', { invite: 'other/AbCdEf0123456789' })).status, 401);
+  delete process.env.TUTOR_PILOT_SHORT_INVITES;
   assert.equal(first.status, 200);
   assert.equal(first.payload.memory, null);
   assert.equal(first.payload.remaining, 2);

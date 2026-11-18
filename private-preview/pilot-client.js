@@ -275,10 +275,12 @@ document.addEventListener('visibilitychange', () => {
   if (!document.hidden && stage === 'idle' && profile?.status === 'pending') void refresh(true);
 });
 const token = new URLSearchParams(location.hash.slice(1)).get('access');
-if (location.hash) window.history.replaceState(null, '', location.pathname);
+const invite = /^\/t\/([a-z]{2,16}\/[A-Za-z0-9_-]{16})\/?$/.exec(location.pathname)?.[1];
+if (location.hash || invite) window.history.replaceState(null, '', '/tutor-dashboard/');
 render();
 try {
-  profile = token ? await request('claim', { token }) : await request('profile');
+  if (invite) profile = await request('claim', { invite });
+  else profile = token ? await request('claim', { token }) : await request('profile');
   theme = savedTheme = profile.theme;
   stage = 'idle';
   render();
