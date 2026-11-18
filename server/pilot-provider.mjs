@@ -1,7 +1,11 @@
-import { randomUUID } from 'node:crypto';
+import { createHash } from 'node:crypto';
 import { createElevenLabsClient } from './elevenlabs-client.mjs';
 import { slotSeconds } from './pilot-state.mjs';
 import { safeAgent } from './tutor-safety.mjs';
+import { pilotPrompt, voiceSpeed } from './pilot-knowledge.mjs';
+
+const knowledgeRevision = createHash('sha256').update(JSON.stringify([pilotPrompt, voiceSpeed])).digest('hex').slice(0, 12);
+const configuredTargets = new Map();
 
 export function pilotProvider() {
   const agentId = process.env.TUTOR_PILOT_AGENT_ID;
@@ -14,28 +18,62 @@ export function pilotProvider() {
     if (!branchId || !versionId) throw new Error('Missing pilot duration target');
     return { branchId, versionId };
   }
+  async function configuredTarget(base, limit) {
+    const baseRevision = createHash('sha256').update(base.versionId).digest('hex').slice(0, 10);
+    const name = `pilot-${knowledgeRevision}-${baseRevision}-${limit}s`;
+    const cacheKey = `${agentId}:${name}`;
+    if (configuredTargets.has(cacheKey)) return configuredTargets.get(cacheKey);
+    const branches = client.conversationalAi.agents.branches;
+    async function find() {
+      const list = await branches.list(agentId, { limit: 100, includeArchived: false });
+      const matching = list.results.find(branch => branch.name === name);
+      if (!matching) return null;
+      const branch = await branches.get(agentId, matching.id);
+      const versionId = branch.mostRecentVersions?.[0]?.id;
+      if (!versionId) throw new Error('Missing pilot knowledge version');
+      return { branchId: branch.id, versionId };
+    }
+    const configured = (async () => {
+      const existing = await find();
+      if (existing) return existing;
+      try {
+        const branch = await branches.create(agentId, {
+          parentVersionId: base.versionId,
+          name,
+          description: 'Private pilot with school knowledge and practice duration',
+          conversationConfig: {
+            conversation: { max_duration_seconds: limit },
+            agent: { prompt: { prompt: pilotPrompt, max_tokens: 210 } },
+            tts: { speed: voiceSpeed },
+          },
+        });
+        if (!branch.createdBranchId || !branch.createdVersionId) throw new Error('Missing pilot knowledge version');
+        return { branchId: branch.createdBranchId, versionId: branch.createdVersionId };
+      } catch (error) {
+        const createdConcurrently = await find();
+        if (createdConcurrently) return createdConcurrently;
+        throw error;
+      }
+    })();
+    configuredTargets.set(cacheKey, configured);
+    try {
+      return await configured;
+    } catch (error) {
+      configuredTargets.delete(cacheKey);
+      throw error;
+    }
+  }
   return {
     async sign(internal, seconds = slotSeconds, maxSeconds = seconds) {
       const base = target(seconds);
-      if (!Number.isInteger(maxSeconds) || maxSeconds < 1 || maxSeconds > seconds ||
-          (maxSeconds !== seconds && seconds !== 900)) throw new Error('Invalid pilot session limit');
+      if (!Number.isInteger(maxSeconds) || maxSeconds < 1 || maxSeconds > seconds) throw new Error('Invalid pilot session limit');
       const plan = await client.user.subscription.get();
       if ((!internal && (plan.tier === 'free' || process.env.TUTOR_PILOT_INVITES_READY !== 'true')) || plan.maxCreditLimitExtension !== 0 || plan.allowedToExtendCharacterLimit === true) {
         throw new Error('Pilot voice capacity is not authorized');
       }
       // The provider rejects caps below a minute. The dashboard still stops at the exact remaining lesson time.
       const providerLimit = Math.max(60, maxSeconds);
-      let selected = base;
-      if (maxSeconds !== seconds) {
-        const branch = await client.conversationalAi.agents.branches.create(agentId, {
-          parentVersionId: base.versionId,
-          name: `pilot-resume-${randomUUID()}`,
-          description: 'Private pilot lesson time limit',
-          conversationConfig: { conversation: { max_duration_seconds: providerLimit } },
-        });
-        selected = { branchId: branch.createdBranchId, versionId: branch.createdVersionId };
-        if (!selected.branchId || !selected.versionId) throw new Error('Missing pilot resume version');
-      }
+      const selected = await configuredTarget(base, providerLimit);
       const { branchId, versionId } = selected;
       const agent = await client.conversationalAi.agents.get(agentId, selected);
       const privacy = agent.platformSettings?.privacy;
@@ -43,6 +81,8 @@ export function pilotProvider() {
         throw new Error('Pilot retention is not ready for learners');
       }
       if (!safeAgent(agent) || agent.versionId !== versionId || agent.conversationConfig?.conversation?.maxDurationSeconds !== providerLimit ||
+          agent.conversationConfig?.agent?.prompt?.prompt !== pilotPrompt ||
+          agent.conversationConfig?.tts?.speed !== voiceSpeed ||
           agent.platformSettings?.overrides?.conversationConfigOverride?.conversation?.maxDurationSeconds === true ||
           agent.platformSettings?.callLimits?.burstingEnabled === true) throw new Error('Pilot agent is not ready');
       const { signedUrl } = await client.conversationalAi.conversations.getSignedUrl({ agentId: agentId, branchId, versionId, includeConversationId: true });

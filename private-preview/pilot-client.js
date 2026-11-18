@@ -10,9 +10,8 @@ const copy = {
     lesson: n => `Урок ${n}`, done: 'завершён', pause: 'Пауза',
     end: 'Завершить', refresh: 'Обновить', pending: 'Сохраняем результаты разговора…', complete: 'Спасибо за практику',
     mic: 'Разрешите доступ к микрофону и попробуйте снова.', network: 'Связь прервалась. Проверьте статус беседы.', memoryTitle: 'Прошлая практика',
-    last: 'Последний разговор', history: 'Посмотреть разговор', pastConversations: 'Посмотреть разговоры', forget: 'Удалить историю',
-    save: 'Текст разговора сохраняется автоматически.', loadingHistory: 'Открываем историю…', you: 'Вы',
-    deleteHistory: 'Удалить', cancel: 'Отмена', confirm: 'Удалить разговоры из личного кабинета?',
+    last: 'Последний разговор', history: 'Посмотреть разговор', pastConversations: 'Посмотреть разговоры',
+    save: 'Можно остановиться и продолжить позже с оставшегося времени.', loadingHistory: 'Открываем историю…', you: 'Вы',
   },
   es: {
     themeTitle: 'Ambiente', themes: { mallorca: 'Mallorca', pinar: 'Pinar', arena: 'Arena' },
@@ -22,9 +21,8 @@ const copy = {
     lesson: n => `Clase ${n}`, done: 'completada', pause: 'Pausar',
     end: 'Terminar', refresh: 'Actualizar', pending: 'Guardando tu práctica…', complete: 'Gracias por practicar',
     mic: 'Permití el acceso al micrófono y volvé a intentar.', network: 'Se cortó la conexión. Revisá el estado de la charla.', memoryTitle: 'Práctica anterior',
-    last: 'Última conversación', history: 'Ver conversación', pastConversations: 'Ver conversaciones', forget: 'Borrar historial',
-    save: 'El texto de tu charla se guarda automáticamente.', loadingHistory: 'Abriendo tu historial…', you: 'Vos',
-    deleteHistory: 'Borrar', cancel: 'Cancelar', confirm: '¿Borrar las conversaciones de tu panel?',
+    last: 'Última conversación', history: 'Ver conversación', pastConversations: 'Ver conversaciones',
+    save: 'Podés pausar y seguir más tarde con el tiempo que te quede.', loadingHistory: 'Abriendo tu historial…', you: 'Vos',
   },
 };
 let language = 'ru';
@@ -65,12 +63,16 @@ function render() {
   const status = idle ? profile.status : stage;
   const lesson = profile.lesson;
   const seconds = lessonDeadline ? Math.max(0, Math.ceil((lessonDeadline - Date.now()) / 1000)) : lesson?.seconds;
-  byId('allowance').textContent = lesson
-    ? [1, 2].map(n => {
-      const time = n <= lesson.completed ? t.done : formatTime(n === lesson.completed + 1 ? seconds : profile.slotSeconds);
-      return `${t.lesson(n)} · ${time}`;
-    }).join('  /  ')
-    : t.allowance(profile.remaining);
+  byId('allowance').hidden = !lesson;
+  if (lesson) {
+    for (const n of [1, 2]) {
+      const isCurrent = n === lesson.completed + 1;
+      byId(`lesson-${n}`).dataset.current = String(isCurrent);
+      byId(`lesson-label-${n}`).textContent = t.lesson(n);
+      byId(`lesson-time-${n}`).textContent = n <= lesson.completed
+        ? t.done : formatTime(isCurrent ? seconds : profile.slotSeconds);
+    }
+  }
   byId('voice-status').textContent = error ? t[error] : (ready ? '' : (t[status] ?? t.pending));
   byId('start').hidden = active || profile.status === 'complete' || profile.status === 'pending';
   byId('start').disabled = !ready;
@@ -89,11 +91,6 @@ function render() {
   byId('phrase').textContent = profile.memory ? `«${profile.memory}»` : '';
   byId('history').hidden = !profile.historyCount;
   byId('history-toggle').textContent = t[profile.historyCount > 1 ? 'pastConversations' : 'history'];
-  byId('forget').textContent = t.forget;
-  byId('forget').disabled = profile.status === 'pending';
-  byId('forget-question').textContent = t.confirm;
-  byId('delete-history').textContent = t.deleteHistory;
-  byId('cancel-forget').textContent = t.cancel;
   if (byId('history').open) renderHistory();
 }
 
@@ -255,19 +252,17 @@ document.querySelectorAll('.scene').forEach(button => button.addEventListener('c
 byId('start').addEventListener('click', start);
 byId('end').addEventListener('click', () => finish());
 byId('refresh').addEventListener('click', () => { error = ''; void refresh(); });
-byId('history').addEventListener('toggle', () => {
-  if (byId('history').open) void loadHistory();
-  else byId('confirm-forget').hidden = true;
-});
-byId('forget').addEventListener('click', () => { byId('confirm-forget').hidden = false; byId('cancel-forget').focus(); });
-byId('cancel-forget').addEventListener('click', () => { byId('confirm-forget').hidden = true; byId('forget').focus(); });
-byId('delete-history').addEventListener('click', async () => {
-  try {
-    profile = await request('forget'); history = null; error = '';
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && byId('history').open) {
     byId('history').open = false;
-  } catch { error = 'unavailable'; }
-  render();
-  byId('greeting').focus();
+    byId('history-toggle').focus();
+  }
+});
+byId('history').addEventListener('toggle', () => {
+  if (byId('history').open) {
+    void loadHistory();
+    byId('history-list').focus();
+  }
 });
 window.addEventListener('pagehide', () => {
   if (!conversation) return;

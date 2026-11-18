@@ -35,15 +35,15 @@ function countedSessions(record) {
 }
 
 function lessonProgress(record) {
-  if (record.slotSeconds !== 900) return null;
+  const duration = record.slotSeconds ?? slotSeconds;
   const total = countedSessions(record).reduce((sum, session) => sum + session.seconds, 0);
-  const completed = Math.min(slots, Math.floor(total / record.slotSeconds));
-  return { completed, seconds: completed === slots ? 0 : record.slotSeconds - total % record.slotSeconds };
+  const completed = Math.min(slots, Math.floor(total / duration));
+  return { completed, seconds: completed === slots ? 0 : duration - total % duration };
 }
 
 export function view(record) {
   const lesson = lessonProgress(record);
-  const completed = lesson?.completed ?? countedSessions(record).length;
+  const completed = lesson.completed;
   const status = record.pending ? 'pending' : completed >= slots ? 'complete' : 'ready';
   return { name: record.name, profileKey: profileKey(record), completed, remaining: slots - completed, lesson,
     slotSeconds: record.slotSeconds ?? slotSeconds, totalSeconds: (record.slotSeconds ?? slotSeconds) * slots,
@@ -56,13 +56,8 @@ export function history(record) {
     .map(({ finishedAt, transcript }) => ({ finishedAt, transcript }));
 }
 
-export function clearHistory(record) {
-  return { ...record, memory: null,
-    sessions: countedSessions(record).map(({ conversationId, seconds, finishedAt }) => ({ conversationId, seconds, finishedAt })) };
-}
-
 export function newReservation(record, now) {
-  if (record.pending || (lessonProgress(record)?.completed ?? countedSessions(record).length) >= slots) return null;
+  if (record.pending || lessonProgress(record).completed >= slots) return null;
   return { nonce: randomBytes(12).toString('hex'), until: now + issuingMs };
 }
 
@@ -125,8 +120,8 @@ export function turnVariables(record, language) {
   });
   const phrase = memory?.phrase;
   const greeting = phrase && phrase.length <= 130 && !/[{}<>]/.test(phrase)
-    ? `¡Hola, ${name}! La última vez dijiste: «${phrase}». ¿Continuamos?`
-    : recent.length ? `¡Hola, ${name}! ¿Retomamos nuestra última conversación?`
+    ? `Sigamos desde donde quedamos. Antes dijiste: «${phrase}».`
+    : recent.length ? 'Qué bueno seguir. ¿Retomamos donde quedamos?'
     : `¡Hola, ${name}! ¿De qué te apetece hablar hoy?`;
   return { user_name: name, practice_topic: 'Conversación libre sobre los temas elegidos por el alumno',
     interface_language: language, pilot_greeting: greeting, pilot_memory: context };

@@ -67,9 +67,9 @@ try {
   finishFixture(1, 34, 'En Valencia quiero comprar una taza azul.');
   const settled = await request('refresh', null, first.cookie);
   assert.equal(settled.payload.memory, 'En Valencia quiero comprar una taza azul.');
-  assert.equal(settled.payload.remaining, 1);
+  assert.equal(settled.payload.remaining, 2);
   assert.equal(settled.payload.historyCount, 1);
-  assert.equal((await request('refresh', null, first.cookie)).payload.remaining, 1);
+  assert.equal((await request('refresh', null, first.cookie)).payload.remaining, 2);
   store = localPilotStore(directory);
   const returned = await request('claim', { token: alex.token });
   const stranger = await request('claim', { token: other.token });
@@ -89,19 +89,16 @@ try {
   } else {
     const second = await request('start', { language: 'es' }, returned.cookie);
     assert.equal(second.status, 200);
-    assert.match(second.payload.dynamicVariables.pilot_greeting, /Alex.*taza azul/);
+    assert.match(second.payload.dynamicVariables.pilot_greeting, /taza azul/);
     assert.match(second.payload.dynamicVariables.pilot_memory, /taza azul.*tienda del centro/);
-    finishFixture(2, 36, 'Voy a buscar ahora una jarra de cristal.');
+    finishFixture(2, 866, 'Voy a buscar ahora una jarra de cristal.');
     const completed = await request('refresh', null, returned.cookie);
     assert.equal(completed.payload.remaining, 0);
     assert.equal(completed.payload.historyCount, 2);
     assert.equal((await request('start', body, returned.cookie)).status, 409);
-    const erased = await request('forget', null, returned.cookie);
-    assert.equal(erased.payload.memory, null);
-    assert.equal(erased.payload.historyCount, 0);
-    assert.equal(erased.payload.remaining, 0);
-    assert.deepEqual((await request('history', null, returned.cookie)).payload, []);
-    assert.equal((await request('refresh', null, returned.cookie)).payload.memory, null);
+    const eraseAttempt = await request('forget', null, returned.cookie);
+    assert.equal(eraseAttempt.status, 400);
+    assert.equal((await request('history', null, returned.cookie)).payload.length, 2);
   }
   const paused = await request('claim', { token: partial.token });
   const resumed = await request('start', body, paused.cookie);

@@ -1,0 +1,237 @@
+[
+  {
+    "route": "/resources/keep-a-conversation-going/",
+    "title": "Как поддержать разговор на испанском",
+    "examples": [
+      "Ответ, полезная деталь и вопрос по теме: два диалога и задания с объяснениями."
+    ]
+  },
+  {
+    "route": "/resources/make-plans-in-spanish/",
+    "title": "Как договориться о встрече на испанском",
+    "examples": [
+      "Как пригласить, согласовать время и место, перенести встречу и подтвердить договорённость."
+    ]
+  },
+  {
+    "route": "/resources/practise-with-recorded-lessons/",
+    "title": "Как превратить видеоурок в самостоятельную практику испанского",
+    "examples": [
+      "Понятная последовательность работы с фразой и полноценная тренировка с ответами."
+    ]
+  },
+  {
+    "route": "/resources/ask-for-clarification/",
+    "title": "Как переспросить и попросить объяснить на испанском",
+    "examples": [
+      "Фразы для повторения, замедления речи и объяснения слов; ситуации и ответы."
+    ]
+  },
+  {
+    "route": "/resources/ser-estar/",
+    "title": "Ser и estar: как выбрать глагол по смыслу",
+    "examples": [
+      "1. Ana ___ profesora. Вы называете профессию."
+    ]
+  },
+  {
+    "route": "/resources/spanish-from-zero/",
+    "title": "Испанский с нуля: понятный маршрут для русскоязычных",
+    "examples": [
+      "1. Поздоровайтесь и назовите себя."
+    ]
+  },
+  {
+    "route": "/resources/spanish-articles/",
+    "title": "Артикли в испанском: как меняется смысл",
+    "examples": [
+      "1. Вы впервые сообщаете о какой-то книге: Tengo ___ libro de español. Выберите un или el."
+    ]
+  },
+  {
+    "route": "/resources/read-spanish/",
+    "title": "Как читать по-испански: буквы, звуки и ударение",
+    "examples": [
+      "1. Нужно ли отдельно произносить h в hola?"
+    ]
+  },
+  {
+    "route": "/resources/introduce-yourself/",
+    "title": "Как рассказать о себе при знакомстве на испанском",
+    "examples": [
+      "1. Поздоровайтесь и назовите себя."
+    ]
+  },
+  {
+    "route": "/resources/build-simple-sentences/",
+    "title": "Как построить простое предложение на испанском",
+    "examples": [
+      "1. Выберите форму для «я»: estudiar / estudio español en casa."
+    ]
+  },
+  {
+    "route": "/resources/work-email/",
+    "title": "Correo de trabajo",
+    "examples": [
+      "1. Вы отправляете обновлённый файл и хотите получить подтверждение доставки. Напишите тему и две фразы основного текста, обращаясь на usted."
+    ]
+  },
+  {
+    "route": "/resources/compliments-in-spanish/",
+    "title": "Cumplidos con contexto",
+    "examples": [
+      "1. Вы хвалите улыбку мужчины. Выберите: «una sonrisa muy bonito» или «una sonrisa muy bonita»."
+    ]
+  },
+  {
+    "route": "/resources/job-interview-in-spanish/",
+    "title": "Cómo contar tu experiencia y pedir aclaraciones en una entrevista en español",
+    "examples": [
+      "1. Вас спрашивают о нынешней работе. Скажите, что работаете с клиентами и отвечаете на письма."
+    ]
+  },
+  {
+    "route": "/resources/te-quiero-te-amo-me-gustas/",
+    "title": "Te quiero, te amo y me gustas",
+    "examples": [
+      "1. Вы хотите похвалить разговор с человеком, не произнося прямого «ты мне нравишься». Выберите me gustas или me gusta hablar contigo."
+    ]
+  },
+  {
+    "route": "/resources/questions-in-spanish/",
+    "title": "Preguntas y respuestas",
+    "examples": [
+      "1. Вам ответили «A las ocho». Какой вопрос точнее: ¿De dónde eres? или ¿A qué hora empieza?"
+    ]
+  },
+  {
+    "route": "/resources/gustar/",
+    "title": "Gustar",
+    "examples": [
+      "1. Me ___ estos libros: gusta или gustan?"
+    ]
+  },
+  {
+    "route": "/resources/at-a-cafe/",
+    "title": "Español en el café: pedir, aclarar y pagar",
+    "examples": [
+      "Buenos días. Un café con leche y una tostada, por favor.",
+      "¿La tostada con tomate o con mantequilla?",
+      "1. Закажите маленький кофе с молоком и тост с помидором."
+    ]
+  },
+  {
+    "route": "/resources/short-practice-routine/",
+    "title": "Rutina de práctica breve",
+    "examples": [
+      "1. Без модели закажите кофе с молоком на месте."
+    ]
+  },
+  {
+    "route": "/resources/football-in-spanish/",
+    "title": "Fútbol para conversar",
+    "examples": [
+      "1. Спросите, за какую команду болеет собеседник."
+    ]
+  },
+  {
+    "route": "/resources/book-an-appointment-by-phone/",
+    "title": "Cómo pedir cita por teléfono y confirmar la hora",
+    "examples": [
+      "1. Позвоните и попросите записать вас на стрижку."
+    ]
+  },
+  {
+    "route": "/resources/spanish-for-job-search/",
+    "title": "Español para buscar trabajo",
+    "examples": [
+      "1. В названии вакансии написано «30h/sem, tardes, sustitución». Что уже известно? Составьте два вопроса о том, чего не хватает для понимания графика и срока."
+    ]
+  },
+  {
+    "route": "/resources/order-tapas-and-raciones/",
+    "title": "Cómo pedir tapas, medias raciones y raciones en España",
+    "examples": [
+      "1. Вы вдвоём хотите немного перекусить. Предложите сначала взять два блюда на всех, а потом решить, нужно ли ещё."
+    ]
+  },
+  {
+    "route": "/resources/confirm-delivery-address/",
+    "title": "Cómo confirmar la dirección y el horario de una entrega",
+    "examples": [
+      "1. Курьер спрашивает адрес. В учебной ситуации вы живёте на calle Olmo, дом 12, вход B, второй этаж, дверь 3. Продиктуйте адрес частями."
+    ]
+  },
+  {
+    "route": "/resources/respond-to-a-deadline/",
+    "title": "Cómo responder a una tarea con plazo para hoy",
+    "examples": [
+      "— ¿Puedes preparar las cinco diapositivas para hoy?",
+      "— Sí. Te envío la presentación en PDF antes de las 16:00."
+    ]
+  },
+  {
+    "route": "/resources/report-an-accommodation-problem/",
+    "title": "Cómo explicar un problema en el alojamiento en español",
+    "examples": [
+      "Buenas tardes. Estoy en la habitación 208. En la ducha solo sale agua fría. ¿Podrían revisarlo hoy?",
+      "Sí, vamos a avisar a mantenimiento.",
+      "1. Вы в комнате 107. Из душа идёт только холодная вода. Сообщите это и попросите проверить сегодня."
+    ]
+  },
+  {
+    "route": "/resources/tell-what-you-did-yesterday/",
+    "title": "Cómo contar lo que hiciste ayer en español",
+    "examples": [
+      "¿Qué hiciste ayer?",
+      "Por la mañana trabajé. Luego fui al mercado y compré fruta. ¿Y tú?",
+      "1. Дополните: «Ayer ___ (hablar, yo) con Lucía»."
+    ]
+  },
+  {
+    "route": "/resources/ask-for-directions/",
+    "title": "Cómo pedir y entender indicaciones en español",
+    "examples": [
+      "Perdone, ¿cómo llego a la estación de tren?",
+      "Siga recto hasta el semáforo y gire a la izquierda. La estación queda enfrente de la plaza.",
+      "1. Вежливо спросите незнакомого человека, как дойти до вокзала."
+    ]
+  },
+  {
+    "route": "/resources/buy-a-transport-ticket/",
+    "title": "Cómo comprar un billete de transporte y confirmar el transbordo",
+    "examples": [
+      "1. Попросите билет на одну поездку до центра на метро."
+    ]
+  },
+  {
+    "route": "/resources/try-on-clothes-in-spanish/",
+    "title": "Cómo probarte ropa y pedir otra talla en español",
+    "examples": [
+      "—¿Tiene esta camisa en la M?",
+      "—Aquí no. Voy a mirar en el almacén.",
+      "1. Покажите на рубашку и спросите, есть ли такая же в размере M."
+    ]
+  },
+  {
+    "route": "/resources/tell-what-you-liked-at-an-exhibition/",
+    "title": "Cómo contar en español qué te gustó de una exposición",
+    "examples": [
+      "1. Перед картиной скажите, что вам нравится свет."
+    ]
+  },
+  {
+    "route": "/resources/return-or-exchange-a-purchase/",
+    "title": "Cómo devolver o cambiar una compra en español",
+    "examples": [
+      "1. Вы хотите другой размер той же куртки, а не деньги. Составьте просьбу с cambiar и una talla más."
+    ]
+  },
+  {
+    "route": "/resources/spanish-cv/",
+    "title": "Cómo describir experiencia y competencias en un CV en español",
+    "examples": [
+      "1. Вы отслеживали заказ после отправки. Выберите: preparación de pedidos или seguimiento de pedidos."
+    ]
+  }
+]

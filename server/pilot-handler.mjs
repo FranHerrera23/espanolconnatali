@@ -1,10 +1,10 @@
-import { authenticate, clearHistory, history, newReservation, pilotThemes, profileKey, settle, turnVariables, view, withSignature } from './pilot-state.mjs';
+import { authenticate, history, newReservation, pilotThemes, profileKey, settle, turnVariables, view, withSignature } from './pilot-state.mjs';
 import { privateHeaders, sameOrigin } from './tutor-access.mjs';
 
 const cookieName = '__Host-ecn_tutor_pilot';
 const csrfContentType = /^application\/json(?:;|$)/i;
 const terminal = new Set(['done', 'failed']);
-const handlers = new Set(['claim', 'profile', 'refresh', 'start', 'history', 'forget', 'appearance']);
+const handlers = new Set(['claim', 'profile', 'refresh', 'start', 'history', 'appearance']);
 
 export function pilotHandler({ store, provider, html, now = Date.now }) {
   return async function handle(req, res) {
@@ -44,12 +44,6 @@ export function pilotHandler({ store, provider, html, now = Date.now }) {
           return res.status(409).json({ error: 'conflict' });
         }
         return res.status(200).json({ theme: body.theme });
-      }
-      if (body.action === 'forget') {
-        if (record.pending) return res.status(409).json({ error: 'pending' });
-        const updated = clearHistory(record);
-        if (!await store.write(id, updated, revision)) return res.status(409).json({ error: 'conflict' });
-        return res.status(200).json(view(updated));
       }
       if (body.action === 'refresh') {
         const pending = record.pending;
