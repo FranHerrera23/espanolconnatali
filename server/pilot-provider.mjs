@@ -23,13 +23,15 @@ export function pilotProvider() {
       if ((!internal && (plan.tier === 'free' || process.env.TUTOR_PILOT_INVITES_READY !== 'true')) || plan.maxCreditLimitExtension !== 0 || plan.allowedToExtendCharacterLimit === true) {
         throw new Error('Pilot voice capacity is not authorized');
       }
+      // The provider rejects caps below a minute. The dashboard still stops at the exact remaining lesson time.
+      const providerLimit = Math.max(60, maxSeconds);
       let selected = base;
       if (maxSeconds !== seconds) {
         const branch = await client.conversationalAi.agents.branches.create(agentId, {
           parentVersionId: base.versionId,
           name: `pilot-resume-${randomUUID()}`,
           description: 'Private pilot lesson time limit',
-          conversationConfig: { conversation: { max_duration_seconds: maxSeconds } },
+          conversationConfig: { conversation: { max_duration_seconds: providerLimit } },
         });
         selected = { branchId: branch.createdBranchId, versionId: branch.createdVersionId };
         if (!selected.branchId || !selected.versionId) throw new Error('Missing pilot resume version');
@@ -40,7 +42,7 @@ export function pilotProvider() {
       if (!internal && (privacy?.recordVoice !== false || !(privacy.retentionDays >= 0 && privacy.retentionDays <= 7))) {
         throw new Error('Pilot retention is not ready for learners');
       }
-      if (!safeAgent(agent) || agent.versionId !== versionId || agent.conversationConfig?.conversation?.maxDurationSeconds !== maxSeconds ||
+      if (!safeAgent(agent) || agent.versionId !== versionId || agent.conversationConfig?.conversation?.maxDurationSeconds !== providerLimit ||
           agent.platformSettings?.overrides?.conversationConfigOverride?.conversation?.maxDurationSeconds === true ||
           agent.platformSettings?.callLimits?.burstingEnabled === true) throw new Error('Pilot agent is not ready');
       const { signedUrl } = await client.conversationalAi.conversations.getSignedUrl({ agentId: agentId, branchId, versionId, includeConversationId: true });
@@ -48,7 +50,7 @@ export function pilotProvider() {
       const conversationId = url.searchParams.get('conversation_id');
       if (url.origin !== 'wss://api.elevenlabs.io' || url.pathname !== '/v1/convai/conversation' || url.username || url.password ||
           !url.searchParams.has('conversation_signature') || !conversationId) throw new Error('Invalid provider signature');
-      return { signedUrl, conversationId, branchId, versionId, maxSeconds };
+      return { signedUrl, conversationId, branchId, versionId, maxSeconds: providerLimit };
     },
     async get(reservation, seconds = slotSeconds) {
       const { conversationId } = reservation;
