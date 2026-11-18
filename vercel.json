@@ -35,6 +35,10 @@
     {
       "source": "/tutor-preview/",
       "destination": "/api/tutor-preview"
+    },
+    {
+      "source": "/tutor-dashboard/",
+      "destination": "/api/tutor-pilot"
     }
   ],
   "functions": {
@@ -43,6 +47,10 @@
     },
     "api/tutor-session.js": {
       "includeFiles": "private-preview/access-hash.json"
+    },
+    "api/tutor-pilot.js": {
+      "includeFiles": "private-preview/pilot.html",
+      "maxDuration": 30
     }
   }
 }

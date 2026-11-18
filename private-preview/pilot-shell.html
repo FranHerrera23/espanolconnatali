@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>Conversación privada · Español con Natali</title>
+<style>
+  @font-face{font-family:Onest;src:url('<!--ONEST-REGULAR-->') format('woff');font-weight:400;font-display:swap}
+  @font-face{font-family:Onest;src:url('<!--ONEST-SEMIBOLD-->') format('woff');font-weight:600;font-display:swap}
+  :root{color-scheme:light;--ink:#27362f;--muted:#525c52;--line:rgba(59,54,41,.16);--accent:#215a50;--accent-hover:#194a42;--soft:#dae9dd;--paper:#fffaf2;--cala:url('<!--MALLORCA-->');--pinar:url('<!--PINAR-->')}
+  *{box-sizing:border-box}body{margin:0;background:#426b65;color:var(--ink);font:15px/1.5 Onest,system-ui,sans-serif;min-height:100vh;min-height:100svh;display:grid;grid-template-rows:auto 1fr auto;isolation:isolate}
+  [hidden]{display:none!important}button,input{font:inherit}button{cursor:pointer}button:disabled{opacity:.58;cursor:default}button:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+  body::before{content:'';position:fixed;z-index:-2;inset:0;background:var(--landscape,var(--cala)) center/cover no-repeat}
+  body::after{content:'';position:fixed;z-index:-1;inset:0;background:linear-gradient(180deg,#2c31293b 0%,#243b2610 35%,#2d392522 65%,#20352974 100%);pointer-events:none}
+  body[data-theme=pinar]{--landscape:var(--pinar);--accent:#4d5a36;--accent-hover:#3a4727;--soft:#e4e9cf;--paper:#fffaf0}
+  body[data-theme=arena]{--landscape:radial-gradient(ellipse at 15% 15%,#fff8e9 0%,transparent 62%),linear-gradient(145deg,#eddbbf,#cba180 130%);--accent:#874a36;--accent-hover:#6d3526;--soft:#f2decd;--paper:#fffaf2}
+  body[data-theme=arena]::after{background:linear-gradient(180deg,transparent 55%,#a1694521)}
+  header{width:min(calc(100% - 56px),1120px);margin:26px auto 0;display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .brand{padding:9px 14px;min-height:46px;display:inline-flex;align-items:center;gap:9px;white-space:nowrap;background:#fffaf3ee;border:1px solid #fff9;border-radius:100px;font-size:15px;font-weight:600;letter-spacing:-.025em;box-shadow:0 4px 14px #25231812}
+  .brand img{width:21px;height:25px;object-fit:contain;mix-blend-mode:multiply}
+  .languages{padding:4px;display:flex;gap:2px;background:#fffaf3ee;border:1px solid #fff9;border-radius:100px;box-shadow:0 4px 14px #25231812}
+  .languages button{width:40px;height:36px;border:0;border-radius:100px;background:transparent;color:var(--muted);font-size:12px;font-weight:600}.languages [aria-pressed=true]{background:var(--soft);color:var(--ink)}
+  main{padding:22px 16px 18px;display:grid;align-items:center;justify-items:center;width:100%;min-width:0}
+  .workspace{width:min(100%,480px);border:1px solid #fff9;border-radius:32px;background:color-mix(in srgb,var(--paper),transparent 4%);box-shadow:0 24px 64px #24271f38,0 2px 8px #22251c16;overflow:hidden;backdrop-filter:blur(15px)}
+  .title{text-align:center;padding:29px 23px 11px;display:grid;justify-items:center;gap:8px}
+  h1,h2,p,blockquote{margin:0}h1{font-size:clamp(31px,4.4vw,44px);font-weight:600;line-height:1.12;letter-spacing:-.052em;max-width:100%;overflow-wrap:anywhere}
+  .allowance{font-size:13px;color:var(--muted)}
+  #entrance{text-align:center;padding:9px 20px 24px}.voice{padding:7px 23px 24px;display:grid;justify-items:center;gap:10px;text-align:center}
+  .person{display:inline-flex;gap:7px;align-items:center;font-size:12px;color:var(--muted);margin-top:1px}.person img{width:26px;height:26px;object-fit:cover;object-position:center 30%;border-radius:100%}
+  .mic{display:grid;justify-items:center;gap:15px;border:0;border-radius:22px;padding:7px 14px 0;background:transparent;color:var(--ink);font-size:16px;font-weight:600;max-width:100%}
+  .mic-icon{width:88px;height:88px;display:grid;place-items:center;border-radius:100%;color:#fff;background:var(--accent);box-shadow:0 0 0 7px var(--soft),0 11px 27px #20453b38;transition:background .18s,transform .18s}
+  .mic:hover .mic-icon{background:var(--accent-hover);transform:scale(1.045)}.mic svg{width:35px;height:35px;stroke:currentColor;fill:none;stroke-width:1.55;stroke-linecap:round}
+  .status{font-size:14px;font-weight:600}.save-note,.caption{font-size:12px;color:var(--muted);max-width:46ch;overflow-wrap:anywhere}.caption{font-size:16px;line-height:1.4;max-height:24svh;overflow:auto}.status:empty,.save-note:empty,.caption:empty{display:none}
+  .quiet-button{padding:7px 12px;min-height:42px;border:1px solid var(--line);border-radius:12px;background:transparent;color:var(--ink);font-size:13px}.end{color:#7a342a}
+  aside{margin:0 20px 19px;padding:12px 14px 3px;background:color-mix(in srgb,var(--soft) 37%,var(--paper));border:1px solid var(--line);border-radius:18px}.recap{display:grid;gap:4px;margin-bottom:5px}
+  h2{font-size:14px;font-weight:600}.quiet{font-size:11px;color:var(--muted)}.phrase{font-size:13px;overflow-wrap:anywhere}
+  details{border-top:1px solid var(--line);margin-top:6px}.history-toggle{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:44px;font-size:13px;font-weight:600}.history-toggle::-webkit-details-marker{display:none}.history-toggle::after{content:'›';font-size:20px;color:var(--accent);transition:transform .18s}details[open] .history-toggle::after{transform:rotate(90deg)}
+  .history-list{max-height:25svh;overflow:auto;display:grid;gap:13px;padding:0 5px 6px}.history-entry{display:grid;gap:7px}.history-line{font-size:13px;overflow-wrap:anywhere}.history-who,.history-date{display:block;color:var(--muted);font-size:11px}.history-who{font-weight:600}.history-controls{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:5px}.history-confirm{font-size:13px;color:var(--muted)}
+  footer{display:grid;justify-items:center;margin:0 14px 23px}.theme-picker{border:1px solid #fff9;background:#fffaf5f3;box-shadow:0 5px 25px #25231835;border-radius:21px;display:flex;align-items:center;gap:7px;padding:5px 6px 5px 12px}.theme-title{font-weight:600;color:var(--muted);font-size:12px;margin-right:4px}
+  .scene{display:flex;align-items:center;gap:6px;background:transparent;border:1px solid transparent;min-height:44px;border-radius:15px;padding:3px 8px 3px 4px;font-size:12px;color:var(--ink);white-space:nowrap}.scene:hover{background:#eee4d9}.scene[aria-pressed=true]{background:var(--soft);border-color:#36422b32;font-weight:600}.swatch{width:31px;height:29px;border-radius:9px;background:var(--scenery) center/cover no-repeat;border:1px solid #382f2460}.swatch[data-image=mallorca]{--scenery:var(--cala)}.swatch[data-image=pinar]{--scenery:var(--pinar)}.swatch[data-image=arena]{--scenery:linear-gradient(135deg,#fff0d9,#c78c6f)}
+  @media(max-width:540px){header{width:calc(100% - 28px);margin:14px auto 0}.brand{min-height:42px;padding:6px 10px;font-size:13px}.languages button{width:35px;height:33px}main{padding:15px 12px}.workspace{border-radius:27px}.title{padding:21px 15px 8px}.voice{padding:4px 16px 17px;gap:8px}.mic-icon{width:76px;height:76px}.mic{gap:12px;font-size:15px}aside{margin:0 12px 12px}footer{margin-bottom:13px}.theme-picker{gap:3px;padding:3px 4px}.theme-title{position:absolute;clip-path:inset(50%);width:1px;height:1px;overflow:hidden}.scene{font-size:11px}.swatch{width:27px;height:27px}}
+  @media(max-height:670px){.title{padding-top:16px}.voice{padding-bottom:15px}.mic-icon{width:72px;height:72px}main{padding-top:11px;padding-bottom:10px}header{margin-top:12px}footer{margin-bottom:12px}}
+  @media(prefers-reduced-motion:reduce){*,*::after{transition:none!important}}
+</style>
+</head>
+<body data-theme="mallorca">
+<header><div class="brand"><img src="<!--LYNX-->" alt="">Español con Natali</div><div class="languages"><button data-lang="ru" aria-pressed="true">RU</button><button data-lang="es" aria-pressed="false">ES</button></div></header>
+<main>
+ <div class="workspace">
+  <div class="title"><h1 id="greeting" tabindex="-1">Ваша практика</h1><p class="allowance" id="allowance"></p></div>
+  <p class="status" id="entrance" role="status">Открываем практику…</p>
+  <div id="dashboard" hidden>
+    <section class="voice" aria-labelledby="voice-status">
+      <div class="person"><img src="<!--AVATAR-->" alt="">Natali</div>
+      <button class="mic" id="start"><span class="mic-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="2" width="6" height="13" rx="3"/><path d="M5 10v2a7 7 0 0 0 14 0v-2M12 19v3m-4 0h8"/></svg></span><span id="start-label">Начать практику</span></button>
+      <p class="status" id="voice-status" role="status"></p>
+      <p class="caption" id="caption" aria-live="polite"></p>
+      <button class="quiet-button end" id="end" hidden>Завершить разговор</button>
+      <button class="quiet-button" id="refresh" hidden>Обновить</button>
+      <p class="save-note" id="save-note"></p>
+    </section>
+    <aside id="previous" aria-labelledby="memory-title" hidden>
+      <div class="recap">
+        <h2 id="memory-title">Прошлая практика</h2>
+        <p class="quiet" id="last-practice"></p>
+        <blockquote class="phrase" id="phrase" hidden></blockquote>
+      </div>
+      <details id="history" hidden>
+        <summary id="history-toggle" class="history-toggle">Посмотреть разговор</summary>
+        <div id="history-list" class="history-list" tabindex="0" role="region" aria-labelledby="history-toggle"></div>
+        <button id="forget" class="quiet-button">Удалить историю</button>
+        <div id="confirm-forget" class="history-controls" hidden>
+          <p class="history-confirm" id="forget-question"></p>
+          <button id="delete-history" class="quiet-button end"></button>
+          <button id="cancel-forget" class="quiet-button"></button>
+        </div>
+      </details>
+    </aside>
+  </div>
+ </div>
+</main>
+<footer>
+  <div class="theme-picker" role="group" aria-labelledby="theme-title">
+    <span class="theme-title" id="theme-title">Пейзаж</span>
+    <button class="scene" type="button" data-theme="mallorca" aria-pressed="true"><span class="swatch" data-image="mallorca" aria-hidden="true"></span><span>Майорка</span></button>
+    <button class="scene" type="button" data-theme="pinar" aria-pressed="false"><span class="swatch" data-image="pinar" aria-hidden="true"></span><span>Сосновый лес</span></button>
+    <button class="scene" type="button" data-theme="arena" aria-pressed="false"><span class="swatch" data-image="arena" aria-hidden="true"></span><span>Песок</span></button>
+  </div>
+</footer>
+<!--CLIENT-->
+</body>
+</html>
