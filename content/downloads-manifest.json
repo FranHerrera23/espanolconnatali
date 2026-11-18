@@ -216,22 +216,6 @@
       "bytes": 97434
     },
     {
-      "id": "ECN-FR-023",
-      "articleRoute": "/resources/spanish-cv/",
-      "sourceFile": "editorial/articles/spanish-cv.md",
-      "sourceSha256": "94eff3938be3004f2558ad0f040fd886780f153cf6559fa7a99dfc6cc3440173",
-      "file": "output/pdf/2026-11-04/spanish-cv-workbook-ru.pdf",
-      "downloadRoute": "/assets/downloads/spanish-cv-workbook-ru.pdf",
-      "sha256": "24730c0cf6253a9f325e78004563601afc2d0e0a8f95ca1a1d791bda2abfb982",
-      "pages": 5,
-      "status": "approved_for_web_release",
-      "contentCheck": "Full PDF text preserved except removed AI disclosure; page count unchanged; 2026-11-07",
-      "visualCheck": "Updated editorial note rendered and visually checked in contact sheets; 2026-11-07",
-      "visualEvidence": "editorial/batches/2026-11-04/qa/pdf/ECN-FR-023.jpg",
-      "version": "1.2-editorial-note",
-      "bytes": 99417
-    },
-    {
       "id": "ECN-FR-012",
       "articleRoute": "/resources/questions-in-spanish/",
       "sourceFile": "editorial/articles/questions-in-spanish.md",
@@ -497,6 +481,34 @@
       "contentCheck": "All 94 source text blocks present in extracted PDF text; original source hash unchanged",
       "visualCheck": "Render, inspección visual, Onest, límites de página y enlaces comprobados",
       "bytes": 1317013
+    },
+    {
+      "id": "ECN-FR-037",
+      "articleRoute": "/resources/return-or-exchange-a-purchase/",
+      "sourceFile": "editorial/articles/return-or-exchange-a-purchase.md",
+      "sourceSha256": "7c542f645cccbe17cb0e472337b839fc3510728a84ba4ab90b52a13500d15596",
+      "file": "output/pdf/2026-11-18/return-or-exchange-a-purchase-workbook-ru.pdf",
+      "downloadRoute": "/assets/downloads/return-or-exchange-a-purchase-workbook-ru.pdf",
+      "sha256": "af64f5a82610f6b83ca8cac92b7203acd143643f69e2ffcab30d1395620648b3",
+      "pages": 8,
+      "status": "approved_for_web_release",
+      "contentCheck": "All 105 source text blocks present in extracted PDF text; original source hash unchanged",
+      "visualCheck": "Todas las páginas renderizadas e inspeccionadas; Onest, límites, enlaces y espacio de ejercicios verificados. Evidencia PDF-QA.json.",
+      "bytes": 1322749
+    },
+    {
+      "id": "ECN-FR-023",
+      "articleRoute": "/resources/spanish-cv/",
+      "sourceFile": "editorial/drafts/cv-v2/spanish-cv.md",
+      "sourceSha256": "4604a3aeccbfa6b14aeeca30930267506620d5ce9d02cef071cb2d509ee05bf4",
+      "file": "output/pdf/2026-11-18/spanish-cv-workbook-ru.pdf",
+      "downloadRoute": "/assets/downloads/spanish-cv-workbook-ru.pdf",
+      "sha256": "9331fa0b48ed59c9739d73babd93a8b8a0b08fac6736e24d70a3077e32b08e93",
+      "pages": 9,
+      "status": "approved_for_web_release",
+      "contentCheck": "All 123 source text blocks present in extracted PDF text; original source hash unchanged",
+      "visualCheck": "Todas las páginas renderizadas e inspeccionadas; Onest, límites, enlaces y espacio de ejercicios verificados. Evidencia PDF-QA.json.",
+      "bytes": 1328041
     }
   ]
 }

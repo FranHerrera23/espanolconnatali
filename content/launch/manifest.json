@@ -599,56 +599,6 @@
     ]
   },
   {
-    "id": "ECN-FR-023",
-    "version": "1.0",
-    "status": "approved_for_publication",
-    "language": "ru",
-    "sourceFile": "editorial/articles/spanish-cv.md",
-    "route": "/resources/spanish-cv/",
-    "routeStatus": "proposed_not_live",
-    "title": "Резюме на испанском: как описать опыт и навыки в CV",
-    "description": "Описать реальные задачи и навыки в CV: модели и упражнения.",
-    "author": {
-      "type": "Organization",
-      "name": "Редакция Español con Natali"
-    },
-    "humanReviewer": null,
-    "preparedAt": "2026-11-04",
-    "publishedAt": "2026-11-05",
-    "updatedAt": "2026-11-07",
-    "canonicalOrigin": "https://www.espanolconnatali.com",
-    "wordCount": 746,
-    "sourceUrls": [
-      "https://europass.europa.eu/es/create-europass-cv",
-      "https://www.coe.int/en/web/common-european-framework-reference-languages/level-descriptions",
-      "https://dle.rae.es/seguimiento",
-      "https://dle.rae.es/pedido"
-    ],
-    "relatedFiles": [
-      "work-email.md",
-      "job-interview-in-spanish.md"
-    ],
-    "commercialCta": null,
-    "sha256": "94eff3938be3004f2558ad0f040fd886780f153cf6559fa7a99dfc6cc3440173",
-    "editorialApproval": {
-      "by": "Fran",
-      "date": "2026-11-05",
-      "source": "Autorización expresa de publicación en el chat web."
-    },
-    "pillar": "P5",
-    "titleEs": "CV en español",
-    "relatedRoutes": [
-      "/resources/work-email/",
-      "/resources/job-interview-in-spanish/"
-    ],
-    "contextLinks": [
-      {
-        "beforeHeading": "Попрактикуйтесь",
-        "markdown": "Полный путь от вакансии до первого звонка разобран в [руководстве по поиску работы](spanish-for-job-search.md)."
-      }
-    ]
-  },
-  {
     "id": "ECN-FR-012",
     "version": "1.0",
     "status": "approved_for_publication",
@@ -1419,6 +1369,96 @@
     "commercialCta": null,
     "sha256": "f0108223d397e16bc821d3d34e7db16f64796cf8e312e7a5f3134d1f5311761a",
     "pillar": "P5",
+    "editorialApproval": {
+      "by": "Fran",
+      "source": "Autorización general de publicación autónoma diaria. No implica revisión individual.",
+      "date": "2026-11-10"
+    }
+  },
+  {
+    "id": "ECN-FR-037",
+    "version": "1.0",
+    "status": "approved_for_publication",
+    "language": "ru",
+    "sourceFile": "editorial/articles/return-or-exchange-a-purchase.md",
+    "route": "/resources/return-or-exchange-a-purchase/",
+    "title": "Как вернуть или обменять покупку по-испански",
+    "titleEs": "Cómo devolver o cambiar una compra en español",
+    "description": "Как попросить обмен или возврат покупки, понять ответ о ваучере и уточнить подтверждение. Пять диалогов, десять упражнений и ответы.",
+    "author": {
+      "type": "Organization",
+      "name": "Редакция Español con Natali"
+    },
+    "humanReviewer": null,
+    "preparedAt": "2026-11-18",
+    "publishedAt": "2026-11-18",
+    "updatedAt": null,
+    "canonicalOrigin": "https://www.espanolconnatali.com",
+    "wordCount": 2045,
+    "sourceUrls": [
+      "https://dle.rae.es/devolver",
+      "https://dle.rae.es/reembolso",
+      "https://dle.rae.es/vale",
+      "https://www.zara.com/es/es/help-center/HowToReturn",
+      "https://www.zara.com/es/es/help-center/Refund"
+    ],
+    "relatedFiles": [
+      "ask-for-clarification.md",
+      "try-on-clothes-in-spanish.md"
+    ],
+    "relatedRoutes": [
+      "/resources/ask-for-clarification/",
+      "/resources/try-on-clothes-in-spanish/"
+    ],
+    "commercialCta": null,
+    "sha256": "7c542f645cccbe17cb0e472337b839fc3510728a84ba4ab90b52a13500d15596",
+    "pillar": "P5",
+    "editorialApproval": {
+      "by": "Fran",
+      "source": "Autorización general de publicación autónoma diaria. No implica revisión individual.",
+      "date": "2026-11-10"
+    }
+  },
+  {
+    "id": "ECN-FR-023",
+    "version": "2.0",
+    "status": "approved_for_publication",
+    "language": "ru",
+    "sourceFile": "editorial/drafts/cv-v2/spanish-cv.md",
+    "route": "/resources/spanish-cv/",
+    "title": "Резюме на испанском: как описать опыт и навыки в CV",
+    "titleEs": "Cómo describir experiencia y competencias en un CV en español",
+    "description": "Как описать реальные задачи, даты, языки и навыки в CV на испанском. Пять разборов, полный учебный макет и десять упражнений с ответами.",
+    "author": {
+      "type": "Organization",
+      "name": "Редакция Español con Natali"
+    },
+    "humanReviewer": null,
+    "preparedAt": "2026-11-18",
+    "publishedAt": "2026-11-05",
+    "updatedAt": "2026-11-18",
+    "canonicalOrigin": "https://www.espanolconnatali.com",
+    "wordCount": 2234,
+    "sourceUrls": [
+      "https://europass.europa.eu/es/common-european-framework-reference-language-skills",
+      "https://europass.europa.eu/es/create-europass-cv",
+      "https://serveiocupacio.gencat.cat/es/persones/necessito-orientacio-professional/eines/com-elaborar-el-teu-curriculum/"
+    ],
+    "relatedFiles": [
+      "book-an-appointment-by-phone.md",
+      "job-interview-in-spanish.md",
+      "spanish-for-job-search.md",
+      "work-email.md"
+    ],
+    "relatedRoutes": [
+      "/resources/book-an-appointment-by-phone/",
+      "/resources/job-interview-in-spanish/",
+      "/resources/spanish-for-job-search/",
+      "/resources/work-email/"
+    ],
+    "commercialCta": null,
+    "sha256": "4604a3aeccbfa6b14aeeca30930267506620d5ce9d02cef071cb2d509ee05bf4",
+    "pillar": "P4",
     "editorialApproval": {
       "by": "Fran",
       "source": "Autorización general de publicación autónoma diaria. No implica revisión individual.",
