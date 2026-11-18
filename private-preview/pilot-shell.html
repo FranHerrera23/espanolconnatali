@@ -10,20 +10,21 @@
   @font-face{font-family:Onest;src:url('<!--ONEST-SEMIBOLD-->') format('woff');font-weight:600;font-display:swap}
   :root{color-scheme:light;--ink:#27362f;--muted:#525c52;--line:rgba(59,54,41,.16);--accent:#215a50;--accent-hover:#194a42;--soft:#dae9dd;--paper:#fffaf2;--cala:url('<!--MALLORCA-->');--pinar:url('<!--PINAR-->')}
   *{box-sizing:border-box}
-  body{margin:0;background:#f3eee5;color:var(--ink);font:16px/1.45 Onest,system-ui,sans-serif;height:100dvh;display:grid;grid-template-rows:auto minmax(0,1fr);overflow:hidden}
+  body{margin:0;background:var(--landscape,var(--cala)) center 54%/cover no-repeat #526963;color:var(--ink);font:16px/1.45 Onest,system-ui,sans-serif;height:100dvh;display:grid;grid-template-rows:auto minmax(0,1fr);overflow:hidden;isolation:isolate}
+  body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,#142b2963,transparent 35%,#142b291c 63%,#142b2959)}
+  body[data-theme=arena]::before{background:linear-gradient(180deg,#47291b24,transparent 44%)}
   [hidden]{display:none!important}button,summary{font:inherit;cursor:pointer}button:disabled{opacity:.58;cursor:default}
   button:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
   body[data-theme=pinar]{--landscape:var(--pinar);--accent:#4d5a36;--accent-hover:#3a4727;--soft:#e4e9cf}
   body[data-theme=arena]{--landscape:linear-gradient(145deg,#f9edda,#ba866d);--accent:#874a36;--accent-hover:#6d3526;--soft:#f2decd}
   header{width:min(calc(100% - 48px),1120px);margin:auto;min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-  .brand{display:flex;align-items:center;gap:10px;font-weight:600;letter-spacing:-.025em}.brand img{width:28px;height:32px;object-fit:contain;mix-blend-mode:multiply}
+  .brand{display:flex;align-items:center;gap:9px;padding:5px 13px 5px 9px;border:1px solid #fff8;border-radius:24px;background:#fffaf3;color:var(--ink);font-weight:600;letter-spacing:-.025em}.brand img{width:28px;height:32px;object-fit:contain;mix-blend-mode:multiply}
   .languages{display:flex;gap:2px;padding:3px;border:1px solid var(--line);border-radius:24px;background:#fffaf3}
   .languages button{width:44px;height:38px;border:0;border-radius:22px;background:transparent;color:var(--muted);font-weight:600;font-size:13px}
   .languages [aria-pressed=true]{background:var(--soft);color:var(--ink)}
-  main{width:min(calc(100% - 48px),1120px);margin:0 auto 24px;min-height:0;display:grid;grid-template-columns:minmax(0,1.04fr) minmax(0,1fr);border-radius:26px;overflow:hidden;background:#fffdf8;border:1px solid var(--line);box-shadow:0 16px 48px #583b2111}
-  .scenery{background:var(--landscape,var(--cala)) center/cover;min-height:0}
-  .workspace{min-width:0;min-height:0;display:flex;flex-direction:column;justify-content:center;padding:clamp(24px,4vw,62px);position:relative;gap:12px}
-  h1,h2,p,blockquote{margin:0}h1{font-size:clamp(29px,4.2vw,48px);line-height:1.08;letter-spacing:-.048em;font-weight:600;overflow-wrap:anywhere}
+  main{width:100%;min-height:0;display:grid;place-items:center;padding:12px 20px 28px}
+  .workspace{width:min(100%,460px);min-width:0;max-height:100%;display:flex;flex-direction:column;justify-content:center;padding:clamp(21px,3.7vw,38px);position:relative;gap:12px;border-radius:24px;background:#fffaf2;border:1px solid #fff9;box-shadow:0 18px 56px #162f2b46}
+  h1,h2,p,blockquote{margin:0}h1{font-size:clamp(28px,4vw,40px);line-height:1.08;letter-spacing:-.048em;font-weight:600;overflow-wrap:anywhere}
   .title{display:grid;gap:10px}.person{display:flex;gap:9px;align-items:center;color:var(--muted);font-size:13px}.person img{width:34px;height:34px;border-radius:100%;object-fit:cover}
   .lesson-list{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:6px 0 13px}.lesson{padding:9px 12px;border:1px solid var(--line);border-radius:12px;display:grid;gap:1px;min-width:0}.lesson[data-current=true]{background:var(--soft);border-color:transparent}
   .lesson strong{font-weight:600;font-size:14px}.lesson span{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}.allowance{color:var(--muted)}
@@ -40,16 +41,15 @@
   footer{margin-top:8px;border-top:1px solid var(--line);padding-top:7px}.theme-picker{display:flex;align-items:center;gap:6px;flex-wrap:wrap}.theme-title{font-size:12px;color:var(--muted)}
   .scene{min-height:44px;background:transparent;border:1px solid transparent;border-radius:10px;display:flex;align-items:center;gap:5px;padding:4px 6px;color:var(--ink);font-size:12px;white-space:nowrap}.scene[aria-pressed=true]{background:var(--soft);font-weight:600}
   .swatch{width:20px;height:20px;border-radius:6px;background:var(--scenery) center/cover;border:1px solid #382f2430}.swatch[data-image=mallorca]{--scenery:var(--cala)}.swatch[data-image=pinar]{--scenery:var(--pinar)}.swatch[data-image=arena]{--scenery:linear-gradient(135deg,#fff0d9,#c78c6f)}
-  @media(max-width:680px){header{width:calc(100% - 26px);min-height:54px}.brand{font-size:14px}main{width:calc(100% - 20px);margin-bottom:10px;grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) auto;border-radius:19px}.workspace{padding:14px 16px;gap:7px}.scenery{background-position:center 48%}.theme-title{display:none}.theme-picker{gap:3px}.scene{font-size:11px}.lesson-list{margin-bottom:8px}aside{margin-top:5px}footer{margin-top:4px}.title{gap:6px}}
-  @media(max-height:650px){header{min-height:50px}.workspace{padding-top:10px;padding-bottom:10px;gap:6px}.lesson-list{margin:4px 0 8px}.lesson{padding:5px 9px}.action{min-height:46px}.caption{max-height:1.45em}.person img{width:28px;height:28px}.history-toggle{min-height:38px}footer{padding-top:3px}}
-  @media(max-height:520px){main{grid-template-rows:0 minmax(0,1fr)}.workspace{justify-content:start}.caption{display:none}}
+  @media(max-width:680px){header{width:calc(100% - 26px);min-height:58px}.brand{font-size:14px}.brand img{width:22px;height:26px}main{padding:10px 12px 22px}.workspace{padding:18px;gap:8px;border-radius:20px}.theme-title{display:none}.theme-picker{gap:3px}.scene{font-size:11px}.lesson-list{margin-bottom:8px}aside{margin-top:5px}footer{margin-top:4px}.title{gap:6px}}
+  @media(max-height:620px){header{min-height:52px}main{padding-top:5px;padding-bottom:10px}.workspace{padding-top:13px;padding-bottom:13px;gap:6px}.lesson-list{margin:4px 0 8px}.lesson{padding:5px 9px}.action{min-height:44px}.caption{max-height:1.45em}.person img{width:28px;height:28px}.history-toggle{min-height:38px}footer{padding-top:3px}}
+  @media(max-height:480px){main{padding-bottom:6px}.workspace{padding-block:8px}h1{font-size:24px}.person img{width:22px;height:22px}.caption{display:none}.scene{min-height:36px}}
   @media(prefers-reduced-motion:reduce){*,*::after{transition:none!important}}
 </style>
 </head>
 <body data-theme="mallorca">
 <header><div class="brand"><img src="<!--LYNX-->" alt="">Español con Natali</div><div class="languages"><button data-lang="ru" aria-pressed="true">RU</button><button data-lang="es" aria-pressed="false">ES</button></div></header>
 <main>
- <div class="scenery" aria-hidden="true"></div>
  <div class="workspace">
   <div class="title"><div class="person"><img src="<!--AVATAR-->" alt="">Natali</div><h1 id="greeting" tabindex="-1">Ваша практика</h1></div>
   <p class="status" id="entrance" role="status">Открываем практику…</p>
