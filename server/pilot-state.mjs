@@ -68,7 +68,9 @@ function practiceContext(transcript) {
     if (role !== 'user') continue;
     for (const part of text.split(/(?<=[.!?…。！？])\s+|\n+/u)) {
       const phrase = part.replace(/[\p{Cc}\p{Cf}«»]/gu, '').trim();
-      if (phrase.split(/\s+/u).length < 5 || [...phrase].length > 155) continue;
+      if (/[¿?]/u.test(phrase) || /(?:ignora|olvida|inventa|ignore|instructions|instrucciones|правил|игнориру)/iu.test(phrase)) continue;
+      const words = phrase.split(/\s+/u).length;
+      if ((words < 5 && !(words >= 2 && /^(?:soy|trabajo|vivo|me gusta|tengo|я|мне)\b/iu.test(phrase))) || [...phrase].length > 155) continue;
       if (/@|https?:|\b(?:\d[\s-]?){5,}\b/u.test(phrase)) continue;
       if (!quotes.includes(phrase)) quotes.push(phrase);
     }
