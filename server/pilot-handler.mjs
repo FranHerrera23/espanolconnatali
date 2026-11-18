@@ -54,7 +54,7 @@ export function pilotHandler({ store, provider, html, now = Date.now }) {
       if (body.action === 'refresh') {
         const pending = record.pending;
         if (!pending) return res.status(200).json(view(record));
-        const call = pending.conversationId ? await provider().get(pending.conversationId, record.slotSeconds ?? 450) : null;
+        const call = pending.conversationId ? await provider().get(pending, record.slotSeconds ?? 450) : null;
         const updated = terminal.has(call?.status) ? settle(record, call, now())
           : !call && now() >= pending.until ? { ...record, pending: null }
           : record;
@@ -66,9 +66,11 @@ export function pilotHandler({ store, provider, html, now = Date.now }) {
       const reserved = newReservation(record, now());
       if (!reserved) return res.status(409).json({ error: record.pending ? 'pending' : 'complete' });
       if (!await store.write(id, { ...record, pending: reserved }, revision)) return res.status(409).json({ error: 'conflict' });
+      const duration = record.slotSeconds ?? 450;
+      const lessonSeconds = view(record).lesson?.seconds;
       let signature;
       try {
-        signature = await provider().sign(record.internal, record.slotSeconds ?? 450);
+        signature = await provider().sign(record.internal, duration, lessonSeconds ?? duration);
       } catch {
         const current = await store.read(id);
         if (current?.record.pending?.nonce === reserved.nonce) await store.write(id, { ...record, pending: null }, current.revision);
@@ -76,10 +78,10 @@ export function pilotHandler({ store, provider, html, now = Date.now }) {
       }
       const current = await store.read(id);
       if (current?.record.pending?.nonce !== reserved.nonce || current.record.expiresAt <= now() ||
-          !await store.write(id, { ...record, pending: withSignature(reserved, signature.conversationId, now(), record.slotSeconds ?? 450) }, current.revision)) {
+          !await store.write(id, { ...record, pending: withSignature(reserved, signature, now(), signature.maxSeconds ?? duration) }, current.revision)) {
         return res.status(409).json({ error: 'conflict' });
       }
-      return res.status(200).json({ signedUrl: signature.signedUrl, lessonSeconds: view(record).lesson?.seconds, dynamicVariables: turnVariables(record, lang) });
+      return res.status(200).json({ signedUrl: signature.signedUrl, lessonSeconds, dynamicVariables: turnVariables(record, lang) });
     } catch {
       return res.status(503).json({ error: 'unavailable' });
     }

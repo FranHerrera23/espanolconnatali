@@ -11,15 +11,20 @@ const directory = fixtureDir ?? await mkdtemp(join(tmpdir(), 'natali-pilot-test-
 const origin = 'http://127.0.0.1:4188';
 const alex = createProfile('Alex', { internal: true });
 const other = createProfile('Prueba lateral', { internal: true });
+const partial = createProfile('Marina');
+partial.record.sessions.push({ seconds: 120, finishedAt: Date.now(), transcript: [{ role: 'user', text: 'Soy contable.' }] });
 const expired = createProfile('Caducado', { now: Date.now() - 31 * 86_400_000 });
 let store = localPilotStore(directory);
-for (const profile of [alex, other, expired]) assert.equal(store.write(profile.id, profile.record, null), true);
+for (const profile of [alex, other, expired, partial]) assert.equal(store.write(profile.id, profile.record, null), true);
 const calls = new Map();
 const profileKeys = new Map();
 let issued = 0;
 const provider = () => ({
-  async sign() { return { conversationId: `conv_fixture_${++issued}`, signedUrl: 'wss://fixture.invalid/' }; },
-  async get(id) { return calls.get(id) ?? null; },
+  async sign(_internal, _duration, maxSeconds) {
+    return { conversationId: `conv_fixture_${++issued}`, signedUrl: 'wss://fixture.invalid/',
+      branchId: 'fixture-branch', versionId: 'fixture-version', maxSeconds };
+  },
+  async get({ conversationId }) { return calls.get(conversationId) ?? null; },
 });
 
 async function request(action, body, cookie, requestOrigin = origin) {
@@ -98,6 +103,14 @@ try {
     assert.deepEqual((await request('history', null, returned.cookie)).payload, []);
     assert.equal((await request('refresh', null, returned.cookie)).payload.memory, null);
   }
+  const paused = await request('claim', { token: partial.token });
+  const resumed = await request('start', body, paused.cookie);
+  assert.equal(resumed.status, 200);
+  assert.equal(resumed.payload.lessonSeconds, 780);
+  const { pending } = store.read(partial.id).record;
+  assert.equal(pending.maxSeconds, 780);
+  assert.equal(pending.branchId, 'fixture-branch');
+  assert.equal(pending.versionId, 'fixture-version');
   assert.equal(slotSeconds * 2, 900);
   console.log('Pilot QA passed: separate profiles, automatic transcript, persistent context at next call, duplicate start rejected. Simulated provider.');
 } finally {
@@ -124,6 +137,7 @@ const marina = createProfile('Marina').record;
 for (const [durations, expected] of [
   [[120], { completed: 0, seconds: 780 }],
   [[120, 780], { completed: 1, seconds: 900 }],
+  [[120, 781], { completed: 1, seconds: 899 }],
   [[120, 780, 300], { completed: 1, seconds: 600 }],
   [[120, 780, 300, 600], { completed: 2, seconds: 0 }],
 ]) {

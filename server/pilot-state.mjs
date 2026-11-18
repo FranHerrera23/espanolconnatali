@@ -36,17 +36,9 @@ function countedSessions(record) {
 
 function lessonProgress(record) {
   if (record.slotSeconds !== 900) return null;
-  let completed = 0;
-  let used = 0;
-  for (const session of countedSessions(record)) {
-    used += session.seconds;
-    if (used >= record.slotSeconds) {
-      completed++;
-      used = 0;
-    }
-    if (completed === slots) break;
-  }
-  return { completed, seconds: completed === slots ? 0 : record.slotSeconds - used };
+  const total = countedSessions(record).reduce((sum, session) => sum + session.seconds, 0);
+  const completed = Math.min(slots, Math.floor(total / record.slotSeconds));
+  return { completed, seconds: completed === slots ? 0 : record.slotSeconds - total % record.slotSeconds };
 }
 
 export function view(record) {
@@ -74,8 +66,8 @@ export function newReservation(record, now) {
   return { nonce: randomBytes(12).toString('hex'), until: now + issuingMs };
 }
 
-export function withSignature(reservation, conversationId, now, duration = slotSeconds) {
-  return { ...reservation, conversationId, until: now + signatureExpiryMs + duration - slotSeconds };
+export function withSignature(reservation, { conversationId, branchId, versionId, maxSeconds }, now, duration = slotSeconds) {
+  return { ...reservation, conversationId, branchId, versionId, maxSeconds, until: now + signatureExpiryMs + duration - slotSeconds };
 }
 
 function spokenTurns(turns) {
