@@ -1464,5 +1464,49 @@
       "source": "Autorización general de publicación autónoma diaria. No implica revisión individual.",
       "date": "2026-11-10"
     }
+  },
+  {
+    "id": "ECN-FR-038",
+    "version": "1.0",
+    "status": "approved_for_publication",
+    "language": "ru",
+    "sourceFile": "editorial/articles/reserve-a-table-in-spanish.md",
+    "route": "/resources/reserve-a-table-in-spanish/",
+    "title": "Как забронировать столик в ресторане по-испански",
+    "titleEs": "Cómo reservar una mesa en español",
+    "description": "Как забронировать столик, понять, подтверждена ли бронь, перенести время и уточнить место на террасе. Диалоги, упражнения и ответы.",
+    "author": {
+      "type": "Organization",
+      "name": "Редакция Español con Natali"
+    },
+    "humanReviewer": null,
+    "preparedAt": "2026-11-19",
+    "publishedAt": "2026-11-19",
+    "updatedAt": null,
+    "canonicalOrigin": "https://www.espanolconnatali.com",
+    "wordCount": 1495,
+    "sourceUrls": [
+      "https://dle.rae.es/reservar",
+      "https://dle.rae.es/disponible",
+      "https://dle.rae.es/terraza"
+    ],
+    "relatedFiles": [
+      "ask-for-clarification.md",
+      "order-tapas-and-raciones.md",
+      "at-a-cafe.md"
+    ],
+    "relatedRoutes": [
+      "/resources/ask-for-clarification/",
+      "/resources/order-tapas-and-raciones/",
+      "/resources/at-a-cafe/"
+    ],
+    "commercialCta": null,
+    "sha256": "57f1c6d89a56cda06af520cb2a780a21fdb6c18d43bd06aa03df0f864d5ce38b",
+    "pillar": "P5",
+    "editorialApproval": {
+      "by": "Fran",
+      "source": "Autorización general de publicación autónoma diaria. No implica revisión individual.",
+      "date": "2026-11-10"
+    }
   }
 ]

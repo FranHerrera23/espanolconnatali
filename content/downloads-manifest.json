@@ -509,6 +509,20 @@
       "contentCheck": "All 123 source text blocks present in extracted PDF text; original source hash unchanged",
       "visualCheck": "Todas las páginas renderizadas e inspeccionadas; Onest, límites, enlaces y espacio de ejercicios verificados. Evidencia PDF-QA.json.",
       "bytes": 1328041
+    },
+    {
+      "id": "ECN-FR-038",
+      "articleRoute": "/resources/reserve-a-table-in-spanish/",
+      "sourceFile": "editorial/articles/reserve-a-table-in-spanish.md",
+      "sourceSha256": "57f1c6d89a56cda06af520cb2a780a21fdb6c18d43bd06aa03df0f864d5ce38b",
+      "file": "output/pdf/2026-11-19/reserve-a-table-in-spanish-workbook-ru.pdf",
+      "downloadRoute": "/assets/downloads/reserve-a-table-in-spanish-workbook-ru.pdf",
+      "sha256": "dbb98da1709645de26060a739ae5001ed0bb203d27f452a35def3262292733b6",
+      "pages": 6,
+      "status": "approved_for_web_release",
+      "contentCheck": "All 54 source text blocks present in extracted PDF text; original source hash unchanged",
+      "visualCheck": "Six pages rasterized and inspected; no clipping, readable Spanish/Russian and writing space verified.",
+      "bytes": 1312540
     }
   ]
 }
