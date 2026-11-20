@@ -156,18 +156,16 @@
     {
       "id": "ECN-FR-021",
       "articleRoute": "/resources/work-email/",
-      "sourceFile": "editorial/articles/work-email.md",
-      "sourceSha256": "2d765e3487acfc509ae0d1c26622724c6c3c38976580f129e41c81726b97e482",
-      "file": "output/pdf/2026-11-04/work-email-workbook-ru.pdf",
+      "sourceFile": "editorial/drafts/email-v2/work-email.md",
+      "sourceSha256": "3d800f9020a3412724507bb4725c1b091db5625f0c43aaa0639a4c6d852f4e21",
+      "file": "output/pdf/2026-11-20/work-email-workbook-ru.pdf",
       "downloadRoute": "/assets/downloads/work-email-workbook-ru.pdf",
-      "sha256": "90c063f4a58dad02e68c1ea421424e37f418c649f78c52dad5a23a35bec4ae0d",
-      "pages": 5,
+      "sha256": "02ebe8139ce3d1434f423d9e88afdc90fd20784c1ea6945437794b1579c407c9",
+      "pages": 8,
       "status": "approved_for_web_release",
-      "contentCheck": "Full PDF text preserved except removed AI disclosure; page count unchanged; 2026-11-07",
-      "visualCheck": "Updated editorial note rendered and visually checked in contact sheets; 2026-11-07",
-      "visualEvidence": "editorial/batches/2026-11-04/qa/pdf/ECN-FR-021.jpg",
-      "version": "1.2-editorial-note",
-      "bytes": 98459
+      "contentCheck": "All 100 source text blocks present in extracted PDF text; original source hash unchanged",
+      "visualCheck": "15 páginas renderizadas e inspeccionadas (7 museo, 8 correo). Sin desbordes, glifos ausentes ni páginas huérfanas; ejercicios separados de soluciones. Onest y marca verificadas.",
+      "bytes": 1322276
     },
     {
       "id": "ECN-FR-024",
@@ -523,6 +521,20 @@
       "contentCheck": "All 54 source text blocks present in extracted PDF text; original source hash unchanged",
       "visualCheck": "Six pages rasterized and inspected; no clipping, readable Spanish/Russian and writing space verified.",
       "bytes": 1312540
+    },
+    {
+      "id": "ECN-FR-039",
+      "articleRoute": "/resources/choose-a-museum-ticket/",
+      "sourceFile": "editorial/articles/choose-a-museum-ticket.md",
+      "sourceSha256": "6ab3083a5b9cd3446ec72f4b8985f58ade4ccbb645b8414f8dfdf28bc04ec361",
+      "file": "output/pdf/2026-11-20/choose-a-museum-ticket-workbook-ru.pdf",
+      "downloadRoute": "/assets/downloads/choose-a-museum-ticket-workbook-ru.pdf",
+      "sha256": "518494dc338de8287232c69a230468c5030ec31095df42e45ab5fff922487aa7",
+      "pages": 7,
+      "status": "approved_for_web_release",
+      "contentCheck": "All 104 source text blocks present in extracted PDF text; original source hash unchanged",
+      "visualCheck": "15 páginas renderizadas e inspeccionadas (7 museo, 8 correo). Sin desbordes, glifos ausentes ni páginas huérfanas; ejercicios separados de soluciones. Onest y marca verificadas.",
+      "bytes": 1319900
     }
   ]
 }

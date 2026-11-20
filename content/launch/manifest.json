@@ -414,56 +414,48 @@
   },
   {
     "id": "ECN-FR-021",
-    "version": "1.0",
+    "version": "2.0",
     "status": "approved_for_publication",
     "language": "ru",
-    "sourceFile": "editorial/articles/work-email.md",
+    "sourceFile": "editorial/drafts/email-v2/work-email.md",
     "route": "/resources/work-email/",
-    "routeStatus": "proposed_not_live",
     "title": "Как написать короткое рабочее письмо на испанском",
-    "description": "Рабочее письмо: одна задача и ясный ответ.",
+    "titleEs": "Cómo escribir un correo de trabajo breve en español",
+    "description": "Как отправить файл, подтвердить или перенести встречу, уточнить срок и исправить вложение. Пять моделей писем и десять упражнений с ответами.",
     "author": {
       "type": "Organization",
       "name": "Редакция Español con Natali"
     },
     "humanReviewer": null,
-    "preparedAt": "2026-11-04",
+    "preparedAt": "2026-11-20",
     "publishedAt": "2026-11-05",
-    "updatedAt": "2026-11-07",
+    "updatedAt": "2026-11-20",
     "canonicalOrigin": "https://www.espanolconnatali.com",
-    "wordCount": 781,
+    "wordCount": 1906,
     "sourceUrls": [
       "https://dle.rae.es/adjuntar",
-      "https://www.rae.es/dpd/dos%20puntos",
-      "https://www.rae.es/dpd/coma"
+      "https://www.rae.es/dpd/dos%20puntos"
     ],
     "relatedFiles": [
+      "ask-for-clarification.md",
+      "book-an-appointment-by-phone.md",
       "make-plans-in-spanish.md",
-      "ask-for-clarification.md"
+      "respond-to-a-deadline.md"
+    ],
+    "relatedRoutes": [
+      "/resources/ask-for-clarification/",
+      "/resources/book-an-appointment-by-phone/",
+      "/resources/make-plans-in-spanish/",
+      "/resources/respond-to-a-deadline/"
     ],
     "commercialCta": null,
-    "sha256": "2d765e3487acfc509ae0d1c26622724c6c3c38976580f129e41c81726b97e482",
+    "sha256": "3d800f9020a3412724507bb4725c1b091db5625f0c43aaa0639a4c6d852f4e21",
+    "pillar": "P4",
     "editorialApproval": {
       "by": "Fran",
-      "date": "2026-11-05",
-      "source": "Autorización expresa de publicación en el chat web."
-    },
-    "pillar": "P5",
-    "titleEs": "Correo de trabajo",
-    "relatedRoutes": [
-      "/resources/make-plans-in-spanish/",
-      "/resources/ask-for-clarification/"
-    ],
-    "contextLinks": [
-      {
-        "beforeHeading": "Попрактикуйтесь",
-        "markdown": "Полный путь от вакансии до первого звонка разобран в [руководстве по поиску работы](spanish-for-job-search.md)."
-      },
-      {
-        "beforeHeading": "Сначала решите, чего ждёте в ответ",
-        "markdown": "Если задача нужна уже сегодня, посмотрите [как уточнить срок и согласовать следующий шаг](respond-to-a-deadline.md)."
-      }
-    ]
+      "source": "Autorización general de publicación autónoma diaria. No implica revisión individual.",
+      "date": "2026-11-10"
+    }
   },
   {
     "id": "ECN-FR-024",
@@ -1502,6 +1494,47 @@
     ],
     "commercialCta": null,
     "sha256": "57f1c6d89a56cda06af520cb2a780a21fdb6c18d43bd06aa03df0f864d5ce38b",
+    "pillar": "P5",
+    "editorialApproval": {
+      "by": "Fran",
+      "source": "Autorización general de publicación autónoma diaria. No implica revisión individual.",
+      "date": "2026-11-10"
+    }
+  },
+  {
+    "id": "ECN-FR-039",
+    "version": "1.0",
+    "status": "approved_for_publication",
+    "language": "ru",
+    "sourceFile": "editorial/articles/choose-a-museum-ticket.md",
+    "route": "/resources/choose-a-museum-ticket/",
+    "title": "Как выбрать билет в музей и уточнить, что в него входит",
+    "titleEs": "Cómo elegir una entrada de museo y confirmar qué incluye",
+    "description": "Как уточнить состав музейного билета, время входа, язык сопровождения и повторный вход. Пять диалогов, десять упражнений и ответы.",
+    "author": {
+      "type": "Organization",
+      "name": "Редакция Español con Natali"
+    },
+    "humanReviewer": null,
+    "preparedAt": "2026-11-20",
+    "publishedAt": "2026-11-20",
+    "updatedAt": null,
+    "canonicalOrigin": "https://www.espanolconnatali.com",
+    "wordCount": 1843,
+    "sourceUrls": [
+      "https://dle.rae.es/entrada",
+      "https://www.museoreinasofia.es/visita/"
+    ],
+    "relatedFiles": [
+      "ask-for-clarification.md",
+      "tell-what-you-liked-at-an-exhibition.md"
+    ],
+    "relatedRoutes": [
+      "/resources/ask-for-clarification/",
+      "/resources/tell-what-you-liked-at-an-exhibition/"
+    ],
+    "commercialCta": null,
+    "sha256": "6ab3083a5b9cd3446ec72f4b8985f58ade4ccbb645b8414f8dfdf28bc04ec361",
     "pillar": "P5",
     "editorialApproval": {
       "by": "Fran",
