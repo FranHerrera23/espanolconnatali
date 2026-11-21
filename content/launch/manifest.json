@@ -121,49 +121,62 @@
   },
   {
     "id": "ECN-FR-002",
-    "version": "1.0",
-    "status": "published",
+    "version": "2.0",
+    "status": "approved_for_publication",
     "language": "ru",
-    "sourceFile": "editorial/articles/ask-for-clarification.md",
+    "sourceFile": "editorial/drafts/clarification-v2/ask-for-clarification.md",
     "route": "/resources/ask-for-clarification/",
-    "routeStatus": "proposed",
     "title": "Как переспросить и попросить объяснить на испанском",
-    "description": "Фразы для повторения, замедления речи и объяснения слов; ситуации и ответы.",
+    "titleEs": "Cómo pedir que repitan, hablar más despacio y aclarar lo que no entiendes",
+    "description": "Как попросить повторить или замедлить речь, объяснить слово, уточнить время и написание. Пять диалогов и десять упражнений с ответами.",
     "author": {
       "type": "Organization",
       "name": "Редакция Español con Natali"
     },
     "humanReviewer": null,
-    "preparedAt": "2026-11-03",
+    "preparedAt": "2026-11-21",
     "publishedAt": "2026-11-03",
-    "updatedAt": null,
+    "updatedAt": "2026-11-21",
     "canonicalOrigin": "https://www.espanolconnatali.com",
-    "publicationExecuted": true,
-    "wordCount": 595,
+    "wordCount": 2226,
     "sourceUrls": [
-      "https://www.rae.es/dpd/repetir",
-      "https://dle.rae.es/quedar",
-      "https://www.rae.es/dpd/interrogaci%C3%B3n"
+      "https://dle.rae.es/aclarar",
+      "https://dle.rae.es/deletrear",
+      "https://dle.rae.es/despacio",
+      "https://dle.rae.es/repetir"
     ],
     "relatedFiles": [
-      "make-plans-in-spanish.md",
-      "keep-a-conversation-going.md"
+      "at-a-cafe.md",
+      "book-an-appointment-by-phone.md",
+      "keep-a-conversation-going.md",
+      "make-plans-in-spanish.md"
+    ],
+    "relatedRoutes": [
+      "/resources/at-a-cafe/",
+      "/resources/book-an-appointment-by-phone/",
+      "/resources/keep-a-conversation-going/",
+      "/resources/make-plans-in-spanish/"
     ],
     "commercialCta": null,
-    "sha256": "d7bc06ab7c5cb7195b312db218b96c360a655a341874f8fee387f3f09caab46b",
+    "sha256": "c35b0a513ab8b8000612330be33e971d959b7a1a565112ef482a3cfc80fcbf9e",
+    "pillar": "P2",
+    "editorialReview": {
+      "reviewedOn": "2026-11-21",
+      "responsibility": "Editorial bajo delegación autónoma de Fran",
+      "version": "2.0",
+      "humanReviewAttributed": false
+    },
+    "geography": {
+      "learnerLocation": "unknown; Russian-speaking international audience",
+      "conversationContext": "Everyday Spanish conversation and phone call",
+      "register": "tú and usted explicitly contrasted",
+      "localUrlDecision": "shared educational task; no location-specific duplicate"
+    },
     "editorialApproval": {
       "by": "Fran",
-      "source": "Aprobación expresa en este chat: Excelente. Aprobados; hay que salir live con esto.",
-      "date": "2026-11-03",
-      "scope": "Aprobado para publicación por responsable web. Natali leerá después de salir live; no revisión humana de Natali atribuida."
-    },
-    "publicUrl": "https://www.espanolconnatali.com/resources/ask-for-clarification/",
-    "contextLinks": [
-      {
-        "beforeHeading": "Выберите подходящую просьбу",
-        "markdown": "Как переспросить время и подтвердить его в конце звонка, показывает [диалог о записи по телефону](book-an-appointment-by-phone.md)."
-      }
-    ]
+      "source": "Autorización general de publicación autónoma diaria. No implica revisión individual.",
+      "date": "2026-11-10"
+    }
   },
   {
     "id": "ECN-FR-005",
@@ -1536,6 +1549,64 @@
     "commercialCta": null,
     "sha256": "6ab3083a5b9cd3446ec72f4b8985f58ade4ccbb645b8414f8dfdf28bc04ec361",
     "pillar": "P5",
+    "editorialApproval": {
+      "by": "Fran",
+      "source": "Autorización general de publicación autónoma diaria. No implica revisión individual.",
+      "date": "2026-11-10"
+    }
+  },
+  {
+    "id": "ECN-FR-040",
+    "version": "1.0",
+    "status": "approved_for_publication",
+    "language": "ru",
+    "sourceFile": "editorial/articles/choose-a-book-in-spanish.md",
+    "route": "/resources/choose-a-book-in-spanish/",
+    "title": "Как выбрать книгу на испанском и попросить совет в книжном",
+    "titleEs": "Cómo elegir un libro en español y pedir una recomendación en la librería",
+    "description": "Как описать свой вкус, выбрать формат и язык издания, посмотреть текст и уточнить заказ. Пять диалогов и десять упражнений с ответами.",
+    "author": {
+      "type": "Organization",
+      "name": "Редакция Español con Natali"
+    },
+    "humanReviewer": null,
+    "preparedAt": "2026-11-21",
+    "publishedAt": "2026-11-21",
+    "updatedAt": null,
+    "canonicalOrigin": "https://www.espanolconnatali.com",
+    "wordCount": 2077,
+    "sourceUrls": [
+      "https://difusion.com/lecturas/",
+      "https://dle.rae.es/biblioteca",
+      "https://dle.rae.es/ensayo",
+      "https://dle.rae.es/librer%C3%ADa",
+      "https://dle.rae.es/novela"
+    ],
+    "relatedFiles": [
+      "ask-for-clarification.md",
+      "keep-a-conversation-going.md",
+      "tell-what-you-liked-at-an-exhibition.md"
+    ],
+    "relatedRoutes": [
+      "/resources/ask-for-clarification/",
+      "/resources/keep-a-conversation-going/",
+      "/resources/tell-what-you-liked-at-an-exhibition/"
+    ],
+    "commercialCta": null,
+    "sha256": "cc0f16e3ce2fbb2cccdc67b31ba3e4783fa4ee4c5a67b1349e8749b633f33aa6",
+    "pillar": "P5",
+    "editorialReview": {
+      "reviewedOn": "2026-11-21",
+      "responsibility": "Editorial bajo delegación autónoma de Fran",
+      "version": "1.0",
+      "humanReviewAttributed": false
+    },
+    "geography": {
+      "learnerLocation": "unknown; Russian-speaking international audience",
+      "conversationContext": "Spanish-language bookshop",
+      "register": "usted models; no universal country rule",
+      "localUrlDecision": "shared educational task; no location-specific duplicate"
+    },
     "editorialApproval": {
       "by": "Fran",
       "source": "Autorización general de publicación autónoma diaria. No implica revisión individual.",

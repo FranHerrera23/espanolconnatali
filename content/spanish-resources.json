@@ -134,5 +134,9 @@
   "choose-a-museum-ticket": [
     "Elegir una entrada de museo",
     "Guía en ruso con diálogos en español sobre los tipos de entrada, los horarios y qué está incluido."
+  ],
+  "choose-a-book-in-spanish": [
+    "Elegir un libro en español",
+    "Guía en ruso con diálogos en español para pedir recomendaciones y elegir un libro en una librería."
   ]
 }

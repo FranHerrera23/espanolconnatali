@@ -51,17 +51,16 @@
     {
       "id": "ECN-FR-002",
       "articleRoute": "/resources/ask-for-clarification/",
-      "sourceFile": "editorial/articles/ask-for-clarification.md",
-      "sourceSha256": "d7bc06ab7c5cb7195b312db218b96c360a655a341874f8fee387f3f09caab46b",
-      "file": "output/pdf/ask-for-clarification-workbook-ru.pdf",
+      "sourceFile": "editorial/drafts/clarification-v2/ask-for-clarification.md",
+      "sourceSha256": "c35b0a513ab8b8000612330be33e971d959b7a1a565112ef482a3cfc80fcbf9e",
+      "file": "output/pdf/2026-11-21/ask-for-clarification-workbook-ru.pdf",
       "downloadRoute": "/assets/downloads/ask-for-clarification-workbook-ru.pdf",
-      "sha256": "d9fd19cc7c8c338e3635c371136a9f277ffec95a412b8baa4727aaa38007e019",
-      "pages": 4,
-      "status": "existing_live_download_verified_2026-11-03",
-      "contentCheck": "Full PDF text preserved except removed AI disclosure; page count unchanged; 2026-11-07",
-      "visualCheck": "Updated editorial note rendered and visually checked in contact sheets; 2026-11-07",
-      "bytes": 97675,
-      "version": "1.0-editorial-note"
+      "sha256": "39815c081f06d8a452f0439ce9502256501fb5a1eb0c5da7bb88a809cb0704d9",
+      "pages": 8,
+      "status": "approved_for_web_release",
+      "contentCheck": "All 113 source text blocks present in extracted PDF text; original source hash unchanged",
+      "visualCheck": "16 páginas renderizadas e inspeccionadas en contactos y página de soluciones a escala legible; Onest/verde/terracota/linces, márgenes, tablas, diálogos, ejercicios y soluciones sin recortes ni páginas huérfanas.",
+      "bytes": 1324602
     },
     {
       "id": "ECN-FR-005",
@@ -535,6 +534,20 @@
       "contentCheck": "All 104 source text blocks present in extracted PDF text; original source hash unchanged",
       "visualCheck": "15 páginas renderizadas e inspeccionadas (7 museo, 8 correo). Sin desbordes, glifos ausentes ni páginas huérfanas; ejercicios separados de soluciones. Onest y marca verificadas.",
       "bytes": 1319900
+    },
+    {
+      "id": "ECN-FR-040",
+      "articleRoute": "/resources/choose-a-book-in-spanish/",
+      "sourceFile": "editorial/articles/choose-a-book-in-spanish.md",
+      "sourceSha256": "cc0f16e3ce2fbb2cccdc67b31ba3e4783fa4ee4c5a67b1349e8749b633f33aa6",
+      "file": "output/pdf/2026-11-21/choose-a-book-in-spanish-workbook-ru.pdf",
+      "downloadRoute": "/assets/downloads/choose-a-book-in-spanish-workbook-ru.pdf",
+      "sha256": "3a45c4b8834d8751ea5d87bf0fa1827e41bde631d56502604dd30d9058d1bbfb",
+      "pages": 8,
+      "status": "approved_for_web_release",
+      "contentCheck": "All 105 source text blocks present in extracted PDF text; original source hash unchanged",
+      "visualCheck": "16 páginas renderizadas e inspeccionadas en contactos y página de soluciones a escala legible; Onest/verde/terracota/linces, márgenes, tablas, diálogos, ejercicios y soluciones sin recortes ni páginas huérfanas.",
+      "bytes": 1324325
     }
   ]
 }
