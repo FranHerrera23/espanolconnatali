@@ -5,7 +5,7 @@
   "scripts": {
     "build": "node scripts/build-property.mjs && node scripts/build-tutor.mjs && node scripts/build-waitlist.mjs && node scripts/build-analytics.mjs && node scripts/build-tutor-pilot.mjs",
     "preview": "python3 -m http.server 4173 -d dist",
-    "build:production": "DEPLOY_MODE=production node scripts/build-property.mjs && node scripts/build-tutor.mjs && node scripts/build-waitlist.mjs && node scripts/build-analytics.mjs --production && node scripts/build-tutor-pilot.mjs",
+    "build:production": "DEPLOY_MODE=production node scripts/build-property.mjs && node scripts/build-tutor.mjs && DEPLOY_MODE=production node scripts/build-waitlist.mjs && node scripts/build-analytics.mjs --production && node scripts/build-tutor-pilot.mjs",
     "check:seo": "python3 scripts/check-seo.py"
   },
   "dependencies": {

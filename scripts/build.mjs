@@ -4,6 +4,7 @@ import path from 'node:path';
 import {jobFreshness} from '../site/jobs-state.js';
 import {markdown,esc} from './markdown.mjs';
 import {buildLocale,languagePicker} from './locales.mjs';
+import {buildCourse,courseRoutes} from './course.mjs';
 import {jobsRoute,renderJobs,jobsTeaser,lifeRoute,renderLife,jobDetailRoute,renderJobDetail,publicJobs} from './jobs.mjs';
 const config=JSON.parse(await readFile('site.config.json','utf8'));
 const production=process.env.DEPLOY_MODE==='production'||(process.env.VERCEL_ENV==='production');
@@ -19,7 +20,8 @@ const jobsData=JSON.parse(await readFile('content/jobs.json','utf8'));
 const publicationDate = new Intl.DateTimeFormat('ru-RU', { day:'numeric', month:'long', year:'numeric', timeZone:'UTC' });
 const out=process.env.BUILD_DIR||'dist';if(!['dist','work/test-dist'].includes(out))throw Error('Invalid output directory');
 await rm(out,{recursive:true,force:true});await mkdir(out,{recursive:true});
-await cp('site/assets',out+'/assets',{recursive:true});for(const f of ['design-system.css','library.css','resources.js','reader.js','jobs.css','jobs.js','jobs-state.js','job-detail.js'])await cp('site/'+f,out+'/'+f);
+await cp('site/assets',out+'/assets',{recursive:true});for(const f of ['design-system.css','course.css','library.css','resources.js','reader.js','jobs.css','jobs.js','jobs-state.js','job-detail.js'])await cp('site/'+f,out+'/'+f);
+if(production)await cp('site/yandex_1e0a4f9b39600def.html',out+'/yandex_1e0a4f9b39600def.html');
 const checkout = new URL(config.course.productUrl);
 checkout.searchParams.set('wanted', 'true');
 const coursePrice = new Intl.NumberFormat('en-US', {
@@ -30,19 +32,21 @@ const home = (await readFile('site/index.html', 'utf8'))
  .replaceAll('src="assets/brand/', 'src="/assets/brand/')
  .replaceAll('{{COURSE_CHECKOUT_URL}}', esc(checkout.href))
  .replaceAll('{{COURSE_PRICE}}', esc(coursePrice));
-let header=home.match(/<header class="site-nav[\s\S]*?<\/header>/)[0].replaceAll('resources.html','/resources/').replaceAll('href="#','href="/#');
+await buildCourse({out,base,production,checkout,coursePrice});
+let header=home.match(/<header class="site-nav[\s\S]*?<\/header>/)[0].replaceAll('resources.html','/resources/').replaceAll('href="#','href="/#').replaceAll('href="/#course"','href="/course/"');
 const resourceMenu='<details class="resource-nav"><summary>Ресурсы</summary><div><a href="/resources/">Учить испанский</a><a href="/life-in-spain/">Жизнь в Испании</a></div></details>';
 header=header.replace('<a href="/resources/">Бесплатные материалы</a>',resourceMenu)
  .replace(/<a class="link nav-contact"[\s\S]*?<\/a>/,'')
- .replace('</nav>','<a class="nav-waitlist" href="/tutor/">Лист ожидания</a></nav>');
+ .replace('</nav>','<a class="nav-waitlist" href="/tutor/">En Confianza</a></nav>');
 const readerHeader=header.replace(/<nav[\s\S]*?<\/nav>/,'<nav class="nav-links" id="navigation" aria-label="Навигация">'+resourceMenu+'</nav>');
 const footer=home.match(/<footer[\s\S]*?<\/footer>/)[0].replaceAll('href="#home"','href="/"');
 const org={'@type':'EducationalOrganization','@id':base+'/#organization',name:'Español con Natali',url:base+'/',sameAs:[config.instagram]};
 const editor={'@type':'Organization','@id':base+'/#editorial',name:'Редакция Español con Natali',parentOrganization:{'@id':org['@id']}};
 const site={'@type':'WebSite','@id':base+'/#website',url:base+'/',name:'Español con Natali',inLanguage:'ru',publisher:{'@id':org['@id']}};
-const urls=[];
+const tutorRoutes=['/tutor/','/en/tutor/','/es/tutor/'];
+const urls=[...Object.values(courseRoutes),...tutorRoutes].map(route=>base+route);
 async function page(route,title,desc,body,extra=[],commercial=false,options={}){
- const canonical=base+route;const webpage={'@type':['/resources/','/students/',jobsRoute,lifeRoute].includes(route)?'CollectionPage':'WebPage','@id':canonical+'#page',url:canonical,name:title,inLanguage:'ru',isPartOf:{'@id':site['@id']}};
+ const canonical=base+route;const webpage={'@type':['/resources/','/resources/travel/','/students/',jobsRoute,lifeRoute].includes(route)?'CollectionPage':'WebPage','@id':canonical+'#page',url:canonical,name:title,inLanguage:'ru',isPartOf:{'@id':site['@id']}};
  const graph=[org,editor,site,webpage,...extra];
   if(route!=='/') {
  const practical=route.startsWith(jobsRoute)||route===lifeRoute;
@@ -99,7 +103,27 @@ const activeClusters=clusters.filter(c=>manifest.some(a=>clusterFor(a)===c));
 const ordered=[...manifest].sort((a,b)=>Number(b.route.includes('/spanish-from-zero/'))-Number(a.route.includes('/spanish-from-zero/')));
 const filters='<div class="article-filters" role="group" aria-label="Темы материалов" hidden><button type="button" data-cluster="all" aria-pressed="true">Все материалы <span>'+manifest.length+'</span></button>'+activeClusters.map(c=>'<button type="button" data-cluster="'+c.id+'" aria-pressed="false">'+esc(c.label)+' <span>'+manifest.filter(a=>clusterFor(a)===c).length+'</span></button>').join('')+'</div>';
 const entries=ordered.map(a=>{const c=clusterFor(a);const featured=a.route.includes('/spanish-from-zero/');return '<article class="journal-entry'+(featured?' journal-featured':'')+'" data-topic="'+c.id+'"'+(featured?' data-featured':'')+'><a class="journal-link" href="'+a.route+'">'+(featured?'<div class="journal-cover" aria-hidden="true"><span>Español con Natali</span><strong>Español<br>desde cero.</strong><span>01 — '+esc(c.label)+'</span></div>':'')+'<span class="journal-topic">'+esc(c.label)+'</span><div class="journal-text"><h2>'+esc(a.title)+'</h2><p>'+esc(a.description)+'</p></div><span class="journal-time"><time class="journal-date" datetime="'+a.publishedAt+'">'+publicationDate.format(new Date(a.publishedAt))+'</time>Около '+readingTimes.get(a.route)+' мин чтения <span class="journal-arrow" aria-hidden="true">↗</span></span></a></article>';}).join('');
-await page('/resources/','Бесплатные материалы по испанскому','Открытые руководства на русском: испанские примеры, упражнения, ответы и источники.','<section class="library-hero wrap"><p class="label">Бесплатные материалы</p><div class="library-intro"><h1>Испанский для<br>вашей жизни.</h1><p>Объяснения, примеры и практика. Читайте, проверяйте себя и возвращайтесь к тому, что пригодится в разговоре. Все материалы открыты без регистрации.</p></div></section><section class="journal wrap" aria-label="Статьи по испанскому">'+filters+'<p class="journal-count" role="status" aria-live="polite">Материалы: '+manifest.length+'</p><div class="journal-list">'+entries+'</div></section>'+jobsTeaser('ru') ,[{'@type':'ItemList',itemListElement:ordered.map((a,i)=>({'@type':'ListItem',position:i+1,url:base+a.route,name:a.title}))}]);
+const travelRoute='/resources/travel/';
+const travelTopics=[
+ ['Дорога и транспорт',['buy-a-transport-ticket','ask-for-directions']],
+ ['Отель и доставка',['report-an-accommodation-problem','confirm-delivery-address']],
+ ['Кафе и ресторан',['at-a-cafe','reserve-a-table-in-spanish','order-tapas-and-raciones']],
+ ['Музеи и выставки',['choose-a-museum-ticket','tell-what-you-liked-at-an-exhibition']]
+];
+const travelEntries=travelTopics.flatMap(([,slugs])=>slugs).map(slug=>{
+ const article=manifest.find(entry=>entry.route==='/resources/'+slug+'/');
+ if(!article)throw Error('Missing travel article '+slug);
+ return article;
+});
+const travelItems=new Map(travelEntries.map(article=>[article.route,article]));
+const travelBody='<section class="wrap section"><a class="link" href="/resources/">← Все бесплатные материалы</a><h1>Испанский для путешествий</h1><p>Фразы и упражнения для поездок: дорога, отель, ресторан и музей.</p>'+
+ travelTopics.map(([heading,slugs])=>'<section class="section rule"><h2>'+esc(heading)+'</h2><ul>'+
+  slugs.map(slug=>{const article=travelItems.get('/resources/'+slug+'/');return '<li><a class="link" href="'+article.route+'">'+esc(article.title)+'</a><p>'+esc(article.description)+'</p></li>';}).join('')+
+ '</ul></section>').join('')+'</section>';
+await page(travelRoute,'Испанский для путешествий','Бесплатные руководства с фразами на испанском, диалогами и упражнениями для поездок.',travelBody,[
+ {'@type':'ItemList',name:'Испанский для путешествий',itemListElement:travelEntries.map((article,index)=>({'@type':'ListItem',position:index+1,name:article.title,url:base+article.route}))}
+]);
+await page('/resources/','Бесплатные материалы по испанскому','Открытые руководства на русском: испанские примеры, упражнения, ответы и источники.','<section class="library-hero wrap"><p class="label">Бесплатные материалы</p><div class="library-intro"><h1>Испанский для<br>вашей жизни.</h1><p>Объяснения, примеры и практика. Читайте, проверяйте себя и возвращайтесь к тому, что пригодится в разговоре. Все материалы открыты без регистрации.</p></div></section><section class="journal wrap" aria-label="Статьи по испанскому">'+'<p class="wrap"><a class="link" href="/resources/travel/">Испанский для путешествий ↗</a></p>'+filters+'<p class="journal-count" role="status" aria-live="polite">Материалы: '+manifest.length+'</p><div class="journal-list">'+entries+'</div></section>'+jobsTeaser('ru') ,[{'@type':'ItemList',itemListElement:ordered.map((a,i)=>({'@type':'ListItem',position:i+1,url:base+a.route,name:a.title}))}]);
 
 
 await page(lifeRoute,'Жизнь в Испании','Практические ресурсы для жизни в Испании: вакансии, оригинальные источники и проверенные условия.',renderLife());
@@ -125,6 +149,7 @@ await page('/students/','Отзывы учеников об испанском �
 let homebody=home.split('<div class="home-view" id="home">')[1].split('</div></main>')[0];if(!homebody)throw Error('Home structure changed');
 homebody='<div class="home-view" id="home">'+homebody+'</div>';
 homebody=homebody.replace(/href="resources.html"/g,'href="/resources/"').replace(/href="resources\/([^".]+)\.html"/g,'href="/resources/$1/"').replaceAll('src="assets/','src="/assets/');
+homebody=homebody.replaceAll('href="#course"','href="/course/"');
 homebody=homebody.replace(/(<a class="resource-button link" href=")(.*?)(">)/g,(_,before,route,after)=>{const article=manifest.find(a=>a.route===route);return '<p class="reading-time"><time data-publication-date datetime="'+article.publishedAt+'">'+publicationDate.format(new Date(article.publishedAt))+'</time> · Около '+readingTimes.get(route)+' мин чтения</p>'+before+route+after;});
 homebody=homebody.replace(/(<section class="resources[\s\S]*?)(<\/section>)/,(_,content,end)=>content+jobsTeaser('ru',true)+end);
 await page('/','Испанский для русскоязычных','Курс испанского в своём темпе и индивидуальные занятия с Натали.',homebody,[{'@type':'Person','@id':base+'/#natali',name:'Натали',jobTitle:'Преподаватель испанского языка',sameAs:[config.instagram]},{'@type':'Course',name:'Курс испанского в своём темпе',description:'10 видеоуроков на Google Drive, дополнительные видео для практики и домашние задания. Заключительное занятие с Натали — 30 минут.',provider:{'@id':org['@id']},inLanguage:'ru',url:base+'/#course'}],true);

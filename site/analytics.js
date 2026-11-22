@@ -2,7 +2,8 @@ import { inject, track } from '@vercel/analytics';
 
 // Only public learning/commercial routes. Never collect private tutor access URLs.
 export function publicPath(path) {
-  return /^\/(?:es\/|en\/)?$/.test(path) || /^\/(?:es\/|en\/)?(?:resources|course)(?:\/|$)/.test(path);
+  return /^\/(?:es\/|en\/)?$/.test(path) || /^\/(?:es\/|en\/)?resources(?:\/|$)/.test(path) ||
+    /^\/(?:en\/)?course\/$/.test(path) || /^\/(?:es\/|en\/)?tutor\/$/.test(path);
 }
 export function sanitize(event) {
   const url = new URL(event.url);
@@ -30,6 +31,7 @@ if (typeof window !== 'undefined' && window.location.hostname === 'www.espanolco
     }, { threshold: 0.2 });
     observer.observe(course);
   }
+  document.addEventListener('ecn:waitlist-joined', () => track('tutor_waitlist_joined', tags));
   document.addEventListener('click', event => {
     const link = event.target.closest?.('a[href]');
     if (!link) return;

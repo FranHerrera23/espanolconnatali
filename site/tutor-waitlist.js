@@ -23,6 +23,9 @@ form.addEventListener('submit', async event => {
       status.textContent = response.status === 409 ? form.dataset.full : form.dataset.fail;
       return;
     }
+    const result = await response.json();
+    if (result.ok !== true) throw new Error('Unexpected waitlist response');
+    if (result.created === true) document.dispatchEvent(new Event('ecn:waitlist-joined'));
     form.hidden = true;
     form.style.display = 'none';
     status.textContent = form.dataset.success;

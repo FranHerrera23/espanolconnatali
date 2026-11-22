@@ -9,7 +9,7 @@ async function subscribe(email, language) {
     const blob = await get(listPath, { access: 'private', useCache: false });
     const entries = blob ? await new Response(blob.stream).json() : [];
     if (!Array.isArray(entries)) throw new Error('Invalid waitlist');
-    if (entries.some(entry => entry.email === email)) return;
+    if (entries.some(entry => entry.email === email)) return 'existing';
     if (entries.length >= maxEntries) return 'full';
     try {
       await put(listPath, JSON.stringify([...entries, {
@@ -19,7 +19,7 @@ async function subscribe(email, language) {
         allowOverwrite: Boolean(blob),
         ...(blob ? { ifMatch: blob.blob.etag } : {})
       });
-      return;
+      return 'created';
     } catch (error) {
       if (error instanceof BlobPreconditionFailedError ||
           (!blob && /already exists/i.test(error.message))) continue;
@@ -55,7 +55,7 @@ export default async function handler(req, res) {
   try {
     const result = await subscribe(email, input.language);
     if (result === 'full') return res.status(409).json({ error: 'full' });
-    return res.status(200).json({ ok: true });
+    return res.status(200).json({ ok: true, created: result === 'created' });
   } catch {
     return res.status(503).json({ error: 'unavailable' });
   }

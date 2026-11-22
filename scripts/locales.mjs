@@ -38,7 +38,8 @@ export async function buildLocale(language, { out, base, production, header, foo
     .replace('>Отзывы учеников<', local('>Testimonios<', '>Testimonials<'))
     .replace('>О Натали<', local('>Sobre Natali<', '>About Natali<'))
     .replace('>Лично с Натали<', local('>Clases privadas<', '>Private lessons<'))
-    .replace('href="/tutor/">Лист ожидания<', 'href="' + prefix + '/tutor/">' + local('Lista de espera', 'Waitlist') + '<'));
+    .replaceAll('href="/course/"', 'href="' + local('/course/', '/en/course/') + '"')
+    .replace('href="/tutor/">En Confianza<', 'href="' + prefix + '/tutor/">En Confianza<'));
   const jobsHeader = internal(readerHeader).replace('href="' + prefix + '/#home" data-home', 'href="' + prefix + '/"').replace('class="brand"', local('class="brand" aria-label="Inicio · Español con Natali"', 'class="brand" aria-label="Home · Español con Natali"')).replaceAll('Бесплатные материалы', local('Recursos gratuitos', 'Free resources')).replace('>Ресурсы<', local('>Recursos<','>Resources<')).replace('>Учить испанский<',local('>Aprender español<','>Learn Spanish<')).replace('>Жизнь в Испании<',local('>Vida en España<','>Life in Spain<')).replace('Меню', local('Menú', 'Menu')).replace('aria-label="Навигация"', local('aria-label="Navegación"', 'aria-label="Navigation"'));
   const write = async (route, title, description, body, animated) => {
     const isJobs = route === jobsRoute;
@@ -56,6 +57,7 @@ export async function buildLocale(language, { out, base, production, header, foo
     .replace(/(<time data-publication-date datetime="([^"]+)">)[^<]+<\/time>/g, (_, start, date) => start + publicationDate.format(new Date(date)) + '</time>')
     .replaceAll('>О курсе ', local('>Ver el curso ', '>Explore the course '))
     .replace(/Около (\d+) мин чтения/g, local('Unos $1 min de lectura', 'About $1 min read'))
+    .replaceAll('href="/course/"', 'href="' + local('/course/', '/en/course/') + '"')
     .replace(/href="\/students\/"/g, 'href="' + prefix + '/students/"')
     .replace(/href="\/resources\/"/g, 'href="' + prefix + '/resources/"'));
   await write('/', local('Español para la vida real', 'Spanish for real life'), local('Curso grabado de español y clases privadas con Natali.', 'Self-paced Spanish and private lessons with Natali.'), localizedHome, true);
@@ -76,7 +78,7 @@ export async function buildLocale(language, { out, base, production, header, foo
     'Explanations, examples and practice without signing up. Browse the titles and summaries in English, then follow a link to read the full article in Russian.'
   );
   await write('/resources/', libraryTitle, local('Guías y ejercicios de español para rusohablantes.', 'Spanish guides and exercises for Russian speakers.'),
-    `<section class="library-hero wrap"><p class="label">${libraryTitle}</p><div class="library-intro"><h1>${local('Español para<br>tu vida.', 'Spanish for<br>everyday life.')}</h1><p>${libraryIntro}</p></div></section><section class="journal wrap" aria-label="${local('Artículos de español', 'Spanish articles')}"><div class="article-filters" role="group" aria-label="${local('Temas', 'Topics')}" hidden>${filters}</div><p class="journal-count" role="status" aria-live="polite">${local('Materiales', 'Resources')}: ${ordered.length}</p><div class="journal-list">${entries}</div></section>${jobsTeaser(language)}`, false);
+    `<section class="library-hero wrap"><p class="label">${libraryTitle}</p><div class="library-intro"><h1>${local('Español para<br>tu vida.', 'Spanish for<br>everyday life.')}</h1><p>${libraryIntro}</p></div><a class="link" href="/resources/travel/" hreflang="ru">${local('Español para viajar (en ruso)', 'Spanish for travel (in Russian)')}</a></section><section class="journal wrap" aria-label="${local('Artículos de español', 'Spanish articles')}"><div class="article-filters" role="group" aria-label="${local('Temas', 'Topics')}" hidden>${filters}</div><p class="journal-count" role="status" aria-live="polite">${local('Materiales', 'Resources')}: ${ordered.length}</p><div class="journal-list">${entries}</div></section>${jobsTeaser(language)}`, false);
 
   await write(lifeRoute, local('Vida en España','Life in Spain'), local('Recursos prácticos para la vida en España.','Practical resources for life in Spain.'), renderLife(language), false);
   if (language === 'es') {

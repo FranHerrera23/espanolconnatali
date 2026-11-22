@@ -15,6 +15,9 @@ class Page(HTMLParser):
   else:self.text.append(s)
 normalize=lambda s:' '.join(s.split())
 for f in root.rglob('*.html'):
+ if f.relative_to(root).as_posix()=='yandex_1e0a4f9b39600def.html':
+  assert mode=='production' and '<body>Verification: 1e0a4f9b39600def</body>' in f.read_text(),f
+  continue
  p=Page();raw=f.read_text();p.feed(raw);text=normalize(' '.join(p.text))
  assert sum(t=='h1' for t,a in p.tags)==1,f
  locale=f.relative_to(root).parts[0]
@@ -24,7 +27,8 @@ for f in root.rglob('*.html'):
  if f.name=='404.html':continue
  canonical=[a['href'] for t,a in p.tags if t=='link' and a.get('rel')=='canonical'];assert len(canonical)==1,f
  assert any(t=='meta' and a.get('name')=='description' and a.get('content') for t,a in p.tags),f
- full_translation=locale=='es' and f.relative_to(root).as_posix().startswith('es/life-in-spain/')
+ route='/'+'/'.join(f.relative_to(root).parent.parts)+'/'
+ full_translation=(locale=='es' and route.startswith('/es/life-in-spain/')) or route in ('/en/course/','/en/tutor/','/es/tutor/')
  if localized and not full_translation:
   russian_path='/'+'/'.join(f.relative_to(root/locale).parent.parts)
   assert urlparse(canonical[0]).path==russian_path.rstrip('/')+'/',f
@@ -54,7 +58,9 @@ for f in root.rglob('*.html'):
  if mode=='preview' or (localized and not full_translation):assert 'noindex' in robots[0],f
 urls=ET.parse(root/'sitemap.xml').getroot();ns={'s':'http://www.sitemaps.org/schemas/sitemap/0.9'}
 for u in urls.findall('s:url',ns):
- location=u.find('s:loc',ns).text;assert not urlparse(location).path.startswith(('/es/','/en/')) or urlparse(location).path.startswith('/es/life-in-spain/'),location;dest=root/urlparse(location).path.lstrip('/')/'index.html';assert dest.is_file(),location
+ location=u.find('s:loc',ns).text; route=urlparse(location).path
+ assert not route.startswith(('/es/','/en/')) or route.startswith('/es/life-in-spain/') or route in ('/en/course/','/en/tutor/','/es/tutor/'),location
+ dest=root/route.lstrip('/')/'index.html';assert dest.is_file(),location
  p=Page();p.feed(dest.read_text());assert any(t=='meta' and a.get('name')=='robots' and a['content'].startswith('index,') for t,a in p.tags),location
 if mode=='preview':assert len(urls)==0
 print(f'SEO checks passed: {len(list(root.rglob("*.html")))} HTML files; graph/visible-text parity, local links/anchors, metadata, language, indexation and sitemap.')

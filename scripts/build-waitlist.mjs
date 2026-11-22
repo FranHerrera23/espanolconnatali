@@ -2,11 +2,14 @@ import { cp, mkdir, readFile, writeFile } from 'node:fs/promises';
 import { esc } from './markdown.mjs';
 
 const productName = 'En Confianza';
+const production = process.env.DEPLOY_MODE === 'production' || process.env.VERCEL_ENV === 'production';
+const { productionSiteUrl } = JSON.parse(await readFile('site.config.json', 'utf8'));
+const base = new URL(productionSiteUrl).origin;
 
 const copy = {
   ru: {
     title: 'Вам уже есть о чём поговорить.', intro: 'Вечер в ресторане, который вы давно хотели посетить. Разговор после выставки. Отель, в который хочется вернуться.',
-    descriptor: 'Ваш личный консьерж для разговоров на испанском', promise: 'Выбирайте, о чём и когда говорить. Если не хватает слов, попросите подсказку на русском.',
+    descriptor: 'Закрытая подписка на разговорную практику на испанском', promise: 'Выбирайте, о чём и когда говорить. Если не хватает слов, попросите подсказку на русском.',
     audienceTitle: 'Если вам близок такой ритм', audience: 'Для женщин, которые учат испанский для себя и хотят говорить о том, что им действительно интересно.',
     traits: [
       ['Вы путешествуете по-своему', 'Выбираете город ради выставки, а любимый столик бронируете заранее.'],
@@ -14,7 +17,7 @@ const copy = {
       ['Вы цените свободу в расписании', 'Сегодня у вас есть четверть часа. В выходные можно выделить полчаса.']
     ],
     howTitle: 'Как проходит практика', steps: [
-      ['Найдите 15 или 30 минут', 'Начните, когда удобно. Можно говорить в будни или оставить время на выходные.'],
+      ['Найдите 15 или 30 минут', 'Начните, когда удобно, без записи на определённое время. Можно говорить в будни или оставить время на выходные.'],
       ['Выберите тему', 'Расскажите о том, что вас заинтересовало, или начните с простой повседневной ситуации.'],
       ['Попросите подсказку на русском', 'Если не хватает слова или фразы, попросите пример и попробуйте ещё раз.']
     ],
@@ -32,12 +35,12 @@ const copy = {
     ],
     success: 'Вы в списке. Когда откроется доступ, пришлём письмо с приглашением и ссылкой для оформления подписки.', pending: 'Отправляем…', fail: 'Запись пока не сохранилась. Попробуйте ещё раз.',
     invitation: 'Доступ по приглашению', full: 'Список пока заполнен. Загляните позже.', back: 'На главную', library: 'Открытая библиотека',
-    homeTitle: 'Вам уже есть о чём поговорить.', homeCopy: 'Ваш личный консьерж для разговоров на испанском. Выберите 15 или 30 минут и тему, которая вам близка. Подсказки — на русском.',
+    homeTitle: 'Вам уже есть о чём поговорить.', homeCopy: 'Закрытая подписка на разговорную практику на испанском. Выберите 15 или 30 минут и тему, которая вам близка. Подсказки — на русском.',
     example: 'Пример разговора', meaning: 'Вы можете говорить помедленнее?'
   },
   es: {
     title: 'Ya tenés de qué hablar.', intro: 'Una cena en un lugar que elegiste con tiempo. Una conversación después de una exposición. Un hotel al que siempre volvés.',
-    descriptor: 'Tu concierge privado de conversación en español', promise: 'Vos elegís de qué hablar y cuándo. Si te faltan palabras, pedí una pista en ruso.',
+    descriptor: 'Membresía privada de conversación en español', promise: 'Vos elegís de qué hablar y cuándo. Si te faltan palabras, pedí una pista en ruso.',
     audienceTitle: 'Si te reconocés acá', audience: 'Pensado para mujeres que aprenden español por gusto y quieren conversar sobre cosas que les importan.',
     traits: [
       ['Viajás a tu manera', 'Podés elegir una ciudad por una exposición y reservar con tiempo una mesa a la que querés volver.'],
@@ -45,7 +48,7 @@ const copy = {
       ['Te gusta manejar tus tiempos', 'Un cuarto de hora entre planes hoy o media hora tranquila el fin de semana.']
     ],
     howTitle: 'Cómo es la práctica', steps: [
-      ['Elegí 15 o 30 minutos', 'Empezá cuando te quede cómodo. Podés practicar entre semana o guardar tiempo para el fin de semana.'],
+      ['Elegí 15 o 30 minutos', 'Empezá cuando te quede cómodo, sin reservar un horario. Podés practicar entre semana o guardar tiempo para el fin de semana.'],
       ['Traé un tema que te interese', 'Contá algo que te llamó la atención o empezá con una situación cotidiana.'],
       ['Pedí una pista en ruso', 'Si te falta una palabra, pedí un ejemplo y probá otra vez.']
     ],
@@ -63,12 +66,12 @@ const copy = {
     ],
     success: 'Ya estás en la lista. Cuando abramos, vas a recibir un correo con la invitación y el enlace para activar tu membresía.', pending: 'Enviando…', fail: 'No pudimos guardar tu solicitud. Volvé a intentar.',
     invitation: 'Acceso por invitación', full: 'La lista está llena por ahora. Volvé más adelante.', back: 'Ir al inicio', library: 'Biblioteca abierta',
-    homeTitle: 'Ya tenés de qué hablar.', homeCopy: 'Tu concierge privado de conversación en español. Elegí 15 o 30 minutos, traé un tema que te interese y pedí una pista en ruso si te trabás.',
+    homeTitle: 'Ya tenés de qué hablar.', homeCopy: 'Membresía privada de conversación en español. Elegí 15 o 30 minutos, traé un tema que te interese y pedí una pista en ruso si te trabás.',
     example: 'Ejemplo de conversación', meaning: 'Una forma amable de pedir que hablen más despacio.'
   },
   en: {
     title: 'You already have something to say.', intro: 'A dinner you’ve been looking forward to. A conversation after an exhibition. A hotel you always return to.',
-    descriptor: 'Your private concierge for Spanish conversation', promise: 'You choose when to speak and what to talk about. If the words don’t come, ask for a hint in Russian.',
+    descriptor: 'Private membership for Spanish conversation', promise: 'You choose when to speak and what to talk about. If the words don’t come, ask for a hint in Russian.',
     audienceTitle: 'If this sounds like you', audience: 'For women who learn Spanish for pleasure and want to talk about the things they care about.',
     traits: [
       ['You travel your own way', 'You might choose a city for an exhibition and book a table you’ve been looking forward to.'],
@@ -76,7 +79,7 @@ const copy = {
       ['You like having time on your terms', 'A quarter of an hour between plans today or a quiet half hour at the weekend.']
     ],
     howTitle: 'How practice works', steps: [
-      ['Choose 15 or 30 minutes', 'Start when it suits you. Practise during the week or keep some time for the weekend.'],
+      ['Choose 15 or 30 minutes', 'Start when it suits you, without booking a time slot. Practise during the week or keep some time for the weekend.'],
       ['Bring a topic you care about', 'Talk about something that caught your eye, or start with an everyday situation.'],
       ['Ask for a hint in Russian', 'When you need a word or phrase, ask for an example and try it yourself.']
     ],
@@ -94,7 +97,7 @@ const copy = {
     ],
     success: 'You’re on the list. When access opens, we’ll email you an invitation and a link to activate your membership.', pending: 'Sending…', fail: 'We couldn’t save your request. Please try again.',
     invitation: 'Access by invitation', full: 'The waitlist is full for now. Please check back later.', back: 'Back to home', library: 'Open library',
-    homeTitle: 'You already have something to say.', homeCopy: 'Your private concierge for Spanish conversation. Choose 15 or 30 minutes, bring a topic you care about and ask for a hint in Russian whenever you need one.',
+    homeTitle: 'You already have something to say.', homeCopy: 'Private membership for Spanish conversation. Choose 15 or 30 minutes, bring a topic you care about and ask for a hint in Russian whenever you need one.',
     example: 'Conversation example', meaning: 'Could you speak a little more slowly?'
   }
 };
@@ -105,18 +108,20 @@ const logosrc = '/assets/brand/natali-lynx-approved.png';
 const text = esc;
 for (const [language, c] of Object.entries(copy)) {
   const destination = tutor(language);
-  const canonical = new URL(tutor('ru'), 'https://www.espanolconnatali.com').href;
-  const pageSchema = language === 'ru' ? '<script type="application/ld+json">' + JSON.stringify({ '@context': 'https://schema.org', '@graph': [{ '@type': 'WebPage', '@id': canonical + '#webpage', url: canonical, name: productName, inLanguage: language }] }) + '</script>' : '';
+  const canonical = base + destination;
+  const alternates = Object.keys(copy).map(code =>
+    `<link rel="alternate" hreflang="${code}" href="${base + tutor(code)}">`).join('');
+  const pageSchema = '<script type="application/ld+json">' + JSON.stringify({ '@context': 'https://schema.org', '@graph': [{ '@type': 'WebPage', '@id': canonical + '#webpage', url: canonical, name: productName, inLanguage: language }] }) + '</script>';
   const messages = ['pending','success','fail','full'].map(key => `data-${key}="${text(c[key])}"`).join(' ');
   await mkdir('dist' + destination, { recursive: true });
   await writeFile('dist' + destination + 'index.html', `<!doctype html>
-<html lang="${language}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,follow"><link rel="canonical" href="${canonical}"><meta name="description" content="${text(c.descriptor)}"><meta property="og:url" content="${canonical}">${pageSchema}<title>${productName} — Español con Natali</title><link rel="stylesheet" href="/design-system.css"><link rel="stylesheet" href="/tutor-waitlist.css"></head>
+<html lang="${language}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="${production ? 'index,follow' : 'noindex,follow'}"><link rel="canonical" href="${canonical}">${alternates}<meta name="description" content="${text(c.descriptor)}"><meta property="og:url" content="${canonical}">${pageSchema}<title>${productName} — Español con Natali</title><link rel="stylesheet" href="/design-system.css"><link rel="stylesheet" href="/tutor-waitlist.css"></head>
 <body><header class="tw-head"><a class="brand" href="${root(language)}"><img src="${logosrc}" alt="" width="44" height="44">Español con Natali</a><nav aria-label="Language">${Object.keys(copy).map(code=>`<a lang="${code}" href="${tutor(code)}"${code===language?' aria-current="page"':''}>${code.toUpperCase()}</a>`).join('')}</nav></header>
-<main class="tw-main">
+<main class="tw-main" id="main">
 <div class="tw-grid">
-<section class="tw-hero"><p class="tw-signature"><span lang="es">${productName}</span><span>${text(c.invitation)}</span></p><h1>${text(c.title)}</h1><p class="tw-descriptor">${text(c.descriptor)}</p><p class="tw-intro">${text(c.intro)}</p><p class="tw-promise">${text(c.promise)}</p></section>
+<section class="tw-hero"><p class="tw-signature"><span lang="es">${productName} · Español con Natali</span><span>${text(c.invitation)}</span></p><h1>${text(c.title)}</h1><p class="tw-descriptor">${text(c.descriptor)}</p><p class="tw-intro">${text(c.intro)}</p><p class="tw-promise">${text(c.promise)}</p></section>
 <section class="tw-panel" aria-labelledby="waitlist-heading">
-<p class="label">Founding Members</p><h2 id="waitlist-heading">${text(c.cta)}</h2><p class="tw-terms">${text(c.terms)}</p>
+<h2 id="waitlist-heading">${text(c.cta)}</h2><p class="tw-terms">${text(c.terms)}</p>
 <div class="tw-package"><p><strong>${text(c.package)}</strong></p><p>${text(c.detail)}</p></div>
 <p class="tw-disclosure">${text(c.disclosure)}</p>
 <form id="tutor-waitlist" ${messages} method="post" action="/api/tutor-waitlist/">
