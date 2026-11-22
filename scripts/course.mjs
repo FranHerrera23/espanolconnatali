@@ -1,5 +1,6 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import { esc } from './markdown.mjs';
+import { faqSchema, renderFaq } from './product-faq.mjs';
 
 export const courseRoutes = { ru: '/course/', en: '/en/course/' };
 
@@ -20,8 +21,9 @@ const course = {
     faqTitle: 'Частые вопросы',
     faq: [
       ['Подойдёт ли курс, если я начинаю с нуля?', 'Да. Курс начинается с чтения, произношения и простых фраз. Объяснения на русском, примеры и практика на испанском.'],
-      ['Как я получу доступ?', 'После покупки на Gumroad вы получите ссылку на материалы курса в Google Drive. Уроки записаны, их можно проходить в своём темпе.'],
-      ['Что входит в курс?', 'Десять видеоуроков, отдельные видео для практики, упражнения и домашние задания. В конце курса предусмотрено одно 30-минутное занятие с Натали.'],
+      ['Как я получу доступ?', 'После покупки на Gumroad вы получите ссылку на материалы курса в Google Drive. Курс оплачивается один раз. Записанные уроки можно проходить в своём темпе.'],
+      ['Что входит в курс?', 'Десять видеоуроков, отдельные видео для практики, упражнения и домашние задания.'],
+      ['Когда у меня будет занятие с Натали?', 'После того как вы пройдёте записанные уроки, у вас будет одно индивидуальное занятие с Натали на 30 минут. Оно входит в стоимость курса.'],
       ['Как узнать итоговую сумму?', 'Откройте страницу курса на Gumroad. До оплаты вы увидите итоговую сумму с учётом применимых налогов.']
     ]
   },
@@ -41,8 +43,9 @@ const course = {
     faqTitle: 'Frequently asked questions',
     faq: [
       ['Can I start as a complete beginner?', 'Yes. The course starts with reading, pronunciation and simple phrases. Explanations are in Russian, with examples and practice in Spanish.'],
-      ['How do I get access?', 'After you buy through Gumroad, you receive a link to the course materials on Google Drive. The lessons are recorded so you can learn at your own pace.'],
-      ['What does the course include?', 'Ten video lessons, separate practice videos, exercises and assignments. The course includes one final 30-minute lesson with Natali.'],
+      ['How do I get access?', 'After you buy through Gumroad, you receive a link to the course materials on Google Drive. You pay once and can work through the recorded lessons at your own pace.'],
+      ['What does the course include?', 'Ten video lessons, separate practice videos, exercises and assignments.'],
+      ['When do I meet with Natali?', 'After you finish the recorded lessons, you have one 30-minute one-to-one lesson with Natali. It is included in the course price.'],
       ['Where can I see the final total?', 'Open the course on Gumroad. You can review the final total, including applicable taxes, before you pay.']
     ]
   }
@@ -60,8 +63,7 @@ export async function buildCourse({ out, base, production, checkout, coursePrice
       { '@type': 'Course', '@id': canonical + '#course', name: copy.title,
         description: copy.description, inLanguage: 'ru', url: canonical,
         provider: { '@type': 'EducationalOrganization', '@id': base + '/#organization', name: 'Español con Natali' } },
-      { '@type': 'FAQPage', '@id': canonical + '#faq', mainEntity: copy.faq.map(([name, text]) =>
-        ({ '@type': 'Question', name, acceptedAnswer: { '@type': 'Answer', text } })) }
+      faqSchema(canonical, copy.faq)
     ];
     const schema = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replaceAll('<', '\\u003c');
     const switcher = Object.entries(courseRoutes).map(([code, href]) =>
@@ -82,8 +84,7 @@ export async function buildCourse({ out, base, production, checkout, coursePrice
 <div class="tw-panel course-checkout"><h2>${esc(copy.price)}</h2><p class="course-amount">${esc(coursePrice)}</p>
 <p>${esc(copy.priceNote)}</p><a class="button" href="${esc(checkout.href)}">${esc(copy.checkout)} <span aria-hidden="true">↗</span></a></div></section>
 <section class="tw-how course-syllabus-page"><h2>${esc(copy.syllabus)}</h2><ol>${copy.lessons.map(lesson => `<li>${esc(lesson)}</li>`).join('')}</ol></section>
-<section class="tw-how course-faq" id="faq"><h2>${esc(copy.faqTitle)}</h2>
-${copy.faq.map(([question, answer]) => `<details><summary>${esc(question)}</summary><p>${esc(answer)}</p></details>`).join('')}</section>
+${renderFaq(copy.faqTitle, copy.faq)}
 </main><footer class="tw-footer"><a href="${home}">${esc(copy.home)}</a><a href="${copy.libraryPath}">${esc(copy.library)}</a></footer></body></html>`);
   }
 }

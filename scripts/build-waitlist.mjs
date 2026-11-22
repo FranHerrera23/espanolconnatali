@@ -1,5 +1,6 @@
 import { cp, mkdir, readFile, writeFile } from 'node:fs/promises';
 import { esc } from './markdown.mjs';
+import { faqSchema, renderFaq } from './product-faq.mjs';
 
 const productName = 'En Confianza';
 const production = process.env.DEPLOY_MODE === 'production' || process.env.VERCEL_ENV === 'production';
@@ -16,23 +17,24 @@ const copy = {
       ['Вы замечаете детали', 'Вам хочется поговорить о свете в галерее, спросить о местном вине или узнать, куда сходить в следующий раз.'],
       ['Вы цените свободу в расписании', 'Сегодня у вас есть четверть часа. В выходные можно выделить полчаса.']
     ],
-    howTitle: 'Как проходит практика', steps: [
-      ['Найдите 15 или 30 минут', 'Начните, когда удобно, без записи на определённое время. Можно говорить в будни или оставить время на выходные.'],
-      ['Выберите тему', 'Расскажите о том, что вас заинтересовало, или начните с простой повседневной ситуации.'],
-      ['Попросите подсказку на русском', 'Если не хватает слова или фразы, попросите пример и попробуйте ещё раз.']
-    ],
+    faqTitle: 'Частые вопросы об En Confianza',
+    questions: {
+      partner: 'С кем я буду разговаривать?',
+      russian: 'Что делать, если мне не хватает слов на испанском?',
+      booking: 'Нужно ли записываться на определённое время?',
+      plan: 'Сколько стоит подписка и сколько минут в неё входит?',
+      signup: 'Что произойдёт после записи в лист ожидания?'
+    },
+    topic: 'Расскажите о том, что вас заинтересовало, или начните с простой повседневной ситуации.',
+    russian: 'Если не хватает слова или фразы, попросите подсказку или пример на русском и попробуйте ещё раз.',
+    booking: 'Начните, когда удобно, без записи на определённое время. Можно выбрать разговор на 15 или 30 минут.',
+    signup: 'Подтверждение появится на этой странице. Когда откроется доступ, мы отправим письмо с приглашением, условиями подписки и ссылкой для её оформления. Оплата начинается, только если вы решите оформить подписку.',
     package: '75 USD в месяц', detail: '120 минут в каждом месячном цикле. Чередуйте разговоры по 15 и 30 минут.',
     disclosure: 'Вы разговариваете с виртуальным репетитором на базе ИИ.',
     demoPrompt: 'Как сказать «Мне понравился свет»?', demoReply: 'Me gustó la luz. ¿Qué más te llamó la atención?',
     demoMeaning: 'Мне понравился свет. Что ещё привлекло ваше внимание?',
     cta: 'Записаться в лист ожидания', email: 'Ваш email', consent: 'Согласен(-на) получить письмо о доступе к En Confianza. Мы используем email для этого списка.',
     terms: 'Запись бесплатна. Когда откроется доступ, мы пришлём приглашение и условия подписки. Вы сами решите, оформлять ли её.',
-    nextTitle: 'Что будет после записи',
-    next: [
-      ['Сразу', 'Подтверждение появится на этой странице.'],
-      ['Когда откроется доступ', 'Мы отправим письмо с приглашением, условиями ежемесячной подписки и ссылкой для её оформления.'],
-      ['Когда будете готовы', 'Подписка начнётся после того, как вы сами её оформите.']
-    ],
     success: 'Вы в списке. Когда откроется доступ, пришлём письмо с приглашением и ссылкой для оформления подписки.', pending: 'Отправляем…', fail: 'Запись пока не сохранилась. Попробуйте ещё раз.',
     invitation: 'Доступ по приглашению', full: 'Список пока заполнен. Загляните позже.', back: 'На главную', library: 'Открытая библиотека',
     homeTitle: 'Вам уже есть о чём поговорить.', homeCopy: 'Закрытая подписка на разговорную практику на испанском. Выберите 15 или 30 минут и тему, которая вам близка. Подсказки — на русском.',
@@ -47,23 +49,24 @@ const copy = {
       ['Te da curiosidad lo que otros pasan por alto', 'La luz de una galería, la historia de un vino o el lugar que alguien del barrio te recomienda.'],
       ['Te gusta manejar tus tiempos', 'Un cuarto de hora entre planes hoy o media hora tranquila el fin de semana.']
     ],
-    howTitle: 'Cómo es la práctica', steps: [
-      ['Elegí 15 o 30 minutos', 'Empezá cuando te quede cómodo, sin reservar un horario. Podés practicar entre semana o guardar tiempo para el fin de semana.'],
-      ['Traé un tema que te interese', 'Contá algo que te llamó la atención o empezá con una situación cotidiana.'],
-      ['Pedí una pista en ruso', 'Si te falta una palabra, pedí un ejemplo y probá otra vez.']
-    ],
+    faqTitle: 'Preguntas frecuentes sobre En Confianza',
+    questions: {
+      partner: '¿Con quién voy a hablar?',
+      russian: '¿Puedo pedir ayuda en ruso?',
+      booking: '¿Tengo que reservar un horario?',
+      plan: '¿Cuánto cuesta la membresía y cuántos minutos incluye?',
+      signup: '¿Qué pasa después de anotarme en la lista?'
+    },
+    topic: 'Contá algo que te llamó la atención o empezá con una situación cotidiana.',
+    russian: 'Si te falta una palabra o una frase, pedí una pista o un ejemplo en ruso y probá otra vez.',
+    booking: 'Empezá cuando te quede cómodo, sin reservar un horario. Podés elegir una charla de 15 o 30 minutos.',
+    signup: 'Vas a ver la confirmación en esta página. Cuando abramos el acceso, te enviamos un correo con la invitación, las condiciones y el enlace para activar la membresía. El primer cobro se hace cuando vos la activás.',
     package: 'US$75 al mes', detail: '120 minutos por ciclo mensual. Combiná conversaciones de 15 y 30 minutos.',
     disclosure: 'Conversás por voz con una tutora virtual que usa inteligencia artificial.',
     demoPrompt: 'Как сказать «Мне понравился свет»?', demoReply: 'Me gustó la luz. ¿Qué más te llamó la atención?',
     demoMeaning: 'Pedís en ruso cómo decir que te gustó la luz. La tutora te da la frase y te invita a seguir hablando.',
     cta: 'Sumarme a la lista de espera', email: 'Tu correo', consent: 'Acepto recibir un correo sobre el acceso a En Confianza. Usamos tu correo para esta lista.',
     terms: 'Anotarte es gratis. Cuando abramos el acceso, te enviamos una invitación con las condiciones de la membresía. Vos decidís si querés activarla.',
-    nextTitle: 'Qué pasa después de anotarte',
-    next: [
-      ['En el momento', 'Ves en esta página la confirmación de que quedaste en la lista.'],
-      ['Cuando abramos el acceso', 'Recibís un correo con la invitación, las condiciones mensuales y un enlace para activar tu membresía.'],
-      ['Si decidís sumarte', 'El primer cobro se hace cuando activás la membresía.']
-    ],
     success: 'Ya estás en la lista. Cuando abramos, vas a recibir un correo con la invitación y el enlace para activar tu membresía.', pending: 'Enviando…', fail: 'No pudimos guardar tu solicitud. Volvé a intentar.',
     invitation: 'Acceso por invitación', full: 'La lista está llena por ahora. Volvé más adelante.', back: 'Ir al inicio', library: 'Biblioteca abierta',
     homeTitle: 'Ya tenés de qué hablar.', homeCopy: 'Membresía privada de conversación en español. Elegí 15 o 30 minutos, traé un tema que te interese y pedí una pista en ruso si te trabás.',
@@ -78,23 +81,24 @@ const copy = {
       ['You’re curious about the details', 'The light in a gallery, the story behind a wine or a recommendation from someone who lives nearby.'],
       ['You like having time on your terms', 'A quarter of an hour between plans today or a quiet half hour at the weekend.']
     ],
-    howTitle: 'How practice works', steps: [
-      ['Choose 15 or 30 minutes', 'Start when it suits you, without booking a time slot. Practise during the week or keep some time for the weekend.'],
-      ['Bring a topic you care about', 'Talk about something that caught your eye, or start with an everyday situation.'],
-      ['Ask for a hint in Russian', 'When you need a word or phrase, ask for an example and try it yourself.']
-    ],
+    faqTitle: 'Frequently asked questions about En Confianza',
+    questions: {
+      partner: 'Who will I speak with?',
+      russian: 'Can I ask for help in Russian?',
+      booking: 'Do I need to book a time?',
+      plan: 'How much does membership cost, and how many minutes do I get?',
+      signup: 'What happens after I join the waitlist?'
+    },
+    topic: 'Talk about something that caught your eye, or start with an everyday situation.',
+    russian: 'When you need a word or phrase, ask for a hint or an example in Russian and try it yourself.',
+    booking: 'Start when it suits you, without booking a time slot. Choose a 15- or 30-minute conversation.',
+    signup: 'You’ll see confirmation on this page. When access opens, we’ll email you an invitation, the membership terms and a link to activate it. Your first payment is taken when you activate your membership.',
     package: 'US$75 per month', detail: '120 minutes each monthly billing cycle. Mix 15- and 30-minute conversations.',
     disclosure: 'Conversations are with a virtual voice tutor powered by AI.',
     demoPrompt: 'Как сказать «Мне понравился свет»?', demoReply: 'Me gustó la luz. ¿Qué más te llamó la atención?',
     demoMeaning: 'Ask in Russian how to say you liked the light. The tutor gives you the phrase and invites you to keep talking.',
     cta: 'Join the waitlist', email: 'Your email address', consent: 'I agree to receive an email about access to En Confianza. We use your email for this waitlist.',
     terms: 'Joining the list is free. We’ll email you an invitation and the membership terms when access opens. You decide whether to subscribe.',
-    nextTitle: 'What happens after you join',
-    next: [
-      ['Right away', 'You’ll see confirmation on this page that you’re on the list.'],
-      ['When access opens', 'We’ll email you an invitation, the monthly terms and a link to activate your membership.'],
-      ['If you decide to subscribe', 'Your first payment is taken when you activate your membership.']
-    ],
     success: 'You’re on the list. When access opens, we’ll email you an invitation and a link to activate your membership.', pending: 'Sending…', fail: 'We couldn’t save your request. Please try again.',
     invitation: 'Access by invitation', full: 'The waitlist is full for now. Please check back later.', back: 'Back to home', library: 'Open library',
     homeTitle: 'You already have something to say.', homeCopy: 'Private membership for Spanish conversation. Choose 15 or 30 minutes, bring a topic you care about and ask for a hint in Russian whenever you need one.',
@@ -111,7 +115,14 @@ for (const [language, c] of Object.entries(copy)) {
   const canonical = base + destination;
   const alternates = Object.keys(copy).map(code =>
     `<link rel="alternate" hreflang="${code}" href="${base + tutor(code)}">`).join('');
-  const pageSchema = '<script type="application/ld+json">' + JSON.stringify({ '@context': 'https://schema.org', '@graph': [{ '@type': 'WebPage', '@id': canonical + '#webpage', url: canonical, name: productName, inLanguage: language }] }) + '</script>';
+  const faq = [
+    [c.questions.partner, c.disclosure + ' ' + c.topic],
+    [c.questions.russian, c.russian],
+    [c.questions.booking, c.booking],
+    [c.questions.plan, c.package + '. ' + c.detail],
+    [c.questions.signup, c.signup]
+  ];
+  const pageSchema = '<script type="application/ld+json">' + JSON.stringify({ '@context': 'https://schema.org', '@graph': [{ '@type': 'WebPage', '@id': canonical + '#webpage', url: canonical, name: productName, inLanguage: language }, faqSchema(canonical, faq)] }) + '</script>';
   const messages = ['pending','success','fail','full'].map(key => `data-${key}="${text(c[key])}"`).join(' ');
   await mkdir('dist' + destination, { recursive: true });
   await writeFile('dist' + destination + 'index.html', `<!doctype html>
@@ -141,14 +152,7 @@ for (const [language, c] of Object.entries(copy)) {
     <p>${text(c.demoMeaning)}</p>
   </figure>
 </section>
-<section class="tw-how" aria-labelledby="tw-how-heading">
-  <h2 id="tw-how-heading">${text(c.howTitle)}</h2>
-  <ol>${c.steps.map(([title, detail])=>`<li><h3>${text(title)}</h3><p>${text(detail)}</p></li>`).join('')}</ol>
-</section>
-<section class="tw-how" aria-labelledby="tw-next-heading">
-  <h2 id="tw-next-heading">${text(c.nextTitle)}</h2>
-  <ol>${c.next.map(([title, detail])=>`<li><h3>${text(title)}</h3><p>${text(detail)}</p></li>`).join('')}</ol>
-</section>
+${renderFaq(c.faqTitle, faq)}
 </main><footer class="tw-footer"><a href="${root(language)}">${text(c.back)}</a><a href="${root(language)}resources/">${text(c.library)}</a></footer><script src="/tutor-waitlist.js" defer></script></body></html>`);
   const homePath = 'dist' + root(language) + 'index.html';
   const home = await readFile(homePath, 'utf8');
