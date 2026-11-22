@@ -54,6 +54,10 @@ try {
   process.env.TUTOR_PILOT_SHORT_INVITES = JSON.stringify({ 'alex/AbCdEf0123456789': alex.token });
   assert.equal((await request('claim', { invite: 'alex/AbCdEf0123456789' })).payload.name, 'Alex');
   assert.equal((await request('claim', { invite: 'other/AbCdEf0123456789' })).status, 401);
+  process.env.TUTOR_PILOT_ADDITIONAL_SHORT_INVITES = JSON.stringify({ 'guest/AbCdEf0123456789': alex.token });
+  assert.equal((await request('claim', { invite: 'guest/AbCdEf0123456789' })).payload.name, 'Alex');
+  assert.equal((await request('claim', { invite: 'alex/AbCdEf0123456789' })).payload.name, 'Alex');
+  delete process.env.TUTOR_PILOT_ADDITIONAL_SHORT_INVITES;
   delete process.env.TUTOR_PILOT_SHORT_INVITES;
   assert.equal(first.status, 200);
   assert.equal(first.payload.memory, null);

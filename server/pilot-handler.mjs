@@ -10,7 +10,9 @@ function claimToken(body) {
   if (typeof body.invite !== 'string') return body.token;
   if (!/^[a-z]{2,16}\/[A-Za-z0-9_-]{16}$/.test(body.invite)) return null;
   const invites = JSON.parse(process.env.TUTOR_PILOT_SHORT_INVITES || '{}');
-  return Object.hasOwn(invites, body.invite) ? invites[body.invite] : null;
+  if (Object.hasOwn(invites, body.invite)) return invites[body.invite];
+  const additional = JSON.parse(process.env.TUTOR_PILOT_ADDITIONAL_SHORT_INVITES || '{}');
+  return Object.hasOwn(additional, body.invite) ? additional[body.invite] : null;
 }
 
 export function pilotHandler({ store, provider, html, now = Date.now }) {
