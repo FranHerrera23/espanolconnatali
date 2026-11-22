@@ -1,6 +1,7 @@
 import {readFile,writeFile,mkdir,cp,rm} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import path from 'node:path';
+import { coverFor, journalViews, newestFirst } from './journal.mjs';
 import {jobFreshness} from '../site/jobs-state.js';
 import {markdown,esc} from './markdown.mjs';
 import {buildLocale,languagePicker} from './locales.mjs';
@@ -37,7 +38,7 @@ const home = (await readFile('site/index.html', 'utf8'))
 await buildCourse({out,base,production,checkout,coursePrice,instagram:config.instagram});
 await buildProfiles({out,base,production,instagram:config.instagram});
 let header=home.match(/<header class="site-nav[\s\S]*?<\/header>/)[0].replaceAll('resources.html','/resources/').replaceAll('href="#','href="/#').replaceAll('href="/#course"','href="/course/"').replaceAll('href="/#natali"','href="/about-natali/"').replaceAll('href="/#private"','href="/private-lessons/"');
-const resourceMenu='<details class="resource-nav"><summary>Ресурсы</summary><div><a href="/resources/">Учить испанский</a><a href="/life-in-spain/">Жизнь в Испании</a></div></details>';
+const resourceMenu='<details class="resource-nav"><summary>Ресурсы</summary><div><a href="/resources/">Учить испанский</a><a href="/articles/">Статьи</a><a href="/life-in-spain/">Жизнь в Испании</a></div></details>';
 header=header.replace('<a href="/resources/">Бесплатные материалы</a>',resourceMenu)
  .replace(/<a class="link nav-contact"[\s\S]*?<\/a>/,'')
  .replace('</nav>','<a class="nav-waitlist" href="/tutor/">En Confianza</a></nav>');
@@ -49,7 +50,7 @@ const site={'@type':'WebSite','@id':base+'/#website',url:base+'/',name:'Español
 const tutorRoutes=['/tutor/','/en/tutor/','/es/tutor/'];
 const urls=[...Object.values(courseRoutes),...tutorRoutes,...profileRoutes].map(route=>base+route);
 async function page(route,title,desc,body,extra=[],commercial=false,options={}){
- const canonical=base+route;const webpage={'@type':['/resources/','/resources/travel/','/students/',jobsRoute,lifeRoute].includes(route)?'CollectionPage':'WebPage','@id':canonical+'#page',url:canonical,name:title,inLanguage:'ru',isPartOf:{'@id':site['@id']}};
+ const canonical=base+route;const webpage={'@type':['/articles/','/resources/','/resources/travel/','/students/',jobsRoute,lifeRoute].includes(route)?'CollectionPage':'WebPage','@id':canonical+'#page',url:canonical,name:title,inLanguage:'ru',isPartOf:{'@id':site['@id']}};
  const graph=[org,editor,site,webpage,...extra];
   if(route!=='/') {
  const practical=route.startsWith(jobsRoute)||route===lifeRoute;
@@ -57,9 +58,13 @@ async function page(route,title,desc,body,extra=[],commercial=false,options={}){
  }
  graph.forEach((node,i)=>{if(!node['@id'])node['@id']=canonical+'#entity-'+i;});
  const json=JSON.stringify({'@context':'https://schema.org','@graph':graph}).replace(/</g,'\\u003c');
- const html=`<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">${production&&route==='/'?'<meta name="msvalidate.01" content="670CDAA606B791438D5C3B7F3C0ECDB8" />':''}<title>${esc(title)} — Español con Natali</title><meta name="description" content="${esc(desc)}"><meta name="robots" content="${production&&options.indexable!==false?'index,follow,max-image-preview:large':'noindex,follow'}"><link rel="canonical" href="${canonical}"><meta property="og:url" content="${canonical}"><meta property="og:type" content="${extra.some(node=>node['@type']==='Article')?'article':'website'}"><meta property="og:locale" content="ru_RU"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(desc)}"><meta property="og:image" content="${base}/assets/natali-city.jpg"><meta name="twitter:card" content="summary_large_image"><link rel="stylesheet" href="/design-system.css"><link rel="stylesheet" href="/library.css"><link rel="stylesheet" href="/jobs.css"><script type="application/ld+json">${json}</script></head><body>${production?'':'<div class="preview-note">Предпросмотр · Не индексируется</div>'}<a class="skip" href="#main">Перейти к содержанию</a>${languagePicker(commercial?header:readerHeader,route)}<main id="main">${body}</main>${commercial?footer:footer.replace(/<p>[\s\S]*?<\/p>/,'').replace(/<span>Курс в своём темпе[\s\S]*?<\/span>/,'')}<script src="/reader.js"></script>${route===jobsRoute?'<script type="module" src="/jobs.js"></script>':route.startsWith(jobsRoute)?'<script type="module" src="/job-detail.js"></script>':''}${commercial?'<script src="/assets/vendor/lenis.min.js"></script><script src="/assets/vendor/gsap.min.js"></script><script src="/assets/vendor/ScrollTrigger.min.js"></script><script src="/assets/vendor/SplitText.min.js"></script><script src="/resources.js"></script>':''}</body></html>`;
+ const html=`<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">${production&&route==='/'?'<meta name="msvalidate.01" content="670CDAA606B791438D5C3B7F3C0ECDB8" />':''}<title>${esc(title)} — Español con Natali</title><meta name="description" content="${esc(desc)}"><meta name="robots" content="${production&&options.indexable!==false?'index,follow,max-image-preview:large':'noindex,follow'}"><link rel="canonical" href="${canonical}"><meta property="og:url" content="${canonical}"><meta property="og:type" content="${extra.some(node=>node['@type']==='Article')?'article':'website'}"><meta property="og:locale" content="ru_RU"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(desc)}"><meta property="og:image" content="${base}${options.image || '/assets/natali-city.jpg'}"><meta name="twitter:card" content="summary_large_image"><link rel="stylesheet" href="/design-system.css"><link rel="stylesheet" href="/library.css"><link rel="stylesheet" href="/jobs.css"><script type="application/ld+json">${json}</script></head><body>${production?'':'<div class="preview-note">Предпросмотр · Не индексируется</div>'}<a class="skip" href="#main">Перейти к содержанию</a>${languagePicker(commercial?header:readerHeader,route)}<main id="main">${body}</main>${commercial?footer:footer.replace(/<p>[\s\S]*?<\/p>/,'').replace(/<span>Курс в своём темпе[\s\S]*?<\/span>/,'')}<script src="/reader.js"></script>${route===jobsRoute?'<script type="module" src="/jobs.js"></script>':route.startsWith(jobsRoute)?'<script type="module" src="/job-detail.js"></script>':''}${commercial?'<script src="/assets/vendor/lenis.min.js"></script><script src="/assets/vendor/gsap.min.js"></script><script src="/assets/vendor/ScrollTrigger.min.js"></script><script src="/assets/vendor/SplitText.min.js"></script><script src="/resources.js"></script>':''}</body></html>`;
  const filename=out+(route==='/'?'/index.html':route+'index.html');await mkdir(path.dirname(filename),{recursive:true});await writeFile(filename,html);if(options.indexable!==false)urls.push(canonical);
 }
+const clusters=JSON.parse(await readFile('content/article-clusters.json','utf8')).clusters;
+const clusterFor=a=>clusters.find(c=>c.articles.includes(a.route.split('/')[2]));
+for(const a of manifest)if(clusters.filter(c=>c.articles.includes(a.route.split('/')[2])).length!==1)throw Error('Article needs exactly one primary cluster: '+a.route);
+const activeClusters=clusters.filter(c=>manifest.some(a=>clusterFor(a)===c));
 const readingTimes = new Map();
 const linkmap=Object.fromEntries(manifest.map(a=>[path.basename(a.sourceFile),a.route]));
 for(const a of manifest){
@@ -90,22 +95,28 @@ for(const a of manifest){
  const download=downloads.find(d=>d.articleRoute===a.route);if(!download||download.id!==a.id||download.sourceSha256!==a.sha256)throw Error('Article/PDF mapping mismatch '+a.id);
  const pdf='<div class="reader-download"><a class="link" href="'+esc(download.downloadRoute)+'" download>Скачать PDF <span aria-hidden="true">↓</span></a><p>Полный материал с упражнениями и ответами<br><span>'+download.pages+' '+(download.pages===1?'страница':download.pages>=2 && download.pages<=4?'страницы':'страниц')+' · PDF</span></p></div>';
  const tools='<div class="reader-tools" aria-label="Сохранить и взять с собой">'+pdf+'<button class="link" data-print>Распечатать</button><button class="link" data-copy>Скопировать ссылку</button><span class="reader-status" role="status"></span></div>';
- const body='<div class="wrap read-top"><a class="link" href="/resources/">← Все бесплатные материалы</a></div><article class="wrap"><header class="reading-head"><p class="label">Бесплатные материалы · Практическое руководство</p><h1>'+esc(a.title)+'</h1>'+readingMeta+'<p class="answer">'+esc(a.description)+'</p><div class="editorial-byline">'+esc(a.author.name)+'<br>Опубликовано <time datetime="'+pubdate+'">'+publicationDate.format(new Date(pubdate))+'</time>'+ (a.updatedAt ? '<br>Обновлено <time datetime="'+a.updatedAt+'">'+publicationDate.format(new Date(a.updatedAt))+'</time>' : '')+'</div>'+tools+'</header><div class="reading-layout">'+contents+'<div class="reading-prose">'+rendered+tools+'</div></div></article><section class="related wrap"><h2>Что почитать дальше</h2>'+a.relatedFiles.map(f=>'<a href="'+linkmap[f]+'">'+esc(manifest.find(x=>path.basename(x.sourceFile)===f).title)+' ↗</a>').join('')+'</section>';
+ const cover=coverFor(a,clusterFor(a));
+ const body='<div class="wrap read-top"><a class="link" href="/articles/">← Все статьи</a></div><article class="wrap"><header class="reading-head"><p class="label">Бесплатные материалы · Практическое руководство</p><h1>'+esc(a.title)+'</h1>'+readingMeta+'<p class="answer">'+esc(a.description)+'</p><div class="editorial-byline">'+esc(a.author.name)+'<br>Опубликовано <time datetime="'+pubdate+'">'+publicationDate.format(new Date(pubdate))+'</time>'+ (a.updatedAt ? '<br>Обновлено <time datetime="'+a.updatedAt+'">'+publicationDate.format(new Date(a.updatedAt))+'</time>' : '')+'</div>'+tools+'</header><figure class="reader-cover"><img src="'+cover+'" alt="" width="640" height="480"></figure><div class="reading-layout">'+contents+'<div class="reading-prose">'+rendered+tools+'</div></div></article><section class="related wrap"><h2>Что почитать дальше</h2>'+a.relatedFiles.map(f=>'<a href="'+linkmap[f]+'">'+esc(manifest.find(x=>path.basename(x.sourceFile)===f).title)+' ↗</a>').join('')+'</section>';
  const article={'@type':'Article','@id':base+a.route+'#article',headline:a.title,description:a.description,inLanguage:'ru',creativeWorkStatus:'Published',author:{'@type':'Organization','@id':editor['@id'],name:editor.name},publisher:{'@id':org['@id']},datePublished:pubdate,mainEntityOfPage:{'@id':base+a.route+'#page'},citation:a.sourceUrls,articleBody:prose};
  article.timeRequired='PT'+minutes+'M';
- if(a.images)article.image=Object.values(a.images).map(image=>base+image.src);
+ article.image=[base+cover,...Object.values(a.images ?? {}).map(image=>base+image.src)];
  article.encoding={'@type':'MediaObject',contentUrl:base+download.downloadRoute,encodingFormat:'application/pdf',contentSize:download.bytes+' bytes'};
  if(a.updatedAt)article.dateModified=a.updatedAt;
- await page(a.route,a.seoTitle || a.title,a.description,body,[article]);
+ await page(a.route,a.seoTitle || a.title,a.description,body,[article],false,{image:cover});
 
 }
-const clusters=JSON.parse(await readFile('content/article-clusters.json','utf8')).clusters;
-const clusterFor=a=>clusters.find(c=>c.articles.includes(a.route.split('/')[2]));
-for(const a of manifest)if(clusters.filter(c=>c.articles.includes(a.route.split('/')[2])).length!==1)throw Error('Article needs exactly one primary cluster: '+a.route);
-const activeClusters=clusters.filter(c=>manifest.some(a=>clusterFor(a)===c));
-const ordered=[...manifest].sort((a,b)=>Number(b.route.includes('/spanish-from-zero/'))-Number(a.route.includes('/spanish-from-zero/')));
-const filters='<div class="article-filters" role="group" aria-label="Темы материалов" hidden><button type="button" data-cluster="all" aria-pressed="true">Все материалы <span>'+manifest.length+'</span></button>'+activeClusters.map(c=>'<button type="button" data-cluster="'+c.id+'" aria-pressed="false">'+esc(c.label)+' <span>'+manifest.filter(a=>clusterFor(a)===c).length+'</span></button>').join('')+'</div>';
-const entries=ordered.map(a=>{const c=clusterFor(a);const featured=a.route.includes('/spanish-from-zero/');return '<article class="journal-entry'+(featured?' journal-featured':'')+'" data-topic="'+c.id+'"'+(featured?' data-featured':'')+'><a class="journal-link" href="'+a.route+'">'+(featured?'<div class="journal-cover" aria-hidden="true"><span>Español con Natali</span><strong>Español<br>desde cero.</strong><span>01 — '+esc(c.label)+'</span></div>':'')+'<span class="journal-topic">'+esc(c.label)+'</span><div class="journal-text"><h2>'+esc(a.title)+'</h2><p>'+esc(a.description)+'</p></div><span class="journal-time"><time class="journal-date" datetime="'+a.publishedAt+'">'+publicationDate.format(new Date(a.publishedAt))+'</time>Около '+readingTimes.get(a.route)+' мин чтения <span class="journal-arrow" aria-hidden="true">↗</span></span></a></article>';}).join('');
+const ordered=newestFirst(manifest);
+const journal=journalViews({language:'ru',ordered,clusters:activeClusters,clusterFor,readingTimes});
+const articleList=items=>({'@type':'ItemList',itemListElement:items.map((a,i)=>({'@type':'ListItem',position:i+1,url:base+a.route,name:a.title}))});
+await page('/articles/',journal.title,journal.intro,journal.archive,[articleList(ordered)],false,{image:coverFor(ordered[0],clusterFor(ordered[0]))});
+const latestArticles = ordered.slice(0, 3).map(article => ({
+  title: article.title,
+  description: article.description,
+  date: article.publishedAt,
+  url: new URL(article.route, base).href,
+  image: new URL(coverFor(article, clusterFor(article)), base).href
+}));
+await writeFile(out + '/articles/feed.json', JSON.stringify({ libraryUrl: base + '/articles/', articles: latestArticles }));
 const travelRoute='/resources/travel/';
 const travelTopics=[
  ['Дорога и транспорт',['buy-a-transport-ticket','ask-for-directions']],
@@ -126,7 +137,7 @@ const travelBody='<section class="wrap section"><a class="link" href="/resources
 await page(travelRoute,'Испанский для путешествий','Бесплатные руководства с фразами на испанском, диалогами и упражнениями для поездок.',travelBody,[
  {'@type':'ItemList',name:'Испанский для путешествий',itemListElement:travelEntries.map((article,index)=>({'@type':'ListItem',position:index+1,name:article.title,url:base+article.route}))}
 ]);
-await page('/resources/','Бесплатные материалы по испанскому','Открытые руководства на русском: испанские примеры, упражнения, ответы и источники.','<section class="library-hero wrap"><p class="label">Бесплатные материалы</p><div class="library-intro"><h1>Испанский для<br>вашей жизни.</h1><p>Объяснения, примеры и практика. Читайте, проверяйте себя и возвращайтесь к тому, что пригодится в разговоре. Все материалы открыты без регистрации.</p></div></section><section class="journal wrap" aria-label="Статьи по испанскому">'+'<p class="wrap"><a class="link" href="/resources/travel/">Испанский для путешествий ↗</a></p>'+filters+'<p class="journal-count" role="status" aria-live="polite">Материалы: '+manifest.length+'</p><div class="journal-list">'+entries+'</div></section>'+jobsTeaser('ru') ,[{'@type':'ItemList',itemListElement:ordered.map((a,i)=>({'@type':'ListItem',position:i+1,url:base+a.route,name:a.title}))}]);
+await page('/resources/',journal.library,journal.libraryIntro,journal.resources+jobsTeaser('ru'),[articleList(ordered.slice(0,3))]);
 
 
 await page(lifeRoute,'Жизнь в Испании','Практические ресурсы для жизни в Испании: вакансии, оригинальные источники и проверенные условия.',renderLife());
@@ -155,9 +166,8 @@ homebody=homebody.replace(/href="resources.html"/g,'href="/resources/"').replace
 homebody=homebody.replaceAll('href="#course"','href="/course/"')
  .replace('<div class="natali-symbol-note">','<p><a class="link" href="/about-natali/">Подробнее о Натали ↗</a></p><div class="natali-symbol-note">')
  .replace(/(<a class="link" href="https:\/\/www.instagram.com\/espanol.con.natali\/"[^>]*>)Обсудить занятия в Instagram/, '<a class="link" href="/private-lessons/">Подробнее об индивидуальных занятиях');
-homebody=homebody.replace(/(<a class="resource-button link" href=")(.*?)(">)/g,(_,before,route,after)=>{const article=manifest.find(a=>a.route===route);return '<p class="reading-time"><time data-publication-date datetime="'+article.publishedAt+'">'+publicationDate.format(new Date(article.publishedAt))+'</time> · Около '+readingTimes.get(route)+' мин чтения</p>'+before+route+after;});
-homebody=homebody.replace(/(<section class="resources[\s\S]*?)(<\/section>)/,(_,content,end)=>content+jobsTeaser('ru',true)+end);
-await page('/','Испанский для русскоязычных','Курс испанского в своём темпе и индивидуальные занятия с Натали.',addHomePaymentHelp(homebody,'ru',config.instagram),[{'@type':'Person','@id':base+'/#natali',name:'Натали',jobTitle:'Преподаватель испанского языка',sameAs:[config.instagram]},{'@type':'Course',name:'Курс испанского в своём темпе',description:'10 видеоуроков на Google Drive, дополнительные видео для практики и домашние задания. Заключительное занятие с Натали — 30 минут.',provider:{'@id':org['@id']},inLanguage:'ru',url:base+'/#course'}],true);
+homebody=homebody.replace(/(<section class="resources[^>]*>[\s\S]*?)<div class="grid">[\s\S]*?<\/section>/,(_,head)=>head+'<!--school-articles-->'+jobsTeaser('ru',true)+'</section>');
+await page('/','Испанский для русскоязычных','Курс испанского в своём темпе и индивидуальные занятия с Натали.',addHomePaymentHelp(homebody.replace('<!--school-articles-->',journal.home),'ru',config.instagram),[{'@type':'Person','@id':base+'/#natali',name:'Натали',jobTitle:'Преподаватель испанского языка',sameAs:[config.instagram]},{'@type':'Course',name:'Курс испанского в своём темпе',description:'10 видеоуроков на Google Drive, дополнительные видео для практики и домашние задания. Заключительное занятие с Натали — 30 минут.',provider:{'@id':org['@id']},inLanguage:'ru',url:base+'/#course'}],true);
 for (const language of ['es', 'en']) {
  await buildLocale(language,{out,base,production,header,footer,homebody,ordered,clusters:activeClusters,clusterFor,readingTimes,reviewRows,jobsData,readerHeader,instagram:config.instagram});
 }

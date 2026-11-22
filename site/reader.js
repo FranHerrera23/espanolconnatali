@@ -2,7 +2,7 @@
   const backToLibrary = document.querySelector('.read-top a');
   if (backToLibrary && document.referrer) {
     const previous = new URL(document.referrer);
-    if (previous.origin === location.origin && previous.pathname === '/resources/') backToLibrary.href = previous.pathname + previous.search;
+    if (previous.origin === location.origin && ['/resources/','/articles/'].includes(previous.pathname)) backToLibrary.href = previous.pathname + previous.search;
   }
   const menu = document.querySelector('.menu-button');
   const nav = document.querySelector('.nav-links');
@@ -64,7 +64,14 @@
 // Topic filtering enhances the complete, indexable HTML library.
 (() => {
   const journal = document.querySelector('.journal');
-  if (!journal) return;
+  if (!journal) {
+    const url = new URL(location.href);
+    if (/^\/(?:es\/|en\/)?resources\/$/.test(url.pathname) && url.searchParams.has('cluster')) {
+      url.pathname = url.pathname.replace(/resources\/$/, 'articles/');
+      location.replace(url.href);
+    }
+    return;
+  }
   const filters = journal.querySelector('.article-filters');
   const buttons = [...filters.querySelectorAll('button')];
   const entries = [...journal.querySelectorAll('.journal-entry')];
@@ -77,7 +84,6 @@
     let count = 0;
     entries.forEach(entry => {
       entry.hidden = topic !== 'all' && entry.dataset.topic !== topic;
-      entry.classList.toggle('journal-featured', topic === 'all' && entry.hasAttribute('data-featured'));
       if (!entry.hidden) count++;
     });
     buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.cluster === topic)));
@@ -107,7 +113,7 @@
   const switches = [...document.querySelectorAll('[data-language]')];
   const referrer = document.referrer ? new URL(document.referrer) : null;
   const localizedReferrer = referrer?.origin === location.origin
-    ? referrer.pathname.match(/^\/(es|en)\/(?:resources\/)?$/)
+    ? referrer.pathname.match(/^\/(es|en)\/(?:(?:articles|resources)\/)?$/)
     : null;
   let preferred;
   try { preferred = localStorage.getItem('natali-language'); } catch {}
@@ -120,9 +126,9 @@
 
   const returnLocale = localizedReferrer?.[1] || savedLocale;
   const returnPath = locale => {
-    if (!localizedReferrer) return '/' + locale + '/resources/';
+    if (!localizedReferrer) return '/' + locale + '/articles/';
     const isHome = referrer.pathname === '/' + localizedReferrer[1] + '/';
-    return '/' + locale + (isHome ? '/#resources' : '/resources/' + referrer.search);
+    return '/' + locale + (isHome ? '/#resources' : referrer.pathname.slice(3) + referrer.search);
   };
   const refreshDestinations = () => {
     switches.forEach(link => {

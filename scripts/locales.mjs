@@ -1,9 +1,10 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { journalViews } from './journal.mjs';
 import { esc } from './markdown.mjs';
 import { addHomePaymentHelp } from './payment-help.mjs';
 import { jobsRoute, renderJobs, jobsTeaser, lifeRoute, renderLife, jobDetailRoute, renderJobDetail } from './jobs.mjs';
 
-const mirrored = new Set(['/', '/resources/', '/students/', jobsRoute, lifeRoute]);
+const mirrored = new Set(['/', '/articles/', '/resources/', '/students/', jobsRoute, lifeRoute]);
 const motion = ['lenis', 'gsap', 'ScrollTrigger', 'SplitText']
   .map(name => `<script src="/assets/vendor/${name}.min.js"></script>`).join('') +
   '<script src="/resources.js"></script>';
@@ -28,13 +29,13 @@ export async function buildLocale(language, { out, base, production, header, foo
   const keys = [...dictionary.keys()].sort((a, b) => b.length - a.length);
   const pattern = new RegExp(keys.map(key => key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|'), 'g');
   const translate = html => html.replace(pattern, key => esc(dictionary.get(key)));
-  const internal = html => html.replace(/href="(\/(?:resources\/|students\/)?)(#[^"]*)?"/g, 'href="' + prefix + '$1$2"')
+  const internal = html => html.replace(/href="(\/(?:articles\/|resources\/|students\/)?)(#[^"]*)?"/g, 'href="' + prefix + '$1$2"')
     .replace(/href="\/life-in-spain\/"/g, 'href="' + prefix + '/life-in-spain/"').replace(/href="#([^"]+)"/g, 'href="' + prefix + '/#$1"');
   const localizedHeader = internal(header
     .replace('aria-label="Главная навигация"', local('aria-label="Navegación principal"', 'aria-label="Main navigation"'))
     .replace('class="brand"', local('class="brand" aria-label="Inicio · Español con Natali"', 'class="brand" aria-label="Home · Español con Natali"'))
     .replace('>Меню<', local('>Menú<', '>Menu<'))
-    .replace('>Ресурсы<', local('>Recursos<','>Resources<')).replace('>Учить испанский<',local('>Aprender español<','>Learn Spanish<')).replace('>Жизнь в Испании<',local('>Vida en España<','>Life in Spain<'))
+    .replace('>Статьи<',local('>Artículos<','>Articles<')).replace('>Ресурсы<', local('>Recursos<','>Resources<')).replace('>Учить испанский<',local('>Aprender español<','>Learn Spanish<')).replace('>Жизнь в Испании<',local('>Vida en España<','>Life in Spain<'))
     .replace('>Курс<', local('>Curso grabado<', '>Self-paced course<'))
     .replace('>Отзывы учеников<', local('>Testimonios<', '>Testimonials<'))
     .replace('>О Натали<', local('>Sobre Natali<', '>About Natali<'))
@@ -42,7 +43,7 @@ export async function buildLocale(language, { out, base, production, header, foo
     .replaceAll('href="/course/"', 'href="' + local('/course/', '/en/course/') + '"')
     .replace(/href="\/(about-natali|private-lessons)\/"/g, 'href="' + prefix + '/$1/"')
     .replace('href="/tutor/">En Confianza<', 'href="' + prefix + '/tutor/">En Confianza<'));
-  const jobsHeader = internal(readerHeader).replace('href="' + prefix + '/#home" data-home', 'href="' + prefix + '/"').replace('class="brand"', local('class="brand" aria-label="Inicio · Español con Natali"', 'class="brand" aria-label="Home · Español con Natali"')).replaceAll('Бесплатные материалы', local('Recursos gratuitos', 'Free resources')).replace('>Ресурсы<', local('>Recursos<','>Resources<')).replace('>Учить испанский<',local('>Aprender español<','>Learn Spanish<')).replace('>Жизнь в Испании<',local('>Vida en España<','>Life in Spain<')).replace('Меню', local('Menú', 'Menu')).replace('aria-label="Навигация"', local('aria-label="Navegación"', 'aria-label="Navigation"'));
+  const jobsHeader = internal(readerHeader).replace('href="' + prefix + '/#home" data-home', 'href="' + prefix + '/"').replace('class="brand"', local('class="brand" aria-label="Inicio · Español con Natali"', 'class="brand" aria-label="Home · Español con Natali"')).replaceAll('Бесплатные материалы', local('Recursos gratuitos', 'Free resources')).replace('>Статьи<',local('>Artículos<','>Articles<')).replace('>Ресурсы<', local('>Recursos<','>Resources<')).replace('>Учить испанский<',local('>Aprender español<','>Learn Spanish<')).replace('>Жизнь в Испании<',local('>Vida en España<','>Life in Spain<')).replace('Меню', local('Menú', 'Menu')).replace('aria-label="Навигация"', local('aria-label="Navegación"', 'aria-label="Navigation"'));
   const write = async (route, title, description, body, animated) => {
     const isJobs = route === jobsRoute;
     const practical = route.startsWith(jobsRoute) || route === lifeRoute;
@@ -65,25 +66,11 @@ export async function buildLocale(language, { out, base, production, header, foo
     .replace(/href="\/(about-natali|private-lessons)\/"/g, 'href="' + prefix + '/$1/"')
     .replace(/href="\/students\/"/g, 'href="' + prefix + '/students/"')
     .replace(/href="\/resources\/"/g, 'href="' + prefix + '/resources/"'));
-  await write('/', local('Español para la vida real', 'Spanish for real life'), local('Curso grabado de español y clases privadas con Natali.', 'Self-paced Spanish and private lessons with Natali.'), addHomePaymentHelp(localizedHome, language, instagram), true);
-
   const descriptions = JSON.parse(await readFile('content/' + filePrefix + '-resources.json', 'utf8'));
-  const topics = { start: local('Desde cero', 'From scratch'), conversation: local('Conversación', 'Conversation'), grammar: local('Gramática', 'Grammar'), practice: local('Práctica autónoma', 'Independent practice'), culture: local('Vida y cultura', 'Life and culture') };
-  const filters = [['all', local('Todos', 'All'), ordered.length], ...clusters.map(c => [c.id, topics[c.id], ordered.filter(a => clusterFor(a) === c).length])]
-    .map(([id, label, count]) => `<button type="button" data-cluster="${id}" aria-pressed="${id === 'all'}">${esc(label)} <span>${count}</span></button>`).join('');
-  const entries = ordered.map(a => {
-    const [title, description] = descriptions[a.route.split('/')[2]];
-    const topic = clusterFor(a).id;
-    const featured = a.route === '/resources/spanish-from-zero/';
-    return `<article class="journal-entry${featured ? ' journal-featured' : ''}" data-topic="${topic}"${featured ? ' data-featured' : ''}><a class="journal-link" href="${a.route}" hreflang="ru">${featured ? `<div class="journal-cover" aria-hidden="true"><span>Español con Natali</span><strong>Español<br>desde cero.</strong><span>01 — ${topics.start}</span></div>` : ''}<span class="journal-topic">${topics[topic]}</span><div class="journal-text"><h2>${esc(title)}</h2><p>${esc(description)}</p></div><span class="journal-time"><time class="journal-date" datetime="${a.publishedAt}">${publicationDate.format(new Date(a.publishedAt))}</time>${local('En ruso', 'In Russian')} · ${readingTimes.get(a.route)} min <span class="journal-arrow" aria-hidden="true">↗</span></span></a></article>`;
-  }).join('');
-  const libraryTitle = local('Recursos gratuitos', 'Free resources');
-  const libraryIntro = local(
-    'Explicaciones, ejemplos y práctica sin registro. Los títulos y resúmenes de esta biblioteca están en español. Cada enlace abre el artículo completo en ruso.',
-    'Explanations, examples and practice without signing up. Browse the titles and summaries in English, then follow a link to read the full article in Russian.'
-  );
-  await write('/resources/', libraryTitle, local('Guías y ejercicios de español para rusohablantes.', 'Spanish guides and exercises for Russian speakers.'),
-    `<section class="library-hero wrap"><p class="label">${libraryTitle}</p><div class="library-intro"><h1>${local('Español para<br>tu vida.', 'Spanish for<br>everyday life.')}</h1><p>${libraryIntro}</p></div><a class="link" href="/resources/travel/" hreflang="ru">${local('Español para viajar (en ruso)', 'Spanish for travel (in Russian)')}</a></section><section class="journal wrap" aria-label="${local('Artículos de español', 'Spanish articles')}"><div class="article-filters" role="group" aria-label="${local('Temas', 'Topics')}" hidden>${filters}</div><p class="journal-count" role="status" aria-live="polite">${local('Materiales', 'Resources')}: ${ordered.length}</p><div class="journal-list">${entries}</div></section>${jobsTeaser(language)}`, false);
+  const journal = journalViews({language,ordered,clusters,clusterFor,readingTimes,descriptions});
+  await write('/', local('Español para la vida real', 'Spanish for real life'), local('Curso grabado de español y clases privadas con Natali.', 'Self-paced Spanish and private lessons with Natali.'), addHomePaymentHelp(localizedHome.replace('<!--school-articles-->',journal.home), language, instagram), true);
+  await write('/articles/', journal.title, journal.intro, journal.archive, false);
+  await write('/resources/',journal.library,journal.libraryIntro,journal.resources+jobsTeaser(language),false);
 
   await write(lifeRoute, local('Vida en España','Life in Spain'), local('Recursos prácticos para la vida en España.','Practical resources for life in Spain.'), renderLife(language), false);
   if (language === 'es') {
