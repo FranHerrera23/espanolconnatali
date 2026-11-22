@@ -22,3 +22,15 @@
   .course-head { flex-wrap: wrap; gap: .7rem 1rem; }
   .course-syllabus-page ol { grid-template-columns: 1fr; }
 }
+
+.profile-photo {
+  display: block;
+  width: min(100%, 330px);
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  justify-self: start;
+}
+.profile-copy p { max-width: 65ch; margin-bottom: 1.15rem; }
+.tw-panel p + p { margin-top: .75rem; }
+.tw-panel > .button { margin-top: 1.15rem; }

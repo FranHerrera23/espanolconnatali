@@ -39,6 +39,7 @@ export async function buildLocale(language, { out, base, production, header, foo
     .replace('>О Натали<', local('>Sobre Natali<', '>About Natali<'))
     .replace('>Лично с Натали<', local('>Clases privadas<', '>Private lessons<'))
     .replaceAll('href="/course/"', 'href="' + local('/course/', '/en/course/') + '"')
+    .replace(/href="\/(about-natali|private-lessons)\/"/g, 'href="' + prefix + '/$1/"')
     .replace('href="/tutor/">En Confianza<', 'href="' + prefix + '/tutor/">En Confianza<'));
   const jobsHeader = internal(readerHeader).replace('href="' + prefix + '/#home" data-home', 'href="' + prefix + '/"').replace('class="brand"', local('class="brand" aria-label="Inicio · Español con Natali"', 'class="brand" aria-label="Home · Español con Natali"')).replaceAll('Бесплатные материалы', local('Recursos gratuitos', 'Free resources')).replace('>Ресурсы<', local('>Recursos<','>Resources<')).replace('>Учить испанский<',local('>Aprender español<','>Learn Spanish<')).replace('>Жизнь в Испании<',local('>Vida en España<','>Life in Spain<')).replace('Меню', local('Menú', 'Menu')).replace('aria-label="Навигация"', local('aria-label="Navegación"', 'aria-label="Navigation"'));
   const write = async (route, title, description, body, animated) => {
@@ -55,9 +56,12 @@ export async function buildLocale(language, { out, base, production, header, foo
   const localizedHome = translate(homebody
     .replace(jobsTeaser('ru', true), jobsTeaser(language, true))
     .replace(/(<time data-publication-date datetime="([^"]+)">)[^<]+<\/time>/g, (_, start, date) => start + publicationDate.format(new Date(date)) + '</time>')
+    .replaceAll('Подробнее о Натали', local('Conocé a Natali', 'Get to know Natali'))
+    .replaceAll('Подробнее об индивидуальных занятиях', local('Ver clases privadas', 'Explore private lessons'))
     .replaceAll('>О курсе ', local('>Ver el curso ', '>Explore the course '))
     .replace(/Около (\d+) мин чтения/g, local('Unos $1 min de lectura', 'About $1 min read'))
     .replaceAll('href="/course/"', 'href="' + local('/course/', '/en/course/') + '"')
+    .replace(/href="\/(about-natali|private-lessons)\/"/g, 'href="' + prefix + '/$1/"')
     .replace(/href="\/students\/"/g, 'href="' + prefix + '/students/"')
     .replace(/href="\/resources\/"/g, 'href="' + prefix + '/resources/"'));
   await write('/', local('Español para la vida real', 'Spanish for real life'), local('Curso grabado de español y clases privadas con Natali.', 'Self-paced Spanish and private lessons with Natali.'), localizedHome, true);

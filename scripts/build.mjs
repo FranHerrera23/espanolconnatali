@@ -5,6 +5,7 @@ import {jobFreshness} from '../site/jobs-state.js';
 import {markdown,esc} from './markdown.mjs';
 import {buildLocale,languagePicker} from './locales.mjs';
 import {buildCourse,courseRoutes} from './course.mjs';
+import {buildProfiles,profileRoutes} from './profiles.mjs';
 import {jobsRoute,renderJobs,jobsTeaser,lifeRoute,renderLife,jobDetailRoute,renderJobDetail,publicJobs} from './jobs.mjs';
 const config=JSON.parse(await readFile('site.config.json','utf8'));
 const production=process.env.DEPLOY_MODE==='production'||(process.env.VERCEL_ENV==='production');
@@ -33,7 +34,8 @@ const home = (await readFile('site/index.html', 'utf8'))
  .replaceAll('{{COURSE_CHECKOUT_URL}}', esc(checkout.href))
  .replaceAll('{{COURSE_PRICE}}', esc(coursePrice));
 await buildCourse({out,base,production,checkout,coursePrice});
-let header=home.match(/<header class="site-nav[\s\S]*?<\/header>/)[0].replaceAll('resources.html','/resources/').replaceAll('href="#','href="/#').replaceAll('href="/#course"','href="/course/"');
+await buildProfiles({out,base,production,instagram:config.instagram});
+let header=home.match(/<header class="site-nav[\s\S]*?<\/header>/)[0].replaceAll('resources.html','/resources/').replaceAll('href="#','href="/#').replaceAll('href="/#course"','href="/course/"').replaceAll('href="/#natali"','href="/about-natali/"').replaceAll('href="/#private"','href="/private-lessons/"');
 const resourceMenu='<details class="resource-nav"><summary>Ресурсы</summary><div><a href="/resources/">Учить испанский</a><a href="/life-in-spain/">Жизнь в Испании</a></div></details>';
 header=header.replace('<a href="/resources/">Бесплатные материалы</a>',resourceMenu)
  .replace(/<a class="link nav-contact"[\s\S]*?<\/a>/,'')
@@ -44,7 +46,7 @@ const org={'@type':'EducationalOrganization','@id':base+'/#organization',name:'E
 const editor={'@type':'Organization','@id':base+'/#editorial',name:'Редакция Español con Natali',parentOrganization:{'@id':org['@id']}};
 const site={'@type':'WebSite','@id':base+'/#website',url:base+'/',name:'Español con Natali',inLanguage:'ru',publisher:{'@id':org['@id']}};
 const tutorRoutes=['/tutor/','/en/tutor/','/es/tutor/'];
-const urls=[...Object.values(courseRoutes),...tutorRoutes].map(route=>base+route);
+const urls=[...Object.values(courseRoutes),...tutorRoutes,...profileRoutes].map(route=>base+route);
 async function page(route,title,desc,body,extra=[],commercial=false,options={}){
  const canonical=base+route;const webpage={'@type':['/resources/','/resources/travel/','/students/',jobsRoute,lifeRoute].includes(route)?'CollectionPage':'WebPage','@id':canonical+'#page',url:canonical,name:title,inLanguage:'ru',isPartOf:{'@id':site['@id']}};
  const graph=[org,editor,site,webpage,...extra];
@@ -149,7 +151,9 @@ await page('/students/','Отзывы учеников об испанском �
 let homebody=home.split('<div class="home-view" id="home">')[1].split('</div></main>')[0];if(!homebody)throw Error('Home structure changed');
 homebody='<div class="home-view" id="home">'+homebody+'</div>';
 homebody=homebody.replace(/href="resources.html"/g,'href="/resources/"').replace(/href="resources\/([^".]+)\.html"/g,'href="/resources/$1/"').replaceAll('src="assets/','src="/assets/');
-homebody=homebody.replaceAll('href="#course"','href="/course/"');
+homebody=homebody.replaceAll('href="#course"','href="/course/"')
+ .replace('<div class="natali-symbol-note">','<p><a class="link" href="/about-natali/">Подробнее о Натали ↗</a></p><div class="natali-symbol-note">')
+ .replace(/(<a class="link" href="https:\/\/www.instagram.com\/espanol.con.natali\/"[^>]*>)Обсудить занятия в Instagram/, '<a class="link" href="/private-lessons/">Подробнее об индивидуальных занятиях');
 homebody=homebody.replace(/(<a class="resource-button link" href=")(.*?)(">)/g,(_,before,route,after)=>{const article=manifest.find(a=>a.route===route);return '<p class="reading-time"><time data-publication-date datetime="'+article.publishedAt+'">'+publicationDate.format(new Date(article.publishedAt))+'</time> · Около '+readingTimes.get(route)+' мин чтения</p>'+before+route+after;});
 homebody=homebody.replace(/(<section class="resources[\s\S]*?)(<\/section>)/,(_,content,end)=>content+jobsTeaser('ru',true)+end);
 await page('/','Испанский для русскоязычных','Курс испанского в своём темпе и индивидуальные занятия с Натали.',homebody,[{'@type':'Person','@id':base+'/#natali',name:'Натали',jobTitle:'Преподаватель испанского языка',sameAs:[config.instagram]},{'@type':'Course',name:'Курс испанского в своём темпе',description:'10 видеоуроков на Google Drive, дополнительные видео для практики и домашние задания. Заключительное занятие с Натали — 30 минут.',provider:{'@id':org['@id']},inLanguage:'ru',url:base+'/#course'}],true);
