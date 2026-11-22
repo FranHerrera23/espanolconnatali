@@ -1,6 +1,7 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import { esc } from './markdown.mjs';
 import { faqSchema, renderFaq } from './product-faq.mjs';
+import { paymentFaq, renderPaymentHelp } from './payment-help.mjs';
 
 export const courseRoutes = { ru: '/course/', en: '/en/course/' };
 
@@ -51,19 +52,20 @@ const course = {
   }
 };
 
-export async function buildCourse({ out, base, production, checkout, coursePrice }) {
+export async function buildCourse({ out, base, production, checkout, coursePrice, instagram }) {
   const alternates = Object.entries(courseRoutes).map(([lang, route]) =>
     `<link rel="alternate" hreflang="${lang}" href="${base + route}">`).join('');
   for (const [lang, copy] of Object.entries(course)) {
     const route = courseRoutes[lang];
     const canonical = base + route;
     const home = lang === 'ru' ? '/' : '/en/';
+    const faq = [...copy.faq, paymentFaq(lang)];
     const graph = [
       { '@type': 'WebPage', '@id': canonical + '#page', url: canonical, name: copy.title, inLanguage: lang },
       { '@type': 'Course', '@id': canonical + '#course', name: copy.title,
         description: copy.description, inLanguage: 'ru', url: canonical,
         provider: { '@type': 'EducationalOrganization', '@id': base + '/#organization', name: 'Español con Natali' } },
-      faqSchema(canonical, copy.faq)
+      faqSchema(canonical, faq)
     ];
     const schema = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replaceAll('<', '\\u003c');
     const switcher = Object.entries(courseRoutes).map(([code, href]) =>
@@ -82,9 +84,10 @@ export async function buildCourse({ out, base, production, checkout, coursePrice
 <main class="tw-main" id="main">
 <section class="tw-grid" id="course"><div class="course-intro"><p class="label">${esc(copy.label)}</p><h1>${esc(copy.title)}</h1><p>${esc(copy.description)}</p></div>
 <div class="tw-panel course-checkout"><h2>${esc(copy.price)}</h2><p class="course-amount">${esc(coursePrice)}</p>
-<p>${esc(copy.priceNote)}</p><a class="button" href="${esc(checkout.href)}">${esc(copy.checkout)} <span aria-hidden="true">↗</span></a></div></section>
+<p>${esc(copy.priceNote)}</p><a class="button" href="${esc(checkout.href)}">${esc(copy.checkout)} <span aria-hidden="true">↗</span></a>
+${renderPaymentHelp(lang, instagram)}</div></section>
 <section class="tw-how course-syllabus-page"><h2>${esc(copy.syllabus)}</h2><ol>${copy.lessons.map(lesson => `<li>${esc(lesson)}</li>`).join('')}</ol></section>
-${renderFaq(copy.faqTitle, copy.faq)}
+${renderFaq(copy.faqTitle, faq)}
 </main><footer class="tw-footer"><a href="${home}">${esc(copy.home)}</a><a href="${copy.libraryPath}">${esc(copy.library)}</a></footer></body></html>`);
   }
 }

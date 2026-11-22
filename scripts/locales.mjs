@@ -1,5 +1,6 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { esc } from './markdown.mjs';
+import { addHomePaymentHelp } from './payment-help.mjs';
 import { jobsRoute, renderJobs, jobsTeaser, lifeRoute, renderLife, jobDetailRoute, renderJobDetail } from './jobs.mjs';
 
 const mirrored = new Set(['/', '/resources/', '/students/', jobsRoute, lifeRoute]);
@@ -18,7 +19,7 @@ export function languagePicker(header, route, language = 'ru') {
     .replace('</header>', `<div class="language-picker language-header" role="group" aria-label="${label}">${links}</div></header>`);
 }
 
-export async function buildLocale(language, { out, base, production, header, footer, homebody, ordered, clusters, clusterFor, readingTimes, reviewRows, jobsData, readerHeader }) {
+export async function buildLocale(language, { out, base, production, header, footer, homebody, ordered, clusters, clusterFor, readingTimes, reviewRows, jobsData, readerHeader, instagram }) {
   const english = language === 'en';
   const local = (es, en) => english ? en : es;
   const filePrefix = local('spanish', 'english');
@@ -64,7 +65,7 @@ export async function buildLocale(language, { out, base, production, header, foo
     .replace(/href="\/(about-natali|private-lessons)\/"/g, 'href="' + prefix + '/$1/"')
     .replace(/href="\/students\/"/g, 'href="' + prefix + '/students/"')
     .replace(/href="\/resources\/"/g, 'href="' + prefix + '/resources/"'));
-  await write('/', local('Español para la vida real', 'Spanish for real life'), local('Curso grabado de español y clases privadas con Natali.', 'Self-paced Spanish and private lessons with Natali.'), localizedHome, true);
+  await write('/', local('Español para la vida real', 'Spanish for real life'), local('Curso grabado de español y clases privadas con Natali.', 'Self-paced Spanish and private lessons with Natali.'), addHomePaymentHelp(localizedHome, language, instagram), true);
 
   const descriptions = JSON.parse(await readFile('content/' + filePrefix + '-resources.json', 'utf8'));
   const topics = { start: local('Desde cero', 'From scratch'), conversation: local('Conversación', 'Conversation'), grammar: local('Gramática', 'Grammar'), practice: local('Práctica autónoma', 'Independent practice'), culture: local('Vida y cultura', 'Life and culture') };

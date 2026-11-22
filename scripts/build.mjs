@@ -5,6 +5,7 @@ import {jobFreshness} from '../site/jobs-state.js';
 import {markdown,esc} from './markdown.mjs';
 import {buildLocale,languagePicker} from './locales.mjs';
 import {buildCourse,courseRoutes} from './course.mjs';
+import {addHomePaymentHelp} from './payment-help.mjs';
 import {buildProfiles,profileRoutes} from './profiles.mjs';
 import {jobsRoute,renderJobs,jobsTeaser,lifeRoute,renderLife,jobDetailRoute,renderJobDetail,publicJobs} from './jobs.mjs';
 const config=JSON.parse(await readFile('site.config.json','utf8'));
@@ -33,7 +34,7 @@ const home = (await readFile('site/index.html', 'utf8'))
  .replaceAll('src="assets/brand/', 'src="/assets/brand/')
  .replaceAll('{{COURSE_CHECKOUT_URL}}', esc(checkout.href))
  .replaceAll('{{COURSE_PRICE}}', esc(coursePrice));
-await buildCourse({out,base,production,checkout,coursePrice});
+await buildCourse({out,base,production,checkout,coursePrice,instagram:config.instagram});
 await buildProfiles({out,base,production,instagram:config.instagram});
 let header=home.match(/<header class="site-nav[\s\S]*?<\/header>/)[0].replaceAll('resources.html','/resources/').replaceAll('href="#','href="/#').replaceAll('href="/#course"','href="/course/"').replaceAll('href="/#natali"','href="/about-natali/"').replaceAll('href="/#private"','href="/private-lessons/"');
 const resourceMenu='<details class="resource-nav"><summary>Ресурсы</summary><div><a href="/resources/">Учить испанский</a><a href="/life-in-spain/">Жизнь в Испании</a></div></details>';
@@ -156,9 +157,9 @@ homebody=homebody.replaceAll('href="#course"','href="/course/"')
  .replace(/(<a class="link" href="https:\/\/www.instagram.com\/espanol.con.natali\/"[^>]*>)Обсудить занятия в Instagram/, '<a class="link" href="/private-lessons/">Подробнее об индивидуальных занятиях');
 homebody=homebody.replace(/(<a class="resource-button link" href=")(.*?)(">)/g,(_,before,route,after)=>{const article=manifest.find(a=>a.route===route);return '<p class="reading-time"><time data-publication-date datetime="'+article.publishedAt+'">'+publicationDate.format(new Date(article.publishedAt))+'</time> · Около '+readingTimes.get(route)+' мин чтения</p>'+before+route+after;});
 homebody=homebody.replace(/(<section class="resources[\s\S]*?)(<\/section>)/,(_,content,end)=>content+jobsTeaser('ru',true)+end);
-await page('/','Испанский для русскоязычных','Курс испанского в своём темпе и индивидуальные занятия с Натали.',homebody,[{'@type':'Person','@id':base+'/#natali',name:'Натали',jobTitle:'Преподаватель испанского языка',sameAs:[config.instagram]},{'@type':'Course',name:'Курс испанского в своём темпе',description:'10 видеоуроков на Google Drive, дополнительные видео для практики и домашние задания. Заключительное занятие с Натали — 30 минут.',provider:{'@id':org['@id']},inLanguage:'ru',url:base+'/#course'}],true);
+await page('/','Испанский для русскоязычных','Курс испанского в своём темпе и индивидуальные занятия с Натали.',addHomePaymentHelp(homebody,'ru',config.instagram),[{'@type':'Person','@id':base+'/#natali',name:'Натали',jobTitle:'Преподаватель испанского языка',sameAs:[config.instagram]},{'@type':'Course',name:'Курс испанского в своём темпе',description:'10 видеоуроков на Google Drive, дополнительные видео для практики и домашние задания. Заключительное занятие с Натали — 30 минут.',provider:{'@id':org['@id']},inLanguage:'ru',url:base+'/#course'}],true);
 for (const language of ['es', 'en']) {
- await buildLocale(language,{out,base,production,header,footer,homebody,ordered,clusters:activeClusters,clusterFor,readingTimes,reviewRows,jobsData,readerHeader});
+ await buildLocale(language,{out,base,production,header,footer,homebody,ordered,clusters:activeClusters,clusterFor,readingTimes,reviewRows,jobsData,readerHeader,instagram:config.instagram});
 }
 await writeFile(out+'/robots.txt',production?'User-agent: *\nAllow: /\nSitemap: '+base+'/sitemap.xml\n':'User-agent: *\nDisallow: /\n');
 await writeFile(out+'/sitemap.xml','<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+(production?urls:[]).map(u=>'<url><loc>'+u+'</loc></url>').join('')+'</urlset>');

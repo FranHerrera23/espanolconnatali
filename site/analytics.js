@@ -35,6 +35,10 @@ if (typeof window !== 'undefined' && window.location.hostname === 'www.espanolco
   document.addEventListener('click', event => {
     const link = event.target.closest?.('a[href]');
     if (!link) return;
+    if (link.hasAttribute('data-payment-help')) {
+      track('course_payment_help_click', tags);
+      return;
+    }
     const url = new URL(link.href, location.href);
     if (url.hostname === 'gumroad.com' || url.hostname.endsWith('.gumroad.com')) track('gumroad_click', tags);
   });
