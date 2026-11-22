@@ -169,18 +169,16 @@
     {
       "id": "ECN-FR-024",
       "articleRoute": "/resources/compliments-in-spanish/",
-      "sourceFile": "editorial/articles/compliments-in-spanish.md",
-      "sourceSha256": "e486a1a7305f72183f5f47aaa8ee35da1c95151356627af9083512742a0a66ca",
-      "file": "output/pdf/2026-11-04/compliments-in-spanish-workbook-ru.pdf",
+      "sourceFile": "editorial/drafts/compliments-v2/compliments-in-spanish.md",
+      "sourceSha256": "fadd6c881285e3d435fd86c1e7b8773bdc09b8fa471f7e98eedaf01ae0a79c27",
+      "file": "output/pdf/2026-11-22/compliments-in-spanish-workbook-ru.pdf",
       "downloadRoute": "/assets/downloads/compliments-in-spanish-workbook-ru.pdf",
-      "sha256": "f931f6d075885189beabe438ae4929b8487c60061e75b5cda67bb7e361a0f3ab",
-      "pages": 4,
+      "sha256": "ed5aef0ac31299e0d9f621adb9b36bbec26ae393ffd545a869fecd7942ac89a7",
+      "pages": 8,
       "status": "approved_for_web_release",
-      "contentCheck": "Full PDF text preserved except removed AI disclosure; page count unchanged; 2026-11-07",
-      "visualCheck": "Updated editorial note rendered and visually checked in contact sheets; 2026-11-07",
-      "visualEvidence": "editorial/batches/2026-11-04/qa/pdf/ECN-FR-024.jpg",
-      "version": "1.2-editorial-note",
-      "bytes": 98566
+      "contentCheck": "All 115 source text blocks present in extracted PDF text; original source hash unchanged",
+      "visualCheck": "16 páginas renderizadas e inspeccionadas en contactos y soluciones a escala legible. Sin recortes, solapamientos, caracteres ausentes ni páginas huérfanas; tablas con cabecera repetida, marca y espacios de ejercicios comprobados.",
+      "bytes": 1324815
     },
     {
       "id": "ECN-FR-022",

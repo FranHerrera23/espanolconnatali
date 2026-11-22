@@ -472,48 +472,63 @@
   },
   {
     "id": "ECN-FR-024",
-    "version": "1.0",
+    "version": "2.0",
     "status": "approved_for_publication",
     "language": "ru",
-    "sourceFile": "editorial/articles/compliments-in-spanish.md",
+    "sourceFile": "editorial/drafts/compliments-v2/compliments-in-spanish.md",
     "route": "/resources/compliments-in-spanish/",
-    "routeStatus": "proposed_not_live",
     "title": "Комплименты на испанском: что сказать мужчине или женщине",
-    "description": "Комплименты мужчине и женщине: контекст, согласование и практика.",
+    "titleEs": "Cómo hacer y recibir cumplidos en español",
+    "description": "Комплименты о вкусе, поступке и внешности: согласование, tú и usted, пять диалогов и десять упражнений с ответами.",
     "author": {
       "type": "Organization",
       "name": "Редакция Español con Natali"
     },
     "humanReviewer": null,
-    "preparedAt": "2026-11-04",
+    "preparedAt": "2026-11-22",
     "publishedAt": "2026-11-05",
-    "updatedAt": null,
+    "updatedAt": "2026-11-22",
     "canonicalOrigin": "https://www.espanolconnatali.com",
-    "wordCount": 753,
+    "wordCount": 2164,
     "sourceUrls": [
       "https://www.rae.es/dpd/concordancia",
-      "https://www.rae.es/dpd/ser",
-      "https://www.rae.es/dpd/estar"
+      "https://www.rae.es/dpd/estar",
+      "https://www.rae.es/dpd/qu%C3%A9"
     ],
     "relatedFiles": [
-      "ser-estar.md",
+      "ask-for-clarification.md",
       "read-spanish.md",
-      "te-quiero-te-amo-me-gustas.md"
+      "ser-estar.md",
+      "te-quiero-te-amo-me-gustas.md",
+      "tell-what-you-liked-at-an-exhibition.md"
+    ],
+    "relatedRoutes": [
+      "/resources/ask-for-clarification/",
+      "/resources/read-spanish/",
+      "/resources/ser-estar/",
+      "/resources/te-quiero-te-amo-me-gustas/",
+      "/resources/tell-what-you-liked-at-an-exhibition/"
     ],
     "commercialCta": null,
-    "sha256": "e486a1a7305f72183f5f47aaa8ee35da1c95151356627af9083512742a0a66ca",
+    "sha256": "fadd6c881285e3d435fd86c1e7b8773bdc09b8fa471f7e98eedaf01ae0a79c27",
+    "pillar": "P2",
+    "editorialReview": {
+      "reviewedOn": "2026-11-22",
+      "responsibility": "Editorial bajo delegación autónoma de Fran",
+      "version": "2.0",
+      "humanReviewAttributed": false
+    },
+    "geography": {
+      "learnerLocation": "unknown; Russian-speaking international audience",
+      "conversationContext": "social conversation in Spanish",
+      "register": "tú models; usted contrasted in compliments; no universal cultural promise",
+      "localUrlDecision": "shared task; no city-specific duplicate"
+    },
     "editorialApproval": {
       "by": "Fran",
       "date": "2026-11-05",
       "source": "Autorización expresa de publicación en el chat web."
-    },
-    "pillar": "P5",
-    "titleEs": "Cumplidos con contexto",
-    "relatedRoutes": [
-      "/resources/ser-estar/",
-      "/resources/read-spanish/",
-      "/resources/te-quiero-te-amo-me-gustas/"
-    ]
+    }
   },
   {
     "id": "ECN-FR-022",
