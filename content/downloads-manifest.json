@@ -548,6 +548,20 @@
       "contentCheck": "All 105 source text blocks present in extracted PDF text; original source hash unchanged",
       "visualCheck": "16 páginas renderizadas e inspeccionadas en contactos y página de soluciones a escala legible; Onest/verde/terracota/linces, márgenes, tablas, diálogos, ejercicios y soluciones sin recortes ni páginas huérfanas.",
       "bytes": 1324325
+    },
+    {
+      "id": "ECN-FR-041",
+      "articleRoute": "/resources/ask-for-a-music-recommendation/",
+      "sourceFile": "editorial/articles/ask-for-a-music-recommendation.md",
+      "sourceSha256": "0a9d7832bc1e65fbf413e167d1fa966d3d602233a641d360fff6887493ac778c",
+      "file": "output/pdf/2026-11-22/ask-for-a-music-recommendation-workbook-ru.pdf",
+      "downloadRoute": "/assets/downloads/ask-for-a-music-recommendation-workbook-ru.pdf",
+      "sha256": "0bac66875f27c4ffa2b52d9a507369306f6bfd65e7e64d9f6f2f625d18b1fd09",
+      "pages": 7,
+      "status": "approved_for_web_release",
+      "contentCheck": "All 91 source text blocks present in extracted PDF text; original source hash unchanged",
+      "visualCheck": "Siete páginas renderizadas e inspeccionadas, con Onest y marca vigente. Tabla con encabezado repetido, ejercicios separados de soluciones y área de escritura.",
+      "bytes": 1318737
     }
   ]
 }

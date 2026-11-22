@@ -1612,5 +1612,50 @@
       "source": "Autorización general de publicación autónoma diaria. No implica revisión individual.",
       "date": "2026-11-10"
     }
+  },
+  {
+    "id": "ECN-FR-041",
+    "version": "1.0",
+    "status": "approved_for_publication",
+    "language": "ru",
+    "sourceFile": "editorial/articles/ask-for-a-music-recommendation.md",
+    "route": "/resources/ask-for-a-music-recommendation/",
+    "title": "Как попросить посоветовать музыку на испанском",
+    "titleEs": "Cómo pedir una recomendación musical en español",
+    "description": "Как попросить посоветовать песню, рассказать о своих вкусах и обсудить услышанное. Пять диалогов и десять заданий с ответами.",
+    "author": {
+      "type": "Organization",
+      "name": "Редакция Español con Natali"
+    },
+    "humanReviewer": null,
+    "preparedAt": "2026-11-22",
+    "publishedAt": "2026-11-22",
+    "updatedAt": null,
+    "canonicalOrigin": "https://www.espanolconnatali.com",
+    "wordCount": 1719,
+    "sourceUrls": [
+      "https://dle.rae.es/gustar",
+      "https://www.rae.es/dpd/recomendar",
+      "https://dle.rae.es/estribillo",
+      "https://dle.rae.es/pegadizo"
+    ],
+    "relatedFiles": [
+      "ask-for-clarification.md",
+      "keep-a-conversation-going.md",
+      "choose-a-book-in-spanish.md"
+    ],
+    "relatedRoutes": [
+      "/resources/ask-for-clarification/",
+      "/resources/keep-a-conversation-going/",
+      "/resources/choose-a-book-in-spanish/"
+    ],
+    "commercialCta": null,
+    "sha256": "0a9d7832bc1e65fbf413e167d1fa966d3d602233a641d360fff6887493ac778c",
+    "pillar": "P5",
+    "editorialApproval": {
+      "by": "Fran",
+      "source": "Autorización general de publicación autónoma diaria.",
+      "date": "2026-11-10"
+    }
   }
 ]

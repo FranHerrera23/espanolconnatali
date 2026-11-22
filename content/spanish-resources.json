@@ -138,5 +138,9 @@
   "choose-a-book-in-spanish": [
     "Elegir un libro en español",
     "Guía en ruso con diálogos en español para pedir recomendaciones y elegir un libro en una librería."
+  ],
+  "ask-for-a-music-recommendation": [
+    "Pedir una recomendación musical",
+    "Guía en ruso con diálogos en español y ejercicios sobre gustos musicales."
   ]
 }
