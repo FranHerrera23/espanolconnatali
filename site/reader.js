@@ -124,7 +124,9 @@
     return;
   }
 
-  const returnLocale = localizedReferrer?.[1] || savedLocale;
+  const fromRussianLibrary = referrer?.origin === location.origin &&
+    ['/', '/articles/', '/resources/', '/resources/travel/'].includes(referrer.pathname);
+  const returnLocale = localizedReferrer?.[1] || (fromRussianLibrary ? null : savedLocale);
   const returnPath = locale => {
     if (!localizedReferrer) return '/' + locale + '/articles/';
     const isHome = referrer.pathname === '/' + localizedReferrer[1] + '/';
