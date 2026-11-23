@@ -1,3 +1,9 @@
+// The same render-blocking typography and deferred scroll runtime on every public page.
+const scrollScripts = ['assets/vendor/lenis.min', 'assets/vendor/gsap.min', 'assets/vendor/ScrollTrigger.min', 'resources'];
+export const publicDesignHead = '<link rel="preload" href="/assets/fonts/onest-variable.woff2" as="font" type="font/woff2" crossorigin>' +
+  '<link rel="stylesheet" href="/design-system.css">' +
+  scrollScripts.map(file => `<script defer src="/${file}.js"></script>`).join('');
+
 const locales = {
   ru: { language: 'Язык', main: 'Главная навигация', menu: 'Меню', home: 'На главную',
     entries: ['Программы','Ресурсы','Натали'], reviews: 'Отзывы',

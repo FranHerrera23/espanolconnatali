@@ -1,4 +1,4 @@
-import { renderHeader, renderReviewsLink } from './site-navigation.mjs';
+import { publicDesignHead, renderHeader, renderReviewsLink } from './site-navigation.mjs';
 import { cp, mkdir, readFile, writeFile } from 'node:fs/promises';
 import { esc } from './markdown.mjs';
 import { faqSchema, renderFaq } from './product-faq.mjs';
@@ -123,7 +123,7 @@ for (const [language, c] of Object.entries(copy)) {
   const messages = ['pending','success','fail','full'].map(key => `data-${key}="${text(c[key])}"`).join(' ');
   await mkdir('dist' + destination, { recursive: true });
   await writeFile('dist' + destination + 'index.html', `<!doctype html>
-<html lang="${language}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="${production ? 'index,follow' : 'noindex,follow'}"><link rel="canonical" href="${canonical}">${alternates}<meta name="description" content="${text(productName + ' · ' + c.descriptor)}"><meta property="og:url" content="${canonical}">${pageSchema}<title>${productName} — Español con Natali</title><link rel="stylesheet" href="/design-system.css"><link rel="stylesheet" href="/tutor-waitlist.css"></head>
+<html lang="${language}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="${production ? 'index,follow' : 'noindex,follow'}"><link rel="canonical" href="${canonical}">${alternates}<meta name="description" content="${text(productName + ' · ' + c.descriptor)}"><meta property="og:url" content="${canonical}">${pageSchema}<title>${productName} — Español con Natali</title>${publicDesignHead}<link rel="stylesheet" href="/tutor-waitlist.css"></head>
 <body>${renderHeader(language, '/tutor/')}
 <main class="tw-main" id="main">
 <div class="tw-grid">

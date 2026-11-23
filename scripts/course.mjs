@@ -1,4 +1,4 @@
-import { renderHeader, renderReviewsLink } from './site-navigation.mjs';
+import { publicDesignHead, renderHeader, renderReviewsLink } from './site-navigation.mjs';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { esc } from './markdown.mjs';
 import { faqSchema, renderFaq } from './product-faq.mjs';
@@ -73,61 +73,46 @@ const portal = {
   es: ['Así es el campus del alumno', 'Más de 600 estudiantes eligieron el curso', 'Natali es profesora de español y fundadora de la escuela. Dos docentes del equipo dan las lecciones grabadas.', 'Leer testimonios', 'La inscripción está cerrada por el momento.', 'Comprar el curso']
 };
 
-const preview = {
-  ru: {
-    label: 'Предпросмотр личного кабинета',
-    intro: 'Посмотрите, как будет устроен курс. Материалы откроются после покупки, когда начнётся набор.',
-    steps: [
-      ['Главная', 'На главной видно, сколько уроков пройдено и с чего продолжить.'],
-      ['Урок', 'Возвращайтесь к видео с того места, где остановились.'],
-      ['Тетрадь', 'В каждом модуле собраны задания и материалы к урокам.']
-    ],
-    confidence: 'В En Confianza вы тренируете разговоры по методу Натали, на ситуациях из уроков и рабочих тетрадей. Собеседник — голосовой ИИ.'
-  },
-  en: {
-    label: 'Student portal preview',
-    intro: 'See what the course will look like. Students get access after purchase once enrolment opens.',
-    steps: [
-      ['Welcome', 'See how much of the course you’ve completed and where to pick up.'],
-      ['Lesson', 'Return to the video at the point where you stopped.'],
-      ['Workbook', 'Find the assignments and study materials for each module.']
-    ],
-    confidence: 'En Confianza uses Natali’s method for voice practice based on situations from the lessons and workbooks. Your conversation partner is AI.'
-  },
-  es: {
-    label: 'Vista previa del campus',
-    intro: 'Mirá cómo va a ser el curso por dentro. El acceso se activa después de la compra, cuando abra la inscripción.',
-    steps: [
-      ['Bienvenida', 'Ves cuánto avanzaste y desde dónde retomar.'],
-      ['Lección', 'Volvé al punto del video donde lo dejaste.'],
-      ['Cuaderno', 'Encontrá las tareas y los materiales de cada módulo.']
-    ],
-    confidence: 'En Confianza usa el método de Natali para practicar conversaciones basadas en las lecciones y los cuadernos. Conversás por voz con IA.'
-  }
+const tourSteps = {
+  es: [
+    ['Tu campus', 'Desde esta portada podés retomar tu última clase. Más abajo encontrás los artículos de Natali para seguir leyendo en español.'],
+    ['Tu progreso', 'Cada marca corresponde a una lección. De un vistazo ves lo que ya hiciste y lo que te queda en cada módulo.'],
+    ['Una clase por dentro', 'Mirá la explicación de Sofía en ruso y pasá a la práctica con Eloy. El video recuerda dónde lo dejaste.'],
+    ['Tus cuadernos', 'Abrí el módulo que estás estudiando. Ahí tenés juntos el texto de la lección y los ejercicios.'],
+    ['En Confianza', 'Probá en voz alta una conversación de la lección. Tenés 60 minutos de práctica con IA guiada por el método y los cuadernos de Natali.']
+  ],
+  ru: [
+    ['Ваш личный кабинет', 'Отсюда можно вернуться к последнему уроку. Ниже — статьи Натали для практики испанского.'],
+    ['Ваш прогресс', 'Каждая отметка — один урок. Видно, что вы уже прошли и что осталось в каждом модуле.'],
+    ['Видеоурок', 'Посмотрите объяснение Софии на русском и перейдите к практике с Элоем. Видео запомнит, где вы остановились.'],
+    ['Рабочие тетради', 'Откройте свой модуль. Текст урока и упражнения собраны в одном месте.'],
+    ['En Confianza', 'Попробуйте вслух диалог из урока. В курс входят 60 минут голосовой практики с ИИ по методике и рабочим тетрадям Натали.']
+  ],
+  en: [
+    ['Your dashboard', 'Pick up your last lesson here. Scroll down for articles from Natali to keep practising your Spanish.'],
+    ['Your progress', 'Each mark represents one lesson. See what you’ve finished and what’s next in each module.'],
+    ['Inside a lesson', 'Watch Sofía’s explanation in Russian, then practise with Eloy. The video remembers where you stopped.'],
+    ['Your workbooks', 'Open the module you’re studying to find the lesson text and exercises together.'],
+    ['En Confianza', 'Try a conversation from your lesson out loud. Your course includes 60 minutes of AI voice practice guided by Natali’s method and workbooks.']
+  ]
 };
 
-const previewScreens = [
-  ['welcome', 1740, 539, 537, 525],
-  ['lesson', 1131, 638, 537, 303],
-  ['workbook', 860, 353, 537, 258]
-];
+const screens = [["dashboard", 1680, 1707, 585, 2243],
+  ["progress", 1608, 248, 537, 351],
+  ["lesson", 1608, 1659, 537, 2091],
+  ["workbook", 1608, 698, 537, 903],
+  ["practice", 1608, 611, 537, 552]];
 
 function renderPreview(lang, title) {
-  const c = preview[lang];
-  const buttons = c.steps.map(([label], index) => `<button type="button" aria-pressed="${index === 0}" aria-controls="preview-${previewScreens[index][0]}">${esc(label)}</button>`).join('');
-  const figures = c.steps.map(([label, detail], index) => {
-    const [id, width, height, mobileWidth, mobileHeight] = previewScreens[index];
-    return `<figure id="preview-${id}"${index === 0 ? '' : ' hidden'}>
-      <figcaption><p>${esc(detail)}</p></figcaption>
-      <picture><source media="(max-width: 570px)" srcset="/assets/course-portal/preview-${id}-mobile.jpg" width="${mobileWidth}" height="${mobileHeight}">
-      <img src="/assets/course-portal/preview-${id}-desktop.jpg" alt="${index === 0 ? 'Hola, Marina. Bienvenida a tu vida en español.' : esc(c.label + ' · ' + label)}"${index === 0 ? ' lang="es"' : ''} width="${width}" height="${height}" loading="lazy" decoding="async"></picture>
-    </figure>`;
+  const step = { es: 'Paso', ru: 'Шаг', en: 'Step' }[lang];
+  const figures = tourSteps[lang].map(([label, detail], index) => {
+    const [id, width, height, mobileWidth, mobileHeight] = screens[index];
+    const src = '/assets/course-portal/tour-' + id;
+    return `<li><figure><figcaption><p class="label">${step} ${index + 1}</p><h3>${esc(label)}</h3><p>${esc(detail)}</p></figcaption>
+      <picture><source media="(max-width: 740px)" srcset="${src}-mobile.jpg" width="${mobileWidth}" height="${mobileHeight}">
+      <img src="${src}-desktop.jpg" width="${width}" height="${height}" alt="${esc(index === 0 ? 'Hola, Marina. Bienvenida a tu vida en español.' : label)}" loading="lazy" decoding="async"></picture></figure></li>`;
   }).join('');
-  return `<section class="tw-how course-preview" id="course-portal" aria-labelledby="portal-title">
-    <p class="label">${esc(c.label)}</p><h2 id="portal-title">${title}</h2><p>${esc(c.intro)}</p>
-    <div data-preview-controls role="group" aria-labelledby="portal-title" hidden>${buttons}</div>${figures}
-    <p class="course-confidence">${esc(c.confidence)}</p>
-  </section>`;
+  return `<section class="campus-tour" id="course-portal" aria-labelledby="portal-title"><h2 id="portal-title">${esc(title)}</h2><ol role="list">${figures}</ol></section>`;
 }
 
 function enabledCheckout() {
@@ -186,7 +171,7 @@ export async function buildCourse({ out, base, production, coursePrice, courseOf
 <meta name="robots" content="${production ? 'index,follow,max-image-preview:large' : 'noindex,follow'}">
 <link rel="canonical" href="${canonical}">${alternates}<meta property="og:url" content="${canonical}">
 <script type="application/ld+json">${schema}</script>
-<link rel="stylesheet" href="/design-system.css"><link rel="stylesheet" href="/tutor-waitlist.css"><link rel="stylesheet" href="/course.css"></head>
+${publicDesignHead}<link rel="stylesheet" href="/tutor-waitlist.css"><link rel="stylesheet" href="/course.css"></head>
 <body><a class="skip" href="#main">${({ru: 'Перейти к содержанию', en: 'Skip to content', es: 'Ir al contenido'})[lang]}</a>
 ${renderHeader(lang, '/course/')}
 <main class="tw-main" id="main">
@@ -203,6 +188,6 @@ ${checkout ? `<a class="button" data-course-checkout href="${esc(checkout)}">${b
 ${renderPaymentHelp(lang)}
 <section class="tw-how course-syllabus-page"><h2>${esc(copy.syllabus)}</h2><ol>${copy.lessons.map(lesson => `<li>${esc(lesson)}</li>`).join('')}</ol></section>
 ${renderFaq(copy.faqTitle, faq)}
-</main><footer class="tw-footer"><a href="${home}">${esc(copy.home)}</a><a href="${copy.libraryPath}">${esc(copy.library)}</a>${renderReviewsLink(lang)}</footer><script type="module" src="/course-payment-help.js"></script><script type="module" src="/course-preview.js"></script></body></html>`);
+</main><footer class="tw-footer"><a href="${home}">${esc(copy.home)}</a><a href="${copy.libraryPath}">${esc(copy.library)}</a>${renderReviewsLink(lang)}</footer><script type="module" src="/course-payment-help.js"></script></body></html>`);
   }
 }

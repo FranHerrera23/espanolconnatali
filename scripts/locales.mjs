@@ -1,12 +1,9 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { journalViews } from './journal.mjs';
 import { esc } from './markdown.mjs';
-import { renderHeader } from './site-navigation.mjs';
+import { publicDesignHead, renderHeader } from './site-navigation.mjs';
 import { jobsRoute, renderJobs, jobsTeaser, lifeRoute, renderLife, jobDetailRoute, renderJobDetail } from './jobs.mjs';
 
-const motion = ['lenis', 'gsap', 'ScrollTrigger', 'SplitText']
-  .map(name => `<script src="/assets/vendor/${name}.min.js"></script>`).join('') +
-  '<script src="/resources.js"></script>';
 
 export async function buildLocale(language, { out, base, production, footer, homebody, ordered, clusters, clusterFor, readingTimes, reviewRows, jobsData }) {
   const english = language === 'en';
@@ -19,13 +16,13 @@ export async function buildLocale(language, { out, base, production, footer, hom
   const translate = html => html.replace(pattern, key => esc(dictionary.get(key)));
   const internal = html => html.replace(/href="(\/(?:articles\/|resources\/|students\/)?)(#[^"]*)?"/g, 'href="' + prefix + '$1$2"')
     .replace(/href="\/life-in-spain\/"/g, 'href="' + prefix + '/life-in-spain/"').replace(/href="#([^"]+)"/g, 'href="' + prefix + '/#$1"');
-  const write = async (route, title, description, body, animated) => {
+  const write = async (route, title, description, body) => {
     const isJobs = route === jobsRoute;
     const practical = route.startsWith(jobsRoute) || route === lifeRoute;
     const pageFooter = practical ? footer.replace(/<p>[\s\S]*?<\/p>/, '').replace(/<span>Курс в своём темпе[\s\S]*?<\/span>/, '') : footer;
     const dir = out + prefix + route;
     await mkdir(dir, { recursive: true });
-    await writeFile(dir + 'index.html', `<!doctype html><html lang="${language}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)} — Español con Natali</title><meta name="description" content="${esc(description)}"><meta name="robots" content="noindex,follow"><link rel="canonical" href="${base + route}"><link rel="stylesheet" href="/design-system.css"><link rel="stylesheet" href="/library.css"><link rel="stylesheet" href="/jobs.css"></head><body>${production ? '' : '<div class="preview-note">' + local('Vista previa', 'Preview') + '</div>'}<a class="skip" href="#main">${local('Ir al contenido', 'Skip to content')}</a>${renderHeader(language, route)}<main id="main">${body}</main>${translate(internal(pageFooter))}<script src="/reader.js"></script>${isJobs ? '<script type="module" src="/jobs.js"></script>' : route.startsWith(jobsRoute) ? '<script type="module" src="/job-detail.js"></script>' : ''}${animated ? motion : ''}</body></html>`);
+    await writeFile(dir + 'index.html', `<!doctype html><html lang="${language}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)} — Español con Natali</title><meta name="description" content="${esc(description)}"><meta name="robots" content="noindex,follow"><link rel="canonical" href="${base + route}">${publicDesignHead}<link rel="stylesheet" href="/library.css"><link rel="stylesheet" href="/jobs.css"></head><body>${production ? '' : '<div class="preview-note">' + local('Vista previa', 'Preview') + '</div>'}<a class="skip" href="#main">${local('Ir al contenido', 'Skip to content')}</a>${renderHeader(language, route)}<main id="main">${body}</main>${translate(internal(pageFooter))}<script src="/reader.js"></script>${isJobs ? '<script type="module" src="/jobs.js"></script>' : route.startsWith(jobsRoute) ? '<script type="module" src="/job-detail.js"></script>' : ''}</body></html>`);
   };
 
   const publicationDate = new Intl.DateTimeFormat(language === 'es' ? 'es-ES' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
@@ -42,14 +39,14 @@ export async function buildLocale(language, { out, base, production, footer, hom
     .replace(/href="\/resources\/"/g, 'href="' + prefix + '/resources/"'));
   const descriptions = JSON.parse(await readFile('content/' + filePrefix + '-resources.json', 'utf8'));
   const journal = journalViews({language,ordered,clusters,clusterFor,readingTimes,descriptions});
-  await write('/', local('Español para la vida real', 'Spanish for real life'), local('Español desde cero para rusohablantes. Cinco módulos, diez videoclases y dos encuentros con Natali. USD 179 en un solo pago.', 'Spanish from scratch for Russian speakers. Five modules, ten video lessons and two meetings with Natali. USD 179 paid once.'), localizedHome.replace('<!--school-articles-->',journal.home), true);
-  await write('/articles/', journal.title, journal.intro, journal.archive, false);
-  await write('/resources/',journal.library,journal.libraryIntro,journal.resources+jobsTeaser(language),false);
+  await write('/', local('Español para la vida real', 'Spanish for real life'), local('Español desde cero para rusohablantes. Cinco módulos, diez videoclases y dos encuentros con Natali. USD 179 en un solo pago.', 'Spanish from scratch for Russian speakers. Five modules, ten video lessons and two meetings with Natali. USD 179 paid once.'), localizedHome.replace('<!--school-articles-->',journal.home));
+  await write('/articles/', journal.title, journal.intro, journal.archive);
+  await write('/resources/',journal.library,journal.libraryIntro,journal.resources+jobsTeaser(language));
 
-  await write(lifeRoute, local('Vida en España','Life in Spain'), local('Recursos prácticos para la vida en España.','Practical resources for life in Spain.'), renderLife(language), false);
+  await write(lifeRoute, local('Vida en España','Life in Spain'), local('Recursos prácticos para la vida en España.','Practical resources for life in Spain.'), renderLife(language));
   if (language === 'es') {
-    await write(jobsRoute, 'Vacantes en España, con contexto', 'Selección independiente de vacantes en España, con fuentes, fechas y filtros por ciudad, provincia y sector.', renderJobs(jobsData, 'es'), false);
-    for(const job of jobsData.jobs) await write(jobsRoute+job.id+'/', job.titleEs+' — '+job.employer, job.tasksRu, renderJobDetail(jobsData,job,'es'),false);
+    await write(jobsRoute, 'Vacantes en España, con contexto', 'Selección independiente de vacantes en España, con fuentes, fechas y filtros por ciudad, provincia y sector.', renderJobs(jobsData, 'es'));
+    for(const job of jobsData.jobs) await write(jobsRoute+job.id+'/', job.titleEs+' — '+job.employer, job.tasksRu, renderJobDetail(jobsData,job,'es'));
   }
 
   const originalReviews = reviewRows.replaceAll('class="student-story-copy"', 'class="student-story-copy" lang="ru"')
@@ -64,5 +61,5 @@ export async function buildLocale(language, { out, base, production, footer, hom
     `These reviews come from different editions of the course. Mentions of groups, WhatsApp or feedback reflect each student’s experience. See <a href="${prefix}/#course">the current course format</a>.`
   );
   await write('/students/', studentTitle, local('Experiencias de estudiantes de Español con Natali.', 'Student experiences at Español con Natali.'),
-    `<section class="students-page wrap"><header class="students-intro"><p class="label">Español con Natali · ${studentTitle}</p><h1>${local('Cada alumno tiene<br>su propia historia.', 'Every student has<br>a story of their own.')}</h1><p class="students-lead">${studentLead}</p><p class="students-context">${context}</p></header><div class="student-stories">${originalReviews}</div></section>`, true);
+    `<section class="students-page wrap"><header class="students-intro"><p class="label">Español con Natali · ${studentTitle}</p><h1>${local('Cada alumno tiene<br>su propia historia.', 'Every student has<br>a story of their own.')}</h1><p class="students-lead">${studentLead}</p><p class="students-context">${context}</p></header><div class="student-stories">${originalReviews}</div></section>`);
 }

@@ -1,4 +1,4 @@
-import { renderHeader, renderReviewsLink } from './site-navigation.mjs';
+import { publicDesignHead, renderHeader, renderReviewsLink } from './site-navigation.mjs';
 import { renderAboutStory } from './about-story.mjs';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { esc } from './markdown.mjs';
@@ -98,7 +98,7 @@ export async function buildProfiles({ out, base, production }) {
       await writeFile(out + path + 'index.html', `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${esc(title)} — Español con Natali</title><meta name="description" content="${esc(description)}"><meta name="robots" content="${production ? 'index,follow' : 'noindex,follow'}">
 <link rel="canonical" href="${canonical}">${alternates}<meta property="og:url" content="${canonical}"><script type="application/ld+json">${schema}</script>
-<link rel="stylesheet" href="/design-system.css"><link rel="stylesheet" href="/tutor-waitlist.css"><link rel="stylesheet" href="/course.css">${about ? '<link rel="stylesheet" href="/about-story.css">' : ''}</head>
+${publicDesignHead}<link rel="stylesheet" href="/tutor-waitlist.css"><link rel="stylesheet" href="/course.css">${about ? '<link rel="stylesheet" href="/about-story.css">' : ''}</head>
 <body><a class="skip" href="#main">${esc(c.skip)}</a>${renderHeader(lang, '/' + page + '/')}
 <main class="tw-main" id="main">${about ? renderAboutStory(lang) : renderPrivateLessons(lang, c)}</main>
 <footer class="tw-footer"><a href="${home(lang)}">${esc(c.start)}</a>${renderReviewsLink(lang)}</footer>${about ? '' : '<script type="module" src="/course-payment-help.js"></script>'}</body></html>`);

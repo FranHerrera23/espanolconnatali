@@ -46,38 +46,15 @@
   .tw-head .brand img{width:32px;height:32px}
 }
 
-/* En Confianza uses the school's green with an ivory and brass palette. */
-.tw-grid {
-  --tw-ivory:#fff8ec;
-  --tw-brass:#d2b98e;
-  margin-block:var(--s2) var(--s6);
-  padding:clamp(24px,5vw,64px);
-  background:#1c3028;
-  color:var(--tw-ivory);
-  border-radius:4px;
+.tw-grid { border-bottom: 1px solid var(--color-rule); }
+.tw-panel { padding: 0 0 0 clamp(1.25rem, 4vw, 4rem); background: transparent; border: 0; border-left: 1px solid var(--color-rule); border-radius: 0; }
+.tw-panel.payment-form { padding: clamp(2rem, 4vw, 4rem) 0; border: 0; border-top: 1px solid var(--color-rule); }
+.tw-signature { display: flex; align-items: baseline; flex-wrap: wrap; gap: .75rem; margin-bottom: 1.2rem; font-size: .85rem; }
+.tw-example { background: transparent; color: var(--color-primary); border-top: 1px solid var(--color-rule); padding-inline: 0; }
+.tw-example p { color: var(--color-muted); }
+@media(max-width:740px) {
+  .tw-panel { padding: 1.2rem 0 0; border: 0; border-top: 1px solid var(--color-rule); }
 }
-.tw-signature {
-  display:flex;
-  flex-wrap:wrap;
-  align-items:baseline;
-  gap:var(--s1) var(--s2);
-  margin-bottom:var(--s3);
-  color:var(--tw-brass);
-  font-size:.75rem;
-}
-.tw-signature span:first-child {font-size:1.15rem;font-weight:600;letter-spacing:-.02em}
-.tw-signature span + span {border-left:1px solid #8e795d;padding-left:var(--s2)}
-.tw-hero h1 {font-size:clamp(2.4rem,4.8vw,4.3rem);max-width:17ch;text-wrap:balance}
-.tw-intro,.tw-promise {color:#e6dfd2}
-.tw-panel {color:var(--color-primary);background:#f9f3e8;border:1px solid #dfcfb7;border-radius:12px}
-.tw-panel .label {color:#70543a}
-.tw-example {border-top:2px solid #b79b71}
-@media(max-width:440px){
-  .tw-grid{padding:22px 16px}
-  .tw-panel{padding:20px 15px}
-  .tw-signature span + span{border:0;padding:0}
-}
-
 .tw-traits {
   list-style:none;
   padding:0;
