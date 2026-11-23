@@ -174,7 +174,15 @@ async function refresh(poll = false) {
   try {
     for (let remaining = poll ? 9 : 1; remaining > 0; remaining--) {
       const previousCount = profile.historyCount;
-      profile = await request('refresh');
+      try {
+        profile = await request('refresh');
+      } catch (failure) {
+        if (!poll || remaining === 1 || profile.status !== 'pending' || failure.message === 'access') throw failure;
+        error = 'pending';
+        render();
+        await new Promise(resolve => setTimeout(resolve, 2400));
+        continue;
+      }
       if (previousCount !== profile.historyCount && byId('history').open) void loadHistory();
       if (profile.status === 'pending' && remaining === 1) error = 'pending';
       if (profile.status !== 'pending' && error === 'pending') error = '';

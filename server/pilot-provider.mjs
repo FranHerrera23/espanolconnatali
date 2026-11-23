@@ -43,7 +43,9 @@ export function pilotProvider() {
           description: 'Private pilot with school knowledge and practice duration',
           conversationConfig: {
             conversation: { max_duration_seconds: limit },
-            agent: { prompt: { prompt: pilotPrompt, max_tokens: 210 } },
+            agent: { first_message: '{{pilot_greeting}}', disable_first_message_interruptions: false,
+              prompt: { prompt: pilotPrompt, max_tokens: 120 } },
+            turn: { turn_timeout: 20, turn_eagerness: 'patient' },
             tts: { speed: voiceSpeed },
           },
         });

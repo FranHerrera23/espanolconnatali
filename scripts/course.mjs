@@ -97,10 +97,10 @@ const tourSteps = {
   ]
 };
 
-const screens = [["dashboard", 1680, 1707, 585, 2243],
-  ["progress", 1608, 248, 537, 351],
+const screens = [["dashboard", 1680, 1710, 585, 2244],
+  ["progress", 1608, 249, 537, 351],
   ["lesson", 1608, 1659, 537, 2091],
-  ["workbook", 1608, 698, 537, 903],
+  ["workbook", 1608, 686, 537, 909],
   ["practice", 1608, 611, 537, 552]];
 
 function renderPreview(lang, title) {
@@ -130,12 +130,22 @@ function enabledCheckout() {
   return url.href;
 }
 
+const giftCopy = {
+  ru: ['Подарить курс', 'Курс в подарок', 'Оплата и запись в подарок скоро откроются. Пока можно посмотреть программу и кабинет будущего ученика.', 'При оплате выберите «Give as a gift». Укажите почту получателя и добавьте пожелание. Чек придёт вам, а подарок сразу отправится получателю.'],
+  es: ['Regalar el curso', 'El curso como regalo', 'Pronto vas a poder regalar el curso. Mientras tanto, podés ver el programa y recorrer el campus que va a recibir esa persona.', 'En el pago elegí «Give as a gift». Escribí el correo de quien va a estudiar y tu dedicatoria. Vos recibís el comprobante y el regalo se envía al destinatario al confirmar el pago.'],
+  en: ['Give the course as a gift', 'A Spanish course for someone you love', 'Gift enrolment will open soon. In the meantime, explore the lessons and the campus your recipient will use.', 'Choose “Give as a gift” at checkout. Enter the learner’s email and a personal note. You receive the receipt and the gift is emailed to the recipient after purchase.']
+};
+
 export async function buildCourse({ out, base, production, coursePrice, courseOffer }) {
   const checkout = enabledCheckout();
   const alternates = Object.entries(courseRoutes).map(([lang, route]) =>
     `<link rel="alternate" hreflang="${lang}" href="${base + route}">`).join('');
   for (const [lang, copy] of Object.entries(course)) {
     const route = courseRoutes[lang];
+    const [giftLabel, giftTitle, giftClosed, giftOpen] = giftCopy[lang];
+    const giftReady = checkout && process.env.COURSE_GIFT_ENABLED === 'true';
+    const buyAction = checkout ? `<a class="button" data-course-checkout href="${esc(checkout)}">${esc(portal[lang][5])}</a>` : '';
+    const giftLink = `<a class="link" href="#course-gift">${esc(giftLabel)} ↓</a>`;
     const canonical = base + route;
     const home = lang === 'ru' ? '/' : '/' + lang + '/';
     const faq = [...copy.faq, paymentFaq(lang)];
@@ -177,7 +187,8 @@ ${renderHeader(lang, '/course/')}
 <main class="tw-main" id="main">
 <section class="tw-grid" id="course"><div class="course-intro"><p class="label">${esc(copy.label)}</p><h1>${esc(copy.title)}</h1><p>${esc(copy.description)}</p></div>
 <div class="tw-panel course-checkout"><h2>${esc(copy.price)}</h2><p class="course-amount">${esc(coursePrice)}</p>
-${checkout ? '' : `<p>${closed}</p>`}
+${buyAction || `<p>${closed}</p>`}
+<p>${giftLink}</p>
 <p><a class="link" href="#course-portal">${portalTitle} <span aria-hidden="true">↓</span></a></p></div></section>
 ${renderPreview(lang, portalTitle)}
 <section class="tw-how" aria-labelledby="proof-title"><h2 id="proof-title">${proof}</h2><p>${proofDetail}</p>
@@ -188,6 +199,9 @@ ${checkout ? `<a class="button" data-course-checkout href="${esc(checkout)}">${b
 ${renderPaymentHelp(lang)}
 <section class="tw-how course-syllabus-page"><h2>${esc(copy.syllabus)}</h2><ol>${copy.lessons.map(lesson => `<li>${esc(lesson)}</li>`).join('')}</ol></section>
 ${renderFaq(copy.faqTitle, faq)}
+<section class="tw-how" id="course-gift"><h2>${esc(giftTitle)}</h2><p>${esc(giftReady ? giftOpen : giftClosed)}</p>
+${giftReady ? `<a class="button" data-course-gift href="${esc(checkout)}">${esc(giftLabel)}</a>` : `<a class="link" href="#course-portal">${portalTitle} ↑</a>`}</section>
+${checkout ? `<div class="course-actions">${buyAction} ${giftLink}</div>` : ''}
 </main><footer class="tw-footer"><a href="${home}">${esc(copy.home)}</a><a href="${copy.libraryPath}">${esc(copy.library)}</a>${renderReviewsLink(lang)}</footer><script type="module" src="/course-payment-help.js"></script></body></html>`);
   }
 }

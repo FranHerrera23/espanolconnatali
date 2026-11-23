@@ -122,10 +122,10 @@ export function turnVariables(record, language) {
   });
   const phrase = memory?.phrase;
   const beginnerGreeting = recent.length
-    ? 'Рады снова вас слышать. Давайте продолжим: я объясню по-русски, а вы попробуете короткую фразу по-испански.'
-    : 'Здравствуйте! Начнём с нуля. Я буду объяснять по-русски, а вы сможете повторять за мной. Первое слово — hola. Это «привет». Попробуем вместе?';
+    ? 'Как сказать «привет» по-испански?'
+    : 'Здравствуйте! «Hola» значит «привет». Попробуете сказать «hola»?';
   const greeting = beginner ? beginnerGreeting : phrase && phrase.length <= 130 && !/[{}<>]/.test(phrase)
-    ? `Sigamos desde donde quedamos. Antes dijiste: «${phrase}».`
+    ? `Antes dijiste: «${phrase}». ¿Seguimos con ese tema?`
     : recent.length ? 'Qué bueno seguir. ¿Retomamos donde quedamos?'
     : `¡Hola, ${name}! ¿De qué te apetece hablar hoy?`;
   return { user_name: name, practice_topic: beginner ? 'Español desde cero con guía en ruso' : 'Conversación libre sobre los temas elegidos por el alumno',
