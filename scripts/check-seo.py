@@ -13,7 +13,7 @@ class Page(HTMLParser):
  def handle_data(self,s):
   if self.injson:self.jsons.append(json.loads(s))
   else:self.text.append(s)
-translated_offer=lambda route: route in ('/en/course/','/en/tutor/','/es/tutor/') or route.split('/')[-2:] in [['about-natali',''],['private-lessons','']]
+translated_offer=lambda route: route.split('/')[-2] in {'course','pricing','tutor','about-natali','private-lessons'}
 normalize=lambda s:' '.join(s.split())
 for f in root.rglob('*.html'):
  if f.relative_to(root).as_posix()=='yandex_1e0a4f9b39600def.html':

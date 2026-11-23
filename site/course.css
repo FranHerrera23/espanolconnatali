@@ -31,3 +31,27 @@
 .profile-copy p { max-width: 65ch; margin-bottom: 1.15rem; }
 .tw-panel p + p { margin-top: .75rem; }
 .tw-panel > .button { margin-top: 1.15rem; }
+
+.payment-form { max-width: 44rem; margin: clamp(2rem, 6vw, 5rem) auto; scroll-margin-top: 1rem; }
+.payment-form form:not([hidden]) { display: grid; gap: 1rem; margin-top: 1.25rem; }
+.payment-form form > label { display: grid; gap: .35rem; font-weight: 600; }
+.payment-form input:not([type="radio"]) { width: 100%; min-height: 44px; border: 1px solid #7d8c82; border-radius: .45rem; padding: .65rem; font: inherit; }
+.payment-form fieldset { border: 0; padding: 0; margin: 0; }
+.payment-form legend { font-weight: 600; }
+.payment-form fieldset label { display: flex; align-items: center; gap: .5rem; min-height: 44px; }
+.payment-form button { justify-self: start; min-height: 44px; }
+.payment-form [role="alert"]:empty { display: none; }
+.payment-success { padding: 1rem; border: 1px solid currentColor; }
+.pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: 1rem; margin-block: 2rem 4rem; }
+.pricing-grid .tw-panel { display: flex; flex-direction: column; align-items: flex-start; }
+.pricing-grid .course-amount { color: #253d34; }
+.pricing-grid .button { margin-top: auto; }
+.pricing-grid .tw-panel > p:last-of-type { margin-bottom: 1.5rem; }
+@media (prefers-reduced-motion: no-preference) {
+  html:has(.payment-form) { scroll-behavior: smooth; }
+}
+
+.portal-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: 1rem; }
+.portal-gallery figure { margin: 0; }
+.portal-gallery img { width: 100%; height: auto; display: block; border: 1px solid #cdd4ce; border-radius: .75rem; }
+.portal-gallery figcaption { margin-top: .5rem; color: var(--color-muted); }

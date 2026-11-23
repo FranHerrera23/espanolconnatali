@@ -3,7 +3,7 @@ import { inject, track } from '@vercel/analytics';
 // Only public learning/commercial routes. Never collect private tutor access URLs.
 export function publicPath(path) {
   return /^\/(?:es\/|en\/)?(?:articles\/)?$/.test(path) || /^\/(?:es\/|en\/)?resources(?:\/|$)/.test(path) ||
-    /^\/(?:en\/)?course\/$/.test(path) || /^\/(?:es\/|en\/)?tutor\/$/.test(path);
+    /^\/(?:es\/|en\/)?(?:course|pricing)\/$/.test(path) || /^\/(?:es\/|en\/)?tutor\/$/.test(path);
 }
 export function sanitize(event) {
   const url = new URL(event.url);

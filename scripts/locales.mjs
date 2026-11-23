@@ -1,7 +1,6 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { journalViews } from './journal.mjs';
 import { esc } from './markdown.mjs';
-import { addHomePaymentHelp } from './payment-help.mjs';
 import { jobsRoute, renderJobs, jobsTeaser, lifeRoute, renderLife, jobDetailRoute, renderJobDetail } from './jobs.mjs';
 
 const mirrored = new Set(['/', '/articles/', '/resources/', '/students/', jobsRoute, lifeRoute]);
@@ -40,8 +39,8 @@ export async function buildLocale(language, { out, base, production, header, foo
     .replace('>Отзывы учеников<', local('>Testimonios<', '>Testimonials<'))
     .replace('>О Натали<', local('>Sobre Natali<', '>About Natali<'))
     .replace('>Лично с Натали<', local('>Clases privadas<', '>Private lessons<'))
-    .replaceAll('href="/course/"', 'href="' + local('/course/', '/en/course/') + '"')
-    .replace(/href="\/(about-natali|private-lessons)\/"/g, 'href="' + prefix + '/$1/"')
+    .replace(/href="\/(course|pricing)\/(#payment-help)?"/g, (_, path, hash = '') => 'href="' + prefix + '/' + path + '/' + hash + '"')
+    .replace(/href="\/(about-natali|private-lessons)\/(#availability)?"/g, (_, path, hash = '') => 'href="' + prefix + '/' + path + '/' + hash + '"')
     .replace('href="/tutor/">En Confianza<', 'href="' + prefix + '/tutor/">En Confianza<'));
   const jobsHeader = internal(readerHeader).replace('href="' + prefix + '/#home" data-home', 'href="' + prefix + '/"').replace('class="brand"', local('class="brand" aria-label="Inicio · Español con Natali"', 'class="brand" aria-label="Home · Español con Natali"')).replaceAll('Бесплатные материалы', local('Recursos gratuitos', 'Free resources')).replace('>Статьи<',local('>Artículos<','>Articles<')).replace('>Ресурсы<', local('>Recursos<','>Resources<')).replace('>Учить испанский<',local('>Aprender español<','>Learn Spanish<')).replace('>Жизнь в Испании<',local('>Vida en España<','>Life in Spain<')).replace('Меню', local('Menú', 'Menu')).replace('aria-label="Навигация"', local('aria-label="Navegación"', 'aria-label="Navigation"'));
   const write = async (route, title, description, body, animated) => {
@@ -62,13 +61,13 @@ export async function buildLocale(language, { out, base, production, header, foo
     .replaceAll('Подробнее об индивидуальных занятиях', local('Ver clases privadas', 'Explore private lessons'))
     .replaceAll('>О курсе ', local('>Ver el curso ', '>Explore the course '))
     .replace(/Около (\d+) мин чтения/g, local('Unos $1 min de lectura', 'About $1 min read'))
-    .replaceAll('href="/course/"', 'href="' + local('/course/', '/en/course/') + '"')
-    .replace(/href="\/(about-natali|private-lessons)\/"/g, 'href="' + prefix + '/$1/"')
+    .replace(/href="\/(course|pricing)\/(#payment-help)?"/g, (_, path, hash = '') => 'href="' + prefix + '/' + path + '/' + hash + '"')
+    .replace(/href="\/(about-natali|private-lessons)\/(#availability)?"/g, (_, path, hash = '') => 'href="' + prefix + '/' + path + '/' + hash + '"')
     .replace(/href="\/students\/"/g, 'href="' + prefix + '/students/"')
     .replace(/href="\/resources\/"/g, 'href="' + prefix + '/resources/"'));
   const descriptions = JSON.parse(await readFile('content/' + filePrefix + '-resources.json', 'utf8'));
   const journal = journalViews({language,ordered,clusters,clusterFor,readingTimes,descriptions});
-  await write('/', local('Español para la vida real', 'Spanish for real life'), local('Curso grabado de español y clases privadas con Natali.', 'Self-paced Spanish and private lessons with Natali.'), addHomePaymentHelp(localizedHome.replace('<!--school-articles-->',journal.home), language, instagram), true);
+  await write('/', local('Español para la vida real', 'Spanish for real life'), local('Curso grabado de español y clases privadas con Natali.', 'Self-paced Spanish and private lessons with Natali.'), localizedHome.replace('<!--school-articles-->',journal.home), true);
   await write('/articles/', journal.title, journal.intro, journal.archive, false);
   await write('/resources/',journal.library,journal.libraryIntro,journal.resources+jobsTeaser(language),false);
 
