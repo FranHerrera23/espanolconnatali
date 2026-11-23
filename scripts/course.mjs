@@ -140,7 +140,10 @@ ${checkout
  : `<p>${closed}</p>`}
 <p><a class="link" data-payment-help href="#payment-help">${esc(copy.checkout)} <span aria-hidden="true">↓</span></a></p></div></section>
 <section class="tw-how" aria-labelledby="portal-title"><h2 id="portal-title">${portalTitle}</h2><p>${portalDetail}</p>
-<div class="portal-gallery"><figure><img src="/assets/course-portal/lesson.jpg" alt="${classCaption}" width="1440" height="900"><figcaption>${classCaption}</figcaption></figure>
+<div class="portal-gallery"><figure><picture>
+<source media="(max-width: 570px)" srcset="/assets/course-portal/lesson-mobile.jpg" width="390" height="844">
+<img src="/assets/course-portal/lesson.jpg" alt="${classCaption}" width="1440" height="1040">
+</picture><figcaption>${classCaption}</figcaption></figure>
 <figure><img src="/assets/course-portal/workbooks.jpg" alt="${workbooksCaption}" width="1440" height="900"><figcaption>${workbooksCaption}</figcaption></figure></div></section>
 <section class="tw-how" aria-labelledby="proof-title"><h2 id="proof-title">${proof}</h2><p>${proofDetail}</p>
 <a class="link" href="${home}students/">${testimonials} <span aria-hidden="true">↗</span></a></section>
