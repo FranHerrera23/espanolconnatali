@@ -125,17 +125,16 @@
     {
       "id": "ECN-FR-011",
       "articleRoute": "/resources/introduce-yourself/",
-      "sourceFile": "editorial/articles/introduce-yourself.md",
-      "sourceSha256": "dc6e761eed6468d38f87564332c97503c5c3bbcdecd53b24be665993bf74a64b",
-      "file": "output/pdf/introduce-yourself-workbook-ru.pdf",
+      "sourceFile": "editorial/drafts/introductions-v2/introduce-yourself.md",
+      "sourceSha256": "52b88a77a3cbb1feebb22d9551bc53e836cb69548c58426312890f6c6fbcf90f",
+      "file": "output/pdf/2026-11-23/introduce-yourself-workbook-ru.pdf",
       "downloadRoute": "/assets/downloads/introduce-yourself-workbook-ru.pdf",
-      "sha256": "e25ff62de65a442655c624372b1efde3c8846d8c5f19bf705a91655bd5c0644f",
-      "pages": 4,
-      "status": "ready_for_web_integration_not_published",
-      "contentCheck": "Full PDF text preserved except removed AI disclosure; page count unchanged; 2026-11-07",
-      "visualCheck": "Updated editorial note rendered and visually checked in contact sheets; 2026-11-07",
-      "bytes": 98187,
-      "version": "1.0-editorial-note"
+      "sha256": "0623f0d375cc0b7b0d066af3be23bf90fbb2a8b0864bd3f5c04b0c6f87afc755",
+      "pages": 7,
+      "status": "approved_for_web_release",
+      "contentCheck": "All 89 source text blocks present in extracted PDF text; original source hash unchanged",
+      "visualCheck": "7 páginas renderizadas y revisadas, tabla con cabecera repetida, ejercicios con pautas y soluciones separadas.",
+      "bytes": 1319634
     },
     {
       "id": "ECN-FR-015",
@@ -560,6 +559,20 @@
       "contentCheck": "All 91 source text blocks present in extracted PDF text; original source hash unchanged",
       "visualCheck": "Siete páginas renderizadas e inspeccionadas, con Onest y marca vigente. Tabla con encabezado repetido, ejercicios separados de soluciones y área de escritura.",
       "bytes": 1318737
+    },
+    {
+      "id": "ECN-FR-042",
+      "articleRoute": "/resources/choose-a-cinema-screening/",
+      "sourceFile": "editorial/articles/choose-a-cinema-screening.md",
+      "sourceSha256": "d8c73ed2d9a0aa41d06a91c7cd66f4aed5d9e7d6c51e2fd7690ad5ced7074bd5",
+      "file": "output/pdf/2026-11-23/choose-a-cinema-screening-workbook-ru.pdf",
+      "downloadRoute": "/assets/downloads/choose-a-cinema-screening-workbook-ru.pdf",
+      "sha256": "84f9a3512cff65629a4fc8e4c312b2991bb10565e8cb1165dfc09aa5787ec579",
+      "pages": 7,
+      "status": "approved_for_web_release",
+      "contentCheck": "All 83 source text blocks present in extracted PDF text; original source hash unchanged",
+      "visualCheck": "7 páginas renderizadas y revisadas, tabla con cabecera repetida, ejercicios con pautas y soluciones separadas.",
+      "bytes": 1318177
     }
   ]
 }

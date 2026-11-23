@@ -32,8 +32,8 @@
     "Reglas iniciales de lectura, acentuación y variantes regionales, con ejercicios escritos y respuestas."
   ],
   "introduce-yourself": [
-    "Cómo presentarte en español",
-    "Nombre, lugar de residencia y un detalle que elijas. Incluye diálogo, práctica y autoevaluación."
+    "Cómo presentarse en español",
+    "Cómo presentarte en clase, en un chat o al conocer a un vecino, aclarar tu nombre y elegir entre tú y usted."
   ],
   "build-simple-sentences": [
     "Cómo armar una oración simple en español",
@@ -142,5 +142,9 @@
   "ask-for-a-music-recommendation": [
     "Pedir una recomendación musical",
     "Guía en ruso con diálogos en español y ejercicios sobre gustos musicales."
+  ],
+  "choose-a-cinema-screening": [
+    "Cómo elegir una sesión de cine y preguntar por los subtítulos",
+    "Cómo encontrar una sesión en versión original o doblada, comprobar el idioma y pedir asientos juntos."
   ]
 }

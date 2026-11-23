@@ -346,44 +346,47 @@
   },
   {
     "id": "ECN-FR-011",
-    "version": "1.0",
-    "status": "published",
+    "version": "2.0",
+    "status": "approved_for_publication",
     "language": "ru",
-    "sourceFile": "editorial/articles/introduce-yourself.md",
+    "sourceFile": "editorial/drafts/introductions-v2/introduce-yourself.md",
     "route": "/resources/introduce-yourself/",
-    "routeStatus": "proposed",
     "title": "Как рассказать о себе при знакомстве на испанском",
-    "description": "Имя, место жизни и выбранная деталь: гибкое знакомство с диалогом, практикой и самопроверкой.",
+    "titleEs": "Cómo presentarse en español",
+    "description": "Как представиться на занятии, в чате или при встрече с соседом, уточнить имя и выбрать обращение. Пять диалогов и десять заданий с ответами.",
     "author": {
       "type": "Organization",
       "name": "Редакция Español con Natali"
     },
     "humanReviewer": null,
-    "preparedAt": "2026-11-03",
+    "preparedAt": "2026-11-23",
     "publishedAt": "2026-11-03",
-    "updatedAt": null,
+    "updatedAt": "2026-11-23",
     "canonicalOrigin": "https://www.espanolconnatali.com",
-    "publicationExecuted": true,
-    "wordCount": 618,
+    "wordCount": 1839,
     "sourceUrls": [
       "https://dle.rae.es/llamar",
-      "https://www.rae.es/dpd/ser",
+      "https://www.rae.es/dpd/usted",
       "https://www.rae.es/dpd/interrogaci%C3%B3n"
     ],
     "relatedFiles": [
-      "ser-estar.md",
+      "keep-a-conversation-going.md",
       "ask-for-clarification.md",
-      "keep-a-conversation-going.md"
+      "ser-estar.md"
+    ],
+    "relatedRoutes": [
+      "/resources/keep-a-conversation-going/",
+      "/resources/ask-for-clarification/",
+      "/resources/ser-estar/"
     ],
     "commercialCta": null,
-    "sha256": "dc6e761eed6468d38f87564332c97503c5c3bbcdecd53b24be665993bf74a64b",
+    "sha256": "52b88a77a3cbb1feebb22d9551bc53e836cb69548c58426312890f6c6fbcf90f",
+    "pillar": "P2",
     "editorialApproval": {
       "by": "Fran",
-      "source": "Aprobación expresa en este chat: Excelente. Aprobados; hay que salir live con esto.",
-      "date": "2026-11-03",
-      "scope": "Aprobado para publicación por responsable web. Natali leerá después de salir live; no revisión humana de Natali atribuida."
-    },
-    "publicUrl": "https://www.espanolconnatali.com/resources/introduce-yourself/"
+      "source": "Autorización general de publicación autónoma diaria.",
+      "date": "2026-11-10"
+    }
   },
   {
     "id": "ECN-FR-015",
@@ -1666,6 +1669,47 @@
     ],
     "commercialCta": null,
     "sha256": "0a9d7832bc1e65fbf413e167d1fa966d3d602233a641d360fff6887493ac778c",
+    "pillar": "P5",
+    "editorialApproval": {
+      "by": "Fran",
+      "source": "Autorización general de publicación autónoma diaria.",
+      "date": "2026-11-10"
+    }
+  },
+  {
+    "id": "ECN-FR-042",
+    "version": "1.0",
+    "status": "approved_for_publication",
+    "language": "ru",
+    "sourceFile": "editorial/articles/choose-a-cinema-screening.md",
+    "route": "/resources/choose-a-cinema-screening/",
+    "title": "Как выбрать сеанс в кино на испанском и разобраться с субтитрами",
+    "titleEs": "Cómo elegir una sesión de cine y preguntar por el idioma y los subtítulos",
+    "description": "Как выбрать сеанс в оригинале или с дубляжом, уточнить язык субтитров и найти места рядом. Пять диалогов и десять заданий с ответами.",
+    "author": {
+      "type": "Organization",
+      "name": "Редакция Español con Natali"
+    },
+    "humanReviewer": null,
+    "preparedAt": "2026-11-23",
+    "publishedAt": "2026-11-23",
+    "updatedAt": null,
+    "canonicalOrigin": "https://www.espanolconnatali.com",
+    "wordCount": 1761,
+    "sourceUrls": [
+      "https://ayuda.cinesa.es/hc/es/articles/16922771396893--Qu%C3%A9-sesiones-se-proyectan-en-idioma-original-VOSE",
+      "https://madrid.cines-verdi.com/"
+    ],
+    "relatedFiles": [
+      "ask-for-clarification.md",
+      "make-plans-in-spanish.md"
+    ],
+    "relatedRoutes": [
+      "/resources/ask-for-clarification/",
+      "/resources/make-plans-in-spanish/"
+    ],
+    "commercialCta": null,
+    "sha256": "d8c73ed2d9a0aa41d06a91c7cd66f4aed5d9e7d6c51e2fd7690ad5ced7074bd5",
     "pillar": "P5",
     "editorialApproval": {
       "by": "Fran",
