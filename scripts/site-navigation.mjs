@@ -33,7 +33,8 @@ export function renderHeader(locale, route) {
   const copy = locales[locale];
   const links = primary.map((target, index) => {
     if (target) {
-      const current = target === route ? ' aria-current="page"' : '';
+      const programDetail = target === '/pricing/' && ['/private-lessons/', '/course/'].includes(route);
+      const current = target === route ? ' aria-current="page"' : programDetail ? ' aria-current="location"' : '';
       return `<a href="${localizedRoute(locale, target)}"${current}>${copy.entries[index]}</a>`;
     }
     const list = resources.map((resource, index) =>

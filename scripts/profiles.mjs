@@ -14,61 +14,67 @@ const copy = {
   ru: {
     start: 'На главную', skip: 'Перейти к содержанию',
     aboutTitle: 'О Натали', aboutIntro: 'Натали — основательница Español con Natali и преподаватель испанского.',
-    privateTitle: 'Рабочий испанский с Натали',
-    privateIntro: 'Для тех, кто ведёт свой бизнес или работает с клиентами. Натали сама проводит занятия один на один. Вместе вы разбираете разговоры, которые нужны вам в работе.',
-    price: 'За 12 занятий. Полная предоплата.',
-    pace: 'Четыре занятия в месяц, минимум три месяца.',
-    cta: 'Уточнить наличие мест',
-    practice: 'Что можно разобрать на занятии',
-    scenes: [
-      ['Начать встречу', 'Коротко представить тему и договориться о ходе разговора.'],
-      ['Уточнить условия', 'Переспросить, что входит в предложение, и согласовать сроки.'],
-      ['Ответить на возражение', 'Выяснить, что беспокоит клиента, и предложить следующий шаг.']
-    ],
-    continuity: 'Вы вместе с Натали выбираете цель и темп. На следующем занятии возвращаетесь к тому, что ещё трудно, и пробуете новую ситуацию.'
+    privateTitle: "Индивидуальные занятия испанским с Натали",
+    heading: "Как сказать по-испански именно то, что вы имеете в виду?",
+    privateIntro: "На встрече вы понимаете, о чём просит клиент. Сложнее спокойно ответить: «К этому сроку мы не успеем». Принесите этот разговор на занятие с Натали и попробуйте разные ответы до самой встречи.",
+    price: "За все 12 занятий, оплата заранее.",
+    pace: "Четыре занятия в месяц, минимум три месяца.",
+    cta: "Узнать о свободных местах",
+    practice: "Клиент просит сдать работу раньше.",
+    scene: "Хочется сохранить хорошие отношения и всё же договориться о реальном сроке. Попробуйте произнести эту фразу вслух.",
+    reply: "А если клиент настаивает? Натали сыграет его роль. Вы попробуете ответить ещё раз, подберёте тон и найдёте слова, которые вам самому удобно произнести.",
+    continuityTitle: "Программа начинается с вашего ближайшего разговора.",
+    continuity: "Все двенадцать занятий ведёт Натали. Можно принести предложение для клиента, письмо, которое получилось резковатым, или вспомнить звонок, когда пришлось перейти на другой язык. За три месяца вы успеете отрепетировать разговор, попробовать фразу в деле и обсудить на следующем занятии, что вам ответили.",
+    mentorTitle: "Почему с Натали?",
+    mentor: "Натали прожила в Испании почти восемь лет. Она окончила медицинский университет по специальности «стоматология» и работала медицинским представителем в GSK и Dr. Reddy’s. Сегодня она руководит своей школой и инвестирует в недвижимость в Дубае. Когда вы обсуждаете на занятии переговоры, она понимает, почему иногда важна не только сама цена, но и то, как её назвать.",
+    format: "Один на один · Испанский для работы"
   },
   es: {
     start: 'Ir al inicio', skip: 'Ir al contenido',
     aboutTitle: 'Sobre Natali', aboutIntro: 'Natali es profesora de español y fundadora de Español con Natali.',
-    privateTitle: 'Español para el trabajo con Natali',
-    privateIntro: 'Para quienes llevan un negocio o trabajan con clientes. Las clases son individuales, con Natali. Practicá en español las conversaciones que necesitás para tu trabajo.',
-    price: 'Por 12 clases. Pago total por adelantado.',
-    pace: 'Cuatro clases por mes, con un mínimo de tres meses.',
-    cta: 'Consultar disponibilidad',
-    practice: 'Qué podés practicar en una sesión',
-    scenes: [
-      ['Abrir una reunión', 'Presentar el tema y acordar cómo van a llevar la conversación.'],
-      ['Aclarar condiciones', 'Preguntar qué incluye una propuesta y acordar plazos.'],
-      ['Responder una objeción', 'Entender qué le preocupa al cliente y proponer un próximo paso.']
-    ],
-    continuity: 'Elegís con Natali el objetivo y el ritmo. En la clase siguiente retoman lo que todavía cuesta y lo llevan a otra situación.'
+    privateTitle: "Clases privadas de español con Natali",
+    heading: "Que en español también suenes a vos.",
+    privateIntro: "En una reunión entendés lo que te piden. Lo difícil es decir «ese plazo no es posible» con la calma que tenés en tu idioma. Traé esa conversación a clase. La ensayamos antes de que llegue el día.",
+    price: "Por las 12 clases, en un pago anticipado.",
+    pace: "Cuatro clases al mes durante un mínimo de tres meses.",
+    cta: "Consultar disponibilidad",
+    practice: "Un cliente te pide adelantar la entrega.",
+    scene: "Querés cuidar la relación y sostener lo que acordaron. Probá decir esto en voz alta.",
+    reply: "Si el cliente insiste, Natali hace de interlocutora. Probás otra respuesta, ajustás el tono y elegís las palabras que usarías de verdad.",
+    continuityTitle: "Tu próxima conversación marca el programa.",
+    continuity: "Trabajás con Natali en las doce clases. Puede ser una propuesta que vas a presentar, un correo que sonó demasiado seco o una llamada en la que terminaste cambiando de idioma. Los tres meses dan tiempo para ensayar, usar la frase en el trabajo y volver con la respuesta que recibiste.",
+    mentorTitle: "Por qué practicarlo con Natali",
+    mentor: "Natali vivió casi ocho años en España. Estudió Medicina, se graduó en Odontología y trabajó como representante médica para GSK y Dr. Reddy’s. Hoy dirige su escuela e invierte en inmuebles en Dubái. Cuando le traés una negociación, entiende por qué importa tanto cómo decís una cifra como la cifra misma.",
+    format: "Clases individuales · Español para profesionales"
   },
   en: {
     start: 'Back to home', skip: 'Skip to content',
     aboutTitle: 'About Natali', aboutIntro: 'Natali teaches Spanish and founded Español con Natali.',
-    privateTitle: 'Spanish for work with Natali',
-    privateIntro: 'For people who run a business or work with clients. Natali teaches you one to one, using conversations you need for your work.',
-    price: 'For 12 lessons. Paid in full upfront.',
-    pace: 'Four lessons per month for a minimum of three months.',
-    cta: 'Check availability',
-    practice: 'What you can practise in a session',
-    scenes: [
-      ['Open a meeting', 'Introduce the topic and agree on what you’d like to cover.'],
-      ['Clarify terms', 'Ask what a proposal includes and agree on deadlines.'],
-      ['Handle an objection', 'Find out what concerns a client and propose a next step.']
-    ],
-    continuity: 'Choose your goals and pace with Natali. In the next lesson, revisit anything you found hard and try it in a new situation.'
+    privateTitle: "Private Spanish lessons with Natali",
+    heading: "Sound like yourself in Spanish.",
+    privateIntro: "You understand what your client is asking. The hard part is saying “that deadline won’t work” as calmly as you would in your own language. Bring that conversation to class and rehearse it before the meeting.",
+    price: "For all 12 lessons, paid upfront.",
+    pace: "Four lessons a month for a minimum of three months.",
+    cta: "Check availability",
+    practice: "A client asks for an earlier delivery.",
+    scene: "You want to keep the relationship and the deadline you agreed on. Try saying this out loud.",
+    reply: "If the client pushes back, Natali plays their part. Try another answer, listen to how it lands and choose words you would actually use.",
+    continuityTitle: "Your next conversation shapes the lesson.",
+    continuity: "Natali teaches all twelve sessions. Bring a proposal you’re about to present, an email that sounded too abrupt or a call where you switched languages halfway through. Three months gives you time to rehearse, try it at work and come back with the reply you got.",
+    mentorTitle: "Why practise with Natali?",
+    mentor: "Natali lived in Spain for nearly eight years. She studied medicine, qualified as a dentist and worked as a medical representative for GSK and Dr. Reddy’s. Today she runs her school and invests in property in Dubai. When you bring her a negotiation, she understands why the way you name your price matters as much as the number.",
+    format: "One-to-one lessons · Spanish for professionals"
   }
 };
 
 function renderPrivateLessons(lang, c) {
-  const phrases = ['Para empezar, propongo que revisemos los plazos.', '¿Podrías aclararme qué incluye el presupuesto?', 'Entiendo tu preocupación. ¿Qué plazo te funcionaría?'];
-  const scenes = c.scenes.map(([heading, detail], index) => `<li><strong>${esc(heading)}</strong><p>${esc(detail)}</p><span lang="es">«${esc(phrases[index])}»</span></li>`).join('');
   return `<section class="private-hero">
-<div class="program-intro"><h1>${esc(c.privateTitle)}</h1><p>${esc(c.privateIntro)}</p></div>
+<div class="program-intro"><p class="private-format">${esc(c.format)}</p><h1>${esc(c.heading)}</h1><p>${esc(c.privateIntro)}</p></div>
 <div class="private-price"><p class="program-price">USD 650</p><p class="program-terms">${esc(c.price)}</p><p>${esc(c.pace)}</p>
 <a class="button" href="#availability">${esc(c.cta)} <span aria-hidden="true">↓</span></a></div></section>
-<section class="private-practice"><h2>${esc(c.practice)}</h2><ul class="private-scenes">${scenes}</ul><p>${esc(c.continuity)}</p></section>
+<section class="private-practice"><div><h2>${esc(c.practice)}</h2><p>${esc(c.scene)}</p></div><div class="private-dialogue"><blockquote lang="es">«El jueves puedo enviarte una primera versión. ¿Te sirve si cerramos el resto el lunes?»</blockquote><p>${esc(c.reply)}</p></div></section>
+<section class="private-continuity"><h2>${esc(c.continuityTitle)}</h2><p>${esc(c.continuity)}</p></section>
+<section class="private-mentor"><img src="/assets/natali-archive/DS-lCcwDdTr.jpg" alt="Natali · Barcelona" width="720" height="960" loading="lazy"><div><h2>${esc(c.mentorTitle)}</h2><p>${esc(c.mentor)}</p></div></section>
 ${renderPaymentHelp(lang, 'private-lessons')}`;
 }
 

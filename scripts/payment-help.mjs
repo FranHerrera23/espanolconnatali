@@ -34,6 +34,6 @@ ${individual ? '' : `<label>${social} (${optional})<input name="social" type="te
 <label>${phone} (${optional})<input name="phone" type="tel" autocomplete="tel" placeholder="+7 …" pattern="\\+[0-9 \\x28\\x29\\x2d]{7,24}" maxlength="25"></label>
 <fieldset><legend>${level} (${optional})</legend><label><input type="radio" name="level" value="new"> ${beginner}</label><label><input type="radio" name="level" value="return"> ${returning}</label></fieldset>`}
 <div hidden><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div>
-<p>${privacy}</p><button class="button" type="submit">${action}</button><p role="alert"></p>
+${individual ? '' : `<p>${privacy}</p>`}<button class="button" type="submit">${action}</button><p role="alert"></p>
 </form><p class="payment-success" hidden tabindex="-1">${success}</p><noscript><p>${noScript}</p></noscript></section>`;
 }

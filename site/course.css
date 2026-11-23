@@ -53,24 +53,53 @@
 .program-note { margin-block: 1.75rem; padding-block: 1.25rem; border-bottom: 1px solid var(--color-rule); }
 .program-note h2 { font-size: clamp(1.35rem, 3vw, 2rem); }
 .program-note a:not(.link) { display: inline-flex; align-items: center; min-height: 44px; text-decoration: underline; text-underline-offset: .22em; }
-.private-hero { align-items: center; padding-block: clamp(2rem, 6vw, 5rem); }
-.private-hero .program-intro { padding-block: 0; }
-.private-hero .program-intro h1 { max-width: 17ch; }
-.private-price { color: #fff; background: #253d34; padding: clamp(1.5rem, 4vw, 3rem); }
-.private-price > p { margin-block: .5rem; }
-.private-price .button { background: #fff; color: #253d34; border-color: white; margin-top: 1rem; }
-.private-price .button:hover { background: #eef3ef; }
-.private-price .button:focus-visible { outline-color: #fff; }
-.private-practice { padding-block: clamp(2rem, 5vw, 4rem); border-block: 1px solid var(--color-rule); }
-.private-practice h2 { font-size: clamp(1.75rem, 4vw, 2.75rem); margin-bottom: 1rem; }
-.private-practice p { max-width: 62ch; }
-.private-scenes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin: 1.5rem 0; list-style: none; padding: 0; }
-.private-scenes li { padding-block: 1rem; border-top: 2px solid #253d34; }
-.private-scenes strong { display: block; margin-bottom: .4rem; }
-.private-scenes span { font-size: .95rem; }
+.private-hero {
+  grid-template-columns: minmax(0, 1.55fr) minmax(16rem, .8fr);
+  gap: clamp(2rem, 7vw, 7rem);
+  align-items: center;
+  padding-block: clamp(2rem, 6vw, 5rem);
+}
+.private-hero .program-intro { padding: 0; }
+.private-hero .program-intro h1 {
+  max-width: 19ch;
+  font: 400 clamp(2.45rem, 4.6vw, 4rem)/1.07 Georgia, serif;
+  letter-spacing: -.035em;
+  text-wrap: balance;
+  margin-block: .36em;
+}
+.private-hero .private-format { font-size: .93rem; font-weight: 600; }
+.private-price { padding-inline-start: clamp(1.5rem, 4vw, 3.75rem); border-inline-start: 1px solid var(--color-rule); }
+.private-price p { margin-block: .4rem; }
+.private-price .button { margin-top: 1rem; }
+.private-practice, .private-continuity, .private-mentor {
+  padding-block: clamp(2.75rem, 6vw, 5rem);
+  border-top: 1px solid var(--color-rule);
+  display: grid; grid-template-columns: 1fr 1.2fr;
+  gap: clamp(1.25rem, 6vw, 5rem);
+  align-items: start;
+}
+.private-practice h2, .private-continuity h2, .private-mentor h2 {
+  font-size: clamp(1.65rem, 2.6vw, 2.5rem);
+  line-height: 1.15; max-width: 23ch; margin-bottom: .65rem;
+}
+.private-practice p, .private-mentor p, .private-continuity p { max-width: 53ch; }
+.private-dialogue blockquote {
+  margin: 0 0 1rem; max-width: 28ch;
+  font: 400 clamp(1.45rem, 2.4vw, 2.4rem)/1.28 Georgia, serif;
+  letter-spacing: -.02em; color: var(--color-primary);
+}
+.private-mentor { align-items: center; }
+.private-mentor img { width: 100%; max-width: 23rem; aspect-ratio: 4/3; height: auto; object-fit: cover; object-position: 50% 40%; }
+#availability.payment-form { background: transparent; border: 0; border-top: 1px solid var(--color-rule); border-radius: 0; max-width: none; margin: 0; padding: clamp(2rem, 5vw, 4rem) 0; }
+#availability form, #availability > p { max-width: 36rem; }
+@media (max-width: 720px) {
+  .private-hero, .private-practice, .private-mentor, .private-continuity { grid-template-columns: 1fr; }
+  .private-price { padding: 1rem 0 0; border-inline: 0; border-top: 1px solid var(--color-rule); }
+  .private-mentor img { max-height: 15rem; }
+}
 .course-actions { margin-block: 1.5rem; display: flex; flex-wrap: wrap; gap: 1rem; }
 @media (max-width: 720px) {
-  .program-offers, .private-hero, .private-scenes { grid-template-columns: 1fr; }
+  .program-offers { grid-template-columns: 1fr; }
 }
 
 .course-preview [data-preview-controls]:not([hidden]) {

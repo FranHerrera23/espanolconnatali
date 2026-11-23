@@ -14,6 +14,7 @@
   const setMenu = open => {
     toggle.setAttribute('aria-expanded', String(open));
     nav.classList.toggle('is-open', open);
+    header.classList.toggle('menu-open', open);
     if (!open) closeResources();
   };
 
@@ -40,6 +41,9 @@
   document.addEventListener('pointerdown', event => {
     if (!header.contains(event.target)) setMenu(false);
     else if (!resources.contains(event.target)) closeResources();
+  });
+  header.addEventListener('focusout', event => {
+    if (event.relatedTarget && !header.contains(event.relatedTarget)) setMenu(false);
   });
   document.addEventListener('keydown', event => {
     if (event.key !== 'Escape' || document.querySelector('dialog[open]')) return;
