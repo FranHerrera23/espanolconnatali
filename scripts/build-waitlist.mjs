@@ -1,3 +1,4 @@
+import { renderHeader } from './site-navigation.mjs';
 import { cp, mkdir, readFile, writeFile } from 'node:fs/promises';
 import { esc } from './markdown.mjs';
 import { faqSchema, renderFaq } from './product-faq.mjs';
@@ -108,7 +109,6 @@ const copy = {
 
 const root = language => language === 'ru' ? '/' : '/' + language + '/';
 const tutor = language => root(language) + 'tutor/';
-const logosrc = '/assets/brand/natali-lynx-approved.png';
 const text = esc;
 for (const [language, c] of Object.entries(copy)) {
   const destination = tutor(language);
@@ -127,7 +127,7 @@ for (const [language, c] of Object.entries(copy)) {
   await mkdir('dist' + destination, { recursive: true });
   await writeFile('dist' + destination + 'index.html', `<!doctype html>
 <html lang="${language}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="${production ? 'index,follow' : 'noindex,follow'}"><link rel="canonical" href="${canonical}">${alternates}<meta name="description" content="${text(c.descriptor)}"><meta property="og:url" content="${canonical}">${pageSchema}<title>${productName} — Español con Natali</title><link rel="stylesheet" href="/design-system.css"><link rel="stylesheet" href="/tutor-waitlist.css"></head>
-<body><header class="tw-head"><a class="brand" href="${root(language)}"><img src="${logosrc}" alt="" width="44" height="44">Español con Natali</a><nav aria-label="Language">${Object.keys(copy).map(code=>`<a lang="${code}" href="${tutor(code)}"${code===language?' aria-current="page"':''}>${code.toUpperCase()}</a>`).join('')}</nav></header>
+<body>${renderHeader(language, '/tutor/')}
 <main class="tw-main" id="main">
 <div class="tw-grid">
 <section class="tw-hero"><p class="tw-signature"><span lang="es">${productName} · Español con Natali</span><span>${text(c.invitation)}</span></p><h1>${text(c.title)}</h1><p class="tw-descriptor">${text(c.descriptor)}</p><p class="tw-intro">${text(c.intro)}</p><p class="tw-promise">${text(c.promise)}</p></section>

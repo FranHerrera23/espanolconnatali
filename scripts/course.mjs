@@ -1,3 +1,4 @@
+import { renderHeader } from './site-navigation.mjs';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { esc } from './markdown.mjs';
 import { faqSchema, renderFaq } from './product-faq.mjs';
@@ -87,7 +88,7 @@ function enabledCheckout() {
   return url.href;
 }
 
-export async function buildCourse({ out, base, production, coursePrice }) {
+export async function buildCourse({ out, base, production, coursePrice, courseOffer }) {
   const checkout = enabledCheckout();
   const alternates = Object.entries(courseRoutes).map(([lang, route]) =>
     `<link rel="alternate" hreflang="${lang}" href="${base + route}">`).join('');
@@ -104,27 +105,33 @@ export async function buildCourse({ out, base, production, coursePrice }) {
       }[lang]];
     }
     const [portalTitle, portalDetail, classCaption, workbooksCaption, proof, proofDetail, testimonials, closed, buy] = portal[lang].map(esc);
+    const meta = copy.description + ' ' + {
+      ru: 'Стоимость — ' + coursePrice + ', один платёж.',
+      en: coursePrice + ', one-time payment.',
+      es: coursePrice + ' en un solo pago.'
+    }[lang];
     const graph = [
       { '@type': 'WebPage', '@id': canonical + '#page', url: canonical, name: copy.title, inLanguage: lang },
       { '@type': 'Course', '@id': canonical + '#course', name: copy.title,
-        description: copy.description, inLanguage: 'ru', url: canonical,
+        description: meta, offers: {
+          '@type': 'Offer', price: courseOffer.price, priceCurrency: courseOffer.currency,
+          availability: 'https://schema.org/' + (checkout ? 'InStock' : 'OutOfStock'),
+          url: checkout || canonical
+        }, inLanguage: 'ru', url: canonical,
         provider: { '@type': 'EducationalOrganization', '@id': base + '/#organization', name: 'Español con Natali' } },
       faqSchema(canonical, faq)
     ];
     const schema = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replaceAll('<', '\\u003c');
-    const switcher = Object.entries(courseRoutes).map(([code, href]) =>
-      `<a href="${href}" lang="${code}" hreflang="${code}"${code === lang ? ' aria-current="page"' : ''}>${({ru: 'Русский', en: 'English', es: 'Español'})[code]}</a>`).join('');
     await mkdir(out + route, { recursive: true });
     await writeFile(out + route + 'index.html', `<!doctype html>
 <html lang="${lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>${esc(copy.title)} — Español con Natali</title><meta name="description" content="${esc(copy.description)}">
+<title>${esc(copy.title)} — Español con Natali</title><meta name="description" content="${esc(meta)}"><meta property="og:description" content="${esc(meta)}">
 <meta name="robots" content="${production ? 'index,follow,max-image-preview:large' : 'noindex,follow'}">
 <link rel="canonical" href="${canonical}">${alternates}<meta property="og:url" content="${canonical}">
 <script type="application/ld+json">${schema}</script>
 <link rel="stylesheet" href="/design-system.css"><link rel="stylesheet" href="/tutor-waitlist.css"><link rel="stylesheet" href="/course.css"></head>
 <body><a class="skip" href="#main">${({ru: 'Перейти к содержанию', en: 'Skip to content', es: 'Ir al contenido'})[lang]}</a>
-<header class="tw-head course-head"><a class="brand" href="${home}"><img src="/assets/brand/natali-lynx-approved.png" alt="" width="44" height="44">Español con Natali</a>
-<nav aria-label="${({ru: 'Язык', en: 'Language', es: 'Idioma'})[lang]}">${switcher}</nav></header>
+${renderHeader(lang, '/course/')}
 <main class="tw-main" id="main">
 <section class="tw-grid" id="course"><div class="course-intro"><p class="label">${esc(copy.label)}</p><h1>${esc(copy.title)}</h1><p>${esc(copy.description)}</p></div>
 <div class="tw-panel course-checkout"><h2>${esc(copy.price)}</h2><p class="course-amount">${esc(coursePrice)}</p>

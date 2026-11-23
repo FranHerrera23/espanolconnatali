@@ -4,15 +4,10 @@
     const previous = new URL(document.referrer);
     if (previous.origin === location.origin && ['/resources/','/articles/'].includes(previous.pathname)) backToLibrary.href = previous.pathname + previous.search;
   }
-  const menu = document.querySelector('.menu-button');
-  const nav = document.querySelector('.nav-links');
   const header = document.querySelector('.site-nav');
   const contents = document.querySelector('.reader-contents details');
   if (contents && matchMedia('(max-width: 900px)').matches) contents.open = false;
   const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const close = () => { menu?.setAttribute('aria-expanded', 'false'); nav?.classList.remove('open'); };
-  menu?.addEventListener('click', () => { const open = menu.getAttribute('aria-expanded') !== 'true'; menu.setAttribute('aria-expanded', String(open)); nav?.classList.toggle('open', open); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !document.querySelector('.jobs-dialog[open]')) { close(); menu?.focus({ preventScroll: true }); } });
   const move = (top, immediate = false) => {
     top = Math.max(0, Math.min(top, document.documentElement.scrollHeight - innerHeight));
     const duration = Math.min(1.6, Math.max(.7, Math.abs(scrollY - top) / 3500));
@@ -35,7 +30,6 @@
     const target = document.getElementById(decodeURIComponent(url.hash.slice(1)));
     if (!target) return;
     e.preventDefault();
-    close();
     history.replaceState({ ...history.state, nataliY: scrollY }, '', location.href);
     history.pushState({ nataliY: targetTop(target) }, '', url);
     move(targetTop(target));
@@ -167,9 +161,9 @@
   }
 })();
 
-// Resource navigation remains keyboard-native and closes on Escape or outside click.
+// The inline jobs method closes on Escape or outside click.
 (() => {
- const menus=[...document.querySelectorAll('.resource-nav,.jobs-method')];
+ const menus=[...document.querySelectorAll('.jobs-method')];
  document.addEventListener('click',e=>menus.forEach(menu=>{if(!menu.contains(e.target))menu.open=false;}));
  menus.forEach(menu=>menu.addEventListener('keydown',e=>{if(e.key==='Escape'&&menu.open){e.stopPropagation();menu.open=false;menu.querySelector('summary').focus();}}));
 })();

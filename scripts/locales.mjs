@@ -1,25 +1,14 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { journalViews } from './journal.mjs';
 import { esc } from './markdown.mjs';
+import { renderHeader } from './site-navigation.mjs';
 import { jobsRoute, renderJobs, jobsTeaser, lifeRoute, renderLife, jobDetailRoute, renderJobDetail } from './jobs.mjs';
 
-const mirrored = new Set(['/', '/articles/', '/resources/', '/students/', jobsRoute, lifeRoute]);
 const motion = ['lenis', 'gsap', 'ScrollTrigger', 'SplitText']
   .map(name => `<script src="/assets/vendor/${name}.min.js"></script>`).join('') +
   '<script src="/resources.js"></script>';
 
-export function languagePicker(header, route, language = 'ru') {
-  const mirror = mirrored.has(route) || route.startsWith(jobsRoute);
-  const links = (route.startsWith(jobsRoute) ? [['ru', 'Русский'], ['es', 'Español']] : [['ru', 'Русский'], ['es', 'Español'], ['en', 'English']])
-    .map(([id, name]) => [id, id.toUpperCase(), name, id === 'ru' ? route : '/' + id + (mirror ? route : '/resources/')])
-    .map(([id, label, name, href]) =>
-      `<a href="${href}" lang="${id}" aria-label="${name}" data-language="${id}"${language === id ? ' aria-current="true"' : ''}>${label}</a>`).join('');
-  const label = { ru: 'Язык', es: 'Idioma', en: 'Language' }[language];
-  return header.replace('</nav>', `<div class="language-picker language-menu" role="group" aria-label="${label}">${links}</div></nav>`)
-    .replace('</header>', `<div class="language-picker language-header" role="group" aria-label="${label}">${links}</div></header>`);
-}
-
-export async function buildLocale(language, { out, base, production, header, footer, homebody, ordered, clusters, clusterFor, readingTimes, reviewRows, jobsData, readerHeader, instagram }) {
+export async function buildLocale(language, { out, base, production, footer, homebody, ordered, clusters, clusterFor, readingTimes, reviewRows, jobsData }) {
   const english = language === 'en';
   const local = (es, en) => english ? en : es;
   const filePrefix = local('spanish', 'english');
@@ -30,27 +19,13 @@ export async function buildLocale(language, { out, base, production, header, foo
   const translate = html => html.replace(pattern, key => esc(dictionary.get(key)));
   const internal = html => html.replace(/href="(\/(?:articles\/|resources\/|students\/)?)(#[^"]*)?"/g, 'href="' + prefix + '$1$2"')
     .replace(/href="\/life-in-spain\/"/g, 'href="' + prefix + '/life-in-spain/"').replace(/href="#([^"]+)"/g, 'href="' + prefix + '/#$1"');
-  const localizedHeader = internal(header
-    .replace('aria-label="Главная навигация"', local('aria-label="Navegación principal"', 'aria-label="Main navigation"'))
-    .replace('class="brand"', local('class="brand" aria-label="Inicio · Español con Natali"', 'class="brand" aria-label="Home · Español con Natali"'))
-    .replace('>Меню<', local('>Menú<', '>Menu<'))
-    .replace('>Статьи<',local('>Artículos<','>Articles<')).replace('>Ресурсы<', local('>Recursos<','>Resources<')).replace('>Учить испанский<',local('>Aprender español<','>Learn Spanish<')).replace('>Жизнь в Испании<',local('>Vida en España<','>Life in Spain<'))
-    .replace('>Курс<', local('>Curso grabado<', '>Self-paced course<'))
-    .replace('>Отзывы учеников<', local('>Testimonios<', '>Testimonials<'))
-    .replace('>О Натали<', local('>Sobre Natali<', '>About Natali<'))
-    .replace('>Лично с Натали<', local('>Clases privadas<', '>Private lessons<'))
-    .replace(/href="\/(course|pricing)\/(#payment-help)?"/g, (_, path, hash = '') => 'href="' + prefix + '/' + path + '/' + hash + '"')
-    .replace(/href="\/(about-natali|private-lessons)\/(#availability)?"/g, (_, path, hash = '') => 'href="' + prefix + '/' + path + '/' + hash + '"')
-    .replace('href="/tutor/">En Confianza<', 'href="' + prefix + '/tutor/">En Confianza<'));
-  const jobsHeader = internal(readerHeader).replace('href="' + prefix + '/#home" data-home', 'href="' + prefix + '/"').replace('class="brand"', local('class="brand" aria-label="Inicio · Español con Natali"', 'class="brand" aria-label="Home · Español con Natali"')).replaceAll('Бесплатные материалы', local('Recursos gratuitos', 'Free resources')).replace('>Статьи<',local('>Artículos<','>Articles<')).replace('>Ресурсы<', local('>Recursos<','>Resources<')).replace('>Учить испанский<',local('>Aprender español<','>Learn Spanish<')).replace('>Жизнь в Испании<',local('>Vida en España<','>Life in Spain<')).replace('Меню', local('Menú', 'Menu')).replace('aria-label="Навигация"', local('aria-label="Navegación"', 'aria-label="Navigation"'));
   const write = async (route, title, description, body, animated) => {
     const isJobs = route === jobsRoute;
     const practical = route.startsWith(jobsRoute) || route === lifeRoute;
-    const pageHeader = practical ? jobsHeader : translate(localizedHeader);
     const pageFooter = practical ? footer.replace(/<p>[\s\S]*?<\/p>/, '').replace(/<span>Курс в своём темпе[\s\S]*?<\/span>/, '') : footer;
     const dir = out + prefix + route;
     await mkdir(dir, { recursive: true });
-    await writeFile(dir + 'index.html', `<!doctype html><html lang="${language}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)} — Español con Natali</title><meta name="description" content="${esc(description)}"><meta name="robots" content="noindex,follow"><link rel="canonical" href="${base + route}"><link rel="stylesheet" href="/design-system.css"><link rel="stylesheet" href="/library.css"><link rel="stylesheet" href="/jobs.css"></head><body>${production ? '' : '<div class="preview-note">' + local('Vista previa', 'Preview') + '</div>'}<a class="skip" href="#main">${local('Ir al contenido', 'Skip to content')}</a>${languagePicker(pageHeader, route, language)}<main id="main">${body}</main>${translate(internal(pageFooter))}<script src="/reader.js"></script>${isJobs ? '<script type="module" src="/jobs.js"></script>' : route.startsWith(jobsRoute) ? '<script type="module" src="/job-detail.js"></script>' : ''}${animated ? motion : ''}</body></html>`);
+    await writeFile(dir + 'index.html', `<!doctype html><html lang="${language}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)} — Español con Natali</title><meta name="description" content="${esc(description)}"><meta name="robots" content="noindex,follow"><link rel="canonical" href="${base + route}"><link rel="stylesheet" href="/design-system.css"><link rel="stylesheet" href="/library.css"><link rel="stylesheet" href="/jobs.css"></head><body>${production ? '' : '<div class="preview-note">' + local('Vista previa', 'Preview') + '</div>'}<a class="skip" href="#main">${local('Ir al contenido', 'Skip to content')}</a>${renderHeader(language, route)}<main id="main">${body}</main>${translate(internal(pageFooter))}<script src="/reader.js"></script>${isJobs ? '<script type="module" src="/jobs.js"></script>' : route.startsWith(jobsRoute) ? '<script type="module" src="/job-detail.js"></script>' : ''}${animated ? motion : ''}</body></html>`);
   };
 
   const publicationDate = new Intl.DateTimeFormat(language === 'es' ? 'es-ES' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
@@ -67,7 +42,7 @@ export async function buildLocale(language, { out, base, production, header, foo
     .replace(/href="\/resources\/"/g, 'href="' + prefix + '/resources/"'));
   const descriptions = JSON.parse(await readFile('content/' + filePrefix + '-resources.json', 'utf8'));
   const journal = journalViews({language,ordered,clusters,clusterFor,readingTimes,descriptions});
-  await write('/', local('Español para la vida real', 'Spanish for real life'), local('Curso grabado de español y clases privadas con Natali.', 'Self-paced Spanish and private lessons with Natali.'), localizedHome.replace('<!--school-articles-->',journal.home), true);
+  await write('/', local('Español para la vida real', 'Spanish for real life'), local('Español desde cero para rusohablantes. Cinco módulos, diez videoclases y dos encuentros con Natali. USD 179 en un solo pago.', 'Spanish from scratch for Russian speakers. Five modules, ten video lessons and two meetings with Natali. USD 179 paid once.'), localizedHome.replace('<!--school-articles-->',journal.home), true);
   await write('/articles/', journal.title, journal.intro, journal.archive, false);
   await write('/resources/',journal.library,journal.libraryIntro,journal.resources+jobsTeaser(language),false);
 

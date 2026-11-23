@@ -4,7 +4,8 @@ import path from 'node:path';
 import { coverFor, journalViews, newestFirst } from './journal.mjs';
 import {jobFreshness} from '../site/jobs-state.js';
 import {markdown,esc} from './markdown.mjs';
-import {buildLocale,languagePicker} from './locales.mjs';
+import {buildLocale} from './locales.mjs';
+import {renderHeader} from './site-navigation.mjs';
 import {buildCourse,courseRoutes} from './course.mjs';
 import {buildPricing,pricingRoutes} from './pricing.mjs';
 import {buildProfiles,profileRoutes} from './profiles.mjs';
@@ -23,7 +24,7 @@ const jobsData=JSON.parse(await readFile('content/jobs.json','utf8'));
 const publicationDate = new Intl.DateTimeFormat('ru-RU', { day:'numeric', month:'long', year:'numeric', timeZone:'UTC' });
 const out=process.env.BUILD_DIR||'dist';if(!['dist','work/test-dist'].includes(out))throw Error('Invalid output directory');
 await rm(out,{recursive:true,force:true});await mkdir(out,{recursive:true});
-await cp('site/assets',out+'/assets',{recursive:true});for(const f of ['design-system.css','course.css','course-payment-help.js','library.css','resources.js','reader.js','jobs.css','jobs.js','jobs-state.js','job-detail.js'])await cp('site/'+f,out+'/'+f);
+await cp('site/assets',out+'/assets',{recursive:true});for(const f of ['design-system.css','site-navigation.js','about-story.css','course.css','course-payment-help.js','library.css','resources.js','reader.js','jobs.css','jobs.js','jobs-state.js','job-detail.js'])await cp('site/'+f,out+'/'+f);
 if(production)await cp('site/yandex_1e0a4f9b39600def.html',out+'/yandex_1e0a4f9b39600def.html');
 const coursePrice = new Intl.NumberFormat('en-US', {
  style: 'currency', currency: config.course.currency, currencyDisplay: 'code',
@@ -32,17 +33,11 @@ const coursePrice = new Intl.NumberFormat('en-US', {
 const home = (await readFile('site/index.html', 'utf8'))
  .replaceAll('src="assets/brand/', 'src="/assets/brand/')
  .replaceAll('{{COURSE_PRICE}}', esc(coursePrice));
-await buildCourse({out,base,production,coursePrice});
+await buildCourse({out,base,production,coursePrice,courseOffer:config.course});
 await buildPricing({out,base,production});
-await buildProfiles({out,base,production,instagram:config.instagram});
-let header=home.match(/<header class="site-nav[\s\S]*?<\/header>/)[0].replaceAll('resources.html','/resources/').replaceAll('href="#','href="/#').replaceAll('href="/#course"','href="/course/"').replaceAll('href="/#natali"','href="/about-natali/"').replaceAll('href="/#private"','href="/private-lessons/"');
-const resourceMenu='<details class="resource-nav"><summary>Ресурсы</summary><div><a href="/resources/">Учить испанский</a><a href="/articles/">Статьи</a><a href="/life-in-spain/">Жизнь в Испании</a></div></details>';
-header=header.replace('<a href="/resources/">Бесплатные материалы</a>',resourceMenu)
- .replace(/<a class="link nav-contact"[\s\S]*?<\/a>/,'')
- .replace('</nav>','<a class="nav-waitlist" href="/tutor/">En Confianza</a></nav>');
-const readerHeader=header.replace(/<nav[\s\S]*?<\/nav>/,'<nav class="nav-links" id="navigation" aria-label="Навигация">'+resourceMenu+'</nav>');
+await buildProfiles({out,base,production});
 const footer=home.match(/<footer[\s\S]*?<\/footer>/)[0].replaceAll('href="#home"','href="/"');
-const org={'@type':'EducationalOrganization','@id':base+'/#organization',name:'Español con Natali',url:base+'/',sameAs:[config.instagram]};
+const org={'@type':'EducationalOrganization','@id':base+'/#organization',name:'Español con Natali',url:base+'/'};
 const editor={'@type':'Organization','@id':base+'/#editorial',name:'Редакция Español con Natali',parentOrganization:{'@id':org['@id']}};
 const site={'@type':'WebSite','@id':base+'/#website',url:base+'/',name:'Español con Natali',inLanguage:'ru',publisher:{'@id':org['@id']}};
 const tutorRoutes=['/tutor/','/en/tutor/','/es/tutor/'];
@@ -56,7 +51,7 @@ async function page(route,title,desc,body,extra=[],commercial=false,options={}){
  }
  graph.forEach((node,i)=>{if(!node['@id'])node['@id']=canonical+'#entity-'+i;});
  const json=JSON.stringify({'@context':'https://schema.org','@graph':graph}).replace(/</g,'\\u003c');
- const html=`<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">${production&&route==='/'?'<meta name="msvalidate.01" content="670CDAA606B791438D5C3B7F3C0ECDB8" />':''}<title>${esc(title)} — Español con Natali</title><meta name="description" content="${esc(desc)}"><meta name="robots" content="${production&&options.indexable!==false?'index,follow,max-image-preview:large':'noindex,follow'}"><link rel="canonical" href="${canonical}"><meta property="og:url" content="${canonical}"><meta property="og:type" content="${extra.some(node=>node['@type']==='Article')?'article':'website'}"><meta property="og:locale" content="ru_RU"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(desc)}"><meta property="og:image" content="${base}${options.image || '/assets/natali-city.jpg'}"><meta name="twitter:card" content="summary_large_image"><link rel="stylesheet" href="/design-system.css"><link rel="stylesheet" href="/library.css"><link rel="stylesheet" href="/jobs.css"><script type="application/ld+json">${json}</script></head><body>${production?'':'<div class="preview-note">Предпросмотр · Не индексируется</div>'}<a class="skip" href="#main">Перейти к содержанию</a>${languagePicker(commercial?header:readerHeader,route)}<main id="main">${body}</main>${commercial?footer:footer.replace(/<p>[\s\S]*?<\/p>/,'').replace(/<span>Курс в своём темпе[\s\S]*?<\/span>/,'')}<script src="/reader.js"></script>${route===jobsRoute?'<script type="module" src="/jobs.js"></script>':route.startsWith(jobsRoute)?'<script type="module" src="/job-detail.js"></script>':''}${commercial?'<script src="/assets/vendor/lenis.min.js"></script><script src="/assets/vendor/gsap.min.js"></script><script src="/assets/vendor/ScrollTrigger.min.js"></script><script src="/assets/vendor/SplitText.min.js"></script><script src="/resources.js"></script>':''}</body></html>`;
+ const html=`<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">${production&&route==='/'?'<meta name="msvalidate.01" content="670CDAA606B791438D5C3B7F3C0ECDB8" />':''}<title>${esc(title)} — Español con Natali</title><meta name="description" content="${esc(desc)}"><meta name="robots" content="${production&&options.indexable!==false?'index,follow,max-image-preview:large':'noindex,follow'}"><link rel="canonical" href="${canonical}"><meta property="og:url" content="${canonical}"><meta property="og:type" content="${extra.some(node=>node['@type']==='Article')?'article':'website'}"><meta property="og:locale" content="ru_RU"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(desc)}"><meta property="og:image" content="${base}${options.image || '/assets/natali-city.jpg'}"><meta name="twitter:card" content="summary_large_image"><link rel="stylesheet" href="/design-system.css"><link rel="stylesheet" href="/library.css"><link rel="stylesheet" href="/jobs.css"><script type="application/ld+json">${json}</script></head><body>${production?'':'<div class="preview-note">Предпросмотр · Не индексируется</div>'}<a class="skip" href="#main">Перейти к содержанию</a>${renderHeader('ru',route)}<main id="main">${body}</main>${commercial?footer:footer.replace(/<p>[\s\S]*?<\/p>/,'').replace(/<span>Курс в своём темпе[\s\S]*?<\/span>/,'')}<script src="/reader.js"></script>${route===jobsRoute?'<script type="module" src="/jobs.js"></script>':route.startsWith(jobsRoute)?'<script type="module" src="/job-detail.js"></script>':''}${commercial?'<script src="/assets/vendor/lenis.min.js"></script><script src="/assets/vendor/gsap.min.js"></script><script src="/assets/vendor/ScrollTrigger.min.js"></script><script src="/assets/vendor/SplitText.min.js"></script><script src="/resources.js"></script>':''}</body></html>`;
  const filename=out+(route==='/'?'/index.html':route+'index.html');await mkdir(path.dirname(filename),{recursive:true});await writeFile(filename,html);if(options.indexable!==false)urls.push(canonical);
 }
 const clusters=JSON.parse(await readFile('content/article-clusters.json','utf8')).clusters;
@@ -163,11 +158,11 @@ homebody='<div class="home-view" id="home">'+homebody+'</div>';
 homebody=homebody.replace(/href="resources.html"/g,'href="/resources/"').replace(/href="resources\/([^".]+)\.html"/g,'href="/resources/$1/"').replaceAll('src="assets/','src="/assets/');
 homebody=homebody.replaceAll('href="#course"','href="/course/"')
  .replace('<div class="natali-symbol-note">','<p><a class="link" href="/about-natali/">Подробнее о Натали ↗</a></p><div class="natali-symbol-note">')
- .replace(/(<a class="link" href="https:\/\/www.instagram.com\/espanol.con.natali\/"[^>]*>)Обсудить занятия в Instagram/, '<a class="link" href="/private-lessons/">Подробнее об индивидуальных занятиях');
+ ;
 homebody=homebody.replace(/(<section class="resources[^>]*>[\s\S]*?)<div class="grid">[\s\S]*?<\/section>/,(_,head)=>head+'<!--school-articles-->'+jobsTeaser('ru',true)+'</section>');
-await page('/','Испанский для русскоязычных','Курс испанского в своём темпе и индивидуальные занятия с Натали.',homebody.replace('<!--school-articles-->',journal.home),[{'@type':'Person','@id':base+'/#natali',name:'Натали',jobTitle:'Преподаватель испанского языка',sameAs:[config.instagram]},{'@type':'Course',name:'Курс испанского в своём темпе',description:'Пять модулей и десять видеоуроков с заданиями и материалами в личном кабинете. Две встречи с Натали по 20 минут и 60 минут практики с ИИ. Стоимость — 179 USD, один платёж.',provider:{'@id':org['@id']},inLanguage:'ru',url:base+'/#course'}],true);
+await page('/','Испанский для русскоязычных','Курс испанского с нуля для русскоязычных: пять модулей, десять видеоуроков и две встречи с Натали. 179 USD, один платёж.',homebody.replace('<!--school-articles-->',journal.home),[{'@type':'Person','@id':base+'/#natali',name:'Натали',jobTitle:'Преподаватель испанского языка'},{'@type':'Course',name:'Курс испанского в своём темпе',description:'Пять модулей и десять видеоуроков с заданиями и материалами в личном кабинете. Две встречи с Натали по 20 минут и 60 минут практики с ИИ. Стоимость — 179 USD, один платёж.',provider:{'@id':org['@id']},inLanguage:'ru',url:base+'/#course'}],true);
 for (const language of ['es', 'en']) {
- await buildLocale(language,{out,base,production,header,footer,homebody,ordered,clusters:activeClusters,clusterFor,readingTimes,reviewRows,jobsData,readerHeader,instagram:config.instagram});
+ await buildLocale(language,{out,base,production,footer,homebody,ordered,clusters:activeClusters,clusterFor,readingTimes,reviewRows,jobsData});
 }
 await writeFile(out+'/robots.txt',production?'User-agent: *\nAllow: /\nSitemap: '+base+'/sitemap.xml\n':'User-agent: *\nDisallow: /\n');
 await writeFile(out+'/sitemap.xml','<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+(production?urls:[]).map(u=>'<url><loc>'+u+'</loc></url>').join('')+'</urlset>');

@@ -1,10 +1,10 @@
+import { renderHeader } from './site-navigation.mjs';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { esc } from './markdown.mjs';
 import { faqSchema, renderFaq } from './product-faq.mjs';
 
 export const pricingRoutes = { ru: '/pricing/', en: '/en/pricing/', es: '/es/pricing/' };
 
-const languageNames = { ru: 'Русский', en: 'English', es: 'Español' };
 const localized = {
   ru: {
     title: 'Цены на обучение', faq: 'Частые вопросы', home: 'На главную', langs: 'Язык',
@@ -45,8 +45,6 @@ export async function buildPricing({ out, base, production }) {
       { '@type': 'WebPage', '@id': canonical + '#page', name: c.title, url: canonical, inLanguage: lang, description },
       faqSchema(canonical, faqs)
     ] }).replaceAll('<', '\\u003c');
-    const switcher = Object.entries(pricingRoutes).map(([code, path]) =>
-      `<a href="${path}" lang="${code}" hreflang="${code}"${code === lang ? ' aria-current="page"' : ''}>${languageNames[code]}</a>`).join('');
     const cards = c.plans.map(([name, price, detail, action, href]) => `<article class="tw-panel course-checkout">
 <h2>${esc(name)}</h2><p class="course-amount">${esc(price)}</p><p>${esc(detail)}</p><a class="button" href="${home + href}"${href.endsWith('#payment-help') ? ' data-payment-help' : ''}>${esc(action)} <span aria-hidden="true">↗</span></a></article>`).join('');
     await mkdir(out + route, { recursive: true });
@@ -56,8 +54,7 @@ export async function buildPricing({ out, base, production }) {
 <meta name="robots" content="${production ? 'index,follow,max-image-preview:large' : 'noindex,follow'}">
 <link rel="canonical" href="${canonical}">${alternates}<meta property="og:url" content="${canonical}"><script type="application/ld+json">${schema}</script>
 <link rel="stylesheet" href="/design-system.css"><link rel="stylesheet" href="/tutor-waitlist.css"><link rel="stylesheet" href="/course.css"></head>
-<body><header class="tw-head course-head"><a class="brand" href="${home}"><img src="/assets/brand/natali-lynx-approved.png" alt="" width="44" height="44">Español con Natali</a>
-<nav aria-label="${esc(c.langs)}">${switcher}</nav></header>
+<body>${renderHeader(lang, '/pricing/')}
 <main class="tw-main"><div class="course-intro"><h1>${esc(c.title)}</h1></div><div class="pricing-grid">${cards}</div>${renderFaq(c.faq, faqs)}</main>
 <footer class="tw-footer"><a href="${home}">${esc(c.home)}</a></footer></body></html>`);
   }
