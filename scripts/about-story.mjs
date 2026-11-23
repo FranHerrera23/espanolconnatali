@@ -6,10 +6,10 @@ const editions = {
     chapters: [
       ['De las canciones a la Costa Brava', 'De niña escuchaba a Enrique Iglesias, Shakira y Ricky Martin. También se sabía las canciones de Natalia Oreiro en Muñeca brava. En la escuela le gustaban tanto el ruso y el inglés que pensó en estudiar lingüística. Su madre, dentista, le abrió otra puerta. En 2011 Natali se graduó en odontología en Nizhni Nóvgorod.', 'Para entonces ya conocía España. Después de su primer año de universidad pasó tres semanas en Lloret de Mar con su tía. Visitaron Barcelona y Figueres. Volvió a Rusia con una idea que la acompañaría durante años: quería vivir allí.'],
       ['Las primeras conversaciones en Vera Playa', 'Cuando conoció a su pareja española, estudió tres meses con una profesora en Rusia. En 2014 se mudó a Vera Playa, en la provincia de Almería. Sabía leer y manejaba algunos verbos en presente. Para hablar en casa todavía le resultaba más fácil el inglés.', 'Durante el primer año apartó dos o tres horas al día para estudiar. Después le tocaba usar lo aprendido en el banco, en el ayuntamiento o en el supermercado. Puso el teléfono en español. Veía la tele, leía el periódico y seguía conversando aunque le faltara una palabra. Al cabo de un año, ella y su pareja ya se hablaban en español.'],
-      ['El idioma que se queda con vos', 'Tras dos años empezó a sorprenderse pensando en español. Más adelante también soñaba en ese idioma. Vivió casi ocho años en España. En una foto de su archivo personal vuelve a Castelldefels, en la costa catalana, uno de los lugares que siguió recordando después de marcharse.', 'En 2024 completó un año de formación en la Universidad Estatal Lingüística de Nizhni Nóvgorod y obtuvo un certificado de español de nivel C1.'],
+      ['El idioma que se queda con vos', 'Tras dos años empezó a sorprenderse pensando en español. Más adelante también soñaba en ese idioma. Vivió casi ocho años en España. En una publicación de su archivo recuerda Castelldefels, en la costa catalana, uno de los lugares que siguió recordando después de marcharse.'],
       ['Cómo enseña hoy', 'Natali recuerda lo que costaba saber la regla en casa y encontrar la frase delante de otra persona. Por eso trabaja con situaciones concretas. En una clase privada podés llevar una conversación que te espera esta semana y practicar cómo empezarla, qué preguntar y cómo responder.', 'En diez años ha enseñado a más de 1.000 personas entre clases privadas y cursos grabados. Más de 600 alumnos han estudiado con Español con Natali. Para el curso inicial que creó, Sofía explica las lecciones en ruso, Eloy guía ejercicios de práctica y Natali recibe a cada alumno en dos encuentros individuales de 20 minutos.']
     ],
-    archive: 'Del archivo de Natali', postNames: ['Una foto y un recuerdo de Castelldefels','Siete maneras de recordar vocabulario','Un viaje contado en español'], open:'Ver la publicación', view:'Abrir en Instagram', cta:'Conocer el curso', private:'Ver las clases privadas'
+    archive: 'Del archivo de Natali', postNames: ['Un recuerdo de España','Siete maneras de recordar vocabulario','Un viaje contado en español'], view:'Abrir en Instagram', cta:'Conocer el curso', private:'Ver las clases privadas'
   },
   en: {
     label:'About Natali', title:'When Spain first felt like home',
@@ -17,10 +17,10 @@ const editions = {
     chapters:[
       ['From songs to the Costa Brava','As a child, Natali listened to Enrique Iglesias, Shakira and Ricky Martin. She also knew Natalia Oreiro’s songs from the TV series Muñeca brava by heart. Russian and English were her favourite subjects, and she pictured herself studying linguistics. Her mother, a dentist, introduced her to another path. In 2011 Natali graduated in dentistry in Nizhny Novgorod.','By then she had already visited Spain. After her first year at university, she and her aunt spent three weeks in Lloret de Mar and visited Barcelona and Figueres. Back in Russia she kept thinking about what it would be like to live there.'],
       ['Finding her voice in Vera Playa','After meeting her Spanish partner, Natali spent three months studying with a tutor in Russia. She moved to Vera Playa in Almería in 2014. She could read and use a handful of verbs in the present tense. At home, English still came more easily.','In her first year she set aside two or three hours a day to study. Then she had to find the words at the bank, at the town hall and in the supermarket. She switched her phone to Spanish, watched Spanish television and read the papers. Within a year, Spanish had become the language she and her partner spoke at home.'],
-      ['A language that stays with you','After two years she began catching herself thinking in Spanish. Later she would dream in it, too. She spent nearly eight years in Spain. In a photograph from her personal archive she looks back on Castelldefels, a town on the Catalan coast that stayed with her after she left.','In 2024 she completed a year of study at the Linguistic University of Nizhny Novgorod and earned a C1 certificate in Spanish.'],
+      ['A language that stays with you','After two years she began catching herself thinking in Spanish. Later she would dream in it, too. She spent nearly eight years in Spain. In a post from her personal archive she looks back on Castelldefels, a town on the Catalan coast that stayed with her after she left.'],
       ['What she brings to her teaching','Natali remembers knowing a rule at her desk and then having to find the right words in front of someone. That experience shapes her lessons. In a private class, you can bring a conversation you expect to have this week and practise how to open it, what to ask and how to reply.','In ten years she has taught more than 1,000 people through private lessons and recorded courses. More than 600 students have learned with Español con Natali. In the beginner course she created, Sofía explains the lessons in Russian, Eloy leads practice exercises and Natali meets each student for two private 20-minute sessions.']
     ],
-    archive:'From Natali’s archive',postNames:['A photograph and a memory of Castelldefels','Seven ways to remember new words','Telling a travel story in Spanish'],open:'View the post',view:'Open on Instagram',cta:'Explore the course',private:'Explore private lessons'
+    archive:'From Natali’s archive',postNames:['A memory of Spain','Seven ways to remember new words','Telling a travel story in Spanish'],view:'Open on Instagram',cta:'Explore the course',private:'Explore private lessons'
   },
   ru: {
     label:'О Натали',title:'Как Испания стала для Натали домом',
@@ -28,21 +28,43 @@ const editions = {
     chapters:[
       ['От любимых песен до Коста-Бравы','В детстве Натали слушала Энрике Иглесиаса, Шакиру и Рики Мартина. Наизусть знала и песни Наталии Орейро из «Дикого ангела». В школе любила русский и английский и подумывала поступить на лингвистику. Другую дорогу ей показала мама, стоматолог. В 2011 году Натали получила диплом стоматолога в Нижнем Новгороде.','К тому времени она уже побывала в Испании. После первого курса Натали с тётей провели три недели в Льорет-де-Мар, съездили в Барселону и Фигерас. Домой она вернулась с мечтой однажды переехать в Испанию.'],
       ['Первые разговоры в Вера-Плайе','Познакомившись со своим будущим партнёром, испанцем, Натали три месяца занималась с преподавателем в России. В 2014 году переехала в Вера-Плайю в провинции Альмерия. Она уже умела читать и знала несколько глаголов в настоящем времени. Дома пока было легче говорить по-английски.','В первый год она занималась по два-три часа в день. А потом нужно было объясниться в банке, в мэрии или в магазине. Натали перевела телефон на испанский, смотрела местное телевидение и читала газеты. Примерно через год они с партнёром разговаривали дома уже по-испански.'],
-      ['Язык, который остаётся с тобой','Через два года Натали стала замечать, что думает по-испански. Позже ей даже начали сниться сны на этом языке. В Испании она прожила почти восемь лет. Одна из фотографий в её архиве посвящена Кастельдефельсу — городу на каталонском побережье, по которому она скучала после отъезда.','В 2024 году Натали окончила годичный курс в Нижегородском государственном лингвистическом университете и получила сертификат о владении испанским на уровне C1.'],
+      ['Язык, который остаётся с тобой','Через два года Натали стала замечать, что думает по-испански. Позже ей даже начали сниться сны на этом языке. В Испании она прожила почти восемь лет. В одной из публикаций Натали вспоминает Кастельдефельс — городу на каталонском побережье, по которому она скучала после отъезда.'],
       ['Как этот опыт помогает на уроках','Натали хорошо помнит, как выученное за столом правило вдруг забывается, когда перед тобой живой собеседник. Поэтому на индивидуальный урок можно прийти с разговором, который предстоит на этой неделе. Вместе вы разберёте, с чего начать, о чём спросить и как ответить.','За десять лет у Натали учились более 1 000 человек на индивидуальных занятиях и курсах в записи. Более 600 учеников занимались в школе Español con Natali. Курс для начинающих создала Натали. София объясняет материал по-русски, Элой ведёт практические упражнения, а Натали проводит с каждым учеником две индивидуальные встречи по 20 минут.']
     ],
-    archive:'Из архива Натали',postNames:['Фотография и воспоминания о Кастельдефельсе','Семь способов запоминать новые слова','Как рассказать о путешествии по-испански'],open:'Посмотреть публикацию',view:'Открыть в Instagram',cta:'Посмотреть курс',private:'Индивидуальные занятия'
+    archive:'Из архива Натали',postNames:['Воспоминания об Испании','Семь способов запоминать новые слова','Как рассказать о путешествии по-испански'],view:'Открыть в Instagram',cta:'Посмотреть курс',private:'Индивидуальные занятия'
   }
 };
 
-const postIds=['DS-lCcwDdTr','DQJ_f1zDLX3','DDD4nl-lvJq'];
+const posts = [
+  { id: 'DS-lCcwDdTr', width: 720, height: 960 },
+  { id: 'DQJ_f1zDLX3', width: 720, height: 960 },
+  { id: 'DDD4nl-lvJq' }
+];
+
+const photoAlts = {
+  ru: ['Натали у храма Саграда Фамилия в Барселоне', 'Натали рядом с деревом с жёлтыми осенними листьями'],
+  en: ['Natali in front of the Sagrada Família in Barcelona', 'Natali beside a tree with yellow autumn leaves'],
+  es: ['Natali frente a la Sagrada Família, en Barcelona', 'Natali junto a un árbol de hojas amarillas']
+};
+
+const training = {
+  ru: ['Учёба и преподавание', 'По словам Натали, в 2024 году она прошла годичный курс испанского в Нижегородском государственном лингвистическом университете и имеет сертификат уровня C1. Она преподаёт уже десять лет.'],
+  en: ['Studying and teaching', 'Natali says she completed a year-long Spanish course at Nizhny Novgorod State Linguistic University in 2024 and holds a C1 certificate. She has been teaching for ten years.'],
+  es: ['Formación y enseñanza', 'Natali cuenta que en 2024 hizo un curso de español de un año en la Universidad Estatal Lingüística de Nizhni Nóvgorod y que tiene un certificado de nivel C1. Lleva diez años enseñando.']
+};
+
 export function renderAboutStory(lang) {
-  const c=editions[lang];
-  const home=lang==='ru'?'/':'/'+lang+'/';
-  const paragraphs=([title,...body])=>'<section class="natali-chapter"><h2>'+title+'</h2><div>'+body.map(p=>'<p>'+p+'</p>').join('')+'</div></section>';
-  const posts=c.postNames.map((title,i)=>{
-    const href='https://www.instagram.com/p/'+postIds[i]+'/';
-    return '<article><h3>'+title+'</h3><details><summary>'+c.open+'</summary><iframe title="'+title+'" src="'+href+'embed/" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></details><a href="'+href+'">'+c.view+' ↗</a></article>';
-  }).join('');
-  return '<div class="natali-story"><section class="natali-opening"><div><p>'+c.label+'</p><h1>'+c.title+'</h1><p>'+c.lead+'</p></div><img src="/assets/natali-water.jpg" width="720" height="1280" alt="Natali" fetchpriority="high"></section>'+c.chapters.map(paragraphs).join('')+'<section class="natali-archive"><h2>'+c.archive+'</h2><div>'+posts+'</div></section><nav class="natali-next"><a href="'+home+'course/">'+c.cta+' →</a><a href="'+home+'private-lessons/">'+c.private+' →</a></nav></div>';
+  const c = editions[lang];
+  const home = lang === 'ru' ? '/' : '/' + lang + '/';
+  const chapter = ([title, ...body]) => '<section class="natali-chapter"><h2>' + title + '</h2><div>' + body.map(p => '<p>' + p + '</p>').join('') + '</div></section>';
+  const photos = posts.filter(p => p.width).map(({ id, width, height }, index) => `<figure>
+<img src="/assets/natali-archive/${id}.jpg" width="${width}" height="${height}" alt="${photoAlts[lang][index]}" loading="lazy" decoding="async">
+<figcaption><h3>${c.postNames[index]}</h3><a class="link" href="https://www.instagram.com/p/${id}/">${c.view} <span aria-hidden="true">↗</span></a></figcaption></figure>`).join('');
+  const reel = posts[2];
+  return `<div class="natali-story">
+<section class="natali-opening"><div><p>${c.label}</p><h1>${c.title}</h1><p>${c.lead}</p></div><img src="/assets/natali-water.jpg" width="720" height="1280" alt="Natali" fetchpriority="high"></section>
+${[...c.chapters, training[lang]].map(chapter).join('')}
+<section class="natali-archive"><h2>${c.archive}</h2><div>${photos}</div>
+<p class="natali-archive-reel"><a class="link" href="https://www.instagram.com/p/${reel.id}/">${c.postNames[2]} · Instagram <span aria-hidden="true">↗</span></a></p></section>
+<nav class="natali-next"><a href="${home}course/">${c.cta} →</a><a href="${home}private-lessons/">${c.private} →</a></nav></div>`;
 }

@@ -1,20 +1,20 @@
 const locales = {
   ru: { language: 'Язык', main: 'Главная навигация', menu: 'Меню', home: 'На главную',
-    entries: ['Курс','Ресурсы','Отзывы','Натали','Занятия','Тьютор','Цены'],
+    entries: ['Программы','Ресурсы','Натали'], reviews: 'Отзывы',
     resources: ['Статьи','Испания'] },
   en: { language: 'Language', main: 'Main navigation', menu: 'Menu', home: 'Home',
-    entries: ['Course','Resources','Reviews','Natali','Lessons','Tutor','Pricing'],
+    entries: ['Programs','Resources','Natali'], reviews: 'Reviews',
     resources: ['Articles','Spain'] },
   es: { language: 'Idioma', main: 'Navegación principal', menu: 'Menú', home: 'Inicio',
-    entries: ['Curso','Recursos','Opiniones','Natali','Clases','Tutor','Precios'],
+    entries: ['Programas','Recursos','Natali'], reviews: 'Opiniones',
     resources: ['Artículos','España'] }
 };
 
 const languageNames = { ru: 'Русский', es: 'Español', en: 'English' };
 const homeFor = locale => locale === 'ru' ? '/' : '/' + locale + '/';
 const resources = ['/articles/', '/life-in-spain/'];
-const commercial = ['/course/', null, '/students/', '/about-natali/', '/private-lessons/', '/tutor/', '/pricing/'];
-const common = new Set(['/', '/resources/', ...resources, ...commercial]);
+const primary = ['/pricing/', null, '/about-natali/'];
+const common = new Set(['/', '/resources/', '/course/', '/students/', '/private-lessons/', '/tutor/', ...resources, ...primary]);
 const localizedRoute = (locale, route) => homeFor(locale) + route.slice(1);
 
 function languageTarget(locale, route, current) {
@@ -25,9 +25,13 @@ function languageTarget(locale, route, current) {
   return localizedRoute(locale, '/articles/');
 }
 
+export function renderReviewsLink(locale) {
+  return `<a href="${localizedRoute(locale, '/students/')}">${locales[locale].reviews}</a>`;
+}
+
 export function renderHeader(locale, route) {
   const copy = locales[locale];
-  const links = commercial.map((target, index) => {
+  const links = primary.map((target, index) => {
     if (target) {
       const current = target === route ? ' aria-current="page"' : '';
       return `<a href="${localizedRoute(locale, target)}"${current}>${copy.entries[index]}</a>`;

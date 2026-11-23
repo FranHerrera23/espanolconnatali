@@ -1,4 +1,4 @@
-import { renderHeader } from './site-navigation.mjs';
+import { renderHeader, renderReviewsLink } from './site-navigation.mjs';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { esc } from './markdown.mjs';
 import { faqSchema, renderFaq } from './product-faq.mjs';
@@ -9,7 +9,7 @@ export const courseRoutes = { ru: '/course/', en: '/en/course/', es: '/es/course
 const course = {
   ru: {
     title: 'Испанский с нуля для русскоязычных',
-    description: 'Пять модулей и десять видеоуроков с объяснениями на русском. Также в курс входят две встречи с Натали по 20 минут и 60 минут разговорной практики с ИИ.',
+    description: 'В курсе пять модулей и десять видеоуроков с объяснениями на русском. Вы дважды встретитесь с Натали на 20 минут и сможете 60 минут практиковать испанский в En Confianza по темам курса.',
     home: 'На главную', library: 'Открытая библиотека', libraryPath: '/resources/',
     label: 'Курс в записи', checkout: 'Помощь с оплатой', price: 'Разовая оплата',
     syllabus: 'Что вы изучите',
@@ -23,13 +23,13 @@ const course = {
     faq: [
       ['Подойдёт ли курс, если я начинаю с нуля?', 'Да. Курс начинается с чтения, произношения и простых фраз. Объяснения на русском, примеры и практика на испанском.'],
       ['Как я получу доступ?', 'Когда откроется запись на курс, после покупки на ваш email придёт ссылка для активации аккаунта. В личном кабинете будут видеоуроки, задания и материалы. Занимайтесь в своём темпе.'],
-      ['Что входит в курс?', 'Пять модулей, десять видеоуроков, задания и материалы. В цену входят две встречи с Натали по 20 минут и 60 минут разговорной практики с ИИ. Стоимость всего курса — 179 USD, один платёж.'],
+      ['Что входит в курс?', 'Пять модулей, десять видеоуроков, задания и материалы. В цену входят две встречи с Натали по 20 минут и 60 минут практики в En Confianza по темам курса. Стоимость всего курса — 179 USD, один платёж.'],
       ['Когда у меня будет занятие с Натали?', 'В курс входят две индивидуальные встречи с Натали по 20 минут.'],
     ]
   },
   en: {
     title: 'Spanish from scratch for Russian speakers',
-    description: 'Five modules and ten video lessons taught in Russian, two 20-minute meetings with Natali, and 60 minutes of AI conversation practice.',
+    description: 'Five modules and ten video lessons taught in Russian, two 20-minute meetings with Natali, and 60 minutes of conversation practice in En Confianza.',
     home: 'Back to home', library: 'Open learning library', libraryPath: '/en/resources/',
     label: 'Self-paced course', checkout: 'Get payment help', price: 'One-time payment',
     syllabus: 'What you’ll learn',
@@ -43,13 +43,13 @@ const course = {
     faq: [
       ['Can I start as a complete beginner?', 'Yes. The course starts with reading, pronunciation and simple phrases. Explanations are in Russian, with examples and practice in Spanish.'],
       ['How do I get access?', 'Once enrolment opens, you’ll receive an email to activate your campus account after purchase. The lessons, assignments and study materials are all in the campus. Study at your own pace.'],
-      ['What does the course include?', 'Five modules, ten video lessons, assignments and study materials. Two 20-minute meetings with Natali and 60 minutes of AI conversation practice are included. The full bundle is USD 179, paid once.'],
+      ['What does the course include?', 'Five modules, ten video lessons, assignments and study materials. Two 20-minute meetings with Natali and 60 minutes of conversation practice in En Confianza are included. The full bundle is USD 179, paid once.'],
       ['When do I meet with Natali?', 'Two individual 20-minute meetings with Natali are included.'],
     ]
   },
   es: {
     title: 'Español desde cero para rusohablantes',
-    description: 'Cinco módulos y diez videoclases con explicaciones en ruso, dos encuentros de 20 minutos con Natali y 60 minutos de práctica de conversación con IA.',
+    description: 'Cinco módulos y diez videoclases con explicaciones en ruso, dos encuentros de 20 minutos con Natali y 60 minutos de conversación en En Confianza.',
     home: 'Ir al inicio', library: 'Biblioteca abierta', libraryPath: '/es/resources/',
     label: 'Curso grabado', checkout: 'Consultar sobre el pago', price: 'Pago único',
     syllabus: 'Qué vas a aprender',
@@ -61,17 +61,74 @@ const course = {
     faq: [
       ['¿Puedo empezar desde cero?', 'Sí. Empezás con lectura, pronunciación y frases simples. Las explicaciones son en ruso y los ejemplos y la práctica, en español.'],
       ['¿Cómo entro al curso?', 'Cuando abra la inscripción, después de la compra te llegará un correo para activar tu cuenta del campus. Ahí vas a encontrar las lecciones, las tareas y los materiales, para avanzar a tu ritmo.'],
-      ['¿Qué incluye el curso?', 'Cinco módulos, diez videoclases, tareas y materiales. Incluye dos encuentros de 20 minutos con Natali y 60 minutos de práctica de conversación con IA. El curso completo cuesta USD 179 en un solo pago.'],
+      ['¿Qué incluye el curso?', 'Cinco módulos, diez videoclases, tareas y materiales. Incluye dos encuentros de 20 minutos con Natali y 60 minutos de conversación en En Confianza. El curso completo cuesta USD 179 en un solo pago.'],
       ['¿El curso incluye encuentros con Natali?', 'Sí. Incluye dos encuentros individuales de 20 minutos con Natali.']
     ]
   }
 };
 
 const portal = {
-  ru: ['Как выглядит личный кабинет','Смотрите уроки и возвращайтесь к тому месту, где остановились. На главной видно, сколько занятий пройдено. Задания и рабочие тетради собраны по урокам.','Видеоурок и оглавление','Рабочие тетради по модулям','Курс выбрали более 600 учеников','Натали — преподаватель и основательница школы. Уроки в записи ведут два преподавателя команды.','Читать отзывы','Сейчас набор закрыт.','Купить курс'],
-  en: ['Inside your student portal','Watch the lessons and return to the point where you stopped. Your dashboard shows how much you’ve completed. Find each lesson’s assignments and workbooks in one place.','Video lesson and contents','Workbooks by module','Chosen by more than 600 students','Natali is a Spanish teacher and the school’s founder. Two teachers from the team lead the recorded lessons.','Read student testimonials','Enrolment is currently closed.','Buy the course'],
-  es: ['Así es el campus del alumno','Mirá las clases y retomá el video donde lo dejaste. En el inicio ves tu progreso. Cada lección tiene sus tareas y cuadernos de práctica.','Videoclase e índice de lecciones','Cuadernos por módulo','Más de 600 estudiantes eligieron el curso','Natali es profesora de español y fundadora de la escuela. Dos docentes del equipo dan las lecciones grabadas.','Leer testimonios','La inscripción está cerrada por el momento.','Comprar el curso']
+  ru: ['Как выглядит личный кабинет', 'Курс выбрали более 600 учеников', 'Натали — преподаватель и основательница школы. Уроки в записи ведут два преподавателя команды.', 'Читать отзывы', 'Сейчас набор закрыт.', 'Купить курс'],
+  en: ['Inside your student portal', 'Chosen by more than 600 students', 'Natali is a Spanish teacher and the school’s founder. Two teachers from the team lead the recorded lessons.', 'Read student testimonials', 'Enrolment is currently closed.', 'Buy the course'],
+  es: ['Así es el campus del alumno', 'Más de 600 estudiantes eligieron el curso', 'Natali es profesora de español y fundadora de la escuela. Dos docentes del equipo dan las lecciones grabadas.', 'Leer testimonios', 'La inscripción está cerrada por el momento.', 'Comprar el curso']
 };
+
+const preview = {
+  ru: {
+    label: 'Предпросмотр личного кабинета',
+    intro: 'Посмотрите, как будет устроен курс. Материалы откроются после покупки, когда начнётся набор.',
+    steps: [
+      ['Главная', 'На главной видно, сколько уроков пройдено и с чего продолжить.'],
+      ['Урок', 'Возвращайтесь к видео с того места, где остановились.'],
+      ['Тетрадь', 'В каждом модуле собраны задания и материалы к урокам.']
+    ],
+    confidence: 'В En Confianza вы тренируете разговоры по методу Натали, на ситуациях из уроков и рабочих тетрадей. Собеседник — голосовой ИИ.'
+  },
+  en: {
+    label: 'Student portal preview',
+    intro: 'See what the course will look like. Students get access after purchase once enrolment opens.',
+    steps: [
+      ['Welcome', 'See how much of the course you’ve completed and where to pick up.'],
+      ['Lesson', 'Return to the video at the point where you stopped.'],
+      ['Workbook', 'Find the assignments and study materials for each module.']
+    ],
+    confidence: 'En Confianza uses Natali’s method for voice practice based on situations from the lessons and workbooks. Your conversation partner is AI.'
+  },
+  es: {
+    label: 'Vista previa del campus',
+    intro: 'Mirá cómo va a ser el curso por dentro. El acceso se activa después de la compra, cuando abra la inscripción.',
+    steps: [
+      ['Bienvenida', 'Ves cuánto avanzaste y desde dónde retomar.'],
+      ['Lección', 'Volvé al punto del video donde lo dejaste.'],
+      ['Cuaderno', 'Encontrá las tareas y los materiales de cada módulo.']
+    ],
+    confidence: 'En Confianza usa el método de Natali para practicar conversaciones basadas en las lecciones y los cuadernos. Conversás por voz con IA.'
+  }
+};
+
+const previewScreens = [
+  ['welcome', 1740, 539, 537, 525],
+  ['lesson', 1131, 638, 537, 303],
+  ['workbook', 860, 353, 537, 258]
+];
+
+function renderPreview(lang, title) {
+  const c = preview[lang];
+  const buttons = c.steps.map(([label], index) => `<button type="button" aria-pressed="${index === 0}" aria-controls="preview-${previewScreens[index][0]}">${esc(label)}</button>`).join('');
+  const figures = c.steps.map(([label, detail], index) => {
+    const [id, width, height, mobileWidth, mobileHeight] = previewScreens[index];
+    return `<figure id="preview-${id}"${index === 0 ? '' : ' hidden'}>
+      <figcaption><p>${esc(detail)}</p></figcaption>
+      <picture><source media="(max-width: 570px)" srcset="/assets/course-portal/preview-${id}-mobile.jpg" width="${mobileWidth}" height="${mobileHeight}">
+      <img src="/assets/course-portal/preview-${id}-desktop.jpg" alt="${index === 0 ? 'Hola, Marina. Bienvenida a tu vida en español.' : esc(c.label + ' · ' + label)}"${index === 0 ? ' lang="es"' : ''} width="${width}" height="${height}" loading="lazy" decoding="async"></picture>
+    </figure>`;
+  }).join('');
+  return `<section class="tw-how course-preview" id="course-portal" aria-labelledby="portal-title">
+    <p class="label">${esc(c.label)}</p><h2 id="portal-title">${title}</h2><p>${esc(c.intro)}</p>
+    <div data-preview-controls role="group" aria-labelledby="portal-title" hidden>${buttons}</div>${figures}
+    <p class="course-confidence">${esc(c.confidence)}</p>
+  </section>`;
+}
 
 function enabledCheckout() {
   const { CAMPUS_ENABLED, CAMPUS_GUMROAD_PRODUCT_ID, CAMPUS_BUNDLE_PRODUCT_ID, COURSE_GUMROAD_CHECKOUT_URL } = process.env;
@@ -104,7 +161,7 @@ export async function buildCourse({ out, base, production, coursePrice, courseOf
         es: 'Cuando se confirme tu compra vas a recibir un correo para activar tu cuenta. En el campus están todas las lecciones, tareas y materiales.'
       }[lang]];
     }
-    const [portalTitle, portalDetail, classCaption, workbooksCaption, proof, proofDetail, testimonials, closed, buy] = portal[lang].map(esc);
+    const [portalTitle, proof, proofDetail, testimonials, closed, buy] = portal[lang].map(esc);
     const meta = copy.description + ' ' + {
       ru: 'Стоимость — ' + coursePrice + ', один платёж.',
       en: coursePrice + ', one-time payment.',
@@ -135,21 +192,17 @@ ${renderHeader(lang, '/course/')}
 <main class="tw-main" id="main">
 <section class="tw-grid" id="course"><div class="course-intro"><p class="label">${esc(copy.label)}</p><h1>${esc(copy.title)}</h1><p>${esc(copy.description)}</p></div>
 <div class="tw-panel course-checkout"><h2>${esc(copy.price)}</h2><p class="course-amount">${esc(coursePrice)}</p>
-${checkout
- ? `<a class="button" data-course-checkout href="${esc(checkout)}">${buy} <span aria-hidden="true">↗</span></a>`
- : `<p>${closed}</p>`}
-<p><a class="link" data-payment-help href="#payment-help">${esc(copy.checkout)} <span aria-hidden="true">↓</span></a></p></div></section>
-<section class="tw-how" aria-labelledby="portal-title"><h2 id="portal-title">${portalTitle}</h2><p>${portalDetail}</p>
-<div class="portal-gallery"><figure><picture>
-<source media="(max-width: 570px)" srcset="/assets/course-portal/lesson-mobile.jpg" width="390" height="844">
-<img src="/assets/course-portal/lesson.jpg" alt="${classCaption}" width="1440" height="1040">
-</picture><figcaption>${classCaption}</figcaption></figure>
-<figure><img src="/assets/course-portal/workbooks.jpg" alt="${workbooksCaption}" width="1440" height="900"><figcaption>${workbooksCaption}</figcaption></figure></div></section>
+${checkout ? '' : `<p>${closed}</p>`}
+<p><a class="link" href="#course-portal">${portalTitle} <span aria-hidden="true">↓</span></a></p></div></section>
+${renderPreview(lang, portalTitle)}
 <section class="tw-how" aria-labelledby="proof-title"><h2 id="proof-title">${proof}</h2><p>${proofDetail}</p>
 <a class="link" href="${home}students/">${testimonials} <span aria-hidden="true">↗</span></a></section>
+<div class="course-actions" aria-label="${esc(copy.price)}">
+${checkout ? `<a class="button" data-course-checkout href="${esc(checkout)}">${buy} <span aria-hidden="true">↗</span></a>` : ''}
+<a class="link" data-payment-help href="#payment-help">${esc(copy.checkout)} <span aria-hidden="true">↓</span></a></div>
 ${renderPaymentHelp(lang)}
 <section class="tw-how course-syllabus-page"><h2>${esc(copy.syllabus)}</h2><ol>${copy.lessons.map(lesson => `<li>${esc(lesson)}</li>`).join('')}</ol></section>
 ${renderFaq(copy.faqTitle, faq)}
-</main><footer class="tw-footer"><a href="${home}">${esc(copy.home)}</a><a href="${copy.libraryPath}">${esc(copy.library)}</a></footer><script type="module" src="/course-payment-help.js"></script></body></html>`);
+</main><footer class="tw-footer"><a href="${home}">${esc(copy.home)}</a><a href="${copy.libraryPath}">${esc(copy.library)}</a>${renderReviewsLink(lang)}</footer><script type="module" src="/course-payment-help.js"></script><script type="module" src="/course-preview.js"></script></body></html>`);
   }
 }

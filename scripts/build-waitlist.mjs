@@ -1,4 +1,4 @@
-import { renderHeader } from './site-navigation.mjs';
+import { renderHeader, renderReviewsLink } from './site-navigation.mjs';
 import { cp, mkdir, readFile, writeFile } from 'node:fs/promises';
 import { esc } from './markdown.mjs';
 import { faqSchema, renderFaq } from './product-faq.mjs';
@@ -31,14 +31,13 @@ const copy = {
     booking: 'Начните, когда удобно, без записи на определённое время. Разделите минуты так, как удобно вам.',
     signup: 'Подтверждение появится на этой странице. Когда откроется доступ, мы отправим письмо с приглашением, условиями подписки и ссылкой для её оформления. Оплата начинается, только если вы решите оформить подписку.',
     package: 'Скоро', detail: '',
-    disclosure: 'Вы разговариваете с виртуальным репетитором на базе ИИ.',
+    disclosure: 'En Confianza — голосовая практика с ИИ по методу Натали. Ситуации взяты из уроков и рабочих тетрадей.',
     demoPrompt: 'Как сказать «Мне понравился свет»?', demoReply: 'Me gustó la luz. ¿Qué más te llamó la atención?',
     demoMeaning: 'Мне понравился свет. Что ещё привлекло ваше внимание?',
     cta: 'Записаться в лист ожидания', email: 'Ваш email', consent: 'Согласен(-на) получить письмо о доступе к En Confianza. Мы используем email для этого списка.',
     terms: 'Запись бесплатна. Когда откроется доступ, мы пришлём приглашение и условия подписки. Вы сами решите, оформлять ли её.',
     success: 'Вы в списке. Когда откроется доступ, пришлём письмо с приглашением и ссылкой для оформления подписки.', pending: 'Отправляем…', fail: 'Запись пока не сохранилась. Попробуйте ещё раз.',
     invitation: 'Доступ по приглашению', full: 'Список пока заполнен. Загляните позже.', back: 'На главную', library: 'Открытая библиотека',
-    homeTitle: 'Вам уже есть о чём поговорить.', homeCopy: 'Закрытая подписка на разговорную практику на испанском. Выберите удобную продолжительность и тему, которая вам близка. Подсказки — на русском.',
     example: 'Пример разговора', meaning: 'Вы можете говорить помедленнее?'
   },
   es: {
@@ -63,14 +62,13 @@ const copy = {
     booking: 'Empezá cuando te quede cómodo, sin reservar un horario. Repartí los minutos en sesiones como te quede cómodo.',
     signup: 'Vas a ver la confirmación en esta página. Cuando abramos el acceso, te enviamos un correo con la invitación, las condiciones y el enlace para activar la membresía. El primer cobro se hace cuando vos la activás.',
     package: 'Próximamente', detail: '',
-    disclosure: 'Conversás por voz con una tutora virtual que usa inteligencia artificial.',
+    disclosure: 'En Confianza es práctica por voz con IA. Sigue el método de Natali y usa situaciones de las lecciones y los cuadernos.',
     demoPrompt: 'Как сказать «Мне понравился свет»?', demoReply: 'Me gustó la luz. ¿Qué más te llamó la atención?',
     demoMeaning: 'Pedís en ruso cómo decir que te gustó la luz. La tutora te da la frase y te invita a seguir hablando.',
     cta: 'Sumarme a la lista de espera', email: 'Tu correo', consent: 'Acepto recibir un correo sobre el acceso a En Confianza. Usamos tu correo para esta lista.',
     terms: 'Anotarte es gratis. Cuando abramos el acceso, te enviamos una invitación con las condiciones de la membresía. Vos decidís si querés activarla.',
     success: 'Ya estás en la lista. Cuando abramos, vas a recibir un correo con la invitación y el enlace para activar tu membresía.', pending: 'Enviando…', fail: 'No pudimos guardar tu solicitud. Volvé a intentar.',
     invitation: 'Acceso por invitación', full: 'La lista está llena por ahora. Volvé más adelante.', back: 'Ir al inicio', library: 'Biblioteca abierta',
-    homeTitle: 'Ya tenés de qué hablar.', homeCopy: 'Membresía privada de conversación en español. Elegí cuánto tiempo practicar, traé un tema que te interese y pedí una pista en ruso si te trabás.',
     example: 'Ejemplo de conversación', meaning: 'Una forma amable de pedir que hablen más despacio.'
   },
   en: {
@@ -95,14 +93,13 @@ const copy = {
     booking: 'Start when it suits you, without booking a time slot. Split your minutes into sessions that suit you.',
     signup: 'You’ll see confirmation on this page. When access opens, we’ll email you an invitation, the membership terms and a link to activate it. Your first payment is taken when you activate your membership.',
     package: 'Coming soon', detail: '',
-    disclosure: 'Conversations are with a virtual voice tutor powered by AI.',
+    disclosure: 'En Confianza is AI-powered voice practice based on Natali’s method and situations from the lessons and workbooks.',
     demoPrompt: 'Как сказать «Мне понравился свет»?', demoReply: 'Me gustó la luz. ¿Qué más te llamó la atención?',
     demoMeaning: 'Ask in Russian how to say you liked the light. The tutor gives you the phrase and invites you to keep talking.',
     cta: 'Join the waitlist', email: 'Your email address', consent: 'I agree to receive an email about access to En Confianza. We use your email for this waitlist.',
     terms: 'Joining the list is free. We’ll email you an invitation and the membership terms when access opens. You decide whether to subscribe.',
     success: 'You’re on the list. When access opens, we’ll email you an invitation and a link to activate your membership.', pending: 'Sending…', fail: 'We couldn’t save your request. Please try again.',
     invitation: 'Access by invitation', full: 'The waitlist is full for now. Please check back later.', back: 'Back to home', library: 'Open library',
-    homeTitle: 'You already have something to say.', homeCopy: 'Private membership for Spanish conversation. Choose how long to practise, bring a topic you care about and ask for a hint in Russian whenever you need one.',
     example: 'Conversation example', meaning: 'Could you speak a little more slowly?'
   }
 };
@@ -126,7 +123,7 @@ for (const [language, c] of Object.entries(copy)) {
   const messages = ['pending','success','fail','full'].map(key => `data-${key}="${text(c[key])}"`).join(' ');
   await mkdir('dist' + destination, { recursive: true });
   await writeFile('dist' + destination + 'index.html', `<!doctype html>
-<html lang="${language}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="${production ? 'index,follow' : 'noindex,follow'}"><link rel="canonical" href="${canonical}">${alternates}<meta name="description" content="${text(c.descriptor)}"><meta property="og:url" content="${canonical}">${pageSchema}<title>${productName} — Español con Natali</title><link rel="stylesheet" href="/design-system.css"><link rel="stylesheet" href="/tutor-waitlist.css"></head>
+<html lang="${language}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="${production ? 'index,follow' : 'noindex,follow'}"><link rel="canonical" href="${canonical}">${alternates}<meta name="description" content="${text(productName + ' · ' + c.descriptor)}"><meta property="og:url" content="${canonical}">${pageSchema}<title>${productName} — Español con Natali</title><link rel="stylesheet" href="/design-system.css"><link rel="stylesheet" href="/tutor-waitlist.css"></head>
 <body>${renderHeader(language, '/tutor/')}
 <main class="tw-main" id="main">
 <div class="tw-grid">
@@ -153,24 +150,13 @@ for (const [language, c] of Object.entries(copy)) {
   </figure>
 </section>
 ${renderFaq(c.faqTitle, faq)}
-</main><footer class="tw-footer"><a href="${root(language)}">${text(c.back)}</a><a href="${root(language)}resources/">${text(c.library)}</a></footer><script src="/tutor-waitlist.js" defer></script></body></html>`);
+</main><footer class="tw-footer"><a href="${root(language)}">${text(c.back)}</a><a href="${root(language)}resources/">${text(c.library)}</a>${renderReviewsLink(language)}</footer><script src="/tutor-waitlist.js" defer></script></body></html>`);
   const homePath = 'dist' + root(language) + 'index.html';
   const home = await readFile(homePath, 'utf8');
-  const teaser = `<section class="tutor-teaser wrap" id="tutor" aria-labelledby="tutor-title">
-    <div class="tutor-teaser-content">
-      <p class="label" lang="es">${productName}</p>
-      <h2 id="tutor-title">${text(c.homeTitle)}</h2>
-      <p>${text(c.homeCopy)}</p>
-      <a class="button" href="${destination}">${text(c.cta)}</a>
-    </div>
-    <figure class="tutor-teaser-example">
-      <figcaption class="label">${text(c.example)}</figcaption>
-      <blockquote lang="es">¿Puede hablar más despacio?</blockquote>
-      <p>${text(c.meaning)}</p>
-      <blockquote class="tutor-teaser-reply" lang="es">Claro. Vamos poco a poco.</blockquote>
-    </figure>
-  </section>`;
-  const at = home.indexOf('<section class="fit section wrap rule"');
+  const soon = {ru:'Скоро',es:'Próximamente',en:'Coming soon'}[language];
+  const teaser = `<aside class="tutor-home-note wrap" id="tutor"><p><strong lang="es">${productName}</strong> · ${text(soon)}</p>
+    <a class="link" href="${destination}">${text(c.cta)} <span aria-hidden="true">↗</span></a></aside>`;
+  const at = home.indexOf('<section class="private-section');
   if (at === -1) throw new Error('Tutor link insertion point missing for ' + language);
   await writeFile(homePath, home.slice(0, at) + teaser + home.slice(at));
 }

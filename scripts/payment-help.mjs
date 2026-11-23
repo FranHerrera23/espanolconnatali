@@ -16,9 +16,9 @@ export function paymentFaq(language) {
 }
 
 const privateCopy = {
-  ru: ['Свободное время у Натали','Оставьте email, чтобы узнать о свободных местах на индивидуальных занятиях.','Оставить заявку'],
-  en: ['Private lesson availability','Leave your email and we’ll get back to you about available places with Natali.','Send availability enquiry'],
-  es: ['Disponibilidad de clases privadas','Dejanos tu correo y te contamos si hay lugares para estudiar con Natali.','Consultar disponibilidad']
+  ru: ['Свободное время у Натали','Оставьте email. Мы ответим, есть ли свободные места, и согласуем удобное время до оплаты.','Оставить заявку'],
+  en: ['Private lesson availability','Leave your email. We’ll reply with availability and agree on a schedule before you pay.','Send availability enquiry'],
+  es: ['Disponibilidad de clases privadas','Dejanos tu correo. Te respondemos por email para confirmar si hay lugar y acordar los horarios antes del pago.','Consultar disponibilidad']
 };
 
 export function renderPaymentHelp(language, kind = 'payment') {
