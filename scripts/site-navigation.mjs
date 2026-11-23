@@ -1,20 +1,20 @@
 const locales = {
   ru: { language: 'Язык', main: 'Главная навигация', menu: 'Меню', home: 'На главную',
     entries: ['Курс','Ресурсы','Отзывы','Натали','Занятия','Тьютор','Цены'],
-    resources: ['Гиды','Статьи','Испания'] },
+    resources: ['Статьи','Испания'] },
   en: { language: 'Language', main: 'Main navigation', menu: 'Menu', home: 'Home',
     entries: ['Course','Resources','Reviews','Natali','Lessons','Tutor','Pricing'],
-    resources: ['Guides','Articles','Spain'] },
+    resources: ['Articles','Spain'] },
   es: { language: 'Idioma', main: 'Navegación principal', menu: 'Menú', home: 'Inicio',
     entries: ['Curso','Recursos','Opiniones','Natali','Clases','Tutor','Precios'],
-    resources: ['Guías','Artículos','España'] }
+    resources: ['Artículos','España'] }
 };
 
 const languageNames = { ru: 'Русский', es: 'Español', en: 'English' };
 const homeFor = locale => locale === 'ru' ? '/' : '/' + locale + '/';
-const resources = ['/resources/', '/articles/', '/life-in-spain/'];
+const resources = ['/articles/', '/life-in-spain/'];
 const commercial = ['/course/', null, '/students/', '/about-natali/', '/private-lessons/', '/tutor/', '/pricing/'];
-const common = new Set(['/', ...resources, ...commercial]);
+const common = new Set(['/', '/resources/', ...resources, ...commercial]);
 const localizedRoute = (locale, route) => homeFor(locale) + route.slice(1);
 
 function languageTarget(locale, route, current) {
