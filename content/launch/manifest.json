@@ -1,44 +1,45 @@
 [
   {
     "id": "ECN-FR-001",
-    "version": "1.0",
-    "status": "published",
+    "version": "2.0",
+    "status": "approved_for_publication",
     "language": "ru",
-    "sourceFile": "editorial/articles/keep-a-conversation-going.md",
+    "sourceFile": "editorial/drafts/conversation-v2/keep-a-conversation-going.md",
     "route": "/resources/keep-a-conversation-going/",
-    "routeStatus": "existing",
     "title": "Как поддержать разговор на испанском",
-    "description": "Ответ, полезная деталь и вопрос по теме: два диалога и задания с объяснениями.",
+    "titleEs": "Cómo mantener una conversación en español",
+    "description": "Как продолжить разговор с соседом, за семейным столом или на работе, переспросить и вовремя попрощаться. Пять диалогов и десять заданий с ответами.",
     "author": {
       "type": "Organization",
       "name": "Редакция Español con Natali"
     },
     "humanReviewer": null,
-    "preparedAt": "2026-11-03",
+    "preparedAt": "2026-11-24",
     "publishedAt": "2026-11-03",
-    "updatedAt": null,
+    "updatedAt": "2026-11-24",
     "canonicalOrigin": "https://www.espanolconnatali.com",
-    "publicationExecuted": true,
-    "wordCount": 674,
+    "wordCount": 1905,
     "sourceUrls": [
-      "https://www.rae.es/dpd/interrogaci%C3%B3n",
-      "https://www.rae.es/dpd/repetir"
+      "https://www.rae.es/dpd/gustar",
+      "https://dle.rae.es/cierto"
     ],
     "relatedFiles": [
-      "ser-estar.md",
       "ask-for-clarification.md",
-      "tell-what-you-did-yesterday.md",
-      "tell-what-you-liked-at-an-exhibition.md"
+      "make-plans-in-spanish.md"
+    ],
+    "relatedRoutes": [
+      "/resources/ask-for-clarification/",
+      "/resources/make-plans-in-spanish/"
     ],
     "commercialCta": null,
-    "sha256": "d9ab869873bae960dddabcf25483ea9ced38b116b66008b0a71ddc5c8995920c",
+    "sha256": "55b762a16d859c1d913b58a284fea2520aca17959ed338a78045ca3bd27c3f5e",
+    "pillar": "P2",
+    "routeStatus": "existing",
     "editorialApproval": {
       "by": "Fran",
-      "source": "Aprobación expresa en este chat: Excelente. Aprobados; hay que salir live con esto.",
-      "date": "2026-11-03",
-      "scope": "Aprobado para publicación por responsable web. Natali leerá después de salir live; no revisión humana de Natali atribuida."
-    },
-    "publicUrl": "https://www.espanolconnatali.com/resources/keep-a-conversation-going/"
+      "source": "Autorización general de publicación autónoma diaria.",
+      "date": "2026-11-10"
+    }
   },
   {
     "id": "ECN-FR-003",
@@ -1710,6 +1711,45 @@
     ],
     "commercialCta": null,
     "sha256": "d8c73ed2d9a0aa41d06a91c7cd66f4aed5d9e7d6c51e2fd7690ad5ced7074bd5",
+    "pillar": "P5",
+    "editorialApproval": {
+      "by": "Fran",
+      "source": "Autorización general de publicación autónoma diaria.",
+      "date": "2026-11-10"
+    }
+  },
+  {
+    "id": "ECN-FR-043",
+    "version": "1.0",
+    "status": "approved_for_publication",
+    "language": "ru",
+    "sourceFile": "editorial/articles/ask-permission-for-a-group-photo.md",
+    "route": "/resources/ask-permission-for-a-group-photo/",
+    "title": "Как по-испански предложить общее фото и договориться, кому его отправить",
+    "titleEs": "Cómo proponer una foto de grupo y acordar a quién enviarla",
+    "description": "Как предложить общее фото, остаться за кадром, попросить снимок в личку или убрать его из профиля. Пять диалогов и десять заданий с ответами.",
+    "author": {
+      "type": "Organization",
+      "name": "Редакция Español con Natali"
+    },
+    "humanReviewer": null,
+    "preparedAt": "2026-11-24",
+    "publishedAt": "2026-11-24",
+    "updatedAt": null,
+    "canonicalOrigin": "https://www.espanolconnatali.com",
+    "wordCount": 1658,
+    "sourceUrls": [
+      "https://www.rae.es/dpd/usted",
+      "https://dle.rae.es/importar"
+    ],
+    "relatedFiles": [
+      "ask-for-clarification.md"
+    ],
+    "relatedRoutes": [
+      "/resources/ask-for-clarification/"
+    ],
+    "commercialCta": null,
+    "sha256": "491d70ecceb62946884e77a6702b184c3308fc5985b06dcb4f639cfef2c47e19",
     "pillar": "P5",
     "editorialApproval": {
       "by": "Fran",

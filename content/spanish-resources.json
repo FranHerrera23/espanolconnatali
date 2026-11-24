@@ -1,7 +1,7 @@
 {
   "keep-a-conversation-going": [
     "Cómo seguir una conversación en español",
-    "Una respuesta, un detalle y una pregunta sobre el tema. Incluye dos diálogos y ejercicios con explicaciones."
+    "Seguí la conversación con un vecino, en familia o en el trabajo. Cinco diálogos y diez ejercicios resueltos."
   ],
   "make-plans-in-spanish": [
     "Cómo coordinar un encuentro en español",
@@ -146,5 +146,9 @@
   "choose-a-cinema-screening": [
     "Cómo elegir una sesión de cine y preguntar por los subtítulos",
     "Cómo encontrar una sesión en versión original o doblada, comprobar el idioma y pedir asientos juntos."
+  ],
+  "ask-permission-for-a-group-photo": [
+    "Cómo proponer una foto de grupo",
+    "Proponé una foto, pedí quedarte fuera del encuadre y acordá a quién se la mandás."
   ]
 }

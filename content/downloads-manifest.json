@@ -6,17 +6,14 @@
     {
       "id": "ECN-FR-001",
       "articleRoute": "/resources/keep-a-conversation-going/",
-      "sourceFile": "editorial/articles/keep-a-conversation-going.md",
-      "sourceSha256": "d9ab869873bae960dddabcf25483ea9ced38b116b66008b0a71ddc5c8995920c",
-      "file": "output/pdf/keep-a-conversation-going-workbook-ru.pdf",
+      "sourceFile": "editorial/drafts/conversation-v2/keep-a-conversation-going.md",
+      "sourceSha256": "55b762a16d859c1d913b58a284fea2520aca17959ed338a78045ca3bd27c3f5e",
+      "file": "output/pdf/2026-11-24/keep-a-conversation-going-workbook-ru.pdf",
       "downloadRoute": "/assets/downloads/keep-a-conversation-going-workbook-ru.pdf",
-      "sha256": "69770c6209ac0f7a1d63b4de61b15ccae21aaf9efc0afcaab70141f6e464e7b1",
-      "pages": 4,
-      "status": "ready_for_web_integration_not_published",
-      "contentCheck": "Full PDF text preserved except removed AI disclosure; page count unchanged; 2026-11-07",
-      "visualCheck": "Updated editorial note rendered and visually checked in contact sheets; 2026-11-07",
-      "bytes": 98609,
-      "version": "1.0-editorial-note"
+      "sha256": "0d0d41074c41b57158e2947a6e52476ac55e3ea4128d511bc154219f314de63d",
+      "pages": 7,
+      "status": "approved_for_web_release",
+      "bytes": 1321254
     },
     {
       "id": "ECN-FR-003",
@@ -573,6 +570,18 @@
       "contentCheck": "All 83 source text blocks present in extracted PDF text; original source hash unchanged",
       "visualCheck": "7 páginas renderizadas y revisadas, tabla con cabecera repetida, ejercicios con pautas y soluciones separadas.",
       "bytes": 1318177
+    },
+    {
+      "id": "ECN-FR-043",
+      "articleRoute": "/resources/ask-permission-for-a-group-photo/",
+      "sourceFile": "editorial/articles/ask-permission-for-a-group-photo.md",
+      "sourceSha256": "491d70ecceb62946884e77a6702b184c3308fc5985b06dcb4f639cfef2c47e19",
+      "file": "output/pdf/2026-11-24/ask-permission-for-a-group-photo-workbook-ru.pdf",
+      "downloadRoute": "/assets/downloads/ask-permission-for-a-group-photo-workbook-ru.pdf",
+      "sha256": "560163cf65c8ab0285dedd66e4a4e764cb29954245d50697b85c46d60319b876",
+      "pages": 7,
+      "status": "approved_for_web_release",
+      "bytes": 1319437
     }
   ]
 }
