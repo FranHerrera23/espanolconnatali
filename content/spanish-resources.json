@@ -5,7 +5,7 @@
   ],
   "make-plans-in-spanish": [
     "Cómo coordinar un encuentro en español",
-    "Invitá, acordá el lugar y la hora, reprogramá el encuentro y confirmá los planes."
+    "Invitá, confirmá la hora y el lugar, cambiá el plan o avisá de una demora."
   ],
   "practise-with-recorded-lessons": [
     "Cómo convertir una videolección en práctica autónoma",
@@ -150,5 +150,9 @@
   "ask-permission-for-a-group-photo": [
     "Cómo proponer una foto de grupo",
     "Proponé una foto, pedí quedarte fuera del encuadre y acordá a quién se la mandás."
+  ],
+  "describe-a-lost-item": [
+    "Cómo describir un objeto perdido y acordar su recogida",
+    "Describí lo que perdiste, verificá las señas y acordá dónde y cuándo buscarlo."
   ]
 }

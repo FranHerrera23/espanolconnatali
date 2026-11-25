@@ -43,44 +43,44 @@
   },
   {
     "id": "ECN-FR-003",
-    "version": "1.0",
-    "status": "published",
+    "version": "2.0",
+    "status": "approved_for_publication",
     "language": "ru",
-    "sourceFile": "editorial/articles/make-plans-in-spanish.md",
+    "sourceFile": "editorial/drafts/plans-v2/make-plans-in-spanish.md",
     "route": "/resources/make-plans-in-spanish/",
-    "routeStatus": "existing",
     "title": "Как договориться о встрече на испанском",
-    "description": "Как пригласить, согласовать время и место, перенести встречу и подтвердить договорённость.",
+    "titleEs": "Cómo quedar con alguien en español",
+    "description": "Как пригласить на встречу, понять предварительный ответ, уточнить время и вход, перенести планы или предупредить об опоздании. Практика с решениями.",
     "author": {
       "type": "Organization",
       "name": "Редакция Español con Natali"
     },
     "humanReviewer": null,
-    "preparedAt": "2026-11-03",
+    "preparedAt": "2026-11-25",
     "publishedAt": "2026-11-03",
-    "updatedAt": null,
+    "updatedAt": "2026-11-25",
     "canonicalOrigin": "https://www.espanolconnatali.com",
-    "publicationExecuted": true,
-    "wordCount": 688,
+    "wordCount": 1749,
     "sourceUrls": [
-      "https://dle.rae.es/quedar",
-      "https://dle.rae.es/venir",
-      "https://dle.rae.es/apetecer",
-      "https://www.rae.es/dpd/interrogaci%C3%B3n"
+      "https://dle.rae.es/quedar"
     ],
     "relatedFiles": [
       "ask-for-clarification.md",
       "keep-a-conversation-going.md"
     ],
+    "relatedRoutes": [
+      "/resources/ask-for-clarification/",
+      "/resources/keep-a-conversation-going/"
+    ],
     "commercialCta": null,
-    "sha256": "b5c04b6a71fcf595f349bc9346d6bd0dfc17b03e7f65da27cebf216bdeeabf54",
+    "sha256": "5029336e9eb27e398de9734679a7cc7f697abf8edb2f83e6fddfc60c88afda2c",
+    "pillar": "P2",
+    "routeStatus": "existing",
     "editorialApproval": {
       "by": "Fran",
-      "source": "Aprobación expresa en este chat: Excelente. Aprobados; hay que salir live con esto.",
-      "date": "2026-11-03",
-      "scope": "Aprobado para publicación por responsable web. Natali leerá después de salir live; no revisión humana de Natali atribuida."
-    },
-    "publicUrl": "https://www.espanolconnatali.com/resources/make-plans-in-spanish/"
+      "source": "Autorización general de publicación autónoma diaria.",
+      "date": "2026-11-10"
+    }
   },
   {
     "id": "ECN-FR-004",
@@ -1750,6 +1750,47 @@
     ],
     "commercialCta": null,
     "sha256": "491d70ecceb62946884e77a6702b184c3308fc5985b06dcb4f639cfef2c47e19",
+    "pillar": "P5",
+    "editorialApproval": {
+      "by": "Fran",
+      "source": "Autorización general de publicación autónoma diaria.",
+      "date": "2026-11-10"
+    }
+  },
+  {
+    "id": "ECN-FR-044",
+    "version": "1.0",
+    "status": "approved_for_publication",
+    "language": "ru",
+    "sourceFile": "editorial/articles/describe-a-lost-item.md",
+    "route": "/resources/describe-a-lost-item/",
+    "title": "Как по-испански спросить о потерянной вещи и договориться, где её забрать",
+    "titleEs": "Cómo describir un objeto perdido y acordar su recogida",
+    "description": "Как описать потерянную вещь по-испански, проверить приметы и договориться о выдаче. Примеры для кафе и транспорта, упражнения с решениями.",
+    "author": {
+      "type": "Organization",
+      "name": "Редакция Español con Natali"
+    },
+    "humanReviewer": null,
+    "preparedAt": "2026-11-25",
+    "publishedAt": "2026-11-25",
+    "updatedAt": null,
+    "canonicalOrigin": "https://www.espanolconnatali.com",
+    "wordCount": 1754,
+    "sourceUrls": [
+      "https://www.tmb.cat/es/atencion-al-cliente/gestiones/objetos-perdidos",
+      "https://www.renfe.com/es/es/ayuda/objetos-perdidos"
+    ],
+    "relatedFiles": [
+      "ask-for-clarification.md",
+      "ask-for-directions.md"
+    ],
+    "relatedRoutes": [
+      "/resources/ask-for-clarification/",
+      "/resources/ask-for-directions/"
+    ],
+    "commercialCta": null,
+    "sha256": "b52ce257b4e6a986a04b04f8ff2edbe1e63a083b8ba84247d302cfb7fb50c950",
     "pillar": "P5",
     "editorialApproval": {
       "by": "Fran",

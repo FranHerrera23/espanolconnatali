@@ -18,17 +18,14 @@
     {
       "id": "ECN-FR-003",
       "articleRoute": "/resources/make-plans-in-spanish/",
-      "sourceFile": "editorial/articles/make-plans-in-spanish.md",
-      "sourceSha256": "b5c04b6a71fcf595f349bc9346d6bd0dfc17b03e7f65da27cebf216bdeeabf54",
-      "file": "output/pdf/make-plans-in-spanish-workbook-ru.pdf",
+      "sourceFile": "editorial/drafts/plans-v2/make-plans-in-spanish.md",
+      "sourceSha256": "5029336e9eb27e398de9734679a7cc7f697abf8edb2f83e6fddfc60c88afda2c",
+      "file": "output/pdf/2026-11-25/make-plans-in-spanish-workbook-ru.pdf",
       "downloadRoute": "/assets/downloads/make-plans-in-spanish-workbook-ru.pdf",
-      "sha256": "fc0d27cb400f71cab1d7a05861e24b7030738e06c7f5db56131ca8f9af77824a",
-      "pages": 4,
-      "status": "ready_for_web_integration_not_published",
-      "contentCheck": "Full PDF text preserved except removed AI disclosure; page count unchanged; 2026-11-07",
-      "visualCheck": "Updated editorial note rendered and visually checked in contact sheets; 2026-11-07",
-      "bytes": 98574,
-      "version": "1.0-editorial-note"
+      "sha256": "098bab68d104678ac3888e3ea7e7add2a0ac82cd1882476b2b7dd5ce99eff85b",
+      "pages": 7,
+      "status": "approved_for_web_release",
+      "bytes": 31844
     },
     {
       "id": "ECN-FR-004",
@@ -582,6 +579,18 @@
       "pages": 7,
       "status": "approved_for_web_release",
       "bytes": 1319437
+    },
+    {
+      "id": "ECN-FR-044",
+      "articleRoute": "/resources/describe-a-lost-item/",
+      "sourceFile": "editorial/articles/describe-a-lost-item.md",
+      "sourceSha256": "b52ce257b4e6a986a04b04f8ff2edbe1e63a083b8ba84247d302cfb7fb50c950",
+      "file": "output/pdf/2026-11-25/describe-a-lost-item-workbook-ru.pdf",
+      "downloadRoute": "/assets/downloads/describe-a-lost-item-workbook-ru.pdf",
+      "sha256": "5d713262e7b62702d554fba40d3048fecb3632fe8acca2127b882331a4289629",
+      "pages": 7,
+      "status": "approved_for_web_release",
+      "bytes": 32587
     }
   ]
 }
