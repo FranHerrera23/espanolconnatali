@@ -591,6 +591,18 @@
       "pages": 7,
       "status": "approved_for_web_release",
       "bytes": 32587
+    },
+    {
+      "id": "ECN-FR-045",
+      "articleRoute": "/resources/buy-fabric-by-the-metre/",
+      "sourceFile": "editorial/articles/buy-fabric-by-the-metre.md",
+      "sourceSha256": "b53bc0c5ce1e09d8983328f17231638c1b8eb753f4fb4f563c74a5e8cd823640",
+      "file": "output/pdf/2026-11-26/buy-fabric-by-the-metre-workbook-ru.pdf",
+      "downloadRoute": "/assets/downloads/buy-fabric-by-the-metre-workbook-ru.pdf",
+      "sha256": "8262f50b2a0738d6a8d1a9111b7c58c08472643adfc757d6375d056a8795c3ed",
+      "pages": 7,
+      "status": "approved_for_web_release",
+      "bytes": 31881
     }
   ]
 }

@@ -1797,5 +1797,48 @@
       "source": "Autorización general de publicación autónoma diaria.",
       "date": "2026-11-10"
     }
+  },
+  {
+    "id": "ECN-FR-045",
+    "version": "1.0",
+    "status": "approved_for_publication",
+    "language": "ru",
+    "sourceFile": "editorial/articles/buy-fabric-by-the-metre.md",
+    "route": "/resources/buy-fabric-by-the-metre/",
+    "title": "Как купить ткань на метраж и попросить образец по-испански",
+    "titleEs": "Cómo comprar tela por metros y pedir una muestra en español",
+    "description": "Как попросить образец ткани, понять цену за метр, уточнить полезную ширину и заказать отрез. Пять диалогов и десять заданий с ответами.",
+    "author": {
+      "type": "Organization",
+      "name": "Редакция Español con Natali"
+    },
+    "humanReviewer": null,
+    "preparedAt": "2026-11-26",
+    "publishedAt": "2026-11-26",
+    "updatedAt": null,
+    "canonicalOrigin": "https://www.espanolconnatali.com",
+    "wordCount": 1580,
+    "sourceUrls": [
+      "https://dle.rae.es/muestra",
+      "https://dle.rae.es/retal",
+      "https://www.ribescasals.com/pages/como-comprar-telas-online",
+      "https://www.ribescasals.com/pages/preguntas-frecuentes"
+    ],
+    "relatedFiles": [
+      "ask-for-clarification.md",
+      "ask-for-directions.md"
+    ],
+    "relatedRoutes": [
+      "/resources/ask-for-clarification/",
+      "/resources/ask-for-directions/"
+    ],
+    "commercialCta": null,
+    "sha256": "b53bc0c5ce1e09d8983328f17231638c1b8eb753f4fb4f563c74a5e8cd823640",
+    "pillar": "P5",
+    "editorialApproval": {
+      "by": "Fran",
+      "source": "Autorización general de publicación autónoma diaria.",
+      "date": "2026-11-10"
+    }
   }
 ]
