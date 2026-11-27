@@ -8,8 +8,8 @@
     "Invitá, confirmá la hora y el lugar, cambiá el plan o avisá de una demora."
   ],
   "practise-with-recorded-lessons": [
-    "Cómo convertir una videolección en práctica autónoma",
-    "Una secuencia para trabajar con una frase y practicar con respuestas."
+    "Cómo practicar con una lección grabada",
+    "Escuchá una pregunta, respondé por tu cuenta y comprobá una cosa cada vez."
   ],
   "ask-for-clarification": [
     "Cómo pedir que repitan o expliquen algo en español",
@@ -158,5 +158,9 @@
   "buy-fabric-by-the-metre": [
     "Cómo comprar tela por metros y pedir una muestra en español",
     "Pedí una muestra, confirmá el precio por metro y acordá las medidas del corte."
+  ],
+  "print-a-document-in-spanish": [
+    "Cómo pedir una impresión en una copistería",
+    "Indicá el rango, las copias, el color, la escala y si querés imprimir a doble cara."
   ]
 }

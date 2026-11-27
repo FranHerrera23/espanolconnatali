@@ -30,17 +30,14 @@
     {
       "id": "ECN-FR-004",
       "articleRoute": "/resources/practise-with-recorded-lessons/",
-      "sourceFile": "editorial/articles/practise-with-recorded-lessons.md",
-      "sourceSha256": "630abefafe02ec575eebcf4bdd3dfecaf5598be9a7c710fd81a7418e2eadee90",
-      "file": "output/pdf/practise-with-recorded-lessons-workbook-ru.pdf",
+      "sourceFile": "editorial/drafts/recorded-v2/practise-with-recorded-lessons.md",
+      "sourceSha256": "1b3f934d223e7c3840a2c7c6db6c9ba7edbefacddc7c325ee1ad11494fb584cb",
+      "file": "output/pdf/2026-11-27/practise-with-recorded-lessons-workbook-ru.pdf",
       "downloadRoute": "/assets/downloads/practise-with-recorded-lessons-workbook-ru.pdf",
-      "sha256": "0d59611c8b74f32fa538e1cd825719adcd994ce69b434adea8266cf8c6a325e2",
-      "pages": 4,
-      "status": "ready_for_web_integration_not_published",
-      "contentCheck": "Full PDF text preserved except removed AI disclosure; page count unchanged; 2026-11-07",
-      "visualCheck": "Updated editorial note rendered and visually checked in contact sheets; 2026-11-07",
-      "bytes": 97581,
-      "version": "1.0-editorial-note"
+      "sha256": "2552b029471eb2a1f170d4ae86b0a5cfedc1d057bb4472b172fcd150300244fe",
+      "pages": 7,
+      "bytes": 29597,
+      "status": "approved_for_web_release"
     },
     {
       "id": "ECN-FR-002",
@@ -603,6 +600,18 @@
       "pages": 7,
       "status": "approved_for_web_release",
       "bytes": 31881
+    },
+    {
+      "id": "ECN-FR-046",
+      "articleRoute": "/resources/print-a-document-in-spanish/",
+      "sourceFile": "editorial/articles/print-a-document-in-spanish.md",
+      "sourceSha256": "978f29b823b69d17b0ffed6be9e1a2001b2e5ff7eccbcd0913dfca62987fdf99",
+      "file": "output/pdf/2026-11-27/print-a-document-in-spanish-workbook-ru.pdf",
+      "downloadRoute": "/assets/downloads/print-a-document-in-spanish-workbook-ru.pdf",
+      "sha256": "143f2ab08a512cb8fd7c7def8618ae5180b00f19087715a235f2c899378ff5e6",
+      "pages": 7,
+      "bytes": 30148,
+      "status": "approved_for_web_release"
     }
   ]
 }
