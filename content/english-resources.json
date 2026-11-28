@@ -72,8 +72,8 @@
     "Two café menus, five dialogues and ten exercises for ordering coffee and asking for the bill."
   ],
   "short-practice-routine": [
-    "A 15-minute Spanish practice routine",
-    "One short task for recalling what you learned and checking your work."
+    "How to practise Spanish in fifteen minutes",
+    "Practise ordering or making plans, recall a phrase without reading and choose one detail to work on."
   ],
   "football-in-spanish": [
     "How to talk about football in Spanish",
@@ -162,5 +162,9 @@
   "print-a-document-in-spanish": [
     "How to ask for a printout in Spanish",
     "Specify the page range, copies, colour, scale and whether to print double-sided."
+  ],
+  "ask-for-a-haircut": [
+    "How to ask for a haircut in Spain",
+    "Book an appointment, agree on the length, and check what the service includes."
   ]
 }

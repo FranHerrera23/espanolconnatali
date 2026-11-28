@@ -72,8 +72,8 @@
     "Dos cartas, cinco diálogos y diez ejercicios para pedir café y la cuenta."
   ],
   "short-practice-routine": [
-    "Una rutina de español de 15 minutos",
-    "Una tarea breve para recordar lo aprendido y comprobar cómo te fue."
+    "Cómo practicar español en quince minutos",
+    "Practicá un pedido o un plan, probá qué recordás sin leer y elegí un detalle para mejorar."
   ],
   "football-in-spanish": [
     "Cómo hablar de fútbol en español",
@@ -162,5 +162,9 @@
   "print-a-document-in-spanish": [
     "Cómo pedir una impresión en una copistería",
     "Indicá el rango, las copias, el color, la escala y si querés imprimir a doble cara."
+  ],
+  "ask-for-a-haircut": [
+    "Cómo pedir un corte de pelo en España",
+    "Pedí turno, acordá la longitud y confirmá qué incluye el servicio."
   ]
 }

@@ -762,50 +762,49 @@
   },
   {
     "id": "ECN-FR-016",
-    "version": "1.0",
+    "version": "2.0",
     "status": "approved_for_publication",
     "language": "ru",
-    "sourceFile": "editorial/articles/short-practice-routine.md",
+    "sourceFile": "editorial/drafts/routine-v2/short-practice-routine.md",
     "route": "/resources/short-practice-routine/",
-    "routeStatus": "proposed_not_live",
     "title": "Испанский за 15 минут: короткая практика без подготовки урока",
-    "description": "Одна задача за 15 минут: воспроизведение и самопроверка.",
+    "titleEs": "Cómo practicar español en quince minutos",
+    "description": "Как за пятнадцать минут отработать заказ или договориться о встрече, проверить смысл ответа и выбрать задачу на завтра.",
     "author": {
       "type": "Organization",
       "name": "Редакция Español con Natali"
     },
     "humanReviewer": null,
-    "preparedAt": "2026-11-04",
+    "preparedAt": "2026-11-28",
     "publishedAt": "2026-11-05",
-    "updatedAt": null,
+    "updatedAt": "2026-11-28",
     "canonicalOrigin": "https://www.espanolconnatali.com",
-    "wordCount": 711,
     "sourceUrls": [
-      "https://dle.rae.es/efectivo",
-      "https://dle.rae.es/tarjeta",
+      "https://doi.org/10.1126/science.1152408",
       "https://www.coe.int/en/web/common-european-framework-reference-languages/level-descriptions"
     ],
+    "relatedRoutes": [
+      "/resources/at-a-cafe/",
+      "/resources/practise-with-recorded-lessons/",
+      "/resources/introduce-yourself/",
+      "/resources/make-plans-in-spanish/"
+    ],
+    "wordCount": 1455,
+    "sha256": "93f89e77ce173ec54c403fc8b3a1cd71d640eee5a796319c1ebbf0d2b11054c8",
+    "commercialCta": null,
     "relatedFiles": [
       "at-a-cafe.md",
       "practise-with-recorded-lessons.md",
       "introduce-yourself.md",
       "make-plans-in-spanish.md"
     ],
-    "commercialCta": null,
-    "sha256": "ce598902866bec891cd63ea607b3cf360eb40357751d3bf1847a269ab4ee6911",
     "editorialApproval": {
       "by": "Fran",
-      "date": "2026-11-05",
-      "source": "Autorización expresa de publicación en el chat web."
+      "date": "2026-11-10",
+      "source": "Autorización general de publicación autónoma diaria."
     },
-    "pillar": "P4",
-    "titleEs": "Rutina de práctica breve",
-    "relatedRoutes": [
-      "/resources/at-a-cafe/",
-      "/resources/practise-with-recorded-lessons/",
-      "/resources/introduce-yourself/",
-      "/resources/make-plans-in-spanish/"
-    ]
+    "routeStatus": "existing",
+    "pillar": "P4"
   },
   {
     "id": "ECN-FR-019",
@@ -1883,5 +1882,46 @@
       "source": "Autorización general de publicación autónoma diaria.",
       "date": "2026-11-10"
     }
+  },
+  {
+    "id": "ECN-FR-047",
+    "version": "1.0",
+    "status": "approved_for_publication",
+    "language": "ru",
+    "sourceFile": "editorial/articles/ask-for-a-haircut.md",
+    "route": "/resources/ask-for-a-haircut/",
+    "title": "Как попросить о стрижке в Испании и договориться о длине до первого среза",
+    "titleEs": "Cómo pedir un corte de pelo en España",
+    "description": "Как записаться в парикмахерскую, согласовать длину, уточнить стоимость и попросить мастера остановиться. Диалоги и упражнения с ответами.",
+    "author": {
+      "type": "Organization",
+      "name": "Редакция Español con Natali"
+    },
+    "humanReviewer": null,
+    "preparedAt": "2026-11-28",
+    "publishedAt": "2026-11-28",
+    "updatedAt": null,
+    "canonicalOrigin": "https://www.espanolconnatali.com",
+    "sourceUrls": [
+      "https://merakiperruqueria.es/servicios/",
+      "https://www.peluqueriamatices.es/servicios/"
+    ],
+    "relatedRoutes": [
+      "/resources/ask-for-clarification/",
+      "/resources/book-an-appointment-by-phone/"
+    ],
+    "wordCount": 1237,
+    "sha256": "c03392620ef58d3b970963e2b3da6f25e0e86b48c95ee0118e04f3e49cbc03ab",
+    "commercialCta": null,
+    "relatedFiles": [
+      "ask-for-clarification.md",
+      "book-an-appointment-by-phone.md"
+    ],
+    "editorialApproval": {
+      "by": "Fran",
+      "date": "2026-11-10",
+      "source": "Autorización general de publicación autónoma diaria."
+    },
+    "pillar": "P5"
   }
 ]

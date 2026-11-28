@@ -265,18 +265,14 @@
     {
       "id": "ECN-FR-016",
       "articleRoute": "/resources/short-practice-routine/",
-      "sourceFile": "editorial/articles/short-practice-routine.md",
-      "sourceSha256": "ce598902866bec891cd63ea607b3cf360eb40357751d3bf1847a269ab4ee6911",
-      "file": "output/pdf/2026-11-04/short-practice-routine-workbook-ru.pdf",
+      "sourceFile": "editorial/drafts/routine-v2/short-practice-routine.md",
+      "sourceSha256": "93f89e77ce173ec54c403fc8b3a1cd71d640eee5a796319c1ebbf0d2b11054c8",
+      "file": "output/pdf/2026-11-28/short-practice-routine-workbook-ru.pdf",
       "downloadRoute": "/assets/downloads/short-practice-routine-workbook-ru.pdf",
-      "sha256": "ea5b056a6a0fbd799f1c13eb14b9d229e975de4fc06547119212441a678f41d0",
-      "pages": 4,
-      "status": "approved_for_web_release",
-      "contentCheck": "Full PDF text preserved except removed AI disclosure; page count unchanged; 2026-11-07",
-      "visualCheck": "Updated editorial note rendered and visually checked in contact sheets; 2026-11-07",
-      "visualEvidence": "editorial/batches/2026-11-04/qa/pdf/ECN-FR-016.jpg",
-      "version": "1.2-editorial-note",
-      "bytes": 98523
+      "sha256": "28c89de703ca5640261e3fe00e4d5b67f7078fe3255237499df6bba30b5b0cfb",
+      "pages": 6,
+      "bytes": 156872,
+      "status": "approved_for_web_release"
     },
     {
       "id": "ECN-FR-026",
@@ -611,6 +607,18 @@
       "sha256": "143f2ab08a512cb8fd7c7def8618ae5180b00f19087715a235f2c899378ff5e6",
       "pages": 7,
       "bytes": 30148,
+      "status": "approved_for_web_release"
+    },
+    {
+      "id": "ECN-FR-047",
+      "articleRoute": "/resources/ask-for-a-haircut/",
+      "sourceFile": "editorial/articles/ask-for-a-haircut.md",
+      "sourceSha256": "c03392620ef58d3b970963e2b3da6f25e0e86b48c95ee0118e04f3e49cbc03ab",
+      "file": "output/pdf/2026-11-28/ask-for-a-haircut-workbook-ru.pdf",
+      "downloadRoute": "/assets/downloads/ask-for-a-haircut-workbook-ru.pdf",
+      "sha256": "73b357caa84bea02d031a40659631d92ca6d69d4af81c9b18ccd22da1ac4adf4",
+      "pages": 5,
+      "bytes": 141368,
       "status": "approved_for_web_release"
     }
   ]
